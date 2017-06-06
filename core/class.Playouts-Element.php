@@ -2113,6 +2113,23 @@ class Playouts_Element_Auto_Type extends Playouts_Element {
                 ),
                 'value'             => 'h2'
             ),
+            'font_size' => array(
+                'label'             => esc_html__( 'Font Size', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'pixels',
+                'min'               => 14,
+                'max'               => 150,
+                'step'              => 1,
+                'value'             => 75,
+            ),
+            'text_color' => array(
+                'type'              => 'colorpicker',
+				'label'             => esc_html__( 'Text Color', 'AAA' ),
+			),
+            'auto_type_color' => array(
+                'type'              => 'colorpicker',
+				'label'             => esc_html__( 'Auto Type Color', 'AAA' ),
+			),
             'inline_class' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'CSS Classes', 'AAA' ),
@@ -2137,6 +2154,9 @@ class Playouts_Element_Auto_Type extends Playouts_Element {
         extract( $assigned_atts = shortcode_atts( array(
             'static_heading'    => '',
             'h_tag'             => 'h2',
+            'font_size'         => 75,
+            'text_color'        => '',
+            'auto_type_color'   => '',
             'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
@@ -2146,11 +2166,24 @@ class Playouts_Element_Auto_Type extends Playouts_Element {
 
         $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+        $style .= ! empty( $font_size ) ? 'font-size:' . (int) $font_size . 'px;' : '';
+        $style .= ! empty( $text_color ) ? 'color:' . esc_attr( $text_color ) . ';' : '';
 
         $id = 'pl-auto-type-' . Playouts_Shortcode_Parser::get_unique_id();
 
         return '<div class="pl-auto-type-holder' . $class . '" style="' . $style . '" id="' . $id . '">'.
-            '<' . esc_attr( $h_tag ) . '><em>' . esc_attr( $static_heading ) . '</em><span class="pl-auto-type"></span></' . esc_attr( $h_tag ) . '>'.
+            '<' . esc_attr( $h_tag ) . '>'.
+                '<em>' . wp_kses( $static_heading, array(
+                    'a' => array(
+                        'href' => array(),
+                        'title' => array()
+                    ),
+                    'br' => array(),
+                    'em' => array(),
+                    'strong' => array(),
+                )) . '</em>'.
+                '<span class="pl-auto-type" style="' . ( ! empty( $auto_type_color ) ? 'color:' . esc_attr( $auto_type_color ) . ';' : '' ) . '"></span>'.
+            '</' . esc_attr( $h_tag ) . '>'.
             '<ul class="pl-auto-type-texts">' . $content . '</ul>'.
         '</div>';
 

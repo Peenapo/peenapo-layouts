@@ -148,9 +148,14 @@
 .pl-image {}
 
 
+/* text */
+.pl-text p:last-child {margin-bottom:0;}
+
+
 /* auto type */
-.pl-auto-type-holder {}
-.pl-auto-type-holder em {display:block;font-style:normal;}
+.pl-auto-type-holder {color:#111;}
+.pl-auto-type-holder h2 {font-size:inherit;color:inherit;}
+.pl-auto-type-holder em {display:block;font-style:normal;font-size:inherit;color:inherit;}
 .pl-auto-type-holder .pl-auto-type {}
 .pl-auto-type-texts {display:none;}
 
