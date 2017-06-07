@@ -103,8 +103,9 @@ class Playouts_Admin_Settings {
     static function set_support() {
 
         $support_layouts_settings = array(
-            'options' => array( 'label' => __('Options', 'AAA') ),
-            'portability' => array( 'label' => __('Portability', 'AAA') ),
+            'options'       => array( 'label' => __( 'Options', 'AAA' ) ),
+            'fonts'         => array( 'label' => __( 'Fonts', 'AAA' ) ),
+            'portability'   => array( 'label' => __( 'Portability', 'AAA' ) ),
         );
         self::$support_layouts_settings = apply_filters( 'bwg_support', $support_layouts_settings );
 
@@ -127,6 +128,7 @@ class Playouts_Admin_Settings {
     static function actions() {
 
         add_action( 'pl_support_options', array( 'Playouts_Admin_Settings', 'support_options' ) );
+        add_action( 'pl_support_fonts', array( 'Playouts_Admin_Settings', 'support_fonts' ) );
         add_action( 'pl_support_portability', array( 'Playouts_Admin_Settings', 'support_portability' ) );
 
     }
@@ -178,7 +180,11 @@ class Playouts_Admin_Settings {
     }
 
     static function support_options() {
-        Playouts_Admin_Template_Functions::get_template( 'admin/settings/option-tabs/options' );
+        Playouts_Admin_Template_Functions::get_template( 'admin/settings/option-tabs/general' );
+    }
+
+    static function support_fonts() {
+        Playouts_Admin_Template_Functions::get_template( 'admin/settings/option-tabs/fonts' );
     }
 
     static function support_portability() {

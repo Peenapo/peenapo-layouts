@@ -161,7 +161,7 @@
 
 .plg-content {position:relative;width:100%;max-width:800px;margin-top:40px;}
 .plg-content .bwpb-panel-row {height:auto!important;}
-.plg-panel-footer {padding:30px;margin-top:20px;text-align:right;border-top:3px solid #eee;}
+.plg-panel-footer {padding:30px;text-align:right;border-top:3px solid #eee;}
 .plg-panel-footer .bwg-button {}
 .plg-tabs {position:relative;transition:opacity .3s;-moz-transition:opacity .3s;-webkit-transition:opacity .3s;}
 .plg-tabs .plg-message {opacity:0;visibility:hidden;position:absolute;top:0;left:50%;max-width:280px;padding:12px 18px;background-color:rgba(0,0,0,0.8);color:#fff;line-height:200%;border-radius:4px;z-index:9;margin-top:-12px;
@@ -190,6 +190,7 @@
 .plg-tabs .plg-alert:after {content:'\e681';position:absolute;top:12px;left:11px;font-size:34px;font-family:'Pe-icon-7-stroke';line-height:35px;}
 .plg-tabs .plg-alert.plg-alert-success:after {content:'\e66c';}
 
+.plg-tab-content h3 {padding:30px 30px 5px 25px;margin:0;font-size:29px;font-weight:400;line-height:100%;color:#666;}
 .plg-tab-content.plg-tab-involved {font-size:0;}
 .plg-input-token-form {width:100%;}
 .plg-tab-involved .plg-tab-involved-col {display:inline-block;vertical-align:top;}
@@ -673,7 +674,7 @@
 .bwpb-panel-content .bwpb-panel-row {display:inline-block;width:100%;vertical-align:top;overflow:hidden;border-bottom:1px solid #eee;border-right:1px solid #eee;}
 .bwpb-panel-content .bwpb-panel-row.bwpb-panel-row-hidden {display:none;}
 .bwpb-panel-content .bwpb-panel-row.bwpb-row-depends {padding-top:0;padding-bottom:0;}
-.bwpb-panel-content .bwpb-panel-row-inner {width:100%;padding:24px 33px;}
+.bwpb-panel-content .bwpb-panel-row-inner {width:100%;padding:25px;}
 .bwpb-panel-content .bwpb-panel-no-option {display:inline-block;padding:5px 11px;background-color:#fff0f3;color:#f93d66;border-radius:3px;}
 .bwpb-panel-row.bwpb-tab-hidden {display:none;}
 .bwpb-panel-content h5 {display:block;width:100%;margin:0 0 12px 0;font-size:18px;font-weight:300;line-height:32px;}
@@ -826,6 +827,11 @@
 /* select */
 .bwpb-panel-form .bwpb-panel-row select {width:100%;}
 
+/* google font */
+.bwpb-row-option-google_font {}
+.bwpb-row-option-google_font > .bwpb-panel-row-inner {padding-bottom:5px;}
+.bwpb-row-option-google_font > .bwpb-panel-row-inner > * {margin-bottom:20px;}
+
 /* base64 */
 .bwpb-panel-form .bwpb-panel-row[data-type='base64'] input {display:none;}
 
@@ -852,17 +858,17 @@
 .bwpb-option-number-slider i {font-style:normal;color:#000;}
 
 /* icon select */
-.bwpb-option-icon {float:left;width:100%;}
-.bwpb-icon-container {display:none;float:left;width:100%;border:3px solid #c7e9f5;padding:2%;margin:20px 0 0 0;font-size:0;border-radius:4px;}
+.bwpb-option-icon {}
+.bwpb-icon-container {display:none;width:100%;border:3px solid #c7e9f5;padding:2%;margin:20px 0 0 0;font-size:0;border-radius:4px;}
 .bwpb-icon-container li {display:inline-block;width:10%;padding:11px 2% 11px 2%;margin:0;font-size:30px;line-height:25px;color:#505070;text-align:center;cursor:pointer;transition:all .3s;-moz-transition:all .3s;-webkit-transition:all .3s;}
 .bwpb-icon-container li:hover, .bwpb-icon-container li.bwpb-active {background-color:#f3f3f3;}
 .bwpb-icon-container li:nth-child(10n) {margin-right:0;}
-.bwpb-icon-buttons {float:left;width:100%;padding:7px 0;margin:0 0 -2px;}
-.bwpb-icon-label {float:left;width:110px;text-align:center;font-size:28px;color:#666;border:3px solid #c7e9f5;height:52px;line-height:48px;cursor:pointer;
-    border-radius:4px 0 0 4px;
+.bwpb-icon-buttons {padding:0;margin:0 0 -2px;font-size:0;}
+.bwpb-icon-label {display:inline-block;width:110px;text-align:center;font-size:28px;color:#666;border:3px solid #c7e9f5;height:52px;line-height:48px;cursor:pointer;
+    vertical-align:top;border-radius:4px 0 0 4px;
 }
-.bwpb-icon-expand {float:left;width:48px;text-align:center;font-size:13px;background-color:#fff;color:#505070;border:3px solid #c7e9f5;border-left:0;
-    border-radius:0 4px 4px 0;height:52px;line-height:48px;cursor:pointer;
+.bwpb-icon-expand {display:inline-block;width:48px;text-align:center;font-size:13px;background-color:#fff;color:#505070;border:3px solid #c7e9f5;border-left:0;
+    vertical-align:top;border-radius:0 4px 4px 0;height:52px;line-height:48px;cursor:pointer;
 }
 .bwpb-icon-expand i {display:block;width:12px;height:12px;position:relative;top:17px;left:17px;}
 .bwpb-icon-expand i:before, .bwpb-icon-expand i:after {content:'';height:2px;position:absolute;top:5px;left:0;right:0;background-color:#505070;}

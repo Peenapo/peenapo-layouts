@@ -691,3 +691,79 @@ class Playouts_Option_Type_Columns extends Playouts_Option_Type {
     }
 }
 new Playouts_Option_Type_Columns;
+
+class Playouts_Option_Type_Google_Font extends Playouts_Option_Type {
+
+    static $google_fonts;
+
+    function init() {
+
+        $this->id = 'google_font';
+        $this->name = esc_html__( 'Google Font', 'AAA' );
+
+		self::$google_fonts = require PL_DIR . 'inc/google_fonts.php';
+
+    }
+
+    static function get_font_option( $font, $key, $value ) {
+
+        $data_variants = '';
+        if( isset( $font['variants'] ) and ! empty( $font['variants'] ) and is_array( $font['variants'] ) ) {
+            $data_variants = ' data-variants="' . implode(',', $font['variants']) . '"';
+        }
+        $data_subsets = '';
+        if( isset( $font['subsets'] ) ) {
+            $data_subsets = ' data-subsets="' . implode(',', $font['subsets']) . '"';
+        }
+        $selected = '';
+        if( isset( $value['family'] ) and $value['family'] == $font['family'] ) {
+            $selected = ' selected="selected"';
+        }
+        echo "<option value='{$font['family']}'{$data_variants}{$data_subsets}{$selected}>{$font['family']}</option>";
+    }
+
+    static function template( $values ) {
+
+        extract( (array) $values );
+
+        $current_value = $value;
+        $current_value_json = $current_value;
+
+        ob_start();
+
+        echo self::get_option_heading( $label, $description ); ?>
+
+        <!-- font value -->
+        <input type="hidden" class="bwpc-font-value" value='<?php echo (string) stripslashes( $current_value_json ); ?>' name="<?php echo $name; ?>">
+        <!-- font family -->
+        <select class="bwpc-font-family">
+            <option value=""><?php esc_html_e( 'Select Font', 'AAA' ); ?></option>
+            <?php foreach ( self::$google_fonts as $key => $font ) {
+                self::get_font_option( $font, $key, $current_value );
+            } ?>
+        </select>
+
+        <!-- variants -->
+        <select class='bwpc-font-variants'>
+            <?php if( isset( $current_value->variants ) && ! empty( $current_value->variants ) && is_array( $current_value->variants ) ): ?>
+                <?php echo "<option value=''>" . esc_html__( 'Select font variant', 'AAA' ) . "</option>"; ?>
+                <?php foreach ( $current_value->variants as $key => $variant ): ?>
+                    <?php echo "<option value='{$variant}'>{$variant}</option>"; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </select>
+
+        <!-- subsets -->
+        <select class='bwpc-font-subsets' multiple>
+            <?php if( isset( $current_value->subsets ) && ! empty( $current_value->subsets ) && is_array( $current_value->subsets ) ): ?>
+                <?php foreach ( $current_value->subsets as $key => $subset ): ?>
+                    <?php echo "<option value='{$subset}'>{$subset}</option>"; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </select><?php
+
+        return ob_get_clean();
+
+    }
+}
+new Playouts_Option_Type_Google_Font;

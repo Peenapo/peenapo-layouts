@@ -403,7 +403,7 @@ var Bwpb_settings_panel = {
         },
 
         end: function() {
-console.log('end');
+
             $('.bwpb-panel-tabs ul', Bwpb_settings_panel.$panel).remove();
 
         }
@@ -1127,6 +1127,112 @@ Playouts_Option_Type.option_types.columns = {
         Pl_columns.end();
 
     }
+}
+
+Playouts_Option_Type.option_types.google_font = {
+
+    option_onopen_callback: function( $template, options ) {
+
+        Pl_google_font.start( $template, options );
+
+    },
+
+    option_onclose_callback: function( options ) {
+
+        Pl_google_font.end();
+
+    }
+}
+
+var Pl_google_font = {
+
+    start: function( $template, options ) {
+
+        var self = this;
+
+        var $field = $('.bwpc-option-google-font', $template),
+            $select = $template.find('.bwpc-font-family');
+
+        // selected
+        var current_value = $template.find('.bwpc-font-value').val();
+
+        if( current_value.length ) {
+            var current_value_json = JSON.parse( current_value );
+            if( typeof current_value_json.family !== 'undefined' ) {
+                $select.val( current_value_json.family );
+                Pl_google_font.family_changed( $select, $template );
+            }
+        }
+
+        $select.on( 'change', function() {
+            Pl_google_font.family_changed( $(this), $template );
+        });
+
+        $template.find('select').on('change', function() {
+            Pl_google_font.output_font( $template );
+        });
+
+
+    }
+
+    ,family_changed: function( select, $template ) {
+
+        var $selected = select.find('option:selected');
+        var $variants = $template.find('.bwpc-font-variants');
+        var variants = typeof $selected.attr('data-variants') !== 'undefined' ? $selected.attr('data-variants').split(',') : [];
+        var $subsets = $template.find('.bwpc-font-subsets');
+        var subsets = typeof $selected.attr('data-subsets') !== 'undefined' ? $selected.attr('data-subsets').split(',') : [];
+        var dataValue = $template.find('.bwpc-font-value').val();
+        if( dataValue !== '' ) {
+            var current_value = JSON.parse( dataValue );
+        }
+
+        // variants
+        $variants.empty().css('display', 'none');
+
+        if( variants.length > 1 ) {
+            var out = '';
+            out += '<option value="">Select font variant</option>'; // TODO: translate this via i18n
+            for ( i = 0; i < variants.length; i++ ) {
+                out += '<option value="' + variants[i] + '" ' + ( ( typeof current_value.variants !== 'undefined' && current_value.variants == variants[i] ) ? 'selected="selected"' : '' ) + '>' + variants[i] + '</option>';
+            }
+            $( out ).appendTo( $variants.css('display', 'block') );
+        }
+
+        // subsets
+        $subsets.empty().css('display', 'none');
+
+        if( subsets.length > 1 ) {
+            var out = '';
+            var currentSubset = [];
+            if( typeof current_value.subsets !== 'undefined' ) {
+                currentSubset = current_value.subsets.split(',');
+            }
+            for ( i = 0; i < subsets.length; i++ ) {
+                out += '<option value="' + subsets[i] + '" ' + ( ( $.inArray( subsets[i], currentSubset ) >= 0 ) ? 'selected="selected"' : '' ) + '>' + subsets[i] + '</option>';
+            }
+            $( out ).appendTo( $subsets.css('display', 'block') );
+        }
+
+    }
+
+    ,output_font: function( $template ) {
+
+        var variants = '';
+        var variants_val = $template.find('.bwpc-font-variants').val();
+        if( variants_val !== null && variants_val !== '' ) { variants = ',"variants":"' + variants_val + '"'; }
+
+        var subsets = '';
+        var subsets_val = $template.find('.bwpc-font-subsets').val();
+        if( subsets_val !== null ) { subsets = ',"subsets":"' + subsets_val + '"'; }
+
+        var font = '{"family":"' + $template.find('.bwpc-font-family').val() + '"' + variants + subsets + '}';
+        $template.find('.bwpc-font-value').val( font ).trigger('change');
+
+    }
+
+    ,end: function() {}
+
 }
 
 var Pl_columns = {
@@ -2330,7 +2436,7 @@ var Pl_guide = {
 
         var _option_type;
 
-        $('#plg-layouts-options .bwpb-panel-row').each(function() {
+        $('.plg-layouts-options .bwpb-panel-row').each(function() {
 
             _option_type = $(this).attr('data-type');
 
@@ -2359,7 +2465,7 @@ var Pl_guide = {
 
                 option_type_callbacks[ _option_type ] = options;
 
-                $('#plg-layouts-options').append( $template );
+                $('.plg-layouts-options').append( $template );
 
                 // check if the option type has a callback
                 if( typeof Playouts_Option_Type.option_types[ _option_type ] !== 'undefined' ) {
@@ -2372,7 +2478,7 @@ var Pl_guide = {
         }*/
 
         // bind info icon
-        $('#plg-layouts-options').on('click.bwpb_panel_info_click', '.bwpb-icon-info', Bwpb_settings_panel.on_click_info_icon);
+        $('.plg-layouts-options').on('click.bwpb_panel_info_click', '.bwpb-icon-info', Bwpb_settings_panel.on_click_info_icon);
 
         /*
          * run dependencies.
@@ -2386,7 +2492,7 @@ var Pl_guide = {
     bind: function() {
 
         $('#pl-guide').on( 'click', '.plg-tabs-list li', Pl_guide.on_tab_click );
-        $('#plg-do-layouts-settings-save').on( 'click', Pl_guide.layout_settings_save );
+        $(document).on( 'click', '#plg-do-layouts-settings-save', Pl_guide.layout_settings_save );
 
     },
 
@@ -2394,7 +2500,7 @@ var Pl_guide = {
 
         e.preventDefault();
 
-        var $form = $( '#plg-layouts-options' ), data = '';
+        var $form = $( '#plg-layouts-options-general, #plg-layouts-options-fonts' ), data = '';
 
         data += $form.serialize();
         data += '&action=__save_layout_options';

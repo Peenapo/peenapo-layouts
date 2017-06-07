@@ -1,11 +1,13 @@
 <div class="plg-tab-content">
     <div class="bwpb-panel-form">
 
-        <form class="plg-layouts-options bwpb-panel-content" id="plg-layouts-options">
+        <h3><?php esc_html_e( 'General', 'AAA' ); ?></h3>
+
+        <form class="plg-layouts-options bwpb-panel-content" id="plg-layouts-options-general">
 
             <?php
 
-                $layouts_options_arr = require PL_DIR . 'inc/options.php';
+                $layouts_options_arr = require PL_DIR . 'inc/options_general.php';
                 $layouts_options = apply_filters( 'bwpb_layouts_options', $layouts_options_arr );
 
                 $layouts_options_new = array();
