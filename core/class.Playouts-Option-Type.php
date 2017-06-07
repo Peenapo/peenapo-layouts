@@ -734,7 +734,7 @@ class Playouts_Option_Type_Google_Font extends Playouts_Option_Type {
         echo self::get_option_heading( $label, $description ); ?>
 
         <!-- font value -->
-        <input type="hidden" class="bwpc-font-value" value='<?php echo (string) stripslashes( $current_value_json ); ?>' name="<?php echo $name; ?>">
+        <input type="hidden" class="bwpc-font-value" value='<?php echo (string) stripslashes( $current_value_json ); ?>' name="<?php echo $name; ?>" data-id="<?php echo $name; ?>">
         <!-- font family -->
         <select class="bwpc-font-family">
             <option value=""><?php esc_html_e( 'Select Font', 'AAA' ); ?></option>
@@ -760,7 +760,11 @@ class Playouts_Option_Type_Google_Font extends Playouts_Option_Type {
                     <?php echo "<option value='{$subset}'>{$subset}</option>"; ?>
                 <?php endforeach; ?>
             <?php endif; ?>
-        </select><?php
+        </select>
+
+        <?php if( isset( $preview ) and ! empty( $preview ) ): ?>
+            <span class="pl-demo-google-font"><?php echo $preview; ?></span><?php
+        endif;
 
         return ob_get_clean();
 

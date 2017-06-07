@@ -352,7 +352,7 @@ class Playouts_Public {
             # css
             wp_enqueue_style( 'pl-style', PL_ASSEST . 'css/style.css' );
             # icons
-            
+
             wp_enqueue_style( 'pl-stroke-7', PL_ASSEST . 'fonts/bwpb-7-stroke/pe-icon-7-stroke.css' );
 
             # js

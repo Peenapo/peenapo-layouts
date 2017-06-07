@@ -490,8 +490,8 @@
 .bwpb-button-primary:hover i {color:#fff;}
 
     /* button round */
-    .bwpb-button-round {display:inline-block;padding:0 20px;cursor:pointer;font-family:'Palanquin Dark';
-        line-height:36px;vertical-align:middle;text-transform:uppercase;font-size:13px;text-decoration:none;
+    .bwpb-button-round {display:inline-block;padding:0 20px;cursor:pointer;font-family:'Palanquin Dark';outline:none!important;
+        line-height:36px;vertical-align:middle;text-transform:uppercase;font-size:13px;text-decoration:none;box-shadow:none!important;
         border-radius:50px;border:3px solid #505070;background-color:transparent;color:#505070;min-width:150px;text-align:center;
         transition:all .22s;-webkit-transition:all .22s;
         user-select:none;-webkit-user-select:none;
@@ -830,7 +830,9 @@
 /* google font */
 .bwpb-row-option-google_font {}
 .bwpb-row-option-google_font > .bwpb-panel-row-inner {padding-bottom:5px;}
-.bwpb-row-option-google_font > .bwpb-panel-row-inner > * {margin-bottom:20px;}
+.bwpb-row-option-google_font > .bwpb-panel-row-inner > select {margin-bottom:20px;}
+.bwpc-font-subsets, .bwpc-font-variants {display:none;}
+.pl-demo-google-font {display:block;padding:10px;margin:0 0 25px 0;font-size:23px;line-height:30px;background-color:#f0f7ff;color:#3d95f9;border-radius:4px;}
 
 /* base64 */
 .bwpb-panel-form .bwpb-panel-row[data-type='base64'] input {display:none;}

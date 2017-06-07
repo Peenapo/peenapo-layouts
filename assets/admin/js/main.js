@@ -1168,10 +1168,10 @@ var Pl_google_font = {
             Pl_google_font.family_changed( $(this), $template );
         });
 
+        Pl_google_font.output_font( $template );
         $template.find('select').on('change', function() {
             Pl_google_font.output_font( $template );
         });
-
 
     }
 
@@ -1182,9 +1182,10 @@ var Pl_google_font = {
         var variants = typeof $selected.attr('data-variants') !== 'undefined' ? $selected.attr('data-variants').split(',') : [];
         var $subsets = $template.find('.bwpc-font-subsets');
         var subsets = typeof $selected.attr('data-subsets') !== 'undefined' ? $selected.attr('data-subsets').split(',') : [];
-        var dataValue = $template.find('.bwpc-font-value').val();
-        if( dataValue !== '' ) {
-            var current_value = JSON.parse( dataValue );
+        var data_value = $template.find('.bwpc-font-value').val();
+
+        if( data_value !== '' ) {
+            var current_value = JSON.parse( data_value );
         }
 
         // variants
@@ -1226,8 +1227,31 @@ var Pl_google_font = {
         var subsets_val = $template.find('.bwpc-font-subsets').val();
         if( subsets_val !== null ) { subsets = ',"subsets":"' + subsets_val + '"'; }
 
-        var font = '{"family":"' + $template.find('.bwpc-font-family').val() + '"' + variants + subsets + '}';
+        var font_family = $template.find('.bwpc-font-family').val();
+
+        $template.find('.pl-demo-google-font').css('display', font_family == '' ? 'none' : 'block' );
+
+        var font = '{"family":"' + font_family + '"' + variants + subsets + '}';
         $template.find('.bwpc-font-value').val( font ).trigger('change');
+
+        Pl_google_font.font_demo( $template, font_family, variants_val, subsets_val );
+
+    }
+
+    ,font_demo: function( $template, font_family, variants, subsets ) {
+
+        var variants = ( variants !== null && variants !== '' ) ? ':' + variants : '';
+        var subsets = ( subsets !== null && subsets !== '' ) ? '&amp;subset=' + subsets : '';
+        var enqueue_url = '//fonts.googleapis.com/css?family=' + font_family.replace(/\s+/g, '+') + variants + subsets;
+        var id = $template.find('.bwpc-font-value').attr('data-id');
+        var $source = $('.pl-demo-google-source[data-id="' + id + '"]');
+
+        if( $source.length ) {
+            $source.remove();
+        }
+        $('head link[rel="stylesheet"]').last().after( $('<link class="pl-demo-google-source" data-id="' + id + '" href="' + enqueue_url + '" rel="stylesheet">') );
+
+        $template.find('.pl-demo-google-font').css('font-family', font_family);
 
     }
 

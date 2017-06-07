@@ -6,7 +6,16 @@ return array(
         'label'             => esc_html__( 'Container Font', 'AAA' ),
         'type'              => 'google_font',
         'description'       => esc_html__( 'Select the main font of the container. The rest of elements will inherit it.', 'AAA' ),
-        'value'             => ''
+        'value'             => '',
+        'preview'           => esc_html__( 'It was going to be a lonely trip back.', 'AAA' )
+    ),
+
+    'font_heading' => array(
+        'label'             => esc_html__( 'Headings Font', 'AAA' ),
+        'type'              => 'google_font',
+        'description'       => esc_html__( 'Select the font for all the titles.', 'AAA' ),
+        'value'             => '',
+        'preview'           => esc_html__( 'I watched the storm, so beautiful yet terrific.', 'AAA' )
     ),
 
 );
