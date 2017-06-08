@@ -253,98 +253,6 @@ class Playouts_Public {
 
     }
 
-    /*static function get_background_data( $a ) {
-
-        $bg = array(
-            'style' => '',
-            'style_holder' => '',
-            'class' => '',
-            'class_holder' => '',
-            'overlay' => '',
-            'data' => '',
-            'parallax' => '',
-            'multi' => '',
-            'video' => ''
-        );
-
-        $bg_image_position = $a['bg_image_position'] == 'default' ? 'center center' : $a['bg_image_position'];
-
-        if( $a['background_type'] !== 'none' ) {
-
-            switch( $a['background_type'] ) {
-                case 'color':
-                    $bg['style_holder'] .= $a['bg_color'] ? "background-color:{$a['bg_color']};" : '';
-                    break;
-                case 'image':
-                    $cover = $a['bg_image_fullscreen'] ? 'background-size:cover;' : '';
-                    $fixed = $a['bg_image_fixed'] ? 'background-attachment:fixed;' : '';
-                    $bg['style_holder'] .= "background:transparent url({$a['bg_image']}) {$a['bg_image_repeat']} {$bg_image_position};{$cover};{$fixed}";
-                    $bg['style_holder'] .= $a['bg_image_bg_color'] ? "background-color:{$a['bg_image_bg_color']};" : '';
-                    $bg['style_holder'] .= 'overflow:hidden;';
-                    $bg['overlay'] = $a['bg_image_overlay'] ? "<div class='bwpb-overlay' style='background-color:{$a['bg_image_overlay']}'></div>" : '';
-                    break;
-                case 'parallax':
-                    if( isset( $a["bg_parallax_image_1"] ) ) {
-                        $bg['style_holder'] .= $a['bg_parallax_bg_color'] ? "background-color:{$a['bg_parallax_bg_color']};" : '';
-                        $bg['style_holder'] .= 'overflow:hidden;';
-                        $bg['class'] .= ' bwpb-parallax-background';
-                        $bg['overlay'] = $a['bg_parallax_overlay_color'] ? "<div class='bwpb-overlay' style='background-color:{$a['bg_parallax_overlay_color']};'></div>" : '';
-                        if( $a["bg_parallax_enable_1"] ) {
-                            $bg['parallax'] .= "<div class='bwpb-background-parallax' style='background-image:url(" . esc_url( $a["bg_parallax_image_1"] ) . ")' data-speed='" . $a["bg_parallax_speed_1"] . "'></div>";
-                        }
-
-                    }
-                    break;
-                case 'video':
-                    $bg['style_holder'] .= 'overflow:hidden;';
-                    $bg['video'] = "<div class='bwpb-video-wrap'>";
-                    if( wp_is_mobile() ) {
-                        $bg['video'] .= "<div class='bwpb-mobile-preview' style='background-image: url({$a['bg_video_preview']})'></div>";
-                    }else{
-                        $bg['video'] .= "<video class='bwpb-video-bg' width='1280' height='720' preload='auto' loop autoplay muted>";
-                        if( ! empty( $a['bg_video_file_webm'] ) ) { $bg['video'] .= "<source type='video/mp4' src='{$a['bg_video_file_webm']}'>"; }
-                        if( ! empty( $a['bg_video_file_ogv'] ) ) { $bg['video'] .= "<source type='video/ogg' src='{$a['bg_video_file_ogv']}'>"; }
-                        if( ! empty( $a['bg_video_file_mp4'] ) ) { $bg['video'] .= "<source type='video/webm' src='{$a['bg_video_file_mp4']}'>"; }
-                        $bg['video'] .="</video>";
-                    }
-                    $bg['video'] .="</div>";
-                    $bg['overlay'] = $a['bg_video_overlay'] ? "<div class='bwpb-overlay' style='background-color:{$a['bg_video_overlay']}'></div>" : '';
-                    break;
-            }
-        }
-        return $bg;
-    }*/
-
-    /*static function check_shortcode_string( $font ) {
-
-        global $post;
-
-        if( is_a( $post, 'WP_Post' ) ) {
-            if( strpos( $post->post_content, ' icon="' . $font . ',' ) !== false ) {
-                return true;
-            }
-        }
-        return;
-    }*/
-
-    /*static function check_shortcode( $shortcode ) {
-
-        global $post;
-
-        if( is_a( $post, 'WP_Post' ) ) {
-            if ( is_array( $shortcode ) ) {
-                foreach ( $shortcode as $s ) {
-                    if ( has_shortcode( $post->post_content, $s ) ) {
-                        return true;
-                    }
-                }
-            } else {
-                return has_shortcode( $post->post_content, $shortcode );
-            }
-        }
-        return;
-    }*/
-
     static function enqueue_scripts() {
 
         if( self::is_builder_used() ) {
@@ -352,8 +260,10 @@ class Playouts_Public {
             # css
             wp_enqueue_style( 'pl-style', PL_ASSEST . 'css/style.css' );
             # icons
-
             wp_enqueue_style( 'pl-stroke-7', PL_ASSEST . 'fonts/bwpb-7-stroke/pe-icon-7-stroke.css' );
+            # dynamic google fonts
+            wp_enqueue_style( 'pl-google-fonts', Playouts_Public_Fonts::output_google_font(), array('pl-style') );
+            wp_add_inline_style( 'pl-google-fonts', Playouts_Public_Fonts::$font_declarations );
 
             # js
             wp_enqueue_script( 'jquery' );

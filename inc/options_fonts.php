@@ -10,7 +10,7 @@ return array(
         'preview'           => esc_html__( 'It was going to be a lonely trip back.', 'AAA' )
     ),
 
-    'font_heading' => array(
+    'font_headings' => array(
         'label'             => esc_html__( 'Headings Font', 'AAA' ),
         'type'              => 'google_font',
         'description'       => esc_html__( 'Select the font for all the titles.', 'AAA' ),
