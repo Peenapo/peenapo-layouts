@@ -32,12 +32,11 @@ class Playouts_Public_Fonts {
         self::$default_google_fonts = array(
 
             'font_container' => array(
-                'default' => array( 'family' => 'Lato' ),
+                'default' => array( 'family' => 'Nunito' ),
                 'selectors' => '.pl-outer'
             ),
             'font_headings' => array(
-                'default' => array( 'family' => 'Montserrat' ),
-                //'self' => true, // self hosted font
+                'default' => array( 'family' => 'Roboto', 'variants' => '500' ),
                 'selectors' => '.pl-outer h1, .pl-outer h2, .pl-outer h3, .pl-outer h4, .pl-outer h5, .pl-outer h6'
             )
 
@@ -53,7 +52,7 @@ class Playouts_Public_Fonts {
 
         foreach( self::$default_google_fonts as $font_key => $opts ) {
 
-            $font = json_decode( stripcslashes( $options[ $font_key ] ) );
+            $font = isset( $options[ $font_key ] ) ? json_decode( stripcslashes( $options[ $font_key ] ) ) : '';
 
             if( isset( $font_key['default']['self'] ) ) {
                 self::collect_font_declaration( $opts['selectors'], $opts['default'] );
@@ -61,10 +60,11 @@ class Playouts_Public_Fonts {
             }
 
             if( ! isset( $font->family ) or empty( $font->family ) ) {
-                $font = (object)$opts['default'];
+                $font = (object) $opts['default'];
             }
 
             if( ! ( isset( $font->self ) and $font->self == true ) ) {
+
                 $family_variants .= '|' . $font->family;
 
                 if( isset( $font->variants ) and ! empty( $font->variants ) ) {
