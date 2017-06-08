@@ -715,7 +715,7 @@ class Playouts_Element_Column extends Playouts_Element {
 
         $style = $class = $id = $overlay = '';
 
-        $style .= 'width:' . (int) $col_width . '%;';
+        if( $col_width ) { $style .= 'width:' . (int) $col_width . '%;'; }
 
         if( $text_color ) { $style .= 'color:' . esc_attr( $text_color ) . ';'; }
         if( $text_alignment ) { $style .= 'text-align:' . esc_attr( $text_alignment ) . ';'; }

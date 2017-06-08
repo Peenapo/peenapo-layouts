@@ -7,7 +7,8 @@ return array(
         'type'              => 'google_font',
         'description'       => esc_html__( 'Select the main font of the container. The rest of elements will inherit it.', 'AAA' ),
         'value'             => '',
-        'preview'           => esc_html__( 'It was going to be a lonely trip back.', 'AAA' )
+        'preview'           => esc_html__( 'It was going to be a lonely trip back. Almost before we knew it, we had left the ground.', 'AAA' ),
+        'font_size'         => '15px'
     ),
 
     'font_headings' => array(

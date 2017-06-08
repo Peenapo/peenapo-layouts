@@ -739,11 +739,19 @@ return json_decode( '{
 		"variants": ["regular"],
 		"subsets": ["latin"]
 	},
-	"Caudex": {
-		"family": "Caudex",
+
+	"Carter One": {
+		"family": "Carter One",
+		"category": "display",
+		"variants": ["regular"],
+		"subsets": ["latin"]
+	},
+
+	"Catamaran": {
+		"family": "Catamaran",
 		"category": "serif",
-		"variants": ["regular", "italic", "700", "700italic"],
-		"subsets": ["latin-ext", "greek-ext", "latin", "greek"]
+		"variants": ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+		"subsets": ["latin-ext", "latin", "tamil"]
 	},
 	"Cedarville Cursive": {
 		"family": "Cedarville Cursive",

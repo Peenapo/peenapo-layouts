@@ -763,7 +763,7 @@ class Playouts_Option_Type_Google_Font extends Playouts_Option_Type {
         </select>
 
         <?php if( isset( $preview ) and ! empty( $preview ) ): ?>
-            <span class="pl-demo-google-font"><?php echo $preview; ?></span><?php
+            <span class="pl-demo-google-font"<?php if( isset( $font_size ) and ! empty( $font_size ) ) { echo ' style="font-size:' . $font_size . ';"'; } ?>><?php echo $preview; ?></span><?php
         endif;
 
         return ob_get_clean();
