@@ -1,4 +1,38 @@
 
+/* flickity v2.0.8 */
+.flickity-enabled {position:relative;}
+.flickity-enabled:focus { outline:none; }
+.flickity-viewport {overflow:hidden;position:relative;height:100%;}
+.flickity-slider {position:absolute;width:100%;height:100%;}
+
+/* draggable */
+.flickity-enabled.is-draggable {-webkit-tap-highlight-color:transparent;tap-highlight-color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;}
+.flickity-enabled.is-draggable .flickity-viewport {cursor:move;cursor:-webkit-grab;cursor:grab;}
+.flickity-enabled.is-draggable .flickity-viewport.is-pointer-down {cursor:-webkit-grabbing;cursor:grabbing;}
+
+/* previous/next buttons */
+.flickity-prev-next-button {position:absolute;top:50%;width:44px;height:44px;border:none;border-radius:50%;background:white;background:hsla(0, 0%, 100%, 0.75);
+    cursor:pointer;transform:translateY(-50%);-webkit-transform:translateY(-50%);
+}
+.flickity-prev-next-button:hover { background:white; }
+.flickity-prev-next-button:focus {outline:none;box-shadow:0 0 0 5px #09F;}
+.flickity-prev-next-button:active {opacity:0.6;}
+.flickity-prev-next-button.previous { left:19px; }
+.flickity-prev-next-button.next { right:19px; }
+
+/* right to left */
+.flickity-rtl .flickity-prev-next-button.previous {left:auto;right:10px;}
+.flickity-rtl .flickity-prev-next-button.next {right:auto;left:10px;}
+.flickity-prev-next-button:disabled {opacity:0.3;cursor:auto;}
+.flickity-prev-next-button svg {position:absolute;left:31%;top:31%;width:40%;height:40%;}
+.flickity-prev-next-button .arrow {fill:#333;}
+
+/* page dots */
+.flickity-page-dots {position:absolute;width:100%;bottom:-25px;padding:0;margin:0;list-style:none;text-align:center;line-height:1;}
+.flickity-rtl .flickity-page-dots { direction:rtl; }
+.flickity-page-dots .dot {display:inline-block;width:10px;height:10px;margin:0 8px;background:#333;border-radius:50%;opacity:0.25;cursor:pointer;}
+.flickity-page-dots .dot.is-selected {opacity:1;}
+
 
 /* fonts */
 @font-face {
@@ -208,6 +242,39 @@
 .pl-audio.pl-audio-text-color-light .mejs-controls .mejs-time-rail .mejs-time-total {background-color:rgba(255,255,255,0.4);}
 .pl-audio.pl-audio-text-color-light .mejs-controls .mejs-time-rail .mejs-time-current {background-color:#fff;}
 .pl-audio.pl-audio-text-color-light .mejs-controls .mejs-time-rail .mejs-time-handle {background:#fff;}
+
+
+/* slider */
+.pl-slider {}
+.pl-slider.pl-is-navigation {padding:0 85px;}
+.flickity-slider {font-size:0;}
+.flickity-slider > * {display:inline-block;font-size:1rem;vertical-align:top;}
+.flickity-viewport {transition:height 0.22s;-webkit-transition:height 0.22s;}
+.flickity-page-dots {left:0;right:auto;}
+
+
+/* testimonials */
+.pl-testimonials {}
+
+.pl-testimonial-item {width:100%;padding:0 15px;margin:0!important;border:0;}
+.pl-testimonial-content {position:relative;background-color:#f9f9f9;color:#777;border-radius:3px;padding:25px 30px;margin-bottom:40px;font-size:19px;line-height:160%;
+    transition:all .3s;-webkit-transition:all .3s;
+}
+.pl-has-focus .is-selected .pl-testimonial-content {background-color:#f93d66!important;color:#fff!important;}
+.pl-has-focus .is-selected .pl-testimonial-border > span {border-color:#f93d66!important;}
+.pl-testimonial-border {position:absolute;left:50%;bottom:-11px;width:22px;height:22px;margin-left:-11px;border-radius:6px 0 0 0;overflow:hidden;
+    transform:rotate(-135deg);-webkit-transform:rotate(-135deg);
+}
+.pl-testimonial-border > span {content:'';position:absolute;top:0;left:0;width:0px;height:0px;
+    border-style:solid;border-width:22px 22px 0 0;border-color:rgba(255,255,255,0.4) transparent transparent transparent;border-color:#f9f9f9;
+    border-right-color:transparent;border-bottom-color:transparent;border-left-color:transparent;
+    transition:all .3s;-webkit-transition:all .3s;
+}
+.pl-testimonial-data {text-align:center;}
+.pl-testimonial-image {display:inline-block;max-width:80px;margin-bottom:10px;border-radius:50%;overflow:hidden;}
+.pl-testimonial-image img {vertical-align:top;}
+.pl-testimonial-name {display:block;font-style:normal;font-size:19px;color:#000;}
+.pl-testimonial-profession {display:block;font-style:normal;font-size:15px;color:#999;margin-top:5px;}
 
 
 /* transitions */

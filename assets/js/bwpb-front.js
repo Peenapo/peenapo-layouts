@@ -88,6 +88,40 @@ var Playouts = {
             this.tab.start();
             this.progress.start();
             this.auto_type.start();
+            this.carousel.start();
+
+        }
+
+        ,carousel: {
+
+            start: function() {
+
+                $('.pl-slider').each( Playouts.elements.carousel.build_slider );
+
+            }
+
+            ,build_slider: function() {
+
+                var self = $(this);
+                var slide_width = self.attr('data-slide-width');
+
+                var attr = {
+                    cellAlign               : 'center',
+                    contain                 : true,
+                    groupCells              : typeof self.attr('data-group') !== 'undefined' ? parseInt( self.attr('data-group'), 10 ) : false,
+                    autoPlay                : typeof self.attr('data-autoplay') !== 'undefined' ? parseInt( self.attr('data-autoplay'), 10 ) : false,
+                    wrapAround              : typeof self.attr('data-infinite') !== 'undefined' && self.attr('data-infinite') == 'true' ? true : false,
+                    pauseAutoPlayOnHover    : typeof self.attr('data-autoplay-stop') !== 'undefined' ? true : false,
+                    adaptiveHeight          : typeof self.attr('data-adaptive-height') !== 'undefined' && self.attr('data-adaptive-height') == 'true' ? true : false,
+                    prevNextButtons         : typeof self.attr('data-navigation') !== 'undefined' && self.attr('data-adaptive-height') == 'true' ? true : false,
+                    pageDots                : typeof self.attr('data-pagination') !== 'undefined' && self.attr('data-pagination') == 'true' ? true : false,
+                };
+
+                self.find(' > * ').css('width', slide_width + '%');
+
+                self.flickity( attr );
+
+            }
 
         }
 

@@ -63,6 +63,15 @@ class Playouts_Functions {
         return $attachment_id;
     }
 
+    /*
+     * get image thumbnail by attachment id
+     *
+     */
+    static function get_size_by_attachment_id( $attachment_id, $size = 'thumbnail' ) {
+        $attachment = wp_get_attachment_image_src( $attachment_id, $size );
+        return isset( $attachment[0] ) ? $attachment[0] : '';
+    }
+
 	/*
 	 * encode base64 into parameter friendly base 64 code
 	 *

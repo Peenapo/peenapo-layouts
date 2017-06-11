@@ -1298,7 +1298,6 @@ class Playouts_Element_Accordion_Item extends Playouts_Repeater_Item_Element {
             'title' => array(
 				'label'              => esc_html__( 'Title', 'AAA' ),
 				'type'               => 'textfield',
-				'description'        => esc_html__( '', 'AAA' ),
 			),
             'active' => array(
                 'label'             => esc_html__( 'Active by Default?', 'AAA' ),
@@ -1456,7 +1455,6 @@ class Playouts_Element_Tab_Item extends Playouts_Repeater_Item_Element {
             'title' => array(
 				'label'              => esc_html__( 'Title', 'AAA' ),
 				'type'               => 'textfield',
-				'description'        => esc_html__( '', 'AAA' ),
 			),
             'content' => array(
 				'label'             => esc_html__( 'Content', 'AAA' ),
@@ -1467,11 +1465,6 @@ class Playouts_Element_Tab_Item extends Playouts_Repeater_Item_Element {
             'inline_class' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
-            ),
-            'inline_id' => array(
-                'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
                 'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
             ),
             'inline_css' => array(
@@ -1488,14 +1481,12 @@ class Playouts_Element_Tab_Item extends Playouts_Repeater_Item_Element {
         extract( $assigned_atts = shortcode_atts( array(
             'title'             => '',
             'inline_class'      => '',
-            'inline_id'         => '',
             'inline_css'        => '',
         ), $atts ) );
 
-        $style = $class = $id = '';
+        $style = $class = '';
 
         $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
-        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
 
         $tab_id = Playouts_Shortcode_Parser::get_unique_id();
@@ -1504,7 +1495,7 @@ class Playouts_Element_Tab_Item extends Playouts_Repeater_Item_Element {
 
         self::$tabs[ $tab_id ] = $title;
 
-        return '<div id="tab-' . $tab_id . '" class="pl-tab-section' . $class . '" style="' . $style . '"' . $id . '>'.
+        return '<div id="tab-' . $tab_id . '" class="pl-tab-section' . $class . '" style="' . $style . '">'.
             do_shortcode( $content ).
         '</div>';
 
@@ -2285,6 +2276,260 @@ class Playouts_Element_Auto_Type_Item extends Playouts_Element {
     }
 }
 new Playouts_Element_Auto_Type_Item;
+
+class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
+
+    function init() {
+
+        $this->module = 'bw_testimonials';
+        $this->module_item = 'bw_testimonial_item';
+        $this->name = esc_html__( 'Testimonial Slider', 'AAA' );
+        $this->view = 'repeater';
+        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->module_color = '#70acf1';
+        $this->params = array(
+            'items' => array(
+                'type'               => 'repeater',
+                'label'              => esc_html__( 'Tab items', 'AAA' ),
+                'description'        => esc_html__( 'You can add as many tabs as you need, just click the plus icon.', 'AAA' ),
+            ),
+            'slide_width' => array(
+                'label'             => esc_html__( 'Slides Width', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => '%',
+                'min'               => 20,
+                'max'               => 100,
+                'step'              => 1,
+                'value'             => 35,
+            ),
+            'group_slides_enable' => array(
+                'label'             => esc_html__( 'Enable Slides Grouping', 'AAA' ),
+                'description'       => esc_html__( 'Groups cells together in slides', 'AAA' ),
+                'type'              => 'true_false',
+            ),
+            'group_slides' => array(
+                'label'             => esc_html__( 'Group Slides', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'slides',
+                'min'               => 1,
+                'max'               => 5,
+                'step'              => 1,
+                'value'             => 1,
+                'depends'           => array( 'element' => 'group_slides_enable', 'value' => '1' ),
+            ),
+            'autoplay_enable' => array(
+                'label'             => esc_html__( 'Enable Auto-play', 'AAA' ),
+                'type'              => 'true_false',
+            ),
+            'autoplay' => array(
+                'label'             => esc_html__( 'Auto-play Timeout', 'AAA' ),
+                'description'       => esc_html__( 'Advance cells ever {Number} milliseconds. 1500 will advance cells every 1.5 seconds', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'slides',
+                'min'               => 1000,
+                'max'               => 10000,
+                'step'              => 500,
+                'value'             => 4000,
+                'depends'           => array( 'element' => 'autoplay_enable', 'value' => '1' ),
+            ),
+            'stop_autoplay_hover' => array(
+                'label'             => esc_html__( 'Stop Auto-playing on Hover', 'AAA' ),
+                'description'       => esc_html__( 'Auto-playing will pause when the user hovers over the carousel', 'AAA' ),
+                'type'              => 'true_false',
+                'value'             => '1',
+                'depends'           => array( 'element' => 'autoplay_enable', 'value' => '1' ),
+            ),
+            'navigation_enable' => array(
+                'label'             => esc_html__( 'Enable Arrow Navigation', 'AAA' ),
+                'type'              => 'true_false',
+                'value'             => '1',
+                'width'             => 50
+            ),
+            'pagination_enable' => array(
+                'label'             => esc_html__( 'Enable Dot Pagination', 'AAA' ),
+                'type'              => 'true_false',
+                'value'             => '1',
+                'width'             => 50
+            ),
+            'infinite' => array(
+                'label'             => esc_html__( 'Infinite Loop', 'AAA' ),
+                'description'       => esc_html__( 'At the end of cells, wrap-around to the other end for infinite scrolling.', 'AAA' ),
+                'type'              => 'true_false',
+                'value'             => '1',
+            ),
+            'has_focus' => array(
+                'label'             => esc_html__( 'Enable Focus Accent', 'AAA' ),
+                'description'       => esc_html__( 'Enable this option to add accent color to focused slides.', 'AAA' ),
+                'type'              => 'true_false',
+            ),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'slide_width'           => 35,
+            'group_slides_enable'   => false,
+            'group_slides'          => false,
+            'autoplay_enable'       => false,
+            'autoplay'              => 4000,
+            'stop_autoplay_hover'   => false,
+            'navigation_enable'     => false,
+            'pagination_enable'     => false,
+            'infinite'              => false,
+            'has_focus'             => false,
+            'inline_class'          => '',
+            'inline_id'             => '',
+            'inline_css'            => '',
+        ), $atts ) );
+
+        $style = $class = $id = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        $class .= $navigation_enable ? ' pl-is-navigation' : '';
+        $class .= $has_focus ? ' pl-has-focus' : '';
+
+        $attr  = 'data-adaptive-height="true"';
+        $attr .= ( $group_slides_enable and $group_slides > 1 ) ? ' data-group="' . (int) $group_slides . '"' : '';
+        $attr .= ( $autoplay_enable ) ? ' data-autoplay="' . (int) $autoplay . '"' : '';
+        $attr .= ( $autoplay_enable and $stop_autoplay_hover ) ? ' data-autoplay-stop="true"' : '';
+        $attr .= $slide_width ? ' data-slide-width="' . (int) $slide_width . '"' : '';
+        $attr .= $infinite ? ' data-infinite="true"' : '';
+        $attr .= $navigation_enable ? ' data-navigation="true"' : '';
+        $attr .= $pagination_enable ? ' data-pagination="true"' : '';
+
+        if( ! empty( $content ) ) {
+            return '<div class="pl-testimonials pl-slider' . $class . '" style="' . $style . '"' . $id . $attr . '>' . $content . '</div>';
+        }else{
+            return '';
+        }
+
+    }
+}
+new Playouts_Element_Testimonials;
+
+class Playouts_Element_Testimonial_Item extends Playouts_Repeater_Item_Element {
+
+    function init() {
+
+        $this->module = 'bw_testimonial_item';
+        $this->module_parent = 'bw_testimonials';
+        $this->name = esc_html__( 'Testimonial Slide', 'AAA' );
+        $this->view = 'repeater_item';
+
+        $this->params = array(
+            'name' => array(
+				'label'              => esc_html__( 'Name', 'AAA' ),
+				'type'               => 'textfield',
+			),
+            'profession' => array(
+				'label'              => esc_html__( 'Profession', 'AAA' ),
+				'type'               => 'textfield',
+			),
+            'content' => array(
+				'label'             => esc_html__( 'Content', 'AAA' ),
+				'type'              => 'textarea',
+				'is_content'        => true,
+                'value'             => 'Testimonial item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.',
+			),
+            'thumb' => array(
+                'type'              => 'image',
+				'label'             => esc_html__( 'Thumbnail', 'AAA' ),
+			),
+            'bg_color' => array(
+                'label'             => esc_html__( 'Background Color', 'AAA' ),
+                'type'              => 'colorpicker',
+                'width'             => 50
+            ),
+            'text_color' => array(
+                'label'             => esc_html__( 'Text Color', 'AAA' ),
+                'type'              => 'colorpicker',
+                'width'             => 50
+            ),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'name'              => '',
+            'profession'        => '',
+            'thumb'             => '',
+            'bg_color'          => '',
+            'text_color'        => '',
+            'inline_class'      => '',
+            'inline_id'         => '',
+            'inline_css'        => '',
+        ), $atts ) );
+
+        $style = $class = $id = $image = $style_content = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+        $style_content .= ! empty( $bg_color ) ? 'background-color:' . esc_attr( $bg_color ) . ';' : '';
+        $style_content .= ! empty( $text_color ) ? 'color:' . esc_attr( $text_color ) . ';' : '';
+
+        if( ! empty( $thumb ) ) {
+
+            $image_id = Playouts_Functions::get_image_id_from_url( $thumb );
+            $image_thumbnail = Playouts_Functions::get_size_by_attachment_id( $image_id );
+
+            if( ! empty( $image_thumbnail ) ) {
+                $image = '<img src="' . esc_url( $image_thumbnail ) . '" alt="' . esc_html( $name ) . '">';
+            }
+        }
+
+        return '<blockquote class="pl-testimonial-item' . $class . '" style="' . $style . '"' . $id . '>'.
+            '<div class="pl-testimonial-content pl-flickity-focus" style="' . $style_content . '">'.
+                esc_html( $content ).
+                '<span class="pl-testimonial-border"><span style="border-color:' . esc_attr( $bg_color ) . '"></span></span>'.
+            '</div>'.
+            '<div class="pl-testimonial-data">'.
+                '<span class="pl-testimonial-image">' . $image . '</span>'.
+                '<span class="pl-testimonial-name">' . esc_html( $name ) . '</span>'.
+                '<span class="pl-testimonial-profession">' . esc_html( $profession ) . '</span>'.
+            '</div>'.
+        '</blockquote>';
+
+    }
+}
+new Playouts_Element_Testimonial_Item;
 
 /*class Playouts_Element_Tabs extends Playouts_Repeater_Element {
 
