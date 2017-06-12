@@ -7,7 +7,6 @@ var Playouts = {
 
         this.bind();
         this.override_styles.start();
-        this.elements.start();
         this.on_resize();
         this.on_images_loaded();
 
@@ -267,7 +266,10 @@ var Playouts = {
     on_images_loaded: function() {
 
         $(document).imagesLoaded(function() {
+
+            Playouts.elements.start();
             Playouts.animations();
+
         });
 
     },
@@ -312,4 +314,6 @@ var Playouts = {
     }
 }
 
-Playouts.start();
+$(document).ready(function() {
+    Playouts.start();
+});

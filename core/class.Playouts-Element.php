@@ -2302,6 +2302,11 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
                 'step'              => 1,
                 'value'             => 35,
             ),
+            'adaptive_height' => array(
+                'label'             => esc_html__( 'Enable Adaptive Height', 'AAA' ),
+                'type'              => 'true_false',
+                'value'             => '1',
+            ),
             'group_slides_enable' => array(
                 'label'             => esc_html__( 'Enable Slides Grouping', 'AAA' ),
                 'description'       => esc_html__( 'Groups cells together in slides', 'AAA' ),
@@ -2311,10 +2316,10 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
                 'label'             => esc_html__( 'Group Slides', 'AAA' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'slides',
-                'min'               => 1,
+                'min'               => 2,
                 'max'               => 5,
                 'step'              => 1,
-                'value'             => 1,
+                'value'             => 2,
                 'depends'           => array( 'element' => 'group_slides_enable', 'value' => '1' ),
             ),
             'autoplay_enable' => array(
@@ -2342,7 +2347,6 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
             'navigation_enable' => array(
                 'label'             => esc_html__( 'Enable Arrow Navigation', 'AAA' ),
                 'type'              => 'true_false',
-                'value'             => '1',
                 'width'             => 50
             ),
             'pagination_enable' => array(
@@ -2356,11 +2360,13 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
                 'description'       => esc_html__( 'At the end of cells, wrap-around to the other end for infinite scrolling.', 'AAA' ),
                 'type'              => 'true_false',
                 'value'             => '1',
+                'width'             => 50
             ),
             'has_focus' => array(
                 'label'             => esc_html__( 'Enable Focus Accent', 'AAA' ),
                 'description'       => esc_html__( 'Enable this option to add accent color to focused slides.', 'AAA' ),
                 'type'              => 'true_false',
+                'width'             => 50
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
@@ -2384,7 +2390,8 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
     static function output( $atts = array(), $content = null ) {
 
         extract( $assigned_atts = shortcode_atts( array(
-            'slide_width'           => 35,
+            'slide_width'           => 60,
+            'adaptive_height'       => false,
             'group_slides_enable'   => false,
             'group_slides'          => false,
             'autoplay_enable'       => false,
@@ -2406,9 +2413,10 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
 
         $class .= $navigation_enable ? ' pl-is-navigation' : '';
+        $class .= $pagination_enable ? ' pl-is-pagination' : '';
         $class .= $has_focus ? ' pl-has-focus' : '';
 
-        $attr  = 'data-adaptive-height="true"';
+        $attr  = $adaptive_height ? ' data-adaptive-height="true"' : '';
         $attr .= ( $group_slides_enable and $group_slides > 1 ) ? ' data-group="' . (int) $group_slides . '"' : '';
         $attr .= ( $autoplay_enable ) ? ' data-autoplay="' . (int) $autoplay . '"' : '';
         $attr .= ( $autoplay_enable and $stop_autoplay_hover ) ? ' data-autoplay-stop="true"' : '';
@@ -2440,10 +2448,12 @@ class Playouts_Element_Testimonial_Item extends Playouts_Repeater_Item_Element {
             'name' => array(
 				'label'              => esc_html__( 'Name', 'AAA' ),
 				'type'               => 'textfield',
+                'value'             => esc_html__( 'Testimonial name', 'AAA' ),
 			),
-            'profession' => array(
-				'label'              => esc_html__( 'Profession', 'AAA' ),
+            'title' => array(
+				'label'              => esc_html__( 'Title', 'AAA' ),
 				'type'               => 'textfield',
+                'value'             => esc_html__( 'Testimonial title', 'AAA' ),
 			),
             'content' => array(
 				'label'             => esc_html__( 'Content', 'AAA' ),
@@ -2488,7 +2498,7 @@ class Playouts_Element_Testimonial_Item extends Playouts_Repeater_Item_Element {
 
         extract( $assigned_atts = shortcode_atts( array(
             'name'              => '',
-            'profession'        => '',
+            'title'             => '',
             'thumb'             => '',
             'bg_color'          => '',
             'text_color'        => '',
@@ -2497,7 +2507,7 @@ class Playouts_Element_Testimonial_Item extends Playouts_Repeater_Item_Element {
             'inline_css'        => '',
         ), $atts ) );
 
-        $style = $class = $id = $image = $style_content = '';
+        $style = $class = $id = $image = $style_content = $_title = '';
 
         $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
@@ -2511,8 +2521,12 @@ class Playouts_Element_Testimonial_Item extends Playouts_Repeater_Item_Element {
             $image_thumbnail = Playouts_Functions::get_size_by_attachment_id( $image_id );
 
             if( ! empty( $image_thumbnail ) ) {
-                $image = '<img src="' . esc_url( $image_thumbnail ) . '" alt="' . esc_html( $name ) . '">';
+                $image = '<span class="pl-testimonial-image"><img src="' . esc_url( $image_thumbnail ) . '" alt="' . esc_html( $name ) . '"></span>';
             }
+        }
+
+        if( ! empty( $title ) ) {
+            $_title = '<span class="pl-testimonial-title">' . esc_html( $title ) . '</span>';
         }
 
         return '<blockquote class="pl-testimonial-item' . $class . '" style="' . $style . '"' . $id . '>'.
@@ -2521,9 +2535,9 @@ class Playouts_Element_Testimonial_Item extends Playouts_Repeater_Item_Element {
                 '<span class="pl-testimonial-border"><span style="border-color:' . esc_attr( $bg_color ) . '"></span></span>'.
             '</div>'.
             '<div class="pl-testimonial-data">'.
-                '<span class="pl-testimonial-image">' . $image . '</span>'.
+                $image.
                 '<span class="pl-testimonial-name">' . esc_html( $name ) . '</span>'.
-                '<span class="pl-testimonial-profession">' . esc_html( $profession ) . '</span>'.
+                $_title.
             '</div>'.
         '</blockquote>';
 
