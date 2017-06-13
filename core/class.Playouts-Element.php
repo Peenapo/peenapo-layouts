@@ -2481,6 +2481,21 @@ class Playouts_Element_Testimonial_Item extends Playouts_Repeater_Item_Element {
 				'type'               => 'textfield',
                 'value'             => esc_html__( 'Testimonial title', 'AAA' ),
 			),
+            'enable_star_rating' => array(
+                'label'             => esc_html__( 'Enable Star Rating', 'AAA' ),
+                'description'       => esc_html__( 'Your can add star rating if you want', 'AAA' ),
+                'type'              => 'true_false',
+            ),
+            'star_rating' => array(
+                'label'             => esc_html__( 'Star Rating', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'stars',
+                'min'               => 0,
+                'max'               => 5,
+                'step'              => 0.5,
+                'value'             => 3.5,
+                'depends'           => array( 'element' => 'enable_star_rating', 'value' => '1' ),
+            ),
             'content' => array(
 				'label'             => esc_html__( 'Content', 'AAA' ),
 				'type'              => 'textarea',
@@ -2525,6 +2540,8 @@ class Playouts_Element_Testimonial_Item extends Playouts_Repeater_Item_Element {
         extract( $assigned_atts = shortcode_atts( array(
             'name'              => '',
             'title'             => '',
+            'enable_star_rating' => false,
+            'star_rating'       => 0,
             'thumb'             => '',
             'bg_color'          => '',
             'text_color'        => '',
@@ -2555,12 +2572,16 @@ class Playouts_Element_Testimonial_Item extends Playouts_Repeater_Item_Element {
             $_title = '<span class="pl-testimonial-title">' . esc_html( $title ) . '</span>';
         }
 
-        $_data_top = $_data_bottom = '';
+        $_data_box = $_data_standard = $_rating_box = $_rating_standard = '';
 
         if( Playouts_Element_Testimonials::$layout == 'box' ) {
 
+            if( $enable_star_rating ) {
+                $_rating_box .= '<span class="pl-star-rating"><span style="width:' . ( $star_rating * 20 ) . '%" class="pl-rating-fill"></span></span>';
+            }
+
             if( ! empty( $name ) or ! empty( $title ) or ! empty( $image ) ) {
-                $_data_top = '<div class="pl-testimonial-data">'.
+                $_data_box = '<div class="pl-testimonial-data">'.
                     $image.
                     '<span class="pl-data-wrap">'.
                     '<span class="pl-testimonial-name">' . esc_html( $name ) . '</span>'.
@@ -2571,21 +2592,29 @@ class Playouts_Element_Testimonial_Item extends Playouts_Repeater_Item_Element {
 
         }else{
 
-            $_data_bottom = '<div class="pl-testimonial-data">'.
+            if( $enable_star_rating ) {
+                $_rating_standard .= '<span class="pl-star-rating"><span style="width:' . ( $star_rating * 20 ) . '%" class="pl-rating-fill"></span></span>';
+            }
+
+            $_data_standard = '<div class="pl-testimonial-data">'.
                 $image.
                 '<span class="pl-testimonial-name">' . esc_html( $name ) . '</span>'.
                 $_title.
+                $_rating_standard.
             '</div>';
 
         }
 
+
+
         return '<blockquote class="pl-testimonial-item' . $class . '" style="' . $style . '"' . $id . '>'.
             '<div class="pl-testimonial-content pl-flickity-focus" style="' . $style_content . '">'.
-                $_data_top.
+                $_data_box.
+                $_rating_box.
                 '<p>' . esc_html( $content ) . '</p>'.
                 '<span class="pl-testimonial-border"><span><span style="border-color:' . esc_attr( $bg_color ) . '"></span></span></span>'.
             '</div>'.
-            $_data_bottom.
+            $_data_standard.
         '</blockquote>';
 
     }
