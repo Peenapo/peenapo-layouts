@@ -1,5 +1,7 @@
 <?php
 
+// TODO: remove this file, it is not used
+
 if ( ! defined( 'ABSPATH' ) ) { exit; } # exit if accessed directly
 
 /*

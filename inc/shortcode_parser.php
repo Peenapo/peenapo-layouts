@@ -33,7 +33,6 @@ function pl_do_shortcodes( &$output, $text, $child = false ) {
             $t_s = pl_do_shortcodes( $out2, $contents[ $k ], true );
             $output[ $name ] = array( 'id' => $parents[ $k ] );
             $output[ $name ]['atts'] = pl_parse_atts( $atts[ $k ] );
-            //$output[ $name ]['original_content'] = $contents[ $k ];
             $output[ $name ]['content'] = ! empty( $t ) && ! empty( $t_s ) ? $t_s : $contents[ $k ];
         }
     }

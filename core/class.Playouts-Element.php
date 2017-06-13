@@ -2279,6 +2279,8 @@ new Playouts_Element_Auto_Type_Item;
 
 class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
 
+    static $layout;
+
     function init() {
 
         $this->module = 'bw_testimonials';
@@ -2292,6 +2294,15 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
                 'type'               => 'repeater',
                 'label'              => esc_html__( 'Tab items', 'AAA' ),
                 'description'        => esc_html__( 'You can add as many tabs as you need, just click the plus icon.', 'AAA' ),
+            ),
+            'layout' => array(
+                'label'             => esc_html__( 'Layout', 'AAA' ),
+                'type'              => 'select',
+                'options'           => array(
+                    'standard'  => 'Standard',
+                    'box'       => 'Box',
+                ),
+                'value'             => 'some2'
             ),
             'slide_width' => array(
                 'label'             => esc_html__( 'Slides Width', 'AAA' ),
@@ -2368,6 +2379,11 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
                 'type'              => 'true_false',
                 'width'             => 50
             ),
+            'invert_color' => array(
+                'label'             => esc_html__( 'Invret Colors', 'AAA' ),
+                'description'       => esc_html__( 'enable this options if you use a dark background.', 'AAA' ),
+                'type'              => 'true_false',
+            ),
             'inline_class' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'CSS Classes', 'AAA' ),
@@ -2387,9 +2403,16 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
 
     }
 
+    static function construct( $atts = array(), $content = null ) {
+
+        self::$layout = ( isset( $atts['layout'] ) and ! empty( $atts['layout'] ) ) ? esc_attr( $atts['layout'] ) : 'standard';
+
+    }
+
     static function output( $atts = array(), $content = null ) {
 
         extract( $assigned_atts = shortcode_atts( array(
+            'layout'                => 'standard',
             'slide_width'           => 60,
             'adaptive_height'       => false,
             'group_slides_enable'   => false,
@@ -2401,6 +2424,7 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
             'pagination_enable'     => false,
             'infinite'              => false,
             'has_focus'             => false,
+            'invert_color'          => false,
             'inline_class'          => '',
             'inline_id'             => '',
             'inline_css'            => '',
@@ -2412,9 +2436,11 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
 
+        $class .= ' pl-layout-' . esc_attr( $layout );
         $class .= $navigation_enable ? ' pl-is-navigation' : '';
         $class .= $pagination_enable ? ' pl-is-pagination' : '';
         $class .= $has_focus ? ' pl-has-focus' : '';
+        $class .= $invert_color ? ' pl-invert-color' : '';
 
         $attr  = $adaptive_height ? ' data-adaptive-height="true"' : '';
         $attr .= ( $group_slides_enable and $group_slides > 1 ) ? ' data-group="' . (int) $group_slides . '"' : '';
@@ -2529,16 +2555,37 @@ class Playouts_Element_Testimonial_Item extends Playouts_Repeater_Item_Element {
             $_title = '<span class="pl-testimonial-title">' . esc_html( $title ) . '</span>';
         }
 
-        return '<blockquote class="pl-testimonial-item' . $class . '" style="' . $style . '"' . $id . '>'.
-            '<div class="pl-testimonial-content pl-flickity-focus" style="' . $style_content . '">'.
-                esc_html( $content ).
-                '<span class="pl-testimonial-border"><span style="border-color:' . esc_attr( $bg_color ) . '"></span></span>'.
-            '</div>'.
-            '<div class="pl-testimonial-data">'.
+        $_data_top = $_data_bottom = '';
+
+        if( Playouts_Element_Testimonials::$layout == 'box' ) {
+
+            if( ! empty( $name ) or ! empty( $title ) or ! empty( $image ) ) {
+                $_data_top = '<div class="pl-testimonial-data">'.
+                    $image.
+                    '<span class="pl-data-wrap">'.
+                    '<span class="pl-testimonial-name">' . esc_html( $name ) . '</span>'.
+                    $_title.
+                    '</span>'.
+                '</div>';
+            }
+
+        }else{
+
+            $_data_bottom = '<div class="pl-testimonial-data">'.
                 $image.
                 '<span class="pl-testimonial-name">' . esc_html( $name ) . '</span>'.
                 $_title.
+            '</div>';
+
+        }
+
+        return '<blockquote class="pl-testimonial-item' . $class . '" style="' . $style . '"' . $id . '>'.
+            '<div class="pl-testimonial-content pl-flickity-focus" style="' . $style_content . '">'.
+                $_data_top.
+                '<p>' . esc_html( $content ) . '</p>'.
+                '<span class="pl-testimonial-border"><span><span style="border-color:' . esc_attr( $bg_color ) . '"></span></span></span>'.
             '</div>'.
+            $_data_bottom.
         '</blockquote>';
 
     }
