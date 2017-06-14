@@ -3152,6 +3152,197 @@ class Playouts_Element_Clients_Slider_Item extends Playouts_Repeater_Item_Elemen
 }
 new Playouts_Element_Clients_Slider_Item;
 
+class Playouts_Element_Image_Stack extends Playouts_Repeater_Element {
+
+    function init() {
+
+        $this->module = 'bw_image_stack';
+        $this->module_item = 'bw_image_stack_item';
+        $this->name = esc_html__( 'Image Stack', 'AAA' );
+        $this->view = 'repeater';
+        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->module_color = '#7b73a6';
+        $this->params = array(
+            'items' => array(
+                'type'               => 'repeater',
+                'label'              => esc_html__( 'Client Items', 'AAA' ),
+                'description'        => esc_html__( 'You can add as many items as you need, just click the plus icon.', 'AAA' ),
+            ),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'inline_class'          => '',
+            'inline_id'             => '',
+            'inline_css'            => '',
+        ), $atts ) );
+
+        $style = $class = $id = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        if( ! empty( $content ) ) {
+            return '<div class="pl-image-stack' . $class . '" style="' . $style . '"' . $id . '>' . $content . '</div>';
+        }else{
+            return '';
+        }
+
+    }
+}
+new Playouts_Element_Image_Stack;
+
+class Playouts_Element_Image_Stack_Item extends Playouts_Repeater_Item_Element {
+
+    function init() {
+
+        $this->module = 'bw_image_stack_item';
+        $this->module_parent = 'bw_image_stack';
+        $this->name = esc_html__( 'Image Stack Item', 'AAA' );
+        $this->view = 'repeater_item';
+
+        $this->params = array(
+            'image' => array(
+                'type'               => 'image',
+				'label'              => esc_html__( 'Client Image', 'AAA' ),
+			),
+            'position_top' => array(
+                'label'             => esc_html__( 'Top Position', 'AAA' ),
+                'type'              => 'number_slider',
+                'description'       => esc_html__( 'Set the top ( vertical ) position of the image.', 'AAA' ),
+                'append_after'      => '%',
+                'min'               => -50,
+                'max'               => 50,
+                'step'              => 1,
+                'value'             => 0,
+            ),
+            'position_left' => array(
+                'label'             => esc_html__( 'Left Position', 'AAA' ),
+                'type'              => 'number_slider',
+                'description'       => esc_html__( 'Set the left ( horizontal ) position of the image.', 'AAA' ),
+                'append_after'      => '%',
+                'min'               => -50,
+                'max'               => 50,
+                'step'              => 1,
+                'value'             => 0,
+            ),
+            'shadow' => array(
+                'type'               => 'true_false',
+				'label'              => esc_html__( 'Enable Shadow', 'AAA' ),
+			),
+            'image_alt' => array(
+                'type'               => 'textfield',
+				'label'              => esc_html__( 'Alt Tag for Image ( Optional )', 'AAA' ),
+			),
+            'animation' => array(
+                'label'             => esc_html__( 'Animation', 'AAA' ),
+                'type'              => 'select',
+                'options'           => array(
+                    'none'      => 'None',
+                    'scale'     => 'Scale',
+                    'top'       => 'Top',
+                    'right'     => 'Right',
+                    'left'      => 'Left',
+                    'bottom'    => 'Bottom',
+                ),
+                'value'             => 'none',
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+            ),
+            'animation_delay' => array(
+                'label'             => esc_html__( 'Animation Delay', 'AAA' ),
+                'description'       => esc_html__( 'Appearance delay in milliseconds.', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'milliseconds.',
+                'min'               => 0,
+                'max'               => 1000,
+                'step'              => 50,
+                'value'             => 0,
+                'depends'           => array( 'element' => 'animation', 'value' => array( 'scale', 'top', 'right', 'bottom', 'left' ) ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+            ),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'image'             => '',
+            'position_top'      => 0,
+            'position_left'     => 0,
+            'shadow'            => false,
+            'image_alt'         => '',
+            'animation'         => 'none',
+            'animation_delay'   => 0,
+            'inline_class'      => '',
+            'inline_id'         => '',
+            'inline_css'        => '',
+        ), $atts ) );
+
+        $style = $class = $class_outer = $id = $attr = $style_inner = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        $transform = 'transform:translateX(' . (int) $position_top . '%) translateY(' . (int) $position_left . '%);';
+
+        if( $shadow ) {
+            $style_inner .= 'box-shadow:0 55px 120px rgba(0,0,0,0.1), 0 16px 72px rgba(0,0,0,0.11);';
+        }
+
+        if( ! empty( $animation ) and $animation !== 'none' ) {
+            $class_outer .= ' pl-animation';
+            $attr .= ' data-animation="' . esc_attr( $animation ) . '"';
+            $attr .= ' data-animation-delay="' . (int) $animation_delay . '"';
+        }
+
+        return '<div class="pl-image-stack-item' . $class . '" style="' . $style . '"' . $id . '>'.
+            '<div class="pl-image-stack-outer' . $class_outer . '"' . $attr . '>'.
+                '<div class="pl-image-stack-inner" style="' . $transform . '-webkit-' . $transform . $style_inner . '">'.
+                    '<img src="' . esc_url( $image ) . '" alt="' . esc_html( $image_alt ) . '">'.
+                '</div>'.
+            '</div>'.
+        '</div>';
+
+    }
+}
+new Playouts_Element_Image_Stack_Item;
+
 /*class Playouts_Element_Tabs extends Playouts_Repeater_Element {
 
     function init() {

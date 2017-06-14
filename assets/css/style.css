@@ -71,6 +71,8 @@
 .pl-align-center {width:100%;text-align:center;}
 .pl-align-right {text-align:right;}
 
+.pl-outer img {width:100%;max-width:100%;height:auto;max-height:100%;min-width:0;min-height:0;}
+
 
 /* containers */
 .pl-outer {box-sizing:border-box;font-family:'Open Sans';font-size:15px;line-height:1.65em;} /* TODO:enqueue the font automatically, set font globally by the plugin settings panel */
@@ -334,7 +336,22 @@
 .pl-clients-outer:hover {opacity:0.65;}
 
 
+/* image stack */
+.pl-image-stack {position:relative;width:100%;position:relative;}
+
+.pl-image-stack-item {width:100%;padding:20%;text-align:center;}
+.pl-image-stack-outer {}
+.pl-image-stack-inner {}
+.pl-image-stack-inner img {display:inline-block;width:100%;vertical-align:middle;}
+
+.pl-image-stack .pl-image-stack-item:not(:first-child) {position:absolute;top:50%;left:50%;
+    transform:translateX(-50%) translateY(-50%);
+}
+
+
 /* animations */
+.pl-animation {opacity:0;}
+
 .pl-animated-appearance > * {opacity:0;}
 
 

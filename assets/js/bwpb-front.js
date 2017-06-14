@@ -288,6 +288,7 @@ var Playouts = {
 
     animations: function() {
 
+        this.appearance();
         this.background_parallax();
         this.sequence();
 
@@ -303,9 +304,46 @@ var Playouts = {
 
     },
 
+    appearance: function() {
+
+        $('.pl-animation').waypoint({
+            handler: function() {
+
+                var self = $( this.element ).addClass('pl-animated');
+
+                var animation  = typeof self.attr('data-animation') !== 'undefined' ? self.attr('data-animation') : 'scale';
+                var animation_speed = typeof self.attr('data-animation-speed') !== 'undefined' ? parseInt( self.attr('data-animation-speed'), 10 ) * 0.001 : .4;
+                var animation_delay = typeof self.attr('data-animation-delay') !== 'undefined' ? parseInt( self.attr('data-animation-delay'), 10 ) * 0.001 : 0;
+
+                switch( animation ) {
+                    case 'scale':
+                        TweenMax.fromTo( self, animation_speed, { scale: 0.8 }, { opacity:1, scale: 1, delay: animation_delay } );
+                        break;
+                    case 'top':
+                        TweenMax.fromTo( self, animation_speed, { y: '-10%' }, { opacity:1, y: '0%', delay: animation_delay } );
+                        break;
+                    case 'right':
+                        TweenMax.fromTo( self, animation_speed, { x: '10%' }, { opacity:1, x: '0%', delay: animation_delay } );
+                        break;
+                    case 'bottom':
+                        TweenMax.fromTo( self, animation_speed, { y: '10%' }, { opacity:1, y: '0%', delay: animation_delay } );
+                        break;
+                    case 'left':
+                        TweenMax.fromTo( self, animation_speed, { x: '-10%' }, { opacity:1, x: '0%', delay: animation_delay } );
+                        break;
+                }
+
+                this.destroy();
+
+            },
+            offset: '80%'
+        });
+
+    },
+
     sequence: function() {
 
-        var waypoints = $('.pl-animated-appearance').waypoint({
+        $('.pl-animated-appearance').waypoint({
             handler: function() {
 
                 var self = $( this.element ).addClass('pl-animated');
