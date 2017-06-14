@@ -114,6 +114,8 @@ var Playouts = {
                     adaptiveHeight          : typeof self.attr('data-adaptive-height') !== 'undefined' && self.attr('data-adaptive-height') == 'true' ? true : false,
                     prevNextButtons         : typeof self.attr('data-navigation') !== 'undefined' && self.attr('data-adaptive-height') == 'true' ? true : false,
                     pageDots                : typeof self.attr('data-pagination') !== 'undefined' && self.attr('data-pagination') == 'true' ? true : false,
+                    selectedAttraction      : typeof self.attr('data-attraction') !== 'undefined' ? parseFloat( self.attr('data-attraction') ) : 0.025,
+                    friction                : typeof self.attr('data-friction') !== 'undefined' ? parseFloat( self.attr('data-friction') ) : 0.28,
                 };
 
                 self.find(' > * ').css('width', slide_width + '%');

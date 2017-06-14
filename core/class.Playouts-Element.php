@@ -2280,6 +2280,8 @@ new Playouts_Element_Auto_Type_Item;
 class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
 
     static $layout;
+    static $bg_color;
+    static $text_color;
 
     function init() {
 
@@ -2355,11 +2357,6 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
                 'value'             => '1',
                 'depends'           => array( 'element' => 'autoplay_enable', 'value' => '1' ),
             ),
-            'navigation_enable' => array(
-                'label'             => esc_html__( 'Enable Arrow Navigation', 'AAA' ),
-                'type'              => 'true_false',
-                'width'             => 50
-            ),
             'pagination_enable' => array(
                 'label'             => esc_html__( 'Enable Dot Pagination', 'AAA' ),
                 'type'              => 'true_false',
@@ -2383,6 +2380,51 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
                 'label'             => esc_html__( 'Invret Colors', 'AAA' ),
                 'description'       => esc_html__( 'enable this options if you use a dark background.', 'AAA' ),
                 'type'              => 'true_false',
+                'width'             => 50
+            ),
+            'bg_color' => array(
+                'label'             => esc_html__( 'Background Color', 'AAA' ),
+                'type'              => 'colorpicker',
+                'width'             => 50
+            ),
+            'text_color' => array(
+                'label'             => esc_html__( 'Text Color', 'AAA' ),
+                'type'              => 'colorpicker',
+                'width'             => 50
+            ),
+            'animation_speed' => array(
+                'label'             => esc_html__( 'Custom Animation Speed', 'AAA' ),
+                'description'       => esc_html__( 'Set custom slider speed.', 'AAA' ),
+                'type'              => 'true_false',
+                'width'             => 50
+            ),
+            'fine_text' => array(
+                'label'             => esc_html__( 'Fine Text', 'AAA' ),
+                'description'       => esc_html__( 'This will make your content text finer.', 'AAA' ),
+                'type'              => 'true_false',
+                'width'             => 50
+            ),
+            'attraction' => array(
+                'label'             => esc_html__( 'Attraction', 'AAA' ),
+                'description'       => esc_html__( 'Attracts the position of the slider to the selected cell. Higher attraction makes the slider move faster. Lower makes it move slower.', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => '',
+                'min'               => 0.005,
+                'max'               => 0.3,
+                'step'              => 0.01,
+                'value'             => 0.025,
+                'depends'           => array( 'element' => 'animation_speed', 'value' => '1' ),
+            ),
+            'friction' => array(
+                'label'             => esc_html__( 'Friction', 'AAA' ),
+                'description'       => esc_html__( 'Slows the movement of slider. Higher friction makes the slider feel stickier and less bouncy. Lower friction makes the slider feel looser and more wobbly.', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => '',
+                'min'               => 0.05,
+                'max'               => 0.9,
+                'step'              => 0.01,
+                'value'             => 0.28,
+                'depends'           => array( 'element' => 'animation_speed', 'value' => '1' ),
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
@@ -2406,6 +2448,8 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
     static function construct( $atts = array(), $content = null ) {
 
         self::$layout = ( isset( $atts['layout'] ) and ! empty( $atts['layout'] ) ) ? esc_attr( $atts['layout'] ) : 'standard';
+        self::$bg_color = ( isset( $atts['bg_color'] ) and ! empty( $atts['bg_color'] ) ) ? esc_attr( $atts['bg_color'] ) : '';
+        self::$text_color = ( isset( $atts['text_color'] ) and ! empty( $atts['text_color'] ) ) ? esc_attr( $atts['text_color'] ) : '';
 
     }
 
@@ -2420,11 +2464,14 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
             'autoplay_enable'       => false,
             'autoplay'              => 4000,
             'stop_autoplay_hover'   => false,
-            'navigation_enable'     => false,
             'pagination_enable'     => false,
             'infinite'              => false,
             'has_focus'             => false,
             'invert_color'          => false,
+            'fine_text'             => false,
+            'animation_speed'       => false,
+            'attraction'            => 0.025,
+            'friction'              => 0.28,
             'inline_class'          => '',
             'inline_id'             => '',
             'inline_css'            => '',
@@ -2437,10 +2484,10 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
 
         $class .= ' pl-layout-' . esc_attr( $layout );
-        $class .= $navigation_enable ? ' pl-is-navigation' : '';
         $class .= $pagination_enable ? ' pl-is-pagination' : '';
         $class .= $has_focus ? ' pl-has-focus' : '';
         $class .= $invert_color ? ' pl-invert-color' : '';
+        $class .= $fine_text ? ' pl-finer' : ' pl-not-finer';
 
         $attr  = $adaptive_height ? ' data-adaptive-height="true"' : '';
         $attr .= ( $group_slides_enable and $group_slides > 1 ) ? ' data-group="' . (int) $group_slides . '"' : '';
@@ -2448,8 +2495,11 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
         $attr .= ( $autoplay_enable and $stop_autoplay_hover ) ? ' data-autoplay-stop="true"' : '';
         $attr .= $slide_width ? ' data-slide-width="' . (int) $slide_width . '"' : '';
         $attr .= $infinite ? ' data-infinite="true"' : '';
-        $attr .= $navigation_enable ? ' data-navigation="true"' : '';
         $attr .= $pagination_enable ? ' data-pagination="true"' : '';
+        if( $animation_speed ) {
+            $attr .= $attraction ? ' data-attraction="' . esc_attr( $attraction ) . '"' : '';
+            $attr .= $friction ? ' data-friction="' . esc_attr( $friction ) . '"' : '';
+        }
 
         if( ! empty( $content ) ) {
             return '<div class="pl-testimonials pl-slider' . $class . '" style="' . $style . '"' . $id . $attr . '>' . $content . '</div>';
@@ -2506,16 +2556,6 @@ class Playouts_Element_Testimonial_Item extends Playouts_Repeater_Item_Element {
                 'type'              => 'image',
 				'label'             => esc_html__( 'Thumbnail', 'AAA' ),
 			),
-            'bg_color' => array(
-                'label'             => esc_html__( 'Background Color', 'AAA' ),
-                'type'              => 'colorpicker',
-                'width'             => 50
-            ),
-            'text_color' => array(
-                'label'             => esc_html__( 'Text Color', 'AAA' ),
-                'type'              => 'colorpicker',
-                'width'             => 50
-            ),
             'inline_class' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'CSS Classes', 'AAA' ),
@@ -2543,8 +2583,6 @@ class Playouts_Element_Testimonial_Item extends Playouts_Repeater_Item_Element {
             'enable_star_rating' => false,
             'star_rating'       => 0,
             'thumb'             => '',
-            'bg_color'          => '',
-            'text_color'        => '',
             'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
@@ -2555,11 +2593,12 @@ class Playouts_Element_Testimonial_Item extends Playouts_Repeater_Item_Element {
         $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
-        $style_content .= ! empty( $bg_color ) ? 'background-color:' . esc_attr( $bg_color ) . ';' : '';
-        $style_content .= ! empty( $text_color ) ? 'color:' . esc_attr( $text_color ) . ';' : '';
+        $style_content .= ! empty( Playouts_Element_Testimonials::$bg_color ) ? 'background-color:' . esc_attr( Playouts_Element_Testimonials::$bg_color ) . ';' : '';
+        $style_content .= ! empty( Playouts_Element_Testimonials::$text_color ) ? 'color:' . esc_attr( Playouts_Element_Testimonials::$text_color ) . ';' : '';
 
         if( ! empty( $thumb ) ) {
 
+            $class .= ' pl-has-image';
             $image_id = Playouts_Functions::get_image_id_from_url( $thumb );
             $image_thumbnail = Playouts_Functions::get_size_by_attachment_id( $image_id );
 
@@ -2612,7 +2651,7 @@ class Playouts_Element_Testimonial_Item extends Playouts_Repeater_Item_Element {
                 $_data_box.
                 $_rating_box.
                 '<p>' . esc_html( $content ) . '</p>'.
-                '<span class="pl-testimonial-border"><span><span style="border-color:' . esc_attr( $bg_color ) . '"></span></span></span>'.
+                '<span class="pl-testimonial-border"><span><span style="border-color:' . esc_attr( Playouts_Element_Testimonials::$bg_color ) . '"></span></span></span>'.
             '</div>'.
             $_data_standard.
         '</blockquote>';
