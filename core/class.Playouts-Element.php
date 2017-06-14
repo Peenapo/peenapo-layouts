@@ -2294,8 +2294,8 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
         $this->params = array(
             'items' => array(
                 'type'               => 'repeater',
-                'label'              => esc_html__( 'Tab items', 'AAA' ),
-                'description'        => esc_html__( 'You can add as many tabs as you need, just click the plus icon.', 'AAA' ),
+                'label'              => esc_html__( 'Testimonials', 'AAA' ),
+                'description'        => esc_html__( 'You can add as many items as you need, just click the plus icon.', 'AAA' ),
             ),
             'layout' => array(
                 'label'             => esc_html__( 'Layout', 'AAA' ),
@@ -2457,7 +2457,7 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
 
         extract( $assigned_atts = shortcode_atts( array(
             'layout'                => 'standard',
-            'slide_width'           => 60,
+            'slide_width'           => 35,
             'adaptive_height'       => false,
             'group_slides_enable'   => false,
             'group_slides'          => false,
@@ -2659,6 +2659,498 @@ class Playouts_Element_Testimonial_Item extends Playouts_Repeater_Item_Element {
     }
 }
 new Playouts_Element_Testimonial_Item;
+
+class Playouts_Element_Clients extends Playouts_Repeater_Element {
+
+    static $items_per_row;
+
+    function init() {
+
+        $this->module = 'bw_clients';
+        $this->module_item = 'bw_clients_item';
+        $this->name = esc_html__( 'Clients', 'AAA' );
+        $this->view = 'repeater';
+        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->module_color = '#de8686';
+        $this->params = array(
+            'items' => array(
+                'type'               => 'repeater',
+                'label'              => esc_html__( 'Client Items', 'AAA' ),
+                'description'        => esc_html__( 'You can add as many items as you need, just click the plus icon.', 'AAA' ),
+            ),
+            'items_per_row' => array(
+                'label'             => esc_html__( 'Items Per Row', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'clients per row',
+                'min'               => 1,
+                'max'               => 8,
+                'step'              => 1,
+                'value'             => 5,
+            ),
+            'enable_animation' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Enable Animation', 'AAA' ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+            ),
+            'animation_speed' => array(
+                'label'             => esc_html__( 'Animation Speed', 'AAA' ),
+                'description'       => esc_html__( 'Item animation speed in milliseconds.', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'milliseconds.',
+                'min'               => 100,
+                'max'               => 1000,
+                'step'              => 50,
+                'value'             => 400,
+                'depends'           => array( 'element' => 'enable_animation', 'value' => '1' ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+            ),
+            'animation_delay' => array(
+                'label'             => esc_html__( 'Animation Delay', 'AAA' ),
+                'description'       => esc_html__( 'The appearance delay between each item in milliseconds.', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'milliseconds.',
+                'min'               => 100,
+                'max'               => 1000,
+                'step'              => 50,
+                'value'             => 100,
+                'depends'           => array( 'element' => 'enable_animation', 'value' => '1' ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+            ),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function construct( $atts = array() ) {
+
+        self::$items_per_row = ( isset( $atts['items_per_row'] ) and ! empty( $atts['items_per_row'] ) ) ? esc_attr( $atts['items_per_row'] ) : 5;
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'enable_animation'      => '',
+            'animation_speed'       => 400,
+            'animation_delay'       => 100,
+            'inline_class'          => '',
+            'inline_id'             => '',
+            'inline_css'            => '',
+        ), $atts ) );
+
+        $style = $class = $id = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        if( $enable_animation ) {
+            $class .= ' pl-animated-appearance';
+            $attr .= ' data-animation-speed="' . (int) $animation_speed . '"';
+            $attr .= ' data-animation-delay="' . (int) $animation_delay . '"';
+        }
+
+        if( ! empty( $content ) ) {
+            return '<div class="pl-clients' . $class . '" style="' . $style . '"' . $id . $attr . '>' . $content . '</div>';
+        }else{
+            return '';
+        }
+
+    }
+}
+new Playouts_Element_Clients;
+
+class Playouts_Element_Clients_Item extends Playouts_Repeater_Item_Element {
+
+    function init() {
+
+        $this->module = 'bw_clients_item';
+        $this->module_parent = 'bw_clients';
+        $this->name = esc_html__( 'Client', 'AAA' );
+        $this->view = 'repeater_item';
+
+        $this->params = array(
+            'image' => array(
+                'type'               => 'image',
+				'label'              => esc_html__( 'Client Image', 'AAA' ),
+			),
+            'enable_link' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Link?', 'AAA' ),
+            ),
+            'url' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Url', 'AAA' ),
+                'value'             => '',
+                'placeholder'       => 'http://',
+                'depends'           => array( 'element' => 'enable_link', 'value' => '1' ),
+            ),
+            'new_tab' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Open in a New Tab?', 'AAA' ),
+                'depends'           => array( 'element' => 'enable_link', 'value' => '1' ),
+            ),
+            'image_alt' => array(
+                'type'               => 'textfield',
+				'label'              => esc_html__( 'Alt Tag for Image ( Optional )', 'AAA' ),
+			),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'image'             => '',
+            'enable_link'       => false,
+            'url'               => '',
+            'new_tab'           => false,
+            'image_alt'         => '',
+            'inline_class'      => '',
+            'inline_id'         => '',
+            'inline_css'        => '',
+        ), $atts ) );
+
+        $style = $class = $id = $attr = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        $style .= 'width:' . ( 100 / (int) Playouts_Element_Clients::$items_per_row ) . '%;';
+
+        if( ! empty( $image ) ) {
+        $_tag = 'div';
+        $_link = '';
+        if( $enable_link ) {
+            $_tag = 'a';
+            $_link .= ' href="' . esc_url( $url ) . '"';
+            if( $new_tab ) {
+                $_link .= ' target="_blank"';
+            }
+        }
+
+        return '<div class="pl-clients-item' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
+                '<' . $_tag . $_link . ' class="pl-clients-outer">'.
+                    '<img src="' . esc_url( $image ) . '" alt="' . esc_html( $image_alt ) . '">'.
+                '</' . $_tag . '>'.
+            '</div>';
+        }else{
+            return '';
+        }
+
+    }
+}
+new Playouts_Element_Clients_Item;
+
+class Playouts_Element_Clients_Slider extends Playouts_Repeater_Element {
+
+    function init() {
+
+        $this->module = 'bw_clients_slider';
+        $this->module_item = 'bw_clients_slider_item';
+        $this->name = esc_html__( 'Clients Slider', 'AAA' );
+        $this->view = 'repeater';
+        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->module_color = '#de8686';
+        $this->params = array(
+            'items' => array(
+                'type'               => 'repeater',
+                'label'              => esc_html__( 'Client Items', 'AAA' ),
+                'description'        => esc_html__( 'You can add as many items as you need, just click the plus icon.', 'AAA' ),
+            ),
+            'slide_width' => array(
+                'label'             => esc_html__( 'Slides Width', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => '%',
+                'min'               => 20,
+                'max'               => 100,
+                'step'              => 1,
+                'value'             => 23,
+            ),
+            'adaptive_height' => array(
+                'label'             => esc_html__( 'Enable Adaptive Height', 'AAA' ),
+                'type'              => 'true_false',
+                'value'             => '1',
+            ),
+            'group_slides_enable' => array(
+                'label'             => esc_html__( 'Enable Slides Grouping', 'AAA' ),
+                'description'       => esc_html__( 'Groups cells together in slides', 'AAA' ),
+                'type'              => 'true_false',
+            ),
+            'group_slides' => array(
+                'label'             => esc_html__( 'Group Slides', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'slides',
+                'min'               => 2,
+                'max'               => 5,
+                'step'              => 1,
+                'value'             => 2,
+                'depends'           => array( 'element' => 'group_slides_enable', 'value' => '1' ),
+            ),
+            'autoplay_enable' => array(
+                'label'             => esc_html__( 'Enable Auto-play', 'AAA' ),
+                'type'              => 'true_false',
+            ),
+            'autoplay' => array(
+                'label'             => esc_html__( 'Auto-play Timeout', 'AAA' ),
+                'description'       => esc_html__( 'Advance cells ever {Number} milliseconds. 1500 will advance cells every 1.5 seconds', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'slides',
+                'min'               => 1000,
+                'max'               => 10000,
+                'step'              => 500,
+                'value'             => 4000,
+                'depends'           => array( 'element' => 'autoplay_enable', 'value' => '1' ),
+            ),
+            'stop_autoplay_hover' => array(
+                'label'             => esc_html__( 'Stop Auto-playing on Hover', 'AAA' ),
+                'description'       => esc_html__( 'Auto-playing will pause when the user hovers over the carousel', 'AAA' ),
+                'type'              => 'true_false',
+                'value'             => '1',
+                'depends'           => array( 'element' => 'autoplay_enable', 'value' => '1' ),
+            ),
+            'pagination_enable' => array(
+                'label'             => esc_html__( 'Enable Dot Pagination', 'AAA' ),
+                'type'              => 'true_false',
+                'value'             => '1',
+                'width'             => 50
+            ),
+            'infinite' => array(
+                'label'             => esc_html__( 'Infinite Loop', 'AAA' ),
+                'description'       => esc_html__( 'At the end of cells, wrap-around to the other end for infinite scrolling.', 'AAA' ),
+                'type'              => 'true_false',
+                'value'             => '1',
+                'width'             => 50
+            ),
+            'animation_speed' => array(
+                'label'             => esc_html__( 'Custom Animation Speed', 'AAA' ),
+                'description'       => esc_html__( 'Set custom slider speed.', 'AAA' ),
+                'type'              => 'true_false',
+                'width'             => 50
+            ),
+            'invert_color' => array(
+                'label'             => esc_html__( 'Invret Colors', 'AAA' ),
+                'description'       => esc_html__( 'enable this options if you use a dark background.', 'AAA' ),
+                'type'              => 'true_false',
+                'width'             => 50
+            ),
+            'attraction' => array(
+                'label'             => esc_html__( 'Attraction', 'AAA' ),
+                'description'       => esc_html__( 'Attracts the position of the slider to the selected cell. Higher attraction makes the slider move faster. Lower makes it move slower.', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => '',
+                'min'               => 0.005,
+                'max'               => 0.3,
+                'step'              => 0.01,
+                'value'             => 0.025,
+                'depends'           => array( 'element' => 'animation_speed', 'value' => '1' ),
+            ),
+            'friction' => array(
+                'label'             => esc_html__( 'Friction', 'AAA' ),
+                'description'       => esc_html__( 'Slows the movement of slider. Higher friction makes the slider feel stickier and less bouncy. Lower friction makes the slider feel looser and more wobbly.', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => '',
+                'min'               => 0.05,
+                'max'               => 0.9,
+                'step'              => 0.01,
+                'value'             => 0.28,
+                'depends'           => array( 'element' => 'animation_speed', 'value' => '1' ),
+            ),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'slide_width'           => 23,
+            'adaptive_height'       => false,
+            'group_slides_enable'   => false,
+            'group_slides'          => false,
+            'autoplay_enable'       => false,
+            'autoplay'              => 4000,
+            'stop_autoplay_hover'   => false,
+            'pagination_enable'     => false,
+            'infinite'              => false,
+            'animation_speed'       => false,
+            'invert_color'          => false,
+            'attraction'            => 0.025,
+            'friction'              => 0.28,
+            'inline_class'          => '',
+            'inline_id'             => '',
+            'inline_css'            => '',
+        ), $atts ) );
+
+        $style = $class = $id = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        $class .= $pagination_enable ? ' pl-is-pagination' : '';
+        $class .= $invert_color ? ' pl-invert-color' : '';
+
+        $attr  = $adaptive_height ? ' data-adaptive-height="true"' : '';
+        $attr .= ( $group_slides_enable and $group_slides > 1 ) ? ' data-group="' . (int) $group_slides . '"' : '';
+        $attr .= ( $autoplay_enable ) ? ' data-autoplay="' . (int) $autoplay . '"' : '';
+        $attr .= ( $autoplay_enable and $stop_autoplay_hover ) ? ' data-autoplay-stop="true"' : '';
+        $attr .= $slide_width ? ' data-slide-width="' . (int) $slide_width . '"' : '';
+        $attr .= $infinite ? ' data-infinite="true"' : '';
+        $attr .= $pagination_enable ? ' data-pagination="true"' : '';
+        if( $animation_speed ) {
+            $attr .= $attraction ? ' data-attraction="' . esc_attr( $attraction ) . '"' : '';
+            $attr .= $friction ? ' data-friction="' . esc_attr( $friction ) . '"' : '';
+        }
+
+        if( ! empty( $content ) ) {
+            return '<div class="pl-clients-slider pl-slider' . $class . '" style="' . $style . '"' . $id . $attr . '>' . $content . '</div>';
+        }else{
+            return '';
+        }
+
+    }
+}
+new Playouts_Element_Clients_Slider;
+
+class Playouts_Element_Clients_Slider_Item extends Playouts_Repeater_Item_Element {
+
+    function init() {
+
+        $this->module = 'bw_clients_slider_item';
+        $this->module_parent = 'bw_clients_slider';
+        $this->name = esc_html__( 'Client Slide', 'AAA' );
+        $this->view = 'repeater_item';
+
+        $this->params = array(
+            'image' => array(
+                'type'               => 'image',
+				'label'              => esc_html__( 'Client Image', 'AAA' ),
+			),
+            'enable_link' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Link?', 'AAA' ),
+            ),
+            'url' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Url', 'AAA' ),
+                'value'             => '',
+                'placeholder'       => 'http://',
+                'depends'           => array( 'element' => 'enable_link', 'value' => '1' ),
+            ),
+            'new_tab' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Open in a New Tab?', 'AAA' ),
+                'depends'           => array( 'element' => 'enable_link', 'value' => '1' ),
+            ),
+            'image_alt' => array(
+                'type'               => 'textfield',
+				'label'              => esc_html__( 'Alt Tag for Image ( Optional )', 'AAA' ),
+			),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'image'             => '',
+            'enable_link'       => false,
+            'url'               => '',
+            'new_tab'           => false,
+            'image_alt'         => '',
+            'inline_class'      => '',
+            'inline_id'         => '',
+            'inline_css'        => '',
+        ), $atts ) );
+
+        $style = $class = $id = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        if( ! empty( $image ) ) {
+        $_tag = 'div';
+        $_link = '';
+        if( $enable_link ) {
+            $_tag = 'a';
+            $_link .= ' href="' . esc_url( $url ) . '"';
+            if( $new_tab ) {
+                $_link .= ' target="_blank"';
+            }
+        }
+        return '<div class="pl-clients-slider-item' . $class . '" style="' . $style . '"' . $id . '>'.
+                '<' . $_tag . $_link . ' class="pl-clients-outer">'.
+                    '<img src="' . esc_url( $image ) . '" alt="' . esc_html( $image_alt ) . '">'.
+                '</' . $_tag . '>'.
+            '</div>';
+        }else{
+            return '';
+        }
+
+    }
+}
+new Playouts_Element_Clients_Slider_Item;
 
 /*class Playouts_Element_Tabs extends Playouts_Repeater_Element {
 

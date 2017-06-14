@@ -289,6 +289,7 @@ var Playouts = {
     animations: function() {
 
         this.background_parallax();
+        this.sequence();
 
     },
 
@@ -299,6 +300,27 @@ var Playouts = {
                 $(this).bwpb_core_video_background();
             });
         }
+
+    },
+
+    sequence: function() {
+
+        var waypoints = $('.pl-animated-appearance').waypoint({
+            handler: function() {
+
+                var self = $( this.element ).addClass('pl-animated');
+
+                var $to_animate = $(' > *', self);
+                var animation_speed = parseInt( self.attr('data-animation-speed'), 10 ) * 0.001;
+                var animation_delay = parseInt( self.attr('data-animation-delay'), 10 ) * 0.001;
+
+                TweenMax.staggerTo( $to_animate, animation_speed, { opacity:1 }, animation_delay );
+
+                this.destroy();
+
+            },
+            offset: '80%'
+        });
 
     },
 
