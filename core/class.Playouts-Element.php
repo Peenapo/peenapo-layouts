@@ -3343,6 +3343,79 @@ class Playouts_Element_Image_Stack_Item extends Playouts_Repeater_Item_Element {
 }
 new Playouts_Element_Image_Stack_Item;
 
+class Playouts_Element_Video_Modal extends Playouts_Element {
+
+    function init() {
+
+        $this->module = 'bw_video_modal';
+        $this->name = esc_html__( 'Video Modal', 'AAA' );
+        $this->view = 'element';
+        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->module_color = '#f07373';
+        $this->params = array(
+            'url' => array(
+				'label'             => esc_html__( 'Video Url', 'AAA' ),
+				'type'              => 'editor',
+				'is_content'        => true,
+                'value'             => 'Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.',
+			),
+            'color' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Color', 'AAA' ),
+                'value'             => '',
+                'width'             => 50
+            ),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'url'               => '',
+            'color'             => '',
+            'inline_class'      => '',
+            'inline_id'         => '',
+            'inline_css'        => '',
+        ), $atts ) );
+
+        $style = $class = $id = $border_style = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        $border_style .= ! empty( $color ) ? 'border-color:' . esc_attr( $color ) . ';' : '';
+        $svg_style .= ! empty( $color ) ? 'fill:' . esc_attr( $color ) . ';' : '';
+
+        return '<div class="pl-video-modal' . $class . '" style="' . $style . '"' . $id . '>'.
+            '<a href="#" class="pl-video-button">'.
+                '<span class="pl-before" style="' . $border_style . '"></span>'.
+                '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600px" height="800px" x="0px" y="0px" viewBox="0 0 600 800" enable-background="new 0 0 600 800" xml:space="preserve"><path style="' . $svg_style . '" fill="none" d="M0-1.79v800L600,395L0-1.79z"></path></svg>'.
+                '<span class="pl-after" style="' . $border_style . '"></span>'.
+            '</a>'.
+            do_shortcode( '[embed width="123" height="456"]' . esc_url( $content ) . '[/embed]' ).
+        '</div>';
+
+    }
+}
+new Playouts_Element_Video_Modal;
+
 /*class Playouts_Element_Tabs extends Playouts_Repeater_Element {
 
     function init() {

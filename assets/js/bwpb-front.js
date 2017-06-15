@@ -14,7 +14,10 @@ var Playouts = {
 
     bind: function() {
 
-        // ..
+        // disable empty url\'s
+        $(document).on('click', '.pl-outer a[href="#"]', function(e) {
+            e.preventDefault();
+        });
 
     },
 
@@ -291,6 +294,7 @@ var Playouts = {
         this.appearance();
         this.background_parallax();
         this.sequence();
+        this.video_button();
 
     },
 
@@ -301,6 +305,24 @@ var Playouts = {
                 $(this).bwpb_core_video_background();
             });
         }
+
+    },
+
+    video_button: function() {
+
+        $('.pl-video-button').on('mouseenter', function() {
+
+            var self = $(this);
+
+            if( self.hasClass('pl-animated') ) { return; }
+
+            self.addClass('pl-animated');
+
+            setTimeout(function() {
+                self.removeClass('pl-animated');
+            }, 500);
+
+        });
 
     },
 
