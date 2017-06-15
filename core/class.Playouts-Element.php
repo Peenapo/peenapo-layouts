@@ -3363,11 +3363,13 @@ class Playouts_Element_Video_Modal extends Playouts_Element {
                 'type'              => 'colorpicker',
                 'label'             => esc_html__( 'Color', 'AAA' ),
                 'value'             => '',
+                'width'             => 50,
             ),
             'bg_color' => array(
                 'type'              => 'colorpicker',
                 'label'             => esc_html__( 'Background Color ( Optional )', 'AAA' ),
                 'value'             => '',
+                'width'             => 50,
             ),
             'text' => array(
                 'type'              => 'textfield',
