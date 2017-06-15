@@ -350,8 +350,8 @@
 
 
 /* video modal */
-.pl-video-modal {}
-.pl-video-button {display:inline-block;position:relative;width:100px;height:100px;border-radius:50%;}
+.pl-video-modal {display:inline-block;cursor:pointer;}
+.pl-video-button {display:inline-block;position:relative;width:100px;height:100px;border-radius:50%;vertical-align:middle;}
 .pl-video-button .pl-after {content:'';position:absolute;top:0;left:0;right:0;bottom:0;border:6px solid #222;border-radius:50%;z-index:2;
     transition:all .5s;-webkit-transition:all .5s;
 }
@@ -361,8 +361,12 @@
 }
 .pl-video-button path {fill:#222;}
 
-.pl-video-button:hover .pl-after {opacity:0.9;transform:scale(0.9);-webkit-transform:scale(0.9);}
+.pl-video-modal:hover .pl-video-button .pl-after {opacity:0.9;transform:scale(0.9);-webkit-transform:scale(0.9);}
 .pl-video-button.pl-animated .pl-before {animation:pl-expand 0.5s ease-out;-webkit-animation:pl-expand 0.5s ease-out;}
+
+.pl-video-modal > span {display:inline-block;padding-left:25px;vertical-align:middle;}
+
+.pl-video-button-background {position:absolute;top:15px;right:15px;bottom:15px;left:15px;border-radius:50%;}
 
     /*@keyframes pl-expand {
     	0% {opacity:1;}

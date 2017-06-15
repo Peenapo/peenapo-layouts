@@ -310,9 +310,9 @@ var Playouts = {
 
     video_button: function() {
 
-        $('.pl-video-button').on('mouseenter', function() {
+        $('.pl-video-modal').on('mouseenter', function() {
 
-            var self = $(this);
+            var self = $(this).find('.pl-video-button');
 
             if( self.hasClass('pl-animated') ) { return; }
 

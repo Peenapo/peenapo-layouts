@@ -3363,7 +3363,16 @@ class Playouts_Element_Video_Modal extends Playouts_Element {
                 'type'              => 'colorpicker',
                 'label'             => esc_html__( 'Color', 'AAA' ),
                 'value'             => '',
-                'width'             => 50
+            ),
+            'bg_color' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Background Color ( Optional )', 'AAA' ),
+                'value'             => '',
+            ),
+            'text' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Text Label', 'AAA' ),
+                'value'             => '',
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
@@ -3389,12 +3398,14 @@ class Playouts_Element_Video_Modal extends Playouts_Element {
         extract( $assigned_atts = shortcode_atts( array(
             'url'               => '',
             'color'             => '',
+            'bg_color'          => '',
+            'text'              => '',
             'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
         ), $atts ) );
 
-        $style = $class = $id = $border_style = '';
+        $style = $class = $id = $border_style = $svg_style = $_text = $_bg = '';
 
         $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
@@ -3403,13 +3414,22 @@ class Playouts_Element_Video_Modal extends Playouts_Element {
         $border_style .= ! empty( $color ) ? 'border-color:' . esc_attr( $color ) . ';' : '';
         $svg_style .= ! empty( $color ) ? 'fill:' . esc_attr( $color ) . ';' : '';
 
+        if( ! empty( $text ) ) {
+            $_text .= '<span style="color:' . esc_attr( $color ) . '">' . esc_html( $text ) . '</span>';
+        }
+        if( ! empty( $bg_color ) ) {
+            $_bg = '<span class="pl-video-button-background" style="background-color:' . esc_attr( $bg_color ) . '"></span>';
+        }
+
         return '<div class="pl-video-modal' . $class . '" style="' . $style . '"' . $id . '>'.
             '<a href="#" class="pl-video-button">'.
                 '<span class="pl-before" style="' . $border_style . '"></span>'.
                 '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600px" height="800px" x="0px" y="0px" viewBox="0 0 600 800" enable-background="new 0 0 600 800" xml:space="preserve"><path style="' . $svg_style . '" fill="none" d="M0-1.79v800L600,395L0-1.79z"></path></svg>'.
                 '<span class="pl-after" style="' . $border_style . '"></span>'.
+                $_bg.
             '</a>'.
             do_shortcode( '[embed width="123" height="456"]' . esc_url( $content ) . '[/embed]' ).
+            $_text.
         '</div>';
 
     }
