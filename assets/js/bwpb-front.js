@@ -20,7 +20,7 @@ var Playouts = {
         });
 
         // overlay click, hide self
-        $('#pl-overlay, #pl-overlay-container').on('click', Playouts.overlay.hide);
+        $('.pl-overlay').on('click', Playouts.overlay.hide);
 
         // video modal
         $('.pl-video-modal').on('click', Playouts.elements.video_modal.expand);
@@ -45,18 +45,28 @@ var Playouts = {
                 this.target.css('visibility', 'hidden');
             }});
 
+            if( $('#pl-overlay-container').hasClass('pl-visible') ) {
+                Playouts.overlay.hide_container();
+            }
+
         }
 
         ,show_container: function() {
 
-            TweenLite.to( $('#pl-overlay-container'), .3, { opacity: 1, visibility: 'visible' });
+            var $container = $('#pl-overlay-container');
+            TweenLite.fromTo( $container, .3, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, visibility: 'visible' });
+            $container.addClass('pl-visible');
 
         }
 
         ,hide_container: function() {
 
-            TweenMax.to( $('#pl-overlay-container'), .3, { opacity: 0, onComplete: function() {
-                this.target.css('visibility', 'hidden');
+            var $container = $('#pl-overlay-container');
+            TweenMax.to( $container, .3, { opacity: 0, scale: 0.9, onComplete: function() {
+                $container.css('visibility', 'hidden');
+                if( $container.hasClass('pl-visible') ) {
+                    $container.html('').removeClass('pl-visible');
+                }
             }});
 
         }
@@ -124,6 +134,21 @@ var Playouts = {
         }
     },
 
+    /*
+     * get embed code from youtube url
+     * TODO: add vimeo
+     *
+     */
+    get_embed_from_url: function( video ) {
+
+        var reg_url = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?([\w\-]{10,12})(?:&feature=related)?(?:[\w\-]{0})?/g
+        ,iframe_code = '<iframe src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>'
+        ,embed_code = ( typeof video !== 'undefined' && video !== '' ) ? video.replace( reg_url, iframe_code ) : '';
+
+        return embed_code;
+
+    },
+
     elements: {
 
         start: function() {
@@ -142,23 +167,21 @@ var Playouts = {
 
                 e.preventDefault();
 
-                var self = $(this)
-                ,$modal = self.closest('.pl-video-modal')
-                ,video = self.attr('href');
+                var self = $(this);
 
+                // display the container overlays
                 Playouts.overlay.show();
-
-                var reg_url = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?([\w\-]{10,12})(?:&feature=related)?(?:[\w\-]{0})?/g
-                ,iframe_code = '<iframe width="640" height="360" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>'
-                ,embed_code = ( typeof video !== 'undefined' && video !== '' ) ? video.replace( reg_url, iframe_code ) : '';
-
-                $modal.find('.pl-video-screen-outer').css('visibility', 'visible');
-
-                var $screen = $( $('#pl-template-video-modal').html() );
-                $('#pl-overlay-container').html( $screen );
-                $screen.html( embed_code );
-
                 Playouts.overlay.show_container();
+
+                // get the video template
+                var _template = $( $('#pl-template-video-modal').html() );
+
+                // append the template inside the container
+                $('#pl-overlay-container').html( _template );
+
+                setTimeout(function() { // wait for the animation to end and append the embed video code
+                    _template.find('.pl-iframe-scaler').html( Playouts.get_embed_from_url( self.attr('href') ) );
+                }, 150);
 
             }
 
