@@ -94,6 +94,8 @@ class Playouts_Bootstrap {
 			include PL_CORE . 'class.Playouts-Public.php';
 			include PL_CORE . 'class.Playouts-Public-Fonts.php';
 		    include PL_CORE . 'class.Playouts-Public-Map.php';
+            include PL_CORE . 'class.Playouts-Template-Hooks.php';
+            include PL_CORE . 'class.Playouts-Template-Functions.php';
 
         }
 

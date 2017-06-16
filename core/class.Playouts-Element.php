@@ -3355,9 +3355,8 @@ class Playouts_Element_Video_Modal extends Playouts_Element {
         $this->params = array(
             'url' => array(
 				'label'             => esc_html__( 'Video Url', 'AAA' ),
-				'type'              => 'editor',
+				'type'              => 'textfield',
 				'is_content'        => true,
-                'value'             => 'Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.',
 			),
             'color' => array(
                 'type'              => 'colorpicker',
@@ -3423,16 +3422,15 @@ class Playouts_Element_Video_Modal extends Playouts_Element {
             $_bg = '<span class="pl-video-button-background" style="background-color:' . esc_attr( $bg_color ) . '"></span>';
         }
 
-        return '<div class="pl-video-modal' . $class . '" style="' . $style . '"' . $id . '>'.
-            '<a href="#" class="pl-video-button">'.
+        return '<a href="' . esc_url( $content ) .  '" class="pl-video-modal' . $class . '" style="' . $style . '"' . $id . '>'.
+            '<div class="pl-video-button">'.
                 '<span class="pl-before" style="' . $border_style . '"></span>'.
                 '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600px" height="800px" x="0px" y="0px" viewBox="0 0 600 800" enable-background="new 0 0 600 800" xml:space="preserve"><path style="' . $svg_style . '" fill="none" d="M0-1.79v800L600,395L0-1.79z"></path></svg>'.
                 '<span class="pl-after" style="' . $border_style . '"></span>'.
                 $_bg.
-            '</a>'.
-            do_shortcode( '[embed width="123" height="456"]' . esc_url( $content ) . '[/embed]' ).
+            '</div>'.
             $_text.
-        '</div>';
+        '</a>';
 
     }
 }

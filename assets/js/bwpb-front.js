@@ -19,6 +19,48 @@ var Playouts = {
             e.preventDefault();
         });
 
+        // overlay click, hide self
+        $('#pl-overlay, #pl-overlay-container').on('click', Playouts.overlay.hide);
+
+        // video modal
+        $('.pl-video-modal').on('click', Playouts.elements.video_modal.expand);
+
+    },
+
+    /*
+     * show and hide ovrlay background
+     *
+     */
+    overlay: {
+
+        show: function() {
+
+            TweenLite.to( $('#pl-overlay'), .3, { opacity: .8, visibility: 'visible' });
+
+        }
+
+        ,hide: function() {
+
+            TweenMax.to( $('#pl-overlay'), .3, { opacity: 0, onComplete: function() {
+                this.target.css('visibility', 'hidden');
+            }});
+
+        }
+
+        ,show_container: function() {
+
+            TweenLite.to( $('#pl-overlay-container'), .3, { opacity: 1, visibility: 'visible' });
+
+        }
+
+        ,hide_container: function() {
+
+            TweenMax.to( $('#pl-overlay-container'), .3, { opacity: 0, onComplete: function() {
+                this.target.css('visibility', 'hidden');
+            }});
+
+        }
+
     },
 
     /*
@@ -91,6 +133,34 @@ var Playouts = {
             this.progress.start();
             this.auto_type.start();
             this.carousel.start();
+
+        }
+
+        ,video_modal: {
+
+            expand: function(e) {
+
+                e.preventDefault();
+
+                var self = $(this)
+                ,$modal = self.closest('.pl-video-modal')
+                ,video = self.attr('href');
+
+                Playouts.overlay.show();
+
+                var reg_url = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?([\w\-]{10,12})(?:&feature=related)?(?:[\w\-]{0})?/g
+                ,iframe_code = '<iframe width="640" height="360" src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>'
+                ,embed_code = ( typeof video !== 'undefined' && video !== '' ) ? video.replace( reg_url, iframe_code ) : '';
+
+                $modal.find('.pl-video-screen-outer').css('visibility', 'visible');
+
+                var $screen = $( $('#pl-template-video-modal').html() );
+                $('#pl-overlay-container').html( $screen );
+                $screen.html( embed_code );
+
+                Playouts.overlay.show_container();
+
+            }
 
         }
 

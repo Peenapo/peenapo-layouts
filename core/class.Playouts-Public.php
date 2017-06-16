@@ -46,6 +46,8 @@ class Playouts_Public {
         add_filter( 'body_class', array( 'Playouts_Public', 'body_class_settings' ) );
         # filter the content of the post
         add_filter( 'the_content', array( 'Playouts_Public', 'the_content' ) );
+        # templates
+        add_action( 'wp_footer', array( 'Playouts_Public', 'templates' ) );
 
 	}
 
@@ -75,7 +77,9 @@ class Playouts_Public {
 				<div class="%3$s">
 					%1$s
 				</div>
-			</div>',
+			</div>
+            <span id="pl-overlay" class="pl-overlay"></span>
+            <span id="pl-overlay-container" class="pl-overlay pl-overlay-container"></span>',
 			self::parse_content( $content ), esc_attr( $outer_classes ), esc_attr( $inner_classes ), esc_attr( $outer_id )
 		);
 
@@ -308,6 +312,13 @@ class Playouts_Public {
             wp_enqueue_script( 'bwpb-front', PL_ASSEST . 'js/bwpb-front.js', array('jquery'), '1.0', true );
         }
     }
+
+    static function templates() {
+
+        do_action( 'pl_get_public_templates' );
+
+    }
+
 }
 
 function pl_init_plugin() {
