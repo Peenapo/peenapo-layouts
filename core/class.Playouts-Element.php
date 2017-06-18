@@ -2503,8 +2503,6 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
 
         if( ! empty( $content ) ) {
             return '<div class="pl-testimonials pl-slider' . $class . '" style="' . $style . '"' . $id . $attr . '>' . $content . '</div>';
-        }else{
-            return '';
         }
 
     }
@@ -2766,8 +2764,6 @@ class Playouts_Element_Clients extends Playouts_Repeater_Element {
 
         if( ! empty( $content ) ) {
             return '<div class="pl-clients' . $class . '" style="' . $style . '"' . $id . $attr . '>' . $content . '</div>';
-        }else{
-            return '';
         }
 
     }
@@ -2864,8 +2860,6 @@ class Playouts_Element_Clients_Item extends Playouts_Repeater_Item_Element {
                     '<img src="' . esc_url( $image ) . '" alt="' . esc_html( $image_alt ) . '">'.
                 '</' . $_tag . '>'.
             '</div>';
-        }else{
-            return '';
         }
 
     }
@@ -3049,8 +3043,6 @@ class Playouts_Element_Clients_Slider extends Playouts_Repeater_Element {
 
         if( ! empty( $content ) ) {
             return '<div class="pl-clients-slider pl-slider' . $class . '" style="' . $style . '"' . $id . $attr . '>' . $content . '</div>';
-        }else{
-            return '';
         }
 
     }
@@ -3144,8 +3136,6 @@ class Playouts_Element_Clients_Slider_Item extends Playouts_Repeater_Item_Elemen
                     '<img src="' . esc_url( $image ) . '" alt="' . esc_html( $image_alt ) . '">'.
                 '</' . $_tag . '>'.
             '</div>';
-        }else{
-            return '';
         }
 
     }
@@ -3203,8 +3193,6 @@ class Playouts_Element_Image_Stack extends Playouts_Repeater_Element {
 
         if( ! empty( $content ) ) {
             return '<div class="pl-image-stack' . $class . '" style="' . $style . '"' . $id . '>' . $content . '</div>';
-        }else{
-            return '';
         }
 
     }
@@ -3355,9 +3343,38 @@ class Playouts_Element_Video_Modal extends Playouts_Element {
         $this->params = array(
             'url' => array(
 				'label'             => esc_html__( 'Video Url', 'AAA' ),
+                'description'       => esc_html__( 'Only Youtube video support', 'AAA' ),
 				'type'              => 'textfield',
+				'placeholder'       => 'http://',
 				'is_content'        => true,
 			),
+            'size' => array(
+                'label'             => esc_html__( 'Select Video Screen Size', 'AAA' ),
+                'description'       => esc_html__( 'Select the size of the video popup', 'AAA' ),
+                'type'              => 'select',
+                'options'           => array(
+                    'small'     => 'Small',
+                    'medium'    => 'Medium',
+                    'large'     => 'Large',
+                ),
+                'value'             => 'medium',
+                'width'             => 50
+            ),
+            'size_button' => array(
+                'label'             => esc_html__( 'Select Button Size', 'AAA' ),
+                'type'              => 'select',
+                'options'           => array(
+                    'small'     => 'Small',
+                    'medium'    => 'Medium',
+                    'large'     => 'Large',
+                ),
+                'value'             => 'medium',
+                'width'             => 50
+            ),
+            'autoplay' => array(
+                'label'             => esc_html__( 'Autoplay Video', 'AAA' ),
+                'type'              => 'true_false',
+            ),
             'color' => array(
                 'type'              => 'colorpicker',
                 'label'             => esc_html__( 'Color', 'AAA' ),
@@ -3398,6 +3415,9 @@ class Playouts_Element_Video_Modal extends Playouts_Element {
 
         extract( $assigned_atts = shortcode_atts( array(
             'url'               => '',
+            'size'              => 'medium',
+            'size_button'       => 'medium',
+            'autoplay'          => false,
             'color'             => '',
             'bg_color'          => '',
             'text'              => '',
@@ -3406,11 +3426,16 @@ class Playouts_Element_Video_Modal extends Playouts_Element {
             'inline_css'        => '',
         ), $atts ) );
 
-        $style = $class = $id = $border_style = $svg_style = $_text = $_bg = '';
+        $style = $class = $id = $attr = $border_style = $svg_style = $_text = $_bg = '';
 
         $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        $class .= ' pl-button-size-' . esc_attr( $size_button );
+
+        $attr .= ' data-screen-size="' . esc_attr( $size ) . '"';
+        $attr .= $autoplay ? ' data-autoplay="true"' : '';
 
         $border_style .= ! empty( $color ) ? 'border-color:' . esc_attr( $color ) . ';' : '';
         $svg_style .= ! empty( $color ) ? 'fill:' . esc_attr( $color ) . ';' : '';
@@ -3422,7 +3447,7 @@ class Playouts_Element_Video_Modal extends Playouts_Element {
             $_bg = '<span class="pl-video-button-background" style="background-color:' . esc_attr( $bg_color ) . '"></span>';
         }
 
-        return '<a href="' . esc_url( $content ) .  '" class="pl-video-modal' . $class . '" style="' . $style . '"' . $id . '>'.
+        return '<a href="' . esc_url( $content ) .  '" class="pl-video-modal' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
             '<div class="pl-video-button">'.
                 '<span class="pl-before" style="' . $border_style . '"></span>'.
                 '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="600px" height="800px" x="0px" y="0px" viewBox="0 0 600 800" enable-background="new 0 0 600 800" xml:space="preserve"><path style="' . $svg_style . '" fill="none" d="M0-1.79v800L600,395L0-1.79z"></path></svg>'.
@@ -3435,6 +3460,1037 @@ class Playouts_Element_Video_Modal extends Playouts_Element {
     }
 }
 new Playouts_Element_Video_Modal;
+
+class Playouts_Element_Image_Slider extends Playouts_Repeater_Element {
+
+    static $spacing;
+    static $thumbnail_size;
+    static $lazy;
+
+    function init() {
+
+        $this->module = 'bw_image_slider';
+        $this->module_item = 'bw_image_slider_item';
+        $this->name = esc_html__( 'Image Slider', 'AAA' );
+        $this->view = 'repeater';
+        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->module_color = '#9485e8';
+        $this->params = array(
+            'items' => array(
+                'type'               => 'repeater',
+                'label'              => esc_html__( 'Image Slides', 'AAA' ),
+                'description'        => esc_html__( 'You can add as many items as you need, just click the plus icon.', 'AAA' ),
+            ),
+            'slide_width' => array(
+                'label'             => esc_html__( 'Slides Width', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => '%',
+                'min'               => 20,
+                'max'               => 100,
+                'step'              => 1,
+                'value'             => 72,
+            ),
+            'spacing' => array(
+                'label'             => esc_html__( 'Slides Spacing', 'AAA' ),
+                'description'        => esc_html__( 'Set the space between the slides.', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'pixels',
+                'min'               => 0,
+                'max'               => 100,
+                'step'              => 1,
+                'value'             => 25,
+            ),
+            'thumbnail_size' => array(
+                'label'             => esc_html__( 'Image Thumbnail Size', 'AAA' ),
+                'type'              => 'thumbnail_sizes',
+                'value'             => 'large',
+            ),
+            'adaptive_height' => array(
+                'label'             => esc_html__( 'Enable Adaptive Height', 'AAA' ),
+                'type'              => 'true_false',
+                'value'             => '1',
+            ),
+            'lazy' => array(
+                'label'             => esc_html__( 'Lazy Image Load', 'AAA' ),
+                'description'       => esc_html__( 'It will load the images only when needed.', 'AAA' ),
+                'type'              => 'true_false',
+            ),
+            'free' => array(
+                'label'             => esc_html__( 'Free Scroll', 'AAA' ),
+                'description'       => esc_html__( 'Enables content to be freely scrolled without aligning cells to an end position.', 'AAA' ),
+                'type'              => 'true_false',
+            ),
+            'group_slides_enable' => array(
+                'label'             => esc_html__( 'Enable Slides Grouping', 'AAA' ),
+                'description'       => esc_html__( 'Groups cells together in slides', 'AAA' ),
+                'type'              => 'true_false',
+            ),
+            'group_slides' => array(
+                'label'             => esc_html__( 'Group Slides', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'slides',
+                'min'               => 2,
+                'max'               => 5,
+                'step'              => 1,
+                'value'             => 2,
+                'depends'           => array( 'element' => 'group_slides_enable', 'value' => '1' ),
+            ),
+            'autoplay_enable' => array(
+                'label'             => esc_html__( 'Enable Auto-play', 'AAA' ),
+                'type'              => 'true_false',
+            ),
+            'autoplay' => array(
+                'label'             => esc_html__( 'Auto-play Timeout', 'AAA' ),
+                'description'       => esc_html__( 'Advance cells ever {Number} milliseconds. 1500 will advance cells every 1.5 seconds', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'slides',
+                'min'               => 1000,
+                'max'               => 10000,
+                'step'              => 500,
+                'value'             => 4000,
+                'depends'           => array( 'element' => 'autoplay_enable', 'value' => '1' ),
+            ),
+            'stop_autoplay_hover' => array(
+                'label'             => esc_html__( 'Stop Auto-playing on Hover', 'AAA' ),
+                'description'       => esc_html__( 'Auto-playing will pause when the user hovers over the carousel', 'AAA' ),
+                'type'              => 'true_false',
+                'value'             => '1',
+                'depends'           => array( 'element' => 'autoplay_enable', 'value' => '1' ),
+            ),
+            'pagination_enable' => array(
+                'label'             => esc_html__( 'Enable Dot Pagination', 'AAA' ),
+                'type'              => 'true_false',
+                'value'             => '1',
+                'width'             => 50
+            ),
+            'infinite' => array(
+                'label'             => esc_html__( 'Infinite Loop', 'AAA' ),
+                'description'       => esc_html__( 'At the end of cells, wrap-around to the other end for infinite scrolling.', 'AAA' ),
+                'type'              => 'true_false',
+                'value'             => '1',
+                'width'             => 50
+            ),
+            'animation_speed' => array(
+                'label'             => esc_html__( 'Custom Animation Speed', 'AAA' ),
+                'description'       => esc_html__( 'Set custom slider speed.', 'AAA' ),
+                'type'              => 'true_false',
+                'width'             => 50
+            ),
+            'invert_color' => array(
+                'label'             => esc_html__( 'Invret Colors', 'AAA' ),
+                'description'       => esc_html__( 'Enable this options if you use a dark background.', 'AAA' ),
+                'type'              => 'true_false',
+                'width'             => 50
+            ),
+            'attraction' => array(
+                'label'             => esc_html__( 'Attraction', 'AAA' ),
+                'description'       => esc_html__( 'Attracts the position of the slider to the selected cell. Higher attraction makes the slider move faster. Lower makes it move slower.', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => '',
+                'min'               => 0.005,
+                'max'               => 0.3,
+                'step'              => 0.01,
+                'value'             => 0.025,
+                'depends'           => array( 'element' => 'animation_speed', 'value' => '1' ),
+            ),
+            'friction' => array(
+                'label'             => esc_html__( 'Friction', 'AAA' ),
+                'description'       => esc_html__( 'Slows the movement of slider. Higher friction makes the slider feel stickier and less bouncy. Lower friction makes the slider feel looser and more wobbly.', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => '',
+                'min'               => 0.05,
+                'max'               => 0.9,
+                'step'              => 0.01,
+                'value'             => 0.28,
+                'depends'           => array( 'element' => 'animation_speed', 'value' => '1' ),
+            ),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function construct( $atts = array(), $content = null ) {
+
+        self::$spacing = ( isset( $atts['spacing'] ) and ! empty( $atts['spacing'] ) ) ? (int) $atts['spacing'] : 0;
+        self::$thumbnail_size = ( isset( $atts['thumbnail_size'] ) and ! empty( $atts['thumbnail_size'] ) ) ? $atts['thumbnail_size'] : 'large';
+        self::$lazy = ( isset( $atts['lazy'] ) and ! empty( $atts['lazy'] ) ) ? $atts['lazy'] : false;
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'slide_width'           => 23,
+            'adaptive_height'       => false,
+            'lazy'                  => false,
+            'free'                  => false,
+            'group_slides_enable'   => false,
+            'group_slides'          => false,
+            'autoplay_enable'       => false,
+            'autoplay'              => 4000,
+            'stop_autoplay_hover'   => false,
+            'pagination_enable'     => false,
+            'infinite'              => false,
+            'animation_speed'       => false,
+            'invert_color'          => false,
+            'attraction'            => 0.025,
+            'friction'              => 0.28,
+            'inline_class'          => '',
+            'inline_id'             => '',
+            'inline_css'            => '',
+        ), $atts ) );
+
+        $style = $class = $id = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        $class .= $pagination_enable ? ' pl-is-pagination' : '';
+        $class .= $invert_color ? ' pl-invert-color' : '';
+        $class .= $lazy ? ' pl-is-lazy' : '';
+
+        $attr  = $adaptive_height ? ' data-adaptive-height="true"' : '';
+        $attr .= ( $group_slides_enable and $group_slides > 1 ) ? ' data-group="' . (int) $group_slides . '"' : '';
+        $attr .= ( $autoplay_enable ) ? ' data-autoplay="' . (int) $autoplay . '"' : '';
+        $attr .= ( $autoplay_enable and $stop_autoplay_hover ) ? ' data-autoplay-stop="true"' : '';
+        $attr .= $slide_width ? ' data-slide-width="' . (int) $slide_width . '"' : '';
+        $attr .= $infinite ? ' data-infinite="true"' : '';
+        $attr .= $pagination_enable ? ' data-pagination="true"' : '';
+        $attr .= $free ? ' data-free="true"' : '';
+        if( $animation_speed ) {
+            $attr .= $attraction ? ' data-attraction="' . esc_attr( $attraction ) . '"' : '';
+            $attr .= $friction ? ' data-friction="' . esc_attr( $friction ) . '"' : '';
+        }
+
+        if( ! empty( $content ) ) {
+            return '<div class="pl-image-slider pl-slider' . $class . '" style="' . $style . '"' . $id . $attr . '>' . $content . '</div>';
+        }
+
+    }
+}
+new Playouts_Element_Image_Slider;
+
+class Playouts_Element_Image_Slider_Item extends Playouts_Repeater_Item_Element {
+
+    function init() {
+
+        $this->module = 'bw_image_slider_item';
+        $this->module_parent = 'bw_image_slider';
+        $this->name = esc_html__( 'Image Slide', 'AAA' );
+        $this->view = 'repeater_item';
+
+        $this->params = array(
+            'image' => array(
+                'type'               => 'image',
+				'label'              => esc_html__( 'Image', 'AAA' ),
+			),
+            'image_alt' => array(
+                'type'               => 'textfield',
+				'label'              => esc_html__( 'Alt Tag for Image ( Optional )', 'AAA' ),
+			),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'image'             => '',
+            'image_alt'         => '',
+            'inline_class'      => '',
+            'inline_id'         => '',
+            'inline_css'        => '',
+        ), $atts ) );
+
+        $style = $class = $id = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+
+        $spacing = Playouts_Element_Image_Slider::$spacing;
+        if( (int) $spacing > 0 ) {
+            $style .= 'margin:0 ' . (int) $spacing . 'px!important;';
+        }
+
+        $thumbnail_size = Playouts_Element_Image_Slider::$thumbnail_size;
+
+        $image_sized = wp_get_attachment_image_src( Playouts_Functions::get_image_id_from_url( $image ), $thumbnail_size );
+
+        if( ! Playouts_Element_Image_Slider::$lazy ) {
+            $_image = '<img src="' . esc_url( $image_sized[0] ) . '" alt="' . esc_html( $image_alt ) . '">';
+        }else{
+            $_image = '<img src="' . PL_ASSEST . 'images/pixel.png" data-flickity-lazyload="' . esc_url( $image_sized[0] ) . '" alt="' . esc_html( $image_alt ) . '">';
+        }
+
+        if( isset( $image_sized[0] ) ) {
+            return '<div class="pl-image-slide' . $class . '" style="' . $style . '"' . $id . '>'.
+                '<div class="pl-image-slide-inner">'.
+                    $_image.
+                '</div>'.
+            '</div>';
+        }
+
+    }
+}
+new Playouts_Element_Image_Slider_Item;
+
+class Playouts_Element_Animated_Text extends Playouts_Repeater_Element {
+
+    static $tag;
+
+    function init() {
+
+        $this->module = 'bw_animated_text';
+        $this->module_item = 'bw_animated_text_item';
+        $this->name = esc_html__( 'Animated Text', 'AAA' );
+        $this->view = 'repeater';
+        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->module_color = '#d27ab0';
+        $this->params = array(
+            'items' => array(
+                'type'               => 'repeater',
+                'label'              => esc_html__( 'Text Lines', 'AAA' ),
+                'description'        => esc_html__( 'You can add as many text lines as you need, just click the plus icon.', 'AAA' ),
+            ),
+            'h_tag' => array(
+                'label'             => esc_html__( 'Select Title Tag', 'AAA' ),
+                'type'              => 'select',
+                'options'           => array(
+                    'h1'    => 'H1',
+                    'h2'    => 'H2',
+                    'h3'    => 'H3',
+                    'h4'    => 'H4',
+                    'h5'    => 'H5',
+                    'h6'    => 'H6',
+                ),
+                'value'             => 'h4'
+            ),
+            'text_alignment' => array(
+                'type'              => 'select',
+				'label'             => esc_html__( 'Text Alignment', 'AAA' ),
+                'options'           => array(
+                    'inherit'           => 'Inherit',
+                    'left'              => 'Left',
+                    'center'            => 'Center',
+                    'right'             => 'Right',
+                ),
+                'value'             => '',
+			),
+            'font_size' => array(
+                'label'             => esc_html__( 'Font Size', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'pixels',
+                'min'               => 14,
+                'max'               => 150,
+                'step'              => 1,
+                'value'             => 40,
+            ),
+            'line_height' => array(
+                'label'             => esc_html__( 'Line Height', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => '%',
+                'min'               => 100,
+                'max'               => 300,
+                'step'              => 5,
+                'value'             => 120,
+            ),
+            'text_color' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Text Color', 'AAA' ),
+                'value'             => '',
+            ),
+            'bold_text' => array(
+                'label'             => esc_html__( 'Bold Text', 'AAA' ),
+                'type'              => 'true_false',
+                'value'             => '1',
+            ),
+            'speed' => array(
+                'label'             => esc_html__( 'Animation Speed', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'milliseconds',
+                'min'               => 200,
+                'max'               => 2000,
+                'step'              => 50,
+                'value'             => 450,
+            ),
+            'delay' => array(
+                'label'             => esc_html__( 'Animation Delay Between Text Lines', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'milliseconds',
+                'min'               => 50,
+                'max'               => 500,
+                'step'              => 25,
+                'value'             => 100,
+            ),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function construct( $atts = array(), $content = null ) {
+
+        self::$tag = ( isset( $atts['h_tag'] ) and ! empty( $atts['h_tag'] ) ) ? esc_attr( $atts['h_tag'] ) : 'h4';
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'text_alignment'        => '',
+            'font_size'             => 40,
+            'text_color'            => '',
+            'line_height'           => 150,
+            'bold_text'             => false,
+            'speed'                 => 0,
+            'delay'                 => 0,
+            'inline_class'          => '',
+            'inline_id'             => '',
+            'inline_css'            => '',
+        ), $atts ) );
+
+        $style = $class = $id = $attr = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        if( $text_alignment ) { $style .= 'text-align:' . esc_attr( $text_alignment ) . ';'; }
+        if( $font_size ) { $style .= 'font-size:' . (int) $font_size . 'px;'; }
+        if( $text_color ) { $style .= 'color:' . esc_attr( $text_color ) . ';'; }
+        if( $line_height ) { $style .= 'line-height:' . (int) $line_height . '%;'; }
+        if( $bold_text ) { $style .= 'font-weight:800;'; }
+
+        $attr .= $speed ? ' data-animation-speed="' . esc_attr( $speed ) . '"' : '';
+        $attr .= $delay ? ' data-animation-delay="' . esc_attr( $delay ) . '"' : '';
+
+        if( ! empty( $content ) ) {
+            return '<div class="pl-animated-texts' . $class . '" style="' . $style . '"' . $id . $attr . '>' . $content . '</div>';
+        }
+
+    }
+}
+new Playouts_Element_Animated_Text;
+
+class Playouts_Element_Animated_Text_Item extends Playouts_Repeater_Item_Element {
+
+    function init() {
+
+        $this->module = 'bw_animated_text_item';
+        $this->module_parent = 'bw_animated_text';
+        $this->name = esc_html__( 'Animated Text Line', 'AAA' );
+        $this->view = 'repeater_item';
+
+        $this->params = array(
+            'text' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Text', 'AAA' ),
+                'value'             => esc_html__( 'Text line goes here', 'AAA' ),
+            ),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'text'              => '',
+            'tag'               => 'h4',
+            'inline_class'      => '',
+            'inline_id'         => '',
+            'inline_css'        => '',
+        ), $atts ) );
+
+        $style = $class = $id = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        $_tag = esc_attr( Playouts_Element_Animated_Text::$tag );
+
+        return '<div class="pl-animated-text' . $class . '" style="' . $style . '"' . $id . '>'.
+            '<div class="pl-animated-text-inner">'.
+                "<{$_tag} class='pl-animated-text-title'>" . esc_attr( $text ) . "</{$_tag}>".
+            '</div>'.
+        '</div>';
+
+    }
+}
+new Playouts_Element_Animated_Text_Item;
+
+class Playouts_Element_Heading extends Playouts_Element {
+
+    function init() {
+
+        $this->module = 'bw_heading';
+        $this->name = esc_html__( 'Heading Title', 'AAA' );
+        $this->view = 'element';
+        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->module_color = '#e6cf4d';
+        $this->params = array(
+            'title' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Title', 'AAA' ),
+                'value'             => esc_html__( 'This is a title', 'AAA' ),
+            ),
+            'content' => array(
+				'label'             => esc_html__( 'Content', 'AAA' ),
+				'type'              => 'editor',
+				'is_content'        => true,
+			),
+            'top' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Top Title', 'AAA' ),
+            ),
+            'h_tag' => array(
+                'label'             => esc_html__( 'Select Heading Title Tag', 'AAA' ),
+                'type'              => 'select',
+                'options'           => array(
+                    'h1'    => 'H1',
+                    'h2'    => 'H2',
+                    'h3'    => 'H3',
+                    'h4'    => 'H4',
+                    'h5'    => 'H5',
+                    'h6'    => 'H6',
+                ),
+                'value'             => 'h3'
+            ),
+            'text_color' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Text Color', 'AAA' ),
+                'value'             => '',
+                'width'             => 50
+            ),
+            'text_alignment' => array(
+                'type'              => 'select',
+				'label'             => esc_html__( 'Text Alignment', 'AAA' ),
+                'options'           => array(
+                    'inherit'           => 'Inherit',
+                    'left'              => 'Left',
+                    'center'            => 'Center',
+                    'right'             => 'Right',
+                ),
+                'value'             => '',
+                'width'             => 50
+			),
+            'font_size_heading' => array(
+                'label'             => esc_html__( 'Heading Font Size', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'pixels',
+                'min'               => 14,
+                'max'               => 120,
+                'step'              => 1,
+                'value'             => 40,
+            ),
+            'font_size_content' => array(
+                'label'             => esc_html__( 'Content Font Size', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'pixels',
+                'min'               => 13,
+                'max'               => 60,
+                'step'              => 1,
+                'value'             => 15,
+            ),
+            'font_size_top' => array(
+                'label'             => esc_html__( 'Top Font Size', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'pixels',
+                'min'               => 13,
+                'max'               => 60,
+                'step'              => 1,
+                'value'             => 15,
+            ),
+            'bold_text' => array(
+                'label'             => esc_html__( 'Bold Text', 'AAA' ),
+                'type'              => 'true_false',
+            ),
+            'enable_animation' => array(
+                'label'             => esc_html__( 'Enable Animation', 'AAA' ),
+                'type'              => 'true_false',
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+            ),
+            'speed' => array(
+                'label'             => esc_html__( 'Animation Speed', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'milliseconds',
+                'min'               => 200,
+                'max'               => 2000,
+                'step'              => 50,
+                'value'             => 450,
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+                'depends'           => array( 'element' => 'enable_animation', 'value' => '1' ),
+            ),
+            'delay' => array(
+                'label'             => esc_html__( 'Animation Delay Between Text Lines', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'milliseconds',
+                'min'               => 50,
+                'max'               => 500,
+                'step'              => 25,
+                'value'             => 100,
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+                'depends'           => array( 'element' => 'enable_animation', 'value' => '1' ),
+            ),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'title'             => '',
+            'top'               => '',
+            'h_tag'             => 'h3',
+            'text_color'        => '',
+            'text_alignment'    => '',
+            'font_size_heading' => 40,
+            'font_size_content' => 15,
+            'font_size_top'     => 15,
+            'bold_text'         => false,
+            'enable_animation'  => false,
+            'speed'             => 0,
+            'delay'             => 0,
+            'inline_class'      => '',
+            'inline_id'         => '',
+            'inline_css'        => '',
+        ), $atts ) );
+
+        $style = $class = $id = $attr = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        $style .= ! empty( $text_color ) ? 'color:' . esc_attr( $text_color ) . ';' : '';
+        $style .= ! empty( $text_alignment ) ? 'text-align:' . esc_attr( $text_alignment ) . ';' : '';
+
+        $anim_wrap_start = $anim_wrap_end = '';
+        if( $enable_animation ) {
+            $class .= ' pl-is-animated';
+            $anim_wrap_start = '<div class="pl-anim-wrap">';
+            $anim_wrap_end = '</div>';
+            $attr .= $speed ? ' data-animation-speed="' . esc_attr( $speed ) . '"' : '';
+            $attr .= $delay ? ' data-animation-delay="' . esc_attr( $delay ) . '"' : '';
+        }
+
+        $_tag = esc_attr( $h_tag );
+        $_top = ! empty( $top ) ? '<span class="pl-heading-top" style="font-size:' . (int) $font_size_top . 'px;">' . esc_attr( $top ) . '</span>' : '';
+
+        return '<div class="pl-heading' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
+            $anim_wrap_start . $_top . $anim_wrap_end .
+            $anim_wrap_start . "<$_tag class='pl-heading-title' style='font-weight:" . ( $bold_text ? '800' : '400' ) . ";font-size:" . (int) $font_size_heading . "px;'>" . esc_attr( $title ) . "</$_tag>" . $anim_wrap_end .
+            $anim_wrap_start . '<div class="pl-heading-content" style="font-size:' . (int) $font_size_content . 'px;">' . do_shortcode( $content ) . '</div>' . $anim_wrap_end .
+        '</div>';
+
+    }
+}
+new Playouts_Element_Heading;
+
+class Playouts_Element_Gredient_Text extends Playouts_Element {
+
+    function init() {
+
+        $this->module = 'bw_gredient_text';
+        $this->name = esc_html__( 'Gredient Text', 'AAA' );
+        $this->view = 'element';
+        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->module_color = '#4dd2e6';
+        $this->params = array(
+            'text' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Text', 'AAA' ),
+                'value'             => esc_html__( 'This is a text with gredient', 'AAA' ),
+            ),
+            'h_tag' => array(
+                'label'             => esc_html__( 'Select Heading Title Tag', 'AAA' ),
+                'type'              => 'select',
+                'options'           => array(
+                    'h1'    => 'H1',
+                    'h2'    => 'H2',
+                    'h3'    => 'H3',
+                    'h4'    => 'H4',
+                    'h5'    => 'H5',
+                    'h6'    => 'H6',
+                ),
+                'value'             => 'h3'
+            ),
+            'text_color_from' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Text Color From', 'AAA' ),
+                'value'             => '#555070',
+                'width'             => 50
+            ),
+            'text_color_to' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Text Color To', 'AAA' ),
+                'value'             => '#f43e66',
+                'width'             => 50
+            ),
+            'text_alignment' => array(
+                'type'              => 'select',
+				'label'             => esc_html__( 'Text Alignment', 'AAA' ),
+                'options'           => array(
+                    'inherit'           => 'Inherit',
+                    'left'              => 'Left',
+                    'center'            => 'Center',
+                    'right'             => 'Right',
+                ),
+                'value'             => '',
+                'width'             => 50
+			),
+
+            'direction' => array(
+                'label'             => esc_html__( 'Gredient Direction', 'AAA' ),
+                'type'              => 'select',
+                'options'           => array(
+                    'top'               => 'Top',
+                    'top right'         => 'Top Right',
+                    'right'             => 'Right',
+                    'bottom right'      => 'Bottom Right',
+                    'bottom'            => 'Bottom',
+                    'bottom left'       => 'Bottom Left',
+                    'left'              => 'Left',
+                    'left top'      => 'Top Left',
+                ),
+                'value'             => 'h3',
+                'width'             => 50
+            ),
+            'font_size' => array(
+                'label'             => esc_html__( 'Font Size', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'pixels',
+                'min'               => 14,
+                'max'               => 120,
+                'step'              => 1,
+                'value'             => 40,
+            ),
+            'bold_text' => array(
+                'label'             => esc_html__( 'Bold Text', 'AAA' ),
+                'type'              => 'true_false',
+            ),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'text'              => '',
+            'h_tag'             => 'h3',
+            'text_color_from'   => '#555070',
+            'text_color_to'     => '#f43e66',
+            'text_alignment'    => '',
+            'direction'         => 'right',
+            'font_size'         => 40,
+            'bold_text'         => false,
+            'inline_class'      => '',
+            'inline_id'         => '',
+            'inline_css'        => '',
+        ), $atts ) );
+
+        $style = $class = $id = $_gredient = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        $style .= ! empty( $text_color ) ? 'color:' . esc_attr( $text_color ) . ';' : '';
+        $style .= ! empty( $text_alignment ) ? 'text-align:' . esc_attr( $text_alignment ) . ';' : '';
+        $style .= ! empty( $font_size ) ? 'font-size:' . (int) $font_size . 'px;' : '';
+        $style .= $bold_text ? 'font-weight:800;' : '';
+
+        $_tag = esc_attr( $h_tag );
+        $_gredient .= 'color:' . esc_attr( $text_color_from ) . ';';
+        $_gredient .= 'background:linear-gradient(to ' . esc_attr( $direction ) . ',' . esc_attr( $text_color_from ) . ',' . esc_attr( $text_color_to ) . ');';
+        $_gredient .= 'background-clip:text;-webkit-background-clip:text;text-fill-color:transparent;-webkit-text-fill-color:transparent;';
+
+        return '<div class="pl-gredient' . $class . '" style="' . $style . '"' . $id . '>'.
+            "<$_tag class='pl-gredient-text' style='" . $_gredient . "'>" . esc_attr( $text ) . "</$_tag>" .
+        '</div>';
+
+    }
+}
+new Playouts_Element_Gredient_Text;
+
+class Playouts_Element_Notion_Box extends Playouts_Element {
+
+    function init() {
+
+        $this->module = 'bw_notion_box';
+        $this->name = esc_html__( 'Notion Box', 'AAA' );
+        $this->view = 'element';
+        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->module_color = '#db899b';
+        $this->params = array(
+            'top_text' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Top Text ( Optional )', 'AAA' ),
+            ),
+            'text' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Text', 'AAA' ),
+                'value'             => esc_html__( 'This is a notion box', 'AAA' ),
+            ),
+            'sub_text' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Sub Text ( Optional )', 'AAA' ),
+            ),
+            'h_tag' => array(
+                'label'             => esc_html__( 'Select Heading Title Tag', 'AAA' ),
+                'type'              => 'select',
+                'options'           => array(
+                    'h1'    => 'H1',
+                    'h2'    => 'H2',
+                    'h3'    => 'H3',
+                    'h4'    => 'H4',
+                    'h5'    => 'H5',
+                    'h6'    => 'H6',
+                ),
+                'value'             => 'h3'
+            ),
+            'text_alignment' => array(
+                'type'              => 'select',
+				'label'             => esc_html__( 'Text Alignment', 'AAA' ),
+                'options'           => array(
+                    'inherit'           => 'Inherit',
+                    'left'              => 'Left',
+                    'center'            => 'Center',
+                    'right'             => 'Right',
+                ),
+                'value'             => '',
+			),
+            'font_size' => array(
+                'label'             => esc_html__( 'Font Size', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'pixels',
+                'min'               => 14,
+                'max'               => 60,
+                'step'              => 1,
+                'value'             => 32,
+            ),
+            'bold_title' => array(
+                'label'             => esc_html__( 'Bold Title Text', 'AAA' ),
+                'type'              => 'true_false',
+            ),
+            'text_color' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Text Color', 'AAA' ),
+            ),
+            'enable_link' => array(
+                'label'             => esc_html__( 'Point to Link?', 'AAA' ),
+                'type'              => 'true_false',
+            ),
+            'link' => array(
+				'label'              => esc_html__( 'Link', 'AAA' ),
+				'type'               => 'textfield',
+				'placeholder'        => 'http://',
+                'depends'           => array( 'element' => 'enable_link', 'value' => '1' ),
+			),
+            'target' => array(
+                'label'             => esc_html__( 'Open in a New Tab?', 'AAA' ),
+                'type'              => 'true_false',
+                'depends'           => array( 'element' => 'enable_link', 'value' => '1' ),
+            ),
+            'bg_color' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Background Color', 'AAA' ),
+                'value'             => '#f5f5f5',
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+			),
+            'image' => array(
+				'label'              => esc_html__( 'Background Image', 'AAA' ),
+				'type'               => 'image',
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+			),
+            'scale' => array(
+                'label'             => esc_html__( 'Scale Image on Hover?', 'AAA' ),
+                'type'              => 'true_false',
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'width'             => 50
+            ),
+            'overlay' => array(
+                'label'             => esc_html__( 'Enable Overlay?', 'AAA' ),
+                'type'              => 'true_false',
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'width'             => 50
+            ),
+            'overlay_bg' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Overlay Background Color', 'AAA' ),
+                'value'             => '#f5f5f5',
+                'depends'           => array( 'element' => 'overlay', 'value' => '1' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+			),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'top_text'          => '',
+            'text'              => '',
+            'sub_text'          => '',
+            'h_tag'             => 'h3',
+            'text_alignment'    => '',
+            'font_size'         => 32,
+            'bold_title'        => false,
+            'enable_link'       => false,
+            'link'              => '',
+            'target'            => false,
+            'bg_color'          => '#f5f5f5',
+            'text_color'        => '',
+            'image'             => 32,
+            'scale'             => false,
+            'overlay'           => false,
+            'overlay_bg'        => '',
+            'inline_class'      => '',
+            'inline_id'         => '',
+            'inline_css'        => '',
+        ), $atts ) );
+
+        $style = $class = $id = $attr = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        $_h_tag = esc_attr( $h_tag );
+
+        $style .= ! empty( $text_color ) ? 'color:' . esc_attr( $text_color ) . ';' : '';
+        $style .= ! empty( $text_alignment ) ? 'text-align:' . esc_attr( $text_alignment ) . ';' : '';
+
+        $class .= $scale ? ' pl-is-scale' : '';
+        $class .= $overlay ? ' pl-is-over' : '';
+
+        $_tag = 'div';
+        if( $enable_link and ! empty( $link ) ) {
+            $_tag = 'a';
+            $attr .= ' href="' . esc_url( $link ) . '"';
+            $attr .= $target ? ' target="_blank"' : '';
+        }
+
+        return '<' . $_tag . ' class="pl-notion-box' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
+            '<div class="pl-notion-background" style="background-color:' . esc_attr( $bg_color ) . '">'. // TODO: add video, parallax, etc. background styles
+                ( $image ? '<div class="pl-notion-image" style="background-image:url(' . esc_url( $image ) . ');"></div>' : '' ) .
+                ( $overlay ? '<span class="pl-notion-over" style="' . ( $overlay_bg ? 'background-color:' . esc_attr( $overlay_bg ) : '' ) . '"></span>' : '' ) .
+            '</div>'.
+            '<div class="pl-notion-content">'.
+                ( $top_text ? '<div class="pl-notion-meta"><span class="pl-notion-top" style="' . ( $text_color ? 'border-color:' . esc_attr( $text_color ) : '' ) . '">' . esc_attr( $top_text ) . '</span></div>' : '' ) .
+                ( $text ? "<div class='pl-notion-title'><$_h_tag class='pl-notion-text'>" . esc_attr( $text ) . "</$_h_tag></div>" : '' ) .
+                ( $sub_text ? '<div class="pl-notion-footer"><span class="pl-notion-sub">' . esc_attr( $sub_text ) . '</span></div>' : '' ) .
+            '</div>'.
+        '</' . $_tag . '>';
+
+    }
+}
+new Playouts_Element_Notion_Box;
 
 /*class Playouts_Element_Tabs extends Playouts_Repeater_Element {
 

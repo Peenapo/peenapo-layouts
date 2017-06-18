@@ -139,10 +139,10 @@ var Playouts = {
      * TODO: add vimeo
      *
      */
-    get_embed_from_url: function( video ) {
+    get_embed_from_url: function( video, autoplay = false ) {
 
         var reg_url = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?([\w\-]{10,12})(?:&feature=related)?(?:[\w\-]{0})?/g
-        ,iframe_code = '<iframe src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>'
+        ,iframe_code = '<iframe src="http://www.youtube.com/embed/$1' + ( autoplay ? '?autoplay=1' : '' ) + '" frameborder="0" allowfullscreen></iframe>'
         ,embed_code = ( typeof video !== 'undefined' && video !== '' ) ? video.replace( reg_url, iframe_code ) : '';
 
         return embed_code;
@@ -179,8 +179,16 @@ var Playouts = {
                 // append the template inside the container
                 $('#pl-overlay-container').html( _template );
 
+                // set the size of the screen
+                _template.find('.pl-video-screen').addClass( 'pl-screen-size-' + self.attr('data-screen-size') );
+
                 setTimeout(function() { // wait for the animation to end and append the embed video code
-                    _template.find('.pl-iframe-scaler').html( Playouts.get_embed_from_url( self.attr('href') ) );
+                    _template.find('.pl-iframe-scaler').html(
+                        Playouts.get_embed_from_url(
+                            self.attr('href'),
+                            typeof self.attr('data-autoplay') !== 'undefined'
+                        )
+                    );
                 }, 150);
 
             }
@@ -201,8 +209,9 @@ var Playouts = {
                 var slide_width = self.attr('data-slide-width');
 
                 var attr = {
-                    cellAlign               : 'center',
+                    cellAlign               : slide_width == '100' ? 'left' : 'center',
                     contain                 : true,
+                    lazyLoad                : true,
                     groupCells              : typeof self.attr('data-group') !== 'undefined' ? parseInt( self.attr('data-group'), 10 ) : false,
                     autoPlay                : typeof self.attr('data-autoplay') !== 'undefined' ? parseInt( self.attr('data-autoplay'), 10 ) : false,
                     wrapAround              : typeof self.attr('data-infinite') !== 'undefined' && self.attr('data-infinite') == 'true' ? true : false,
@@ -212,9 +221,10 @@ var Playouts = {
                     pageDots                : typeof self.attr('data-pagination') !== 'undefined' && self.attr('data-pagination') == 'true' ? true : false,
                     selectedAttraction      : typeof self.attr('data-attraction') !== 'undefined' ? parseFloat( self.attr('data-attraction') ) : 0.025,
                     friction                : typeof self.attr('data-friction') !== 'undefined' ? parseFloat( self.attr('data-friction') ) : 0.28,
+                    freeScroll              : typeof self.attr('data-free') !== 'undefined' && self.attr('data-free') == 'true' ? true : false
                 };
 
-                self.find(' > * ').css('width', slide_width + '%');
+                self.find('> *').css('width', slide_width + '%');
 
                 self.flickity( attr );
 
@@ -388,6 +398,52 @@ var Playouts = {
         this.background_parallax();
         this.sequence();
         this.video_button();
+        this.animated_text();
+        this.heading();
+
+    },
+
+    heading: function() {
+
+        $('.pl-heading').waypoint({
+            handler: function() {
+
+                var self = $( this.element ).addClass('pl-animated');
+                var $to_animate = self.find('.pl-anim-wrap > *');
+
+                var animation_speed = typeof self.attr('data-animation-speed') !== 'undefined' ? parseInt( self.attr('data-animation-speed'), 10 ) * 0.001 : .45;
+                var animation_delay = typeof self.attr('data-animation-delay') !== 'undefined' ? parseInt( self.attr('data-animation-delay'), 10 ) * 0.001 : .07;
+
+                TweenMax.set( $to_animate, { visibility:'visible' } );
+                TweenMax.staggerFromTo( $to_animate, animation_speed, { y: '100%', scale:.95 }, { y: '0%', scale:1, ease: Power4.easeOut }, animation_delay );
+
+                this.destroy();
+
+            },
+            offset: '80%'
+        });
+
+    },
+
+    animated_text: function() {
+
+        $('.pl-animated-texts').waypoint({
+            handler: function() {
+
+                var self = $( this.element ).addClass('pl-animated');
+                var $to_animate = self.find('.pl-animated-text-inner');
+
+                var animation_speed = typeof self.attr('data-animation-speed') !== 'undefined' ? parseInt( self.attr('data-animation-speed'), 10 ) * 0.001 : .45;
+                var animation_delay = typeof self.attr('data-animation-delay') !== 'undefined' ? parseInt( self.attr('data-animation-delay'), 10 ) * 0.001 : .07;
+
+                TweenMax.set( $to_animate, { visibility:'visible' } );
+                TweenMax.staggerFromTo( $to_animate, animation_speed, { y: '100%', scale:.95 }, { y: '0%', scale:1, ease: Power4.easeOut }, animation_delay );
+
+                this.destroy();
+
+            },
+            offset: '80%'
+        });
 
     },
 

@@ -692,6 +692,39 @@ class Playouts_Option_Type_Columns extends Playouts_Option_Type {
 }
 new Playouts_Option_Type_Columns;
 
+class Playouts_Option_Type_Thumbnail_Sizes extends Playouts_Option_Type {
+
+    function init() {
+
+        $this->id = 'thumbnail_sizes';
+        $this->name = esc_html__( 'Thumbnail Sizes', 'AAA' );
+
+    }
+
+    static function template( $values ) {
+
+        extract( (array) $values );
+
+        $sizes = get_intermediate_image_sizes();
+
+        $__out  = self::get_option_heading( $label, $description );
+        $__out .= "<select name='{$name}'>";
+
+        foreach( $sizes as $size ) {
+            $__checked = $size == $value ? ' selected="selected"' : '';
+            $__out .= "<option value='{$size}'{$__checked}>{$size}</option>";
+        }
+
+        $__out .= "</select>";
+
+        return $__out;
+
+        return $__out;
+
+    }
+}
+new Playouts_Option_Type_Thumbnail_Sizes;
+
 class Playouts_Option_Type_Google_Font extends Playouts_Option_Type {
 
     static $google_fonts;
