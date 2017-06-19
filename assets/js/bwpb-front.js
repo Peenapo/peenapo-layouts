@@ -159,6 +159,39 @@ var Playouts = {
             this.auto_type.start();
             this.carousel.start();
             this.image_comparison.start();
+            this.number_counter.start();
+
+        }
+
+        ,number_counter: {
+
+            start: function() {
+
+                $('.pl-number-counter').waypoint({
+                    handler: function() {
+
+                        var self = $( this.element ).addClass('pl-animated');
+                        var number = self.attr('data-number');
+                        var duraction = parseInt( self.attr('data-duration'), 10 );
+                        var $container = self.find('span');
+
+                        self.prop( 'Counter', 0 ).animate({
+                            Counter: number
+                        }, {
+                            duration : duraction,
+                            easing : 'swing',
+                            step : function ( now ) {
+                                $container.html( Math.ceil( now ) );
+                            }
+                        });
+
+                        this.destroy();
+
+                    },
+                    offset: '95%'
+                });
+
+            }
 
         }
 
@@ -169,15 +202,19 @@ var Playouts = {
                 $('.pl-image-comparison').each(function() {
 
                     var self = $(this);
-
-                    $('.pl-image-comparison').twentytwenty({
-                        default_offset_pct  : 0.7,
-                        orientation         : self.attr('data-direction'),
+                    var attr = {
                         no_overlay          : true,
-                    });
-                    
-                });
+                        default_offset_pct  : parseInt( self.attr('data-offset'), 10 ) * 0.01,
+                    };
+                    var direction = self.attr('data-direction');
 
+                    if( typeof direction !== 'undefined' && direction == 'vertical' ) {
+                        attr['orientation'] = 'vertical';
+                    }
+
+                    self.twentytwenty( attr );
+
+                });
 
             }
 

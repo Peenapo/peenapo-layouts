@@ -86,7 +86,7 @@ class Playouts_Public {
      */
     static function the_content( $content ) {
 
-        if( ! self::is_builder_used() or ! is_main_query() ) {
+        if( ! self::is_builder_used() or ! is_main_query() or empty( $content ) ) {
             return $content;
         }
 
@@ -97,6 +97,9 @@ class Playouts_Public {
 
         $inner_class = apply_filters( 'pl_content_inner_class', array( 'pl-inner' ) );
         $inner_classes = implode( ' ', $inner_class );
+
+        // lets use our own shortcode parser
+        include_once PL_DIR . 'inc/shortcode_parser.php';
 
 		return $content = sprintf(
 			'<div class="%2$s" id="%4$s">

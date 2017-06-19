@@ -1660,7 +1660,7 @@ class Playouts_Element_Button extends Playouts_Element {
                 'value'             => 'medium'
             ),
             'bold' => array(
-                'label'             => esc_html__( 'Strong Text?', 'AAA' ),
+                'label'             => esc_html__( 'Bold Text?', 'AAA' ),
                 'type'              => 'true_false',
             ),
             'bg_color' => array(
@@ -1678,16 +1678,18 @@ class Playouts_Element_Button extends Playouts_Element {
                 'min'               => 0,
                 'max'               => 60,
                 'step'              => 1,
-                'value'             => 0,
+                'value'             => 3,
             ),
             'transform_top' => array(
                 'label'             => esc_html__( 'Transform Top Position', 'AAA' ),
                 'type'              => 'true_false',
+                'value'             => '1',
                 'tab'               => array( 'hover' => esc_html__( 'Hover Styles', 'AAA' ) ),
             ),
             'shadow' => array(
                 'label'             => esc_html__( 'Add Shadow', 'AAA' ),
                 'type'              => 'true_false',
+                'value'             => '1',
                 'tab'               => array( 'hover' => esc_html__( 'Hover Styles', 'AAA' ) ),
             ),
             'hover_bg_color' => array(
@@ -4214,7 +4216,6 @@ class Playouts_Element_Gredient_Text extends Playouts_Element {
                 'value'             => '',
                 'width'             => 50
 			),
-
             'direction' => array(
                 'label'             => esc_html__( 'Gredient Direction', 'AAA' ),
                 'type'              => 'select',
@@ -4523,11 +4524,16 @@ class Playouts_Element_Image_Comparison extends Playouts_Element {
                 ),
                 'value'             => 'vorizontal'
             ),
-            /*'target' => array(
-                'label'             => esc_html__( 'Open in a New Tab?', 'AAA' ),
-                'type'              => 'true_false',
-                'depends'           => array( 'element' => 'enable_link', 'value' => '1' ),
-            ),*/
+            'offset' => array(
+                'label'             => esc_html__( 'Offset Position', 'AAA' ),
+                'type'              => 'number_slider',
+                'description'       => esc_html__( 'How much of the before image is visible when the page loads', 'AAA' ),
+                'append_after'      => '%',
+                'min'               => 0,
+                'max'               => 100,
+                'step'              => 5,
+                'value'             => 50,
+            ),
             'inline_class' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'CSS Classes', 'AAA' ),
@@ -4554,6 +4560,7 @@ class Playouts_Element_Image_Comparison extends Playouts_Element {
             'image_right'       => '',
             'color'             => '',
             'direction'         => 'horizontal',
+            'offset'            => 0,
             'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
@@ -4567,6 +4574,7 @@ class Playouts_Element_Image_Comparison extends Playouts_Element {
 
         $style .= ! empty( $color ) ? 'background-color:' . esc_attr( $color ) . ';' : '';
         $attr .= ! empty( $direction ) ? ' data-direction="' . esc_attr( $direction ) . '"' : '';
+        $attr .= ' data-offset="' . esc_attr( $offset ) . '"';
 
         return '<div class="pl-image-comparison' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
             ( ! empty( $image_left ) ? '<img src="' . esc_url( $image_left ) . '" alt="">' : '' ).
@@ -4576,6 +4584,547 @@ class Playouts_Element_Image_Comparison extends Playouts_Element {
     }
 }
 new Playouts_Element_Image_Comparison;
+
+class Playouts_Element_Image_Hotspots extends Playouts_Repeater_Element {
+
+    static $color;
+    static $box_bg_color;
+    static $box_text_color;
+
+    function init() {
+
+        $this->module = 'bw_image_hotspots';
+        $this->module_item = 'bw_image_hotspots_item';
+        $this->name = esc_html__( 'Image Hotspots', 'AAA' );
+        $this->view = 'repeater';
+        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->module_color = '#75b677';
+        $this->params = array(
+            'items' => array(
+                'type'               => 'repeater',
+                'label'              => esc_html__( 'Image Hotspots', 'AAA' ),
+                'description'        => esc_html__( 'You can add as many items as you need, just click the plus icon.', 'AAA' ),
+            ),
+            'image' => array(
+				'label'              => esc_html__( 'Background Image', 'AAA' ),
+				'type'               => 'image',
+			),
+            'color' => array(
+                'label'             => esc_html__( 'Hotspot Background Color', 'AAA' ),
+                'type'              => 'colorpicker',
+            ),
+            'box_bg_color' => array(
+                'label'             => esc_html__( 'Box Background Color', 'AAA' ),
+                'type'              => 'colorpicker',
+            ),
+            'box_text_color' => array(
+                'label'             => esc_html__( 'Box Text Color', 'AAA' ),
+                'type'              => 'colorpicker',
+            ),
+            'enable_animation' => array(
+                'label'             => esc_html__( 'Enable Pulse Animation', 'AAA' ),
+                'type'              => 'true_false',
+            ),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function construct( $atts = array(), $content = null ) {
+
+        self::$color = ( isset( $atts['color'] ) and ! empty( $atts['color'] ) ) ? esc_attr( $atts['color'] ) : '';
+        self::$box_bg_color = ( isset( $atts['box_bg_color'] ) and ! empty( $atts['box_bg_color'] ) ) ? esc_attr( $atts['box_bg_color'] ) : '';
+        self::$box_text_color = ( isset( $atts['box_text_color'] ) and ! empty( $atts['box_text_color'] ) ) ? esc_attr( $atts['box_text_color'] ) : '';
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'image'                 => '',
+            'color'                 => '',
+            'box_bg_color'          => '',
+            'box_text_color'        => '',
+            'enable_animation'      => false,
+            'inline_class'          => '',
+            'inline_id'             => '',
+            'inline_css'            => '',
+        ), $atts ) );
+
+        $style = $class = $id = $attr = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        $class .= $enable_animation ? ' pl-is-animated' : '';
+
+        if( ! empty( $content ) and ! empty( $image ) ) {
+            return '<div class="pl-hotspots' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
+                '<div class="pl-hotspots-image">'.
+                    '<img src="' . esc_url( $image ) . '" alt="">'.
+                '</div>'.
+                '<div class="pl-hotspots-list">'.
+                    $content.
+                '</div>'.
+            '</div>';
+        }
+
+    }
+}
+new Playouts_Element_Image_Hotspots;
+
+class Playouts_Element_Image_Hotspots_Item extends Playouts_Repeater_Item_Element {
+
+    function init() {
+
+        $this->module = 'bw_image_hotspots_item';
+        $this->module_parent = 'bw_image_hotspots';
+        $this->name = esc_html__( 'Image Hotspot', 'AAA' );
+        $this->view = 'repeater_item';
+
+        $this->params = array(
+            'title' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Title', 'AAA' ),
+                'value'             => esc_html__( 'Title goes here', 'AAA' ),
+            ),
+            'text' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Text', 'AAA' ),
+                'value'             => esc_html__( 'Text goes here', 'AAA' ),
+            ),
+            'position_top' => array(
+                'label'             => esc_html__( 'Left Position', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => '%',
+                'min'               => 0,
+                'max'               => 100,
+                'step'              => 1,
+                'value'             => 50,
+            ),
+            'position_left' => array(
+                'label'             => esc_html__( 'Right Position', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => '%',
+                'min'               => 0,
+                'max'               => 100,
+                'step'              => 1,
+                'value'             => 50,
+            ),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'title'             => '',
+            'text'              => '',
+            'position_top'      => 50,
+            'position_left'     => 50,
+            'inline_class'      => '',
+            'inline_id'         => '',
+            'inline_css'        => '',
+        ), $atts ) );
+
+        $style = $class = $id = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        $style .= 'top:' . (int) $position_top . '%;';
+        $style .= 'left:' . (int) $position_left . '%;';
+
+        $color = Playouts_Element_Image_Hotspots::$color;
+        $box_bg_color = Playouts_Element_Image_Hotspots::$box_bg_color;
+        $box_text_color = Playouts_Element_Image_Hotspots::$box_text_color;
+
+        return '<div class="pl-hotspot' . $class . '" style="' . $style . '"' . $id . '>'.
+            '<span style="' . ( $color ? esc_attr( 'background-color:' . esc_attr( $color ) . ';border-color:' . esc_attr( $color ) . ';' ) : '' ) . '"></span>'.
+            '<div class="pl-hotspot-box" style="background-color:' . esc_attr( $box_bg_color ) . ';color:' . esc_attr( $box_text_color ) . ';">'.
+                ( ! empty( $title ) ? '<strong>' . esc_html( $title ). '</strong>' : '' ) .
+                ( ! empty( $text ) ? '<p>' . esc_html( $text ) . '</p>' : '' ) .
+            '</div>'.
+        '</div>';
+
+    }
+}
+new Playouts_Element_Image_Hotspots_Item;
+
+class Playouts_Element_Pricing_Tables extends Playouts_Repeater_Element {
+
+    static $color;
+    static $box_bg_color;
+    static $box_text_color;
+
+    function init() {
+
+        $this->module = 'bw_pricing_tables';
+        $this->module_item = 'bw_pricing_column';
+        $this->name = esc_html__( 'Pricing Tables', 'AAA' );
+        $this->view = 'repeater';
+        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->module_color = '#68d0b9';
+        $this->params = array(
+            'items' => array(
+                'type'               => 'repeater',
+                'label'              => esc_html__( 'Pricing Columns', 'AAA' ),
+                'description'        => esc_html__( 'You can add as columns as you need, just click the plus icon.', 'AAA' ),
+            ),
+            'vertical_alignment' => array(
+                'type'              => 'select',
+				'label'             => esc_html__( 'Table Vertical Alignment', 'AAA' ),
+                'options'           => array(
+                    'stretch'               => 'Stretch',
+                    'flex-start'            => 'Top',
+                    'center'                => 'Middle',
+                    'flex-end'              => 'Bottom',
+                ),
+			),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function construct( $atts = array(), $content = null ) {
+
+        self::$color = ( isset( $atts['color'] ) and ! empty( $atts['color'] ) ) ? esc_attr( $atts['color'] ) : '';
+        self::$box_bg_color = ( isset( $atts['box_bg_color'] ) and ! empty( $atts['box_bg_color'] ) ) ? esc_attr( $atts['box_bg_color'] ) : '';
+        self::$box_text_color = ( isset( $atts['box_text_color'] ) and ! empty( $atts['box_text_color'] ) ) ? esc_attr( $atts['box_text_color'] ) : '';
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'vertical_alignment'    => 'stretch',
+            'inline_class'          => '',
+            'inline_id'             => '',
+            'inline_css'            => '',
+        ), $atts ) );
+
+        $style = $class = $id = $attr = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        $style .= 'align-items:' . esc_attr( $vertical_alignment );
+
+        if( ! empty( $content ) ) {
+            return '<div class="pl-pricing-tables' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
+                $content.
+            '</div>';
+        }
+
+    }
+}
+new Playouts_Element_Pricing_Tables;
+
+class Playouts_Element_Pricing_Tables_Item extends Playouts_Repeater_Item_Element {
+
+    function init() {
+
+        $this->module = 'bw_pricing_column';
+        $this->module_parent = 'bw_pricing_tables';
+        $this->name = esc_html__( 'Pricing Column', 'AAA' );
+        $this->view = 'repeater_item';
+
+        $this->params = array(
+            'top_title' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Top Title ( Optional )', 'AAA' ),
+                'value'             => esc_html__( 'Top title goes here', 'AAA' ),
+            ),
+            'second_top_title' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Second Top Title ( Optional )', 'AAA' ),
+            ),
+            'price' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Price', 'AAA' ),
+                'value'             => esc_html__( '$10', 'AAA' ),
+            ),
+            'bottom_title' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Bottom Title ( Optional )', 'AAA' ),
+                'value'             => esc_html__( 'Bottom title goes here', 'AAA' ),
+            ),
+            'content' => array(
+                'label'             => esc_html__( 'Content', 'AAA' ),
+                'type'              => 'editor',
+                'value'             => '<ul>
+    <li>' . esc_html__( 'First row goes here', 'AAA' ) . '</li>
+    <li>' . esc_html__( 'Another row mate', 'AAA' ) . '</li>
+    <li>' . esc_html__( 'Last one', 'AAA' ) . '</li>
+    <li>-</li>
+    <li>-</li>
+</ul>',
+                'is_content'        => true,
+            ),
+            'button_label' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Button Label', 'AAA' ),
+                'value'             => esc_html__( 'Button', 'AAA' ),
+            ),
+            'button_link' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Button Link', 'AAA' ),
+                'placeholder'       => 'http://',
+            ),
+            'button_target' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Button New Tab?', 'AAA' ),
+                'description'       => esc_html__( 'Opens the button link in a new tab of your browser.', 'AAA' ),
+            ),
+            'main_color' => array(
+                'label'             => esc_html__( 'Main Color', 'AAA' ),
+                'type'              => 'colorpicker',
+                'width'             => 50
+            ),
+            'secondary_color' => array(
+                'label'             => esc_html__( 'Secondary Color', 'AAA' ),
+                'type'              => 'colorpicker',
+                'width'             => 50
+            ),
+            'direction' => array(
+                'label'             => esc_html__( 'Gredient Direction', 'AAA' ),
+                'type'              => 'select',
+                'options'           => array(
+                    'top'               => 'Top',
+                    'top right'         => 'Top Right',
+                    'right'             => 'Right',
+                    'bottom right'      => 'Bottom Right',
+                    'bottom'            => 'Bottom',
+                    'bottom left'       => 'Bottom Left',
+                    'left'              => 'Left',
+                    'left top'      => 'Top Left',
+                ),
+                'value'             => 'h3',
+            ),
+            'focus' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Focus This Column?', 'AAA' ),
+                'description'       => esc_html__( 'Make this column more visible.', 'AAA' ),
+            ),
+            'focus_color' => array(
+                'label'             => esc_html__( 'Focus Color', 'AAA' ),
+                'type'              => 'colorpicker',
+                'depends'           => array( 'element' => 'focus', 'value' => '1' ),
+            ),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'top_title'         => '',
+            'second_top_title'  => '',
+            'price'             => '',
+            'bottom_title'      => '',
+            'button_label'      => '',
+            'button_link'       => '',
+            'button_target'     => '',
+            'main_color'        => '#f93d66',
+            'secondary_color'   => '',
+            'focus'             => '',
+            'focus_color'       => '',
+            'direction'         => 'right',
+            'inline_class'      => '',
+            'inline_id'         => '',
+            'inline_css'        => '',
+        ), $atts ) );
+
+        $style = $class = $id = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        $class .= $focus ? ' pl-is-focus' : '';
+
+        $_button = '';
+        if( ! empty( $button_label ) ) {
+            $_button = '<a href="' . esc_url( $button_link ) . '"' . ( $button_target ? ' target="_blank"' : '' ) . ' class="pl-button pl-button-transform-top"' . ( $main_color ? ' data-hover-shadow-override="' . esc_attr( $main_color ) . '"' : '' ) . ' style="background-color:' . esc_attr( $main_color ) . ';background:linear-gradient(to ' . esc_attr( $direction ) . ',' . esc_attr( $main_color ) . ', ' . esc_attr( $secondary_color ) . ');">'.
+                esc_attr( $button_label ).
+            '</a>';
+        }
+
+        return '<div class="pl-pricing-column' . $class . '" style="' . $style . '"' . $id . '>'.
+            ( $focus ? '<span class="pl-before" style="background-color:' . esc_attr( $focus_color ) . '"></span>' : '' ).
+            '<div class="pl-pricing-header">
+                <h5>' . esc_attr( $top_title ) . '</h5>
+                <span style="color:' . esc_attr( $focus_color ) . '">' . esc_attr( $second_top_title ) . '</span>
+                <h2 class="pl-pricing-title" style="color:' . esc_attr( $main_color ) . ';background:linear-gradient(to ' . esc_attr( $direction ) . ',' . esc_attr( $main_color ) . ', ' . esc_attr( $secondary_color ) . ');' . ( ! empty( $secondary_color ) ? '-webkit-background-clip:text;-webkit-text-fill-color:transparent;' : '' ) . '">' . esc_attr( $price ) . '</h2>
+                <h4 class="pl-pricing-title">' . esc_attr( $bottom_title ) . '</h4>
+            </div>'.
+            '<div class="pl-pricing-content">'.
+                do_shortcode( $content ).
+            '</div>'.
+            '<div class="pl-pricing-footer">'.
+                $_button.
+            '</div>'.
+        '</div>';
+
+    }
+}
+new Playouts_Element_Pricing_Tables_Item;
+
+class Playouts_Element_Number_Counter extends Playouts_Element {
+
+    function init() {
+
+        $this->module = 'bw_number_counter';
+        $this->name = esc_html__( 'Number Counter', 'AAA' );
+        $this->view = 'element';
+        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->module_color = '#14abf4';
+        $this->params = array(
+            'number' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Number', 'AAA' ),
+            ),
+            'font_size' => array(
+                'label'             => esc_html__( 'Font Size', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'pixels',
+                'min'               => 14,
+                'max'               => 150,
+                'step'              => 1,
+                'value'             => 85,
+            ),
+            'bold' => array(
+                'label'             => esc_html__( 'Bold Text?', 'AAA' ),
+                'type'              => 'true_false',
+            ),
+            'duration' => array(
+                'label'             => esc_html__( 'Duration', 'AAA' ),
+                'type'              => 'number_slider',
+                'description'       => esc_html__( 'Animation duration in seconds.', 'AAA' ),
+                'append_after'      => 'seconds',
+                'min'               => 1,
+                'max'               => 6,
+                'step'              => 1,
+                'value'             => 2,
+            ),
+            'color' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Color', 'AAA' ),
+                'value'             => '',
+            ),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'number'            => 0,
+            'font_size'         => 85,
+            'bold'              => false,
+            'duration'          => 2,
+            'color'             => '',
+            'inline_class'      => '',
+            'inline_id'         => '',
+            'inline_css'        => '',
+        ), $atts ) );
+
+        $style = $class = $id = $attr = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        $style .= ! empty( $color ) ? 'color:' . esc_attr( $color ) . ';' : '';
+        $style .= ! empty( $font_size ) ? 'font-size:' . (int) $font_size . 'px;' : '';
+        $style .= $bold ? 'font-weight:800;' : '';
+
+        $attr .= ' data-number="' . esc_attr( $number ) . '"';
+        $attr .= ' data-duration="' . (int) $duration * 1000 . '"';
+
+        return '<div class="pl-number-counter' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
+            '<span>0</span>'.
+        '</div>';
+
+    }
+}
+new Playouts_Element_Number_Counter;
 
 /*class Playouts_Element_Tabs extends Playouts_Repeater_Element {
 
