@@ -166,7 +166,18 @@ var Playouts = {
 
             start: function() {
 
-                $('.pl-image-comparison').twentytwenty();
+                $('.pl-image-comparison').each(function() {
+
+                    var self = $(this);
+
+                    $('.pl-image-comparison').twentytwenty({
+                        default_offset_pct  : 0.7,
+                        orientation         : self.attr('data-direction'),
+                        no_overlay          : true,
+                    });
+                    
+                });
+
 
             }
 

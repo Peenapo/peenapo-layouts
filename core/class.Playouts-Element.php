@@ -4565,6 +4565,9 @@ class Playouts_Element_Image_Comparison extends Playouts_Element {
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
 
+        $style .= ! empty( $color ) ? 'background-color:' . esc_attr( $color ) . ';' : '';
+        $attr .= ! empty( $direction ) ? ' data-direction="' . esc_attr( $direction ) . '"' : '';
+
         return '<div class="pl-image-comparison' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
             ( ! empty( $image_left ) ? '<img src="' . esc_url( $image_left ) . '" alt="">' : '' ).
             ( ! empty( $image_right ) ? '<img src="' . esc_url( $image_right ) . '" alt="">' : '' ).
