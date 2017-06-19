@@ -417,6 +417,11 @@
 .pl-button-size-medium:hover .pl-video-button-background {top:4px;right:4px;bottom:4px;left:4px;}
 
 
+/* image comparison */
+.pl-image-comparison {position:relative;width:100%;}
+.pl-image-comparison img {max-height:none;}
+
+
 /* main overlay */
 .pl-overlay {opacity:0;visibility:hidden;position:fixed;top:0;left:0;right:0;bottom:0;background-color:#000;z-index:99;}
 .pl-overlay-container {padding:30px;background-color:transparent;z-index:100;}

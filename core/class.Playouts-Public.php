@@ -29,6 +29,12 @@ class Playouts_Public {
     static $modules = array();
 
     /*
+     * holds the content as shortcode ids array
+     *
+     */
+    static $parsed_ids = array();
+
+    /*
      * Fire the public scrap
      *
      */
@@ -36,8 +42,8 @@ class Playouts_Public {
 
         self::$modules = Playouts_Element::get_modules();
 
-        # check and set some important global information
-        //add_action( 'wp', array( 'Playouts_Public', 'set_globals' ) );
+        # setup some options
+        add_action( 'get_header', array( 'Playouts_Public', 'setup_header' ) );
         # enqueue scripts
         add_action( 'wp_enqueue_scripts', array( 'Playouts_Public', 'enqueue_scripts' ) );
         # set custom css
@@ -52,6 +58,29 @@ class Playouts_Public {
 	}
 
     /*
+     * setup some options before header
+     *
+     */
+    static function setup_header() {
+
+        global $post;
+
+        if( isset( $post->ID ) ) {
+            if( self::is_builder_used( $post->ID ) and is_main_query() ) {
+                if( isset( $post->post_content ) and ! empty( $post->post_content ) ) {
+
+                    // lets use our own shortcode parser
+                    include_once PL_DIR . 'inc/shortcode_parser.php';
+
+                    self::parse_content( $post->post_content, true );
+
+                }
+            }
+        }
+
+    }
+
+    /*
      * get the content of the post and render the shotcodes
      *
      */
@@ -60,9 +89,6 @@ class Playouts_Public {
         if( ! self::is_builder_used() or ! is_main_query() ) {
             return $content;
         }
-
-        // lets use our own shortcode parser
-        include_once PL_DIR . 'inc/shortcode_parser.php';
 
         $outer_class = apply_filters( 'pl_content_wrap_class', array( 'pl-outer' ) );
         $outer_classes = implode( ' ', $outer_class );
@@ -95,12 +121,12 @@ class Playouts_Public {
      * parse given content and extract shortcodes into array
      *
      */
-    static function parse_content( $content ) {
+    static function parse_content( $content, $get_ids = false ) {
 
         $shortcodes_arr = array();
         $shortcodes_arr = pl_do_shortcodes( $shortcodes_arr, $content );
 
-        $rendered = self::loop_shortcodes_and_render( $shortcodes_arr );
+        $rendered = self::loop_shortcodes_and_render( $shortcodes_arr, $get_ids );
 
         return $rendered;
 
@@ -111,13 +137,15 @@ class Playouts_Public {
      * loop array of shortcodes and render the corresponding templates
      *
      */
-    static function loop_shortcodes_and_render( $shortcodes_arr ) {
+    static function loop_shortcodes_and_render( $shortcodes_arr, $get_ids = false ) {
 
         $html_output = '';
 
         foreach( $shortcodes_arr as $shortcode_arr ) {
 
             $module_id = $shortcode_arr['id'];
+
+            if( $get_ids ) { self::$parsed_ids[] = $module_id; } // return only the module id
 
             $callable_template = self::$modules[ $module_id ]->class_name . '::output';
             $callable_construct = self::$modules[ $module_id ]->class_name . '::construct';
@@ -134,7 +162,7 @@ class Playouts_Public {
 
                 // render the content
                 if( isset( $shortcode_arr['content'] ) ) {
-                    $content = is_array( $shortcode_arr['content'] ) ? self::loop_shortcodes_and_render( $shortcode_arr['content'] ) : Playouts_Functions::autop( $shortcode_arr['content'] );
+                    $content = is_array( $shortcode_arr['content'] ) ? self::loop_shortcodes_and_render( $shortcode_arr['content'], $get_ids ) : Playouts_Functions::autop( $shortcode_arr['content'] );
                 }
 
                 // call the template
@@ -146,32 +174,6 @@ class Playouts_Public {
 
         return $html_output;
     }
-
-    /*
-     * global public configuration
-     *
-     */
-    /*static function set_globals() {
-
-        # get the current post type
-        self::$current_post_type = get_post_type();
-
-        # the plugin can only be used inside post or page
-        if( is_single() or is_page() ) {
-
-            # check if the post type is enabled
-            if( in_array( self::$current_post_type, Playouts_Bootstrap::$post_types ) ) {
-
-                # get the status. if true, we are good to go..
-                if( get_post_meta( get_the_ID(), '__pl_status', true ) ) {
-                    self::$do_render = get_post_meta( get_the_ID(), '__pl_status', true );
-                }
-
-            }
-
-        }
-
-    }*/
 
     /*
      * display the custom css code
@@ -310,6 +312,16 @@ class Playouts_Public {
                 wp_enqueue_script( 'bwpb-owl-carousel', PL_ASSEST . 'js/vendors/jquery.owl-carousel/owl.carousel.min.js', array('jquery'), '1.0', true );
             }*/
             wp_enqueue_script( 'bwpb-front', PL_ASSEST . 'js/bwpb-front.js', array('jquery'), '1.0', true );
+
+
+            # dynamic enqueue
+            if( in_array( 'bw_image_comparison', self::$parsed_ids ) ) {
+                wp_enqueue_style( 'pl-twentytwenty-css', PL_ASSEST . 'css/vendor/twentytwenty.css' );
+                wp_enqueue_script( 'pl-event-move', PL_ASSEST . 'js/vendor/jquery.event.move.js', array('jquery') );
+                wp_enqueue_script( 'pl-twentytwenty-js', PL_ASSEST . 'js/vendor/jquery.twentytwenty.js', array('jquery') );
+            }
+
+
         }
     }
 

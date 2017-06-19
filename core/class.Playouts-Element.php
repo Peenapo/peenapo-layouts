@@ -4492,6 +4492,88 @@ class Playouts_Element_Notion_Box extends Playouts_Element {
 }
 new Playouts_Element_Notion_Box;
 
+class Playouts_Element_Image_Comparison extends Playouts_Element {
+
+    function init() {
+
+        $this->module = 'bw_image_comparison';
+        $this->name = esc_html__( 'Image Comparison', 'AAA' );
+        $this->view = 'element';
+        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->module_color = '#2d49c6';
+        $this->params = array(
+            'image_left' => array(
+                'label'              => esc_html__( 'Left Image', 'AAA' ),
+                'type'               => 'image',
+            ),
+            'image_right' => array(
+                'label'              => esc_html__( 'Right Image', 'AAA' ),
+                'type'               => 'image',
+            ),
+            'color' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Color', 'AAA' ),
+			),
+            'direction' => array(
+                'label'             => esc_html__( 'Direction', 'AAA' ),
+                'type'              => 'select',
+                'options'           => array(
+                    'vorizontal'  => 'Horizontal',
+                    'vertical'    => 'Vertical',
+                ),
+                'value'             => 'vorizontal'
+            ),
+            /*'target' => array(
+                'label'             => esc_html__( 'Open in a New Tab?', 'AAA' ),
+                'type'              => 'true_false',
+                'depends'           => array( 'element' => 'enable_link', 'value' => '1' ),
+            ),*/
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'image_left'        => '',
+            'image_right'       => '',
+            'color'             => '',
+            'direction'         => 'horizontal',
+            'inline_class'      => '',
+            'inline_id'         => '',
+            'inline_css'        => '',
+        ), $atts ) );
+
+        $style = $class = $id = $attr = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        return '<div class="pl-image-comparison' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
+            ( ! empty( $image_left ) ? '<img src="' . esc_url( $image_left ) . '" alt="">' : '' ).
+            ( ! empty( $image_right ) ? '<img src="' . esc_url( $image_right ) . '" alt="">' : '' ).
+        '</div>';
+
+    }
+}
+new Playouts_Element_Image_Comparison;
+
 /*class Playouts_Element_Tabs extends Playouts_Repeater_Element {
 
     function init() {

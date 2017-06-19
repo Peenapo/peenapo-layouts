@@ -158,6 +158,17 @@ var Playouts = {
             this.progress.start();
             this.auto_type.start();
             this.carousel.start();
+            this.image_comparison.start();
+
+        }
+
+        ,image_comparison: {
+
+            start: function() {
+
+                $('.pl-image-comparison').twentytwenty();
+
+            }
 
         }
 
