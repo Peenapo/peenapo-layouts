@@ -274,7 +274,7 @@ var Playouts = {
                         });
 
                         // now fit the map to the newly inclusive bounds
-                        if( typeof self.attr('data-bounds') !== 'undefined' && self.attr('data-bounds') == 'true' ) { console.log(11122);map.fitBounds( bounds ); }
+                        if( typeof self.attr('data-bounds') !== 'undefined' && self.attr('data-bounds') == 'true' ) { map.fitBounds( bounds ); }
                     }
 
                 });
