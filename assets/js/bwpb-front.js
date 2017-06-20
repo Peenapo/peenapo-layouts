@@ -195,6 +195,38 @@ var Playouts = {
 
         }
 
+        ,google_map: {
+
+            start: function() {
+
+                $('.pl-google-map').each(function() {
+
+                    var self = $(this);
+                    var id = self.attr('id');
+
+                    console.log( id );
+
+                    var marker_position = {
+                        lat: -25.363,
+                        lng: 131.044
+                    };
+
+                    var map = new google.maps.Map( document.getElementById( id ), {
+                        zoom: 4,
+                        center: marker_position
+                    });
+
+                    var marker = new google.maps.Marker({
+                        position: marker_position,
+                        map: map
+                    });
+
+                });
+
+            }
+
+        }
+
         ,image_comparison: {
 
             start: function() {
@@ -604,6 +636,11 @@ var Playouts = {
     on_click_accordion: function() {
 
     }
+}
+
+// google callback
+window.playouts_init_map = function() {
+    Playouts.elements.google_map.start();
 }
 
 $(document).ready(function() {

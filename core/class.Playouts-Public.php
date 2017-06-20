@@ -152,29 +152,29 @@ class Playouts_Public {
 
                 self::$parsed_ids[] = $module_id;
 
-            }else{
+            }
 
-                $callable_template = self::$modules[ $module_id ]->class_name . '::output';
-                $callable_construct = self::$modules[ $module_id ]->class_name . '::construct';
+            $callable_template = self::$modules[ $module_id ]->class_name . '::output';
+            $callable_construct = self::$modules[ $module_id ]->class_name . '::construct';
 
-                if( is_callable( $callable_template ) ) {
+            if( is_callable( $callable_template ) ) {
 
-                    $content = '';
+                $content = '';
 
-                    // will be called before the child elements
-                    // can be used to pass variables to the child template
-                    if( is_callable( $callable_construct ) ) {
-                        $html_output .= call_user_func_array( $callable_construct, array( $shortcode_arr['atts'], $content ) );
-                    }
+                // will be called before the child elements
+                // can be used to pass variables to the child template
+                if( ! $get_ids and is_callable( $callable_construct ) ) {
+                    $html_output .= call_user_func_array( $callable_construct, array( $shortcode_arr['atts'], $content ) );
+                }
 
-                    // render the content
-                    if( isset( $shortcode_arr['content'] ) ) {
-                        $content = is_array( $shortcode_arr['content'] ) ? self::loop_shortcodes_and_render( $shortcode_arr['content'], $get_ids ) : Playouts_Functions::autop( $shortcode_arr['content'] );
-                    }
+                // render the content
+                if( isset( $shortcode_arr['content'] ) ) {
+                    $content = is_array( $shortcode_arr['content'] ) ? self::loop_shortcodes_and_render( $shortcode_arr['content'], $get_ids ) : Playouts_Functions::autop( $shortcode_arr['content'] );
+                }
 
-                    // call the template
+                // call the template
+                if( ! $get_ids ) {
                     $html_output .= call_user_func_array( $callable_template, array( $shortcode_arr['atts'], $content ) );
-
                 }
 
             }
@@ -324,6 +324,9 @@ class Playouts_Public {
 
 
             # dynamic enqueue
+            if( in_array( 'bw_google_map', self::$parsed_ids ) ) {
+                wp_enqueue_script( 'pl-google-map', '//maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=playouts_init_map', array( 'bwpb-front' ), '1.0', true );
+            }
             if( in_array( 'bw_image_comparison', self::$parsed_ids ) ) {
                 wp_enqueue_style( 'pl-twentytwenty-css', PL_ASSEST . 'css/vendor/twentytwenty.css' );
                 wp_enqueue_script( 'pl-event-move', PL_ASSEST . 'js/vendor/jquery.event.move.js', array('jquery') );

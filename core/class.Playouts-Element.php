@@ -4800,7 +4800,7 @@ class Playouts_Element_Pricing_Tables extends Playouts_Repeater_Element {
             'items' => array(
                 'type'               => 'repeater',
                 'label'              => esc_html__( 'Pricing Columns', 'AAA' ),
-                'description'        => esc_html__( 'You can add as columns as you need, just click the plus icon.', 'AAA' ),
+                'description'        => esc_html__( 'You can add as many columns as you need, just click the plus icon.', 'AAA' ),
             ),
             'vertical_alignment' => array(
                 'type'              => 'select',
@@ -5235,6 +5235,143 @@ class Playouts_Element_Icon extends Playouts_Element {
     }
 }
 new Playouts_Element_Icon;
+
+class Playouts_Element_Google_Map extends Playouts_Repeater_Element {
+
+    //static $color;
+
+    function init() {
+
+        $this->module = 'bw_google_map';
+        $this->module_item = 'bw_google_map_pin';
+        $this->name = esc_html__( 'Google Map', 'AAA' );
+        $this->view = 'repeater';
+        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->module_color = '#fbae70';
+        $this->params = array(
+            'items' => array(
+                'type'               => 'repeater',
+                'label'              => esc_html__( 'Map Pins', 'AAA' ),
+                'description'        => esc_html__( 'You can add as many map pins as you need, just click the plus icon.', 'AAA' ),
+            ),
+            'styles' => array(
+                'type'              => 'base64',
+                'label'             => esc_html__( 'Map Styles ( Advanced )', 'AAA' ),
+                'description'       => esc_html__( "Customize colors, roads, labels, and more. Use Javascript array only. Here you can find pre-defined map styles: <a href='https://snazzymaps.com' target='_blank' rel='nofollow'>https://snazzymaps.com</a>", 'AAA' ),
+            ),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function construct( $atts = array(), $content = null ) {
+
+        //self::$color = ( isset( $atts['color'] ) and ! empty( $atts['color'] ) ) ? esc_attr( $atts['color'] ) : '';
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'styles'                => '',
+            'inline_class'          => '',
+            'inline_id'             => '',
+            'inline_css'            => '',
+        ), $atts ) );
+
+        $style = $class = $id = $attr = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        $_styles = '';
+        if( ! empty( $styles ) ) {
+            $_styles = Playouts_Functions::base64_from_param_decode( $styles );
+        }
+
+        if( ! empty( $content ) ) {
+            return '<div class="pl-google-map-outer"' . $id . '>'.
+                '<div class="pl-google-map' . $class . '" id="pl-some-id-temp" style="' . $style . '"' . $attr . '>'.
+                    $content.
+                '</div>';
+            '</div>';
+        }
+
+    }
+}
+new Playouts_Element_Google_Map;
+
+class Playouts_Element_Google_Map_Item extends Playouts_Repeater_Item_Element {
+
+    function init() {
+
+        $this->module = 'bw_google_map_pin';
+        $this->module_parent = 'bw_google_map';
+        $this->name = esc_html__( 'Google Pin', 'AAA' );
+        $this->view = 'repeater_item';
+
+        $this->params = array(
+            'title' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Title', 'AAA' ),
+                'value'             => esc_html__( 'Out Location', 'AAA' ),
+            ),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'title'             => '',
+            'inline_class'      => '',
+            'inline_id'         => '',
+            'inline_css'        => '',
+        ), $atts ) );
+
+        $style = $class = $id = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        return '<div class="pl-google-pin' . $class . '" style="' . $style . '"' . $id . '>'.
+            111 .
+        '</div>';
+
+    }
+}
+new Playouts_Element_Google_Map_Item;
 
 /*class Playouts_Element_Tabs extends Playouts_Repeater_Element {
 

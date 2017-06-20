@@ -481,6 +481,12 @@
 .pl-icon i {font-size:inherit;color:inherit;font-weight:inherit;}
 
 
+/* google map */
+.pl-google-map-outer {}
+.pl-google-map {}
+    .pl-google-pin {}
+
+
 
 /* main overlay */
 .pl-overlay {opacity:0;visibility:hidden;position:fixed;top:0;left:0;right:0;bottom:0;background-color:#000;z-index:99;}
