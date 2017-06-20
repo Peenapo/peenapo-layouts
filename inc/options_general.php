@@ -2,6 +2,12 @@
 
 return array(
 
+    'google_map_api_key' => array(
+        'label'             => esc_html__( 'Google Map Api Key', 'AAA' ),
+        'description'       => sprintf( esc_html__( 'Add Google Map Api Key to display your maps correctly. You can get the key from %s.', 'AAA' ), '<a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank" rel="nofollow">' . esc_attr__( 'here', 'AAA' ) . '</a>' ),
+        'type'              => 'textfield',
+    ),
+
     'select1' => array(
         'label'             => esc_html__( 'Select', 'AAA' ),
         'type'              => 'select',
@@ -86,7 +92,7 @@ return array(
         'value'             => '',
         'depends'           => array( 'element' => 'checkbox11', 'value' => '1' ),
     ),
-    
+
     'checkbox11' => array(
         'label'             => esc_html__( 'Checkbox', 'AAA' ),
         'type'              => 'true_false',

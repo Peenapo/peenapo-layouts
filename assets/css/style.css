@@ -71,7 +71,7 @@
 .pl-align-center {width:100%;text-align:center;}
 .pl-align-right {text-align:right;}
 
-.pl-outer img {width:100%;max-width:100%;height:auto;max-height:100%;min-width:0;min-height:0;}
+.pl-outer img {width:100%;max-width:100%;height:auto;min-width:0;min-height:0;}
 
 
 /* containers */
@@ -483,9 +483,13 @@
 
 /* google map */
 .pl-google-map-outer {}
-.pl-google-map {}
+.pl-google-map {height:50vh;}
+    .pl-google-pins {display:none!important;}
     .pl-google-pin {}
 
+
+/* warning */
+.pl-warning {display:inline-block;padding:5px 11px;background-color:#fff0f3;color:#f93d66;border-radius:3px;}
 
 
 /* main overlay */

@@ -202,24 +202,80 @@ var Playouts = {
                 $('.pl-google-map').each(function() {
 
                     var self = $(this);
-                    var id = self.attr('id');
+                    var _id = self.attr('id');
 
-                    console.log( id );
+                    var _styles = [
+                        {
+                            "featureType": "administrative.country",
+                            "elementType": "geometry",
+                            "stylers": [
+                                {
+                                    "visibility": "simplified"
+                                },
+                                {
+                                    "hue": "#ff0000"
+                                }
+                            ]
+                        }
+                    ];
 
-                    var marker_position = {
-                        lat: -25.363,
-                        lng: 131.044
+                    if( typeof playouts_map_styles !== 'undefined' && typeof playouts_map_styles[ _id ] !== 'undefined' && playouts_map_styles[ _id ] !== '' ) {
+                        _styles = playouts_map_styles[ _id ];
+                    }
+
+                    var map_center = { // Madrid, Spain center
+                        lat: parseFloat( '40.416775' ),
+                        lng: parseFloat( '-3.70379' )
                     };
 
-                    var map = new google.maps.Map( document.getElementById( id ), {
-                        zoom: 4,
-                        center: marker_position
+                    if( typeof self.attr('data-center-lat') !== 'undefined' ) {
+                        map_center = {
+                            lat: parseFloat( self.attr('data-center-lat') ),
+                            lng: parseFloat( self.attr('data-center-lng') )
+                        }
+                    }
+
+                    var map = new google.maps.Map( document.getElementById( _id ), {
+                        zoom                : typeof self.attr('data-zoom-level') !== 'undefined' ? parseInt( self.attr('data-zoom-level'), 10 ) : 17,
+                        center              : map_center,
+                        styles              : _styles,
+                        zoomControl         : ( typeof self.attr('data-zoom') !== 'undefined' && self.attr('data-zoom') ) == 'true' ? true : false,
+                        scrollwheel         : false,
+                        mapTypeControl      : false,
+                        streetViewControl   : false,
                     });
 
-                    var marker = new google.maps.Marker({
-                        position: marker_position,
-                        map: map
-                    });
+                    var bounds = new google.maps.LatLngBounds();
+                    var infowindow = new google.maps.InfoWindow();
+
+                    var $pins = self.next('.pl-google-pins').find('li');
+                    if( $pins.length ) {
+                        $pins.each(function( i ) {
+
+                            var $pin = $(this);
+
+                            marker = new google.maps.Marker({
+                                position: new google.maps.LatLng( parseFloat( $pin.attr('data-lat') ), parseFloat( $pin.attr('data-lng') ) ),
+                                map: map,
+                                title: $pin.attr('data-title')
+                            });
+
+                            // extend the bounds to include each marker's position
+                            bounds.extend( marker.position );
+
+                            // add pin label with title on click
+                            google.maps.event.addListener( marker, 'click', (function( marker, i ) {
+                                return function() {
+                                    infowindow.setContent( $pin.attr('data-title') );
+                                    infowindow.open( map, marker );
+                                }
+                            }) ( marker, i ) );
+
+                        });
+
+                        // now fit the map to the newly inclusive bounds
+                        if( typeof self.attr('data-bounds') !== 'undefined' && self.attr('data-bounds') == 'true' ) { console.log(11122);map.fitBounds( bounds ); }
+                    }
 
                 });
 

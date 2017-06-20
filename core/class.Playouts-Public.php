@@ -35,6 +35,12 @@ class Playouts_Public {
     static $parsed_ids = array();
 
     /*
+     * all the plugin's options
+     *
+     */
+    static $options = array();
+
+    /*
      * Fire the public scrap
      *
      */
@@ -77,6 +83,8 @@ class Playouts_Public {
                 }
             }
         }
+
+        self::$options = get_option( 'pl_layouts_options' );
 
     }
 
@@ -150,6 +158,7 @@ class Playouts_Public {
 
             if( $get_ids ) { // return only the module id
 
+                // TODO: remove hidden elements
                 self::$parsed_ids[] = $module_id;
 
             }
@@ -325,7 +334,9 @@ class Playouts_Public {
 
             # dynamic enqueue
             if( in_array( 'bw_google_map', self::$parsed_ids ) ) {
-                wp_enqueue_script( 'pl-google-map', '//maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=playouts_init_map', array( 'bwpb-front' ), '1.0', true );
+                if( isset( Playouts_Public::$options['google_map_api_key'] ) and ! empty( Playouts_Public::$options['google_map_api_key'] ) ) {
+                    wp_enqueue_script( 'pl-google-map', '//maps.googleapis.com/maps/api/js?key=' . esc_attr( Playouts_Public::$options['google_map_api_key'] ) . '&callback=playouts_init_map', array( 'bwpb-front' ), '1.0', true );
+                }
             }
             if( in_array( 'bw_image_comparison', self::$parsed_ids ) ) {
                 wp_enqueue_style( 'pl-twentytwenty-css', PL_ASSEST . 'css/vendor/twentytwenty.css' );

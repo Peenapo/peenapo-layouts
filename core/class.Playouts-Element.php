@@ -5254,6 +5254,49 @@ class Playouts_Element_Google_Map extends Playouts_Repeater_Element {
                 'label'              => esc_html__( 'Map Pins', 'AAA' ),
                 'description'        => esc_html__( 'You can add as many map pins as you need, just click the plus icon.', 'AAA' ),
             ),
+            'zoom' => array(
+                'label'             => esc_html__( 'Map Zoom', 'AAA' ),
+                'description'             => esc_html__( 'This scale represents the zoom of the map.', 'AAA' ),
+                'type'              => 'number_slider',
+                'min'               => 1,
+                'max'               => 21,
+                'step'              => 1,
+                'value'             => 17,
+            ),
+            'height' => array(
+                'label'             => esc_html__( 'Map Height', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => '%',
+                'min'               => 15,
+                'max'               => 100,
+                'step'              => 1,
+                'value'             => 50,
+            ),
+            'enable_controls_zoom' => array(
+                'label'             => esc_html__( 'Enable Map Zoom Controls', 'AAA' ),
+                'type'              => 'true_false',
+            ),
+            'custom_center' => array(
+                'label'             => esc_html__( 'Set Custom Map Center', 'AAA' ),
+                'type'              => 'true_false',
+            ),
+            'custom_center_lat' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Latitude', 'AAA' ),
+                'depends'           => array( 'element' => 'custom_center', 'value' => '1' ),
+                'width'             => 50
+            ),
+            'custom_center_lng' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Longitude', 'AAA' ),
+                'depends'           => array( 'element' => 'custom_center', 'value' => '1' ),
+                'width'             => 50
+            ),
+            'bounds' => array(
+                'label'             => esc_html__( 'Center Map Between Pins', 'AAA' ),
+                'description'       => esc_html__( "Center the map between all the available pins automatically. If enable, it will ignore the 'Custom Map Center' option.", 'AAA' ),
+                'type'              => 'true_false',
+            ),
             'styles' => array(
                 'type'              => 'base64',
                 'label'             => esc_html__( 'Map Styles ( Advanced )', 'AAA' ),
@@ -5287,6 +5330,13 @@ class Playouts_Element_Google_Map extends Playouts_Repeater_Element {
     static function output( $atts = array(), $content = null ) {
 
         extract( $assigned_atts = shortcode_atts( array(
+            'zoom'                  => 17,
+            'height'                => 50,
+            'enable_controls_zoom'  => false,
+            'custom_center'         => false,
+            'custom_center_lat'     => '',
+            'custom_center_lng'     => '',
+            'bounds'                => false,
             'styles'                => '',
             'inline_class'          => '',
             'inline_id'             => '',
@@ -5301,14 +5351,29 @@ class Playouts_Element_Google_Map extends Playouts_Repeater_Element {
 
         $_styles = '';
         if( ! empty( $styles ) ) {
-            $_styles = Playouts_Functions::base64_from_param_decode( $styles );
+            $_styles = '<script>if( typeof playouts_map_styles == "undefined" ) { var playouts_map_styles = []; } playouts_map_styles[\'pl-some-id-temp\'] = ' . Playouts_Functions::base64_from_param_decode( $styles ) . ';</script>';
         }
+
+        if( ! isset( Playouts_Public::$options['google_map_api_key'] ) or empty( Playouts_Public::$options['google_map_api_key'] ) ) {
+            // TODO: change message and add link to settings panel
+            return '<p class="pl-warning">' . esc_html__( 'Please add a Google Map Api Key to display your map correctly. You can do this by the plugin\'s settings panel.', '' ) . '</p>';
+        }
+
+        $style .= ! empty( $height ) ? 'height:' . (int) $height . 'vh;' : '';
+
+        $attr .= ' data-zoom="true"';
+        $attr .= ' data-zoom-level="' . (int) $zoom . '"';
+        if( $custom_center and $custom_center_lat and $custom_center_lng ) {
+            $attr .= ' data-center-lat="' . esc_attr( $custom_center_lat ) . '"';
+            $attr .= ' data-center-lng="' . esc_attr( $custom_center_lng ) . '"';
+        }
+        $attr .= $bounds ? ' data-bounds="true"' : '';
 
         if( ! empty( $content ) ) {
             return '<div class="pl-google-map-outer"' . $id . '>'.
-                '<div class="pl-google-map' . $class . '" id="pl-some-id-temp" style="' . $style . '"' . $attr . '>'.
-                    $content.
-                '</div>';
+                '<div class="pl-google-map' . $class . '" id="pl-some-id-temp" style="' . $style . '"' . $attr . '></div>'.
+                '<ul class="pl-google-pins">' . $content . '</ul>'.
+                $_styles.
             '</div>';
         }
 
@@ -5331,21 +5396,20 @@ class Playouts_Element_Google_Map_Item extends Playouts_Repeater_Item_Element {
                 'label'             => esc_html__( 'Title', 'AAA' ),
                 'value'             => esc_html__( 'Out Location', 'AAA' ),
             ),
-            'inline_class' => array(
+            'lat' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Latitude', 'AAA' ),
+                'width'             => 50
             ),
-            'inline_id' => array(
+            'lng' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Longitude', 'AAA' ),
+                'width'             => 50
             ),
-            'inline_css' => array(
-                'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
-            ),
+            'image' => array(
+				'label'              => esc_html__( 'Pin Image ( Optional )', 'AAA' ),
+				'type'               => 'image',
+			),
         );
 
     }
@@ -5354,20 +5418,17 @@ class Playouts_Element_Google_Map_Item extends Playouts_Repeater_Item_Element {
 
         extract( $assigned_atts = shortcode_atts( array(
             'title'             => '',
-            'inline_class'      => '',
-            'inline_id'         => '',
-            'inline_css'        => '',
+            'lat'               => '',
+            'lng'               => '',
+            'image'             => '',
         ), $atts ) );
 
-        $style = $class = $id = '';
-
-        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
-        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
-        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
-
-        return '<div class="pl-google-pin' . $class . '" style="' . $style . '"' . $id . '>'.
-            111 .
-        '</div>';
+        return '<li
+            data-title="' . esc_attr( $title ) . '"
+            data-lat="' . esc_attr( $lat ) . '"
+            data-lng="' . esc_attr( $lng ) . '"
+            data-title="' . esc_attr( $image ) . '">
+        </li>';
 
     }
 }
