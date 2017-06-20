@@ -271,10 +271,17 @@ var Playouts = {
                                 }
                             }) ( marker, i ) );
 
+                            // set zoom after bounce
+                            google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
+                                this.setZoom( typeof self.attr('data-zoom-level') !== 'undefined' ? parseInt( self.attr('data-zoom-level'), 10 ) : 17 );
+                            });
+
                         });
 
                         // now fit the map to the newly inclusive bounds
-                        if( typeof self.attr('data-bounds') !== 'undefined' && self.attr('data-bounds') == 'true' ) { map.fitBounds( bounds ); }
+                        //if( typeof self.attr('data-bounds') !== 'undefined' && self.attr('data-bounds') == 'true' ) { map.fitBounds( bounds ); }
+                        map.fitBounds( bounds );
+                        map.setZoom(15);
                     }
 
                 });
