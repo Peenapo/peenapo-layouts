@@ -148,28 +148,34 @@ class Playouts_Public {
 
             $module_id = $shortcode_arr['id'];
 
-            if( $get_ids ) { self::$parsed_ids[] = $module_id; } // return only the module id
+            if( $get_ids ) { // return only the module id
 
-            $callable_template = self::$modules[ $module_id ]->class_name . '::output';
-            $callable_construct = self::$modules[ $module_id ]->class_name . '::construct';
+                self::$parsed_ids[] = $module_id;
 
-            if( is_callable( $callable_template ) ) {
+            }else{
 
-                $content = '';
+                $callable_template = self::$modules[ $module_id ]->class_name . '::output';
+                $callable_construct = self::$modules[ $module_id ]->class_name . '::construct';
 
-                // will be called before the child elements
-                // can be used to pass variables to the child template
-                if( is_callable( $callable_construct ) ) {
-                    $html_output .= call_user_func_array( $callable_construct, array( $shortcode_arr['atts'], $content ) );
+                if( is_callable( $callable_template ) ) {
+
+                    $content = '';
+
+                    // will be called before the child elements
+                    // can be used to pass variables to the child template
+                    if( is_callable( $callable_construct ) ) {
+                        $html_output .= call_user_func_array( $callable_construct, array( $shortcode_arr['atts'], $content ) );
+                    }
+
+                    // render the content
+                    if( isset( $shortcode_arr['content'] ) ) {
+                        $content = is_array( $shortcode_arr['content'] ) ? self::loop_shortcodes_and_render( $shortcode_arr['content'], $get_ids ) : Playouts_Functions::autop( $shortcode_arr['content'] );
+                    }
+
+                    // call the template
+                    $html_output .= call_user_func_array( $callable_template, array( $shortcode_arr['atts'], $content ) );
+
                 }
-
-                // render the content
-                if( isset( $shortcode_arr['content'] ) ) {
-                    $content = is_array( $shortcode_arr['content'] ) ? self::loop_shortcodes_and_render( $shortcode_arr['content'], $get_ids ) : Playouts_Functions::autop( $shortcode_arr['content'] );
-                }
-
-                // call the template
-                $html_output .= call_user_func_array( $callable_template, array( $shortcode_arr['atts'], $content ) );
 
             }
 

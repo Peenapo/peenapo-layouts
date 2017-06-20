@@ -4229,7 +4229,7 @@ class Playouts_Element_Gredient_Text extends Playouts_Element {
                     'left'              => 'Left',
                     'left top'      => 'Top Left',
                 ),
-                'value'             => 'h3',
+                'value'             => 'bottom right',
                 'width'             => 50
             ),
             'font_size' => array(
@@ -4945,7 +4945,7 @@ class Playouts_Element_Pricing_Tables_Item extends Playouts_Repeater_Item_Elemen
                     'left'              => 'Left',
                     'left top'      => 'Top Left',
                 ),
-                'value'             => 'h3',
+                'value'             => 'bottom right',
             ),
             'focus' => array(
                 'type'              => 'true_false',
@@ -5125,6 +5125,116 @@ class Playouts_Element_Number_Counter extends Playouts_Element {
     }
 }
 new Playouts_Element_Number_Counter;
+
+class Playouts_Element_Icon extends Playouts_Element {
+
+    function init() {
+
+        $this->module = 'bw_icon';
+        $this->name = esc_html__( 'Icon', 'AAA' );
+        $this->view = 'element';
+        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->module_color = '#8064af';
+        $this->params = array(
+            'icon' => array(
+                'label'             => esc_html__( 'Icon', 'AAA' ),
+                'type'              => 'icon',
+            ),
+            'font_size' => array(
+                'label'             => esc_html__( 'Font Size', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'pixels',
+                'min'               => 15,
+                'max'               => 200,
+                'step'              => 1,
+                'value'             => 60,
+            ),
+            'bold' => array(
+                'label'             => esc_html__( 'Bold Icon?', 'AAA' ),
+                'type'              => 'true_false',
+            ),
+            'color_main' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Main Color', 'AAA' ),
+                'value'             => '',
+                'width'             => 50
+            ),
+            'color_secondary' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Secondary Color ( Optional )', 'AAA' ),
+                'value'             => '',
+                'width'             => 50
+            ),
+            'direction' => array(
+                'label'             => esc_html__( 'Gredient Direction', 'AAA' ),
+                'type'              => 'select',
+                'options'           => array(
+                    'top'               => 'Top',
+                    'top right'         => 'Top Right',
+                    'right'             => 'Right',
+                    'bottom right'      => 'Bottom Right',
+                    'bottom'            => 'Bottom',
+                    'bottom left'       => 'Bottom Left',
+                    'left'              => 'Left',
+                    'left top'      => 'Top Left',
+                ),
+                'value'             => 'bottom right',
+            ),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'icon'              => '',
+            'font_size'         => 60,
+            'bold'              => false,
+            'color_main'        => '',
+            'color_secondary'   => '',
+            'direction'         => '',
+            'inline_class'      => '',
+            'inline_id'         => '',
+            'inline_css'        => '',
+        ), $atts ) );
+
+        $style = $class = $id = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        $style .= $bold ? 'font-weight:800;' : '';
+        $style .= ! empty( $font_size ) ? 'font-size:' . (int) $font_size . 'px;' : '';
+
+        $_gredient .= 'color:' . esc_attr( $color_main ) . ';';
+        if( $color_secondary ) {
+            $_gredient .= 'background:linear-gradient(to ' . esc_attr( $direction ) . ',' . esc_attr( $color_main ) . ',' . esc_attr( $color_secondary ) . ');';
+            $_gredient .= 'background-clip:text;-webkit-background-clip:text;text-fill-color:transparent;-webkit-text-fill-color:transparent;';
+        }
+
+        return '<div class="pl-icon' . $class . '" style="' . $style . '"' . $id . '>'.
+            '<i class="' . esc_attr( $icon ) . '" style="' . $_gredient . '"></i>'.
+        '</div>';
+
+    }
+}
+new Playouts_Element_Icon;
 
 /*class Playouts_Element_Tabs extends Playouts_Repeater_Element {
 
