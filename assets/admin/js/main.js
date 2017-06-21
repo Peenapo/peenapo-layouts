@@ -2678,7 +2678,7 @@ var Bwpb = {
         }
 
         // show the plugin postbox
-        $('#bw_page_builder_section').css('display', 'block');
+        $('#peenapo_layouts_section_ui').css('display', 'block');
 
         // set the hidden field value to true, so we can save it on post update
         $('#bwpb_status').val(1);
@@ -2702,7 +2702,7 @@ var Bwpb = {
         }
 
         // hide the plugin postbox
-        $('#bw_page_builder_section').css('display', 'none');
+        $('#peenapo_layouts_section_ui').css('display', 'none');
 
         // set the hidden field value to none, so we can save it on post update
         $('#bwpb_status').val('');

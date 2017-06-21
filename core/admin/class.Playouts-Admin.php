@@ -177,15 +177,15 @@ class Playouts_Admin {
 
     }
 
-    static function after_title() {
+    /*static function after_title() {
 
         /*
          * get switch button template
          *
-         */
+         *
         do_action( 'bwpb_get_template_switch_button' );
 
-    }
+    }*/
 
 	/*
 	 * check if the plugins is enabled for specific post
@@ -219,7 +219,7 @@ class Playouts_Admin {
                 $post_id = isset( $_GET['post'] ) ? (int)$_GET['post'] : false;
                 self::check_status( $post_id );
                 # add switch button after post title
-                add_action( 'edit_form_after_title', array( 'Playouts_Admin', 'after_title' ) );
+                //add_action( 'edit_form_after_title', array( 'Playouts_Admin', 'after_title' ) );
                 # add custom body classes
                 add_filter( 'admin_body_class', array( 'Playouts_Admin', 'admin_body_class' ) );
                 # register page builder
@@ -264,27 +264,24 @@ class Playouts_Admin {
         if( in_array( $currnet_post_type, Playouts_Bootstrap::$post_types ) ) {
 
             add_meta_box(
-                'bw_page_builder_section',
-                __( 'Peenapo Page Builder', 'peenapo-layouts-txd' ),
-                array( 'Playouts_Admin', 'bw_page_builder_custom_box' ),
+                'peenapo_layouts_section_ui',
+                __( 'Peenapo Layouts', 'peenapo-layouts-txd' ),
+                array( 'Playouts_Admin', 'metabox_section_ui' ),
                 $currnet_post_type,
                 'normal',
                 'high'
             );
 
-        }
-
-        /*foreach ( Bwpb::$post_types as $post_type ) {
-
             add_meta_box(
-                'bw_page_builder_section',
+                'peenapo_layouts_section_switch',
                 __( 'Peenapo Page Builder', 'peenapo-layouts-txd' ),
-                array( 'Playouts_Admin', 'bw_page_builder_custom_box' ),
-                $post_type,
-                'normal',
+                array( 'Playouts_Admin', 'metabox_section_switch' ),
+                $currnet_post_type,
+                'side',
                 'high'
             );
-        }*/
+
+        }
 
     }
 
@@ -305,13 +302,23 @@ class Playouts_Admin {
 
     }
 
-    static function bw_page_builder_custom_box( $post ) {
+    static function metabox_section_ui( $post ) {
 
         /*
          * get main template
          *
          */
         do_action( 'bwpb_get_template_main' );
+
+    }
+
+    static function metabox_section_switch( $post ) {
+
+        /*
+         * get main template
+         *
+         */
+        do_action( 'bwpb_get_template_switch' );
 
     }
 

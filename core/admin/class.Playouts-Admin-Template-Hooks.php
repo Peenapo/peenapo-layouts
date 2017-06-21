@@ -11,8 +11,9 @@ class Playouts_Admin_Template_Hooks {
 
     static function init() {
 
-        add_action( 'bwpb_get_template_switch_button',          array( 'Playouts_Admin_Template_Functions', 'get_template_switch_button' ), 10 );
+        //add_action( 'bwpb_get_template_switch_button',          array( 'Playouts_Admin_Template_Functions', 'get_template_switch_button' ), 10 );
         add_action( 'bwpb_get_template_main',                   array( 'Playouts_Admin_Template_Functions', 'get_template_main' ), 10 );
+        add_action( 'bwpb_get_template_switch',                 array( 'Playouts_Admin_Template_Functions', 'get_template_switch' ), 10 );
         add_action( 'bwpb_get_template_header',                 array( 'Playouts_Admin_Template_Functions', 'get_template_header' ), 10 );
         add_action( 'bwpb_get_template_welcome',                array( 'Playouts_Admin_Template_Functions', 'get_template_welcome' ), 10 );
         add_action( 'bwpb_get_template_mosaic',                 array( 'Playouts_Admin_Template_Functions', 'get_template_mosaic' ), 10 );

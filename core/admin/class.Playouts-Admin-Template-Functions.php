@@ -9,12 +9,16 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } # exit if accessed directly
  */
 class Playouts_Admin_Template_Functions {
 
-    static function get_template_switch_button() {
+    /*static function get_template_switch_button() {
         self::get_template( 'admin/switch-button' );
-    }
+    }*/
 
     static function get_template_main() {
         self::get_template( 'admin/main' );
+    }
+
+    static function get_template_switch() {
+        self::get_template( 'admin/switch' );
     }
 
     static function get_template_header() {
