@@ -49,7 +49,7 @@ class Playouts_Public {
         self::$modules = Playouts_Element::get_modules();
 
         # setup some options
-        add_action( 'get_header', array( 'Playouts_Public', 'setup_header' ) );
+        #add_action( 'get_header', array( 'Playouts_Public', 'setup_header' ) );
         # enqueue scripts
         add_action( 'wp_enqueue_scripts', array( 'Playouts_Public', 'enqueue_scripts' ) );
         # set custom css
@@ -140,7 +140,6 @@ class Playouts_Public {
         $rendered = self::loop_shortcodes_and_render( $shortcodes_arr, $get_ids );
 
         return $rendered;
-
 
     }
 

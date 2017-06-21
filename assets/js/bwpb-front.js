@@ -564,6 +564,7 @@ var Playouts = {
     animations: function() {
 
         this.appearance();
+        this.appearance_stagger();
         this.background_parallax();
         this.sequence();
         this.video_button();
@@ -655,21 +656,60 @@ var Playouts = {
                 var animation_speed = typeof self.attr('data-animation-speed') !== 'undefined' ? parseInt( self.attr('data-animation-speed'), 10 ) * 0.001 : .4;
                 var animation_delay = typeof self.attr('data-animation-delay') !== 'undefined' ? parseInt( self.attr('data-animation-delay'), 10 ) * 0.001 : 0;
 
+                // TODO: choose easings from panel
                 switch( animation ) {
                     case 'scale':
-                        TweenMax.fromTo( self, animation_speed, { scale: 0.8 }, { opacity:1, scale: 1, delay: animation_delay } );
+                        TweenMax.fromTo( self, animation_speed, { scale: 0.8 }, { opacity:1, scale: 1, clearProps:"scale", delay: animation_delay } );
                         break;
                     case 'top':
-                        TweenMax.fromTo( self, animation_speed, { y: '-10%' }, { opacity:1, y: '0%', delay: animation_delay } );
+                        TweenMax.fromTo( self, animation_speed, { y: -80 }, { opacity:1, y: 0, delay: animation_delay, ease: Power4.easeOut } );
                         break;
                     case 'right':
-                        TweenMax.fromTo( self, animation_speed, { x: '10%' }, { opacity:1, x: '0%', delay: animation_delay } );
+                        TweenMax.fromTo( self, animation_speed, { x: 80 }, { opacity:1, x: 0, delay: animation_delay, ease: Power4.easeOut } );
                         break;
                     case 'bottom':
-                        TweenMax.fromTo( self, animation_speed, { y: '10%' }, { opacity:1, y: '0%', delay: animation_delay } );
+                        TweenMax.fromTo( self, animation_speed, { y: 80 }, { opacity:1, y: 0, delay: animation_delay, ease: Power4.easeOut } );
                         break;
                     case 'left':
-                        TweenMax.fromTo( self, animation_speed, { x: '-10%' }, { opacity:1, x: '0%', delay: animation_delay } );
+                        TweenMax.fromTo( self, animation_speed, { x: -80 }, { opacity:1, x: 0, delay: animation_delay, ease: Power4.easeOut } );
+                        break;
+                }
+
+                this.destroy();
+
+            },
+            offset: '80%'
+        });
+
+    },
+
+    // TODO: add distance
+    appearance_stagger: function() {
+
+        $('.pl-animation-stagger').waypoint({
+            handler: function() {
+
+                var self = $( this.element ).addClass('pl-animated');
+
+                var animation  = typeof self.attr('data-animation') !== 'undefined' ? self.attr('data-animation') : 'scale';
+                var animation_speed = typeof self.attr('data-animation-speed') !== 'undefined' ? parseInt( self.attr('data-animation-speed'), 10 ) * 0.001 : .4;
+                var animation_delay = typeof self.attr('data-animation-delay') !== 'undefined' ? parseInt( self.attr('data-animation-delay'), 10 ) * 0.001 : 0;
+
+                switch( animation ) {
+                    case 'scale':
+                        TweenMax.staggerFromTo( self.find('> *'), animation_speed, { scale: 0.8 }, { opacity:1, scale: 1 }, animation_delay );
+                        break;
+                    case 'top':
+                        TweenMax.staggerFromTo( self.find('> *'), animation_speed, { y: -80 }, { opacity:1, y: 0, ease: Power4.easeOut }, animation_delay );
+                        break;
+                    case 'right':
+                        TweenMax.staggerFromTo( self.find('> *'), animation_speed, { x: 80 }, { opacity:1, x: 0, ease: Power4.easeOut }, animation_delay );
+                        break;
+                    case 'bottom':
+                        TweenMax.staggerFromTo( self.find('> *'), animation_speed, { y: 80 }, { opacity:1, y: 0, ease: Power4.easeOut }, animation_delay );
+                        break;
+                    case 'left':
+                        TweenMax.staggerFromTo( self.find('> *'), animation_speed, { x: -80 }, { opacity:1, x: 0, ease: Power4.easeOut }, animation_delay );
                         break;
                 }
 

@@ -380,6 +380,44 @@ class Playouts_Element_Row extends Playouts_Element {
                 'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
                 'width'             => 25
             ),
+            'animation' => array(
+                'label'             => esc_html__( 'Animation', 'AAA' ),
+                'type'              => 'select',
+                'options'           => array(
+                    'none'      => 'None',
+                    'scale'     => 'Scale',
+                    'top'       => 'Top',
+                    'right'     => 'Right',
+                    'left'      => 'Left',
+                    'bottom'    => 'Bottom',
+                ),
+                'value'             => 'none',
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+            ),
+            'animation_speed' => array(
+                'label'             => esc_html__( 'Animation Speed', 'AAA' ),
+                'description'       => esc_html__( 'Item animation speed in milliseconds.', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'milliseconds.',
+                'min'               => 50,
+                'max'               => 1000,
+                'step'              => 50,
+                'value'             => 200,
+                'depends'           => array( 'element' => 'animation', 'value' => array( 'scale', 'top', 'right', 'bottom', 'left' ) ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+            ),
+            'animation_delay' => array(
+                'label'             => esc_html__( 'Animation Delay', 'AAA' ),
+                'description'       => esc_html__( 'Item animation speed in milliseconds.', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'milliseconds.',
+                'min'               => 50,
+                'max'               => 500,
+                'step'              => 50,
+                'value'             => 100,
+                'depends'           => array( 'element' => 'animation', 'value' => array( 'scale', 'top', 'right', 'bottom', 'left' ) ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+            ),
             'inline_class' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'CSS Classes', 'AAA' ),
@@ -427,7 +465,10 @@ class Playouts_Element_Row extends Playouts_Element {
             'padding_right'     => '',
             'padding_bottom'    => '',
             'padding_left'      => '',
-            'inline_class'  => '',
+            'animation'         => 'none',
+            'animation_speed'   => 200,
+            'animation_delay'   => 100,
+            'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
         ), $atts ) );
@@ -455,10 +496,22 @@ class Playouts_Element_Row extends Playouts_Element {
             $overlay = '<span class="pl-overlay" style="background-color:' . esc_attr( $overlay_bg_color ) . '"></span>';
         }
 
+        // column animations
+        $_anim_class = $_anim_attr = '';
+        if( $animation and $animation !== 'none' ) {
+
+            $_anim_class .= ' pl-animation-stagger';
+
+            $_anim_attr .= ' data-animation="' . esc_attr( $animation ) . '"';
+            $_anim_attr .= ' data-animation-speed="' . (int) $animation_speed . '"';
+            $_anim_attr .= ' data-animation-delay="' . (int) $animation_delay . '"';
+
+        }
+
         return '<div class="pl-row-outer pl-row-layout-' . $row_layout . $class . '"' . $id . '>'.
             Playouts_Public::set_background( $background, $assigned_atts ).
             $overlay.
-            '<div class="pl-row" style="' . $style . '">'.
+            '<div class="pl-row' . $_anim_class . '" style="' . $style . '"' . $_anim_attr . '>'.
                 $content.
             '</div>'.
         '</div>';
@@ -713,7 +766,7 @@ class Playouts_Element_Column extends Playouts_Element {
             'inline_css'        => '',
         ), $atts ) );
 
-        $style = $class = $id = $overlay = '';
+        $style = $class = $id = $overlay = $attr = '';
 
         if( $col_width ) { $style .= 'width:' . (int) $col_width . '%;'; }
 
@@ -736,7 +789,7 @@ class Playouts_Element_Column extends Playouts_Element {
             $overlay = '<span class="pl-overlay" style="background-color:' . esc_attr( $overlay_bg_color ) . '"></span>';
         }
 
-        return '<div class="pl-column-outer' . $class . '" style="' . $style . '"' . $id . '>'.
+        return '<div class="pl-column-outer' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
             Playouts_Public::set_background( $background, $assigned_atts ).
             $overlay.
             '<div class="pl-column">'.
@@ -786,12 +839,11 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
                 'type'              => 'select',
 				'label'             => esc_html__( 'Vertical Alignment', 'AAA' ),
                 'options'           => array(
-                    'baseline'          => 'Baseline',
-                    'top'               => 'Top',
-                    'middle'            => 'Middle',
-                    'bottom'            => 'Bottom',
+                    'stretch'               => 'Stretch',
+                    'flex-start'            => 'Top',
+                    'center'                => 'Middle',
+                    'flex-end'              => 'Bottom',
                 ),
-                'value'             => '',
 			),
             'padding_top' => array(
                 'type'              => 'textfield',
@@ -816,6 +868,44 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
                 'label'             => esc_html__( 'Padding Left', 'AAA' ),
                 'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
                 'width'             => 25
+            ),
+            'animation' => array(
+                'label'             => esc_html__( 'Animation', 'AAA' ),
+                'type'              => 'select',
+                'options'           => array(
+                    'none'      => 'None',
+                    'scale'     => 'Scale',
+                    'top'       => 'Top',
+                    'right'     => 'Right',
+                    'left'      => 'Left',
+                    'bottom'    => 'Bottom',
+                ),
+                'value'             => 'none',
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+            ),
+            'animation_speed' => array(
+                'label'             => esc_html__( 'Animation Speed', 'AAA' ),
+                'description'       => esc_html__( 'Item animation speed in milliseconds.', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'milliseconds.',
+                'min'               => 50,
+                'max'               => 1000,
+                'step'              => 50,
+                'value'             => 200,
+                'depends'           => array( 'element' => 'animation', 'value' => array( 'scale', 'top', 'right', 'bottom', 'left' ) ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+            ),
+            'animation_delay' => array(
+                'label'             => esc_html__( 'Animation Delay', 'AAA' ),
+                'description'       => esc_html__( 'Item animation speed in milliseconds.', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'milliseconds.',
+                'min'               => 50,
+                'max'               => 500,
+                'step'              => 50,
+                'value'             => 100,
+                'depends'           => array( 'element' => 'animation', 'value' => array( 'scale', 'top', 'right', 'bottom', 'left' ) ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
@@ -842,13 +932,16 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
             'is_hidden'         => false,
             'text_color'        => '',
             'text_alignment'    => '',
-            'vertical_alignment' => 'baseline',
+            'vertical_alignment' => 'stretch',
             'margin_top'        => '',
             'margin_bottom'     => '',
             'padding_top'       => '',
             'padding_right'     => '',
             'padding_bottom'    => '',
             'padding_left'      => '',
+            'animation'         => 'none',
+            'animation_speed'   => 200,
+            'animation_delay'   => 100,
             'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
@@ -858,7 +951,7 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
 
         if( $text_color ) { $style .= 'color:' . esc_attr( $text_color ) . ';'; }
         if( $text_alignment ) { $style .= 'text-align:' . esc_attr( $text_alignment ) . ';'; }
-        if( $vertical_alignment ) { $style .= 'vertical-align:' . esc_attr( $vertical_alignment ) . ';'; }
+        if( $vertical_alignment ) { $style .= 'align-items:' . esc_attr( $vertical_alignment ) . ';'; }
         if( $margin_top ) { $style .= 'margin-top:' . esc_attr( $margin_top ) . ( is_numeric( $margin_top ) ? 'px' : '' ) . ';'; }
         if( $margin_bottom ) { $style .= 'margin-bottom:' . esc_attr( $margin_bottom ) . ( is_numeric( $margin_bottom ) ? 'px' : '' ) . ';'; }
         if( $padding_top ) { $style .= 'padding-top:' . esc_attr( $padding_top ) . ( is_numeric( $padding_top ) ? 'px' : '' ) . ';'; }
@@ -870,8 +963,20 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
 
+        // column animations
+        $_anim_class = $_anim_attr = '';
+        if( $animation and $animation !== 'none' ) {
+
+            $_anim_class .= ' pl-animation-stagger';
+
+            $_anim_attr .= ' data-animation="' . esc_attr( $animation ) . '"';
+            $_anim_attr .= ' data-animation-speed="' . (int) $animation_speed . '"';
+            $_anim_attr .= ' data-animation-delay="' . (int) $animation_delay . '"';
+
+        }
+
         return '<div class="pl-row-inner-outer' . $class . '"' . $id . '>'.
-            '<div class="pl-row-inner" style="' . $style . '">'.
+            '<div class="pl-row-inner' . $_anim_class . '" style="' . $style . '"' . $_anim_attr . '>'.
                 $content.
             '</div>'.
         '</div>';

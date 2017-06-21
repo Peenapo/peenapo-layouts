@@ -16,7 +16,7 @@ function pl_parse_atts( $atts_string ) {
 
 }
 
-function pl_do_shortcodes( &$output, $text, $child = false ) {
+function pl_do_shortcodes( $output, $text, $child = false ) {
 
     $patts = pl_get_pattern( $text );
 
