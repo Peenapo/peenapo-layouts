@@ -1503,15 +1503,104 @@ class Playouts_Element_Tab_Item extends Playouts_Repeater_Item_Element {
 }
 new Playouts_Element_Tab_Item;
 
-class Playouts_Element_Progress_Bar extends Playouts_Element {
+class Playouts_Element_Progress_Bars extends Playouts_Repeater_Element {
+
+    static $enable_animation;
+
+    function init() {
+
+        $this->module = 'bw_progress_bars';
+        $this->module_item = 'bw_progress_bar';
+        $this->name = esc_html__( 'Progress Bars', 'AAA' );
+        $this->view = 'repeater';
+        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->module_color = '#72cdf3';
+        $this->params = array(
+            'items' => array(
+                'type'               => 'repeater',
+                'label'              => esc_html__( 'Tab items', 'AAA' ),
+                'description'        => esc_html__( 'You can add as many tabs as you need, just click the plus icon.', 'AAA' ),
+            ),
+            'enable_animation' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Enable Animation', 'AAA' ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+            ),
+            'animation_speed' => array(
+                'label'             => esc_html__( 'Animation Speed', 'AAA' ),
+                'description'       => esc_html__( 'Item animation speed in milliseconds.', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'milliseconds.',
+                'min'               => 50,
+                'max'               => 1000,
+                'step'              => 50,
+                'value'             => 150,
+                'depends'           => array( 'element' => 'enable_animation', 'value' => '1' ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+            ),
+            'inline_class' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_id' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Element ID', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+            'inline_css' => array(
+                'type'              => 'textarea',
+                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+            ),
+        );
+
+    }
+
+    static function construct( $atts = array(), $content = null ) {
+
+        self::$enable_animation = ( isset( $atts['enable_animation'] ) and $atts['enable_animation'] ) ? true : false;
+
+    }
+
+    static function output( $atts = array(), $content = null ) {
+
+        extract( $assigned_atts = shortcode_atts( array(
+            'enable_animation'  => false,
+            'animation_speed'   => 0,
+            'inline_class'      => '',
+            'inline_id'         => '',
+            'inline_css'        => '',
+        ), $atts ) );
+
+        $style = $class = $id = $attr = '';
+
+        $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
+        $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
+        $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        if( $enable_animation and $animation_speed ) {
+            $class .= ' pl-is-animated';
+            $attr .= ' data-animation-delay="' . (int) $animation_speed * 0.001 . '"';
+        }
+
+        if( ! empty( $content ) ) {
+            return '<div class="pl-progress-bars' . $class . '" style="' . $style . '"' . $id . $attr . '>' . $content . '</div>';
+        }
+    }
+}
+new Playouts_Element_Progress_Bars;
+
+class Playouts_Element_Progress_Bars_Item extends Playouts_Repeater_Item_Element {
+
+    static $tabs = array();
 
     function init() {
 
         $this->module = 'bw_progress_bar';
+        $this->module_parent = 'bw_progress_bars';
         $this->name = esc_html__( 'Progress Bar', 'AAA' );
-        $this->view = 'element';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
-        $this->module_color = '#72cdf3';
+        $this->view = 'repeater_item';
 
         $this->params = array(
             'title' => array(
@@ -1552,6 +1641,28 @@ class Playouts_Element_Progress_Bar extends Playouts_Element {
                 'type'              => 'colorpicker',
                 'width'             => 50
             ),
+            'bar_color_secondary' => array(
+                'label'             => esc_html__( 'Bar Secondary Color ( Optional )', 'AAA' ),
+                'description'       => esc_html__( 'For gredient background color.', 'AAA' ),
+                'type'              => 'colorpicker',
+                'width'             => 50
+            ),
+            'direction' => array(
+                'label'             => esc_html__( 'Gredient Direction', 'AAA' ),
+                'type'              => 'select',
+                'options'           => array(
+                    'top'               => 'Top',
+                    'top right'         => 'Top Right',
+                    'right'             => 'Right',
+                    'bottom right'      => 'Bottom Right',
+                    'bottom'            => 'Bottom',
+                    'bottom left'       => 'Bottom Left',
+                    'left'              => 'Left',
+                    'left top'      => 'Top Left',
+                ),
+                'value'             => 'bottom right',
+                'width'             => 50
+            ),
             'padding_top' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'Padding Top', 'AAA' ),
@@ -1590,6 +1701,8 @@ class Playouts_Element_Progress_Bar extends Playouts_Element {
             'value'             => '',
             'progress'          => 0,
             'bar_color'         => '',
+            'bar_color_secondary' => '',
+            'direction'         => 'right',
             'bar_bg_color'      => '',
             'text_color'        => '',
             'counter_color'     => '',
@@ -1609,18 +1722,25 @@ class Playouts_Element_Progress_Bar extends Playouts_Element {
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
 
+        $_bg .= 'background-color:' . esc_attr( $bar_color ) . ';';
+        if( $bar_color_secondary ) {
+            $_bg .= 'background:linear-gradient(to ' . esc_attr( $direction ) . ',' . esc_attr( $bar_color ) . ',' . esc_attr( $bar_color_secondary ) . ');';
+        }
+
+        $enable_animation = Playouts_Element_Progress_Bars::$enable_animation;
+
         return '<div data-progress="' . (int) $progress . '" class="pl-progress-bar' . $class . '" style="' . $style . '"' . $id . '>'.
             '<div class="pl-progress-label"' . ( $text_color ? ' style="color:' . esc_attr( $text_color ) . '"' : '' ) . '>' . esc_attr( $title ) . '</div>'.
             '<div class="pl-the-progress"' . ( $bar_bg_color ? ' style="background-color:' . esc_attr( $bar_bg_color ) . '"' : '' ) . '>'.
-                '<span class="pl-the-bar"' . ( $bar_color ? ' style="background-color:' . esc_attr( $bar_color ) . '"' : '' ) . '>'.
-                    '<span class="pl-progress-counter"' . ( $counter_color ? ' style="color:' . esc_attr( $counter_color ) . '"' : '' ) . '><em>' . (int) $progress . '</em>' . esc_attr( $value ) . '</span>'.
+                '<span class="pl-the-bar" style="' . $_bg . ( ! $enable_animation ? 'width:' . (int) $progress . '%;' : '' ) . '">'.
+                    '<span class="pl-progress-counter" style="' . ( $counter_color ? 'color:' . esc_attr( $counter_color ) . ';' : '' ) . ( ! $enable_animation ? 'opacity:1;' : '' ) . '"><em>' . (int) $progress . '</em>' . esc_attr( $value ) . '</span>'.
                 '</span>'.
             '</div>'.
         '</div>';
 
     }
 }
-new Playouts_Element_Progress_Bar;
+new Playouts_Element_Progress_Bars_Item;
 
 class Playouts_Element_Button extends Playouts_Element {
 

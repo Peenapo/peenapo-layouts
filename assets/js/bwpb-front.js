@@ -271,17 +271,20 @@ var Playouts = {
                                 }
                             }) ( marker, i ) );
 
-                            // set zoom after bounce
-                            google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
-                                this.setZoom( typeof self.attr('data-zoom-level') !== 'undefined' ? parseInt( self.attr('data-zoom-level'), 10 ) : 17 );
-                            });
-
                         });
 
-                        // now fit the map to the newly inclusive bounds
-                        //if( typeof self.attr('data-bounds') !== 'undefined' && self.attr('data-bounds') == 'true' ) { map.fitBounds( bounds ); }
-                        map.fitBounds( bounds );
-                        map.setZoom(15);
+                        // set zoom after bounce
+                        google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
+                            if( typeof self.attr('data-zoom-level') !== 'undefined' ) {
+                                map.setZoom( parseInt( self.attr('data-zoom-level'), 10 ) );
+                            }
+                        });
+
+                        if( typeof self.attr('data-bounds') !== 'undefined' ) {
+                            // now fit the map to the newly inclusive bounds
+                            map.fitBounds( bounds );
+                        }
+
                     }
 
                 });
@@ -419,16 +422,28 @@ var Playouts = {
 
             start: function() {
 
-                $('.pl-progress-bar').each(function() {
+                $('.pl-progress-bars.pl-is-animated').waypoint({
+                    handler: function() {
 
-                    var self = $(this),
-                        width = self.attr('data-progress'),
-                        $label = self.find('.pl-progress-counter'),
-                        $counter = $label.find('em');
+                        var self = $( this.element ).addClass('pl-animated');
+                        var _delay = parseFloat( self.attr('data-animation-delay') );
 
-                    TweenLite.to( self.find('.pl-the-bar'), 1.2, { width: width + '%', ease: Expo.easeInOut });
-                    TweenLite.to( $label, 1.2, { opacity: 1, delay: 0.5 });
+                        $('.pl-progress-bar', self).each(function( i ) {
 
+                            var self = $(this),
+                                width = self.attr('data-progress'),
+                                $label = self.find('.pl-progress-counter'),
+                                $counter = $label.find('em');
+
+                            TweenLite.to( self.find('.pl-the-bar'), 1.2, { width: width + '%', ease: Expo.easeInOut, delay: i * _delay });
+                            TweenLite.to( $label, 1.2, { opacity: 1, delay: ( i * _delay ) + 0.5 });
+
+                        });
+
+                        this.destroy();
+
+                    },
+                    offset: '80%'
                 });
 
             }
