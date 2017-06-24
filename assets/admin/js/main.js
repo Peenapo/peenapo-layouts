@@ -570,11 +570,10 @@ var Bwpb_settings_panel = {
         var form_data = $('#bwpb-panel-form').serializeArray();
 
         for( var i = 0; i < form_data.length; i++ ) {
-
             if( typeof new_values[ form_data[i].name ] !== 'undefined' ) { // add comma separated values for multiple choices
                 new_values[ form_data[i].name ] = new_values[ form_data[i].name ] + ',' + form_data[i].value;
             }else{ // do not pass empty values
-                if( form_data[i].value !== 'undefined' && form_data[i].value !== '' && form_data[i].value !== '0' ) {
+                if( form_data[i].value !== 'undefined' && form_data[i].value !== '_empty_' && form_data[i].value !== '' && form_data[i].value !== '0' ) {
                     new_values[ form_data[i].name ] = form_data[i].value;
                 }
             }
@@ -3217,7 +3216,7 @@ var Bwpb = {
             $('> .bwpb-column-width em', __module).html( col_width_value );
         }
 
-        if( ( Pl_modal.placement == 'before' || Pl_modal.placement == 'after' ) && module_id !== 'bw_row' ) { // content elements without parent
+        if( ( Pl_modal.placement == 'before' || Pl_modal.placement == 'after' ) && module_id !== 'bw_row' && module_id !== 'bw_row_inner' ) { // content elements without parent
             if( ! this.added_manually ) { // manually added
                 parent_id = this.latest_element_id;
             }else{ // not manually added element without row

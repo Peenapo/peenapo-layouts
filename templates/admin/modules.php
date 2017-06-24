@@ -69,7 +69,7 @@ $block_drag = "
         </div>
         <?php echo $block_drag; ?>
         <div class="bwpb-col-drag-bg"></div>
-        <span class="bwpb-row-plus bwpb-open-modal" data-view="row" data-placement="after"><i class="bwpb-plus"></i></span>
+        <span class="bwpb-row-plus bwpb-open-modal" data-view="column" data-placement="after"><i class="bwpb-plus"></i></span>
     </div>
 </script>
 

@@ -115,7 +115,7 @@ class Playouts_Public {
 					%1$s
 				</div>
 			</div>
-            <span id="pl-overlay" class="pl-overlay"></span>
+            <span id="pl-overlay-main" class="pl-overlay-main"></span>
             <span id="pl-overlay-container" class="pl-overlay pl-overlay-container"></span>',
 			self::parse_content( $content ), esc_attr( $outer_classes ), esc_attr( $inner_classes ), esc_attr( $outer_id )
 		);
@@ -233,7 +233,7 @@ class Playouts_Public {
 
         extract( $atts );
 
-        if( $background !== 'none' ) {
+        if( ! empty( $background ) and $background !== 'none' ) {
 
             $style = $class = $data_attr = $inner = '';
 

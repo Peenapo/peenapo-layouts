@@ -162,6 +162,8 @@ class Playouts_Repeater_Item_Element extends Playouts_Element {
 
 class Playouts_Element_Row extends Playouts_Element {
 
+    static $vertical_alignment;
+
     function init() {
 
         $this->module = 'bw_row';
@@ -195,7 +197,7 @@ class Playouts_Element_Row extends Playouts_Element {
                         'label' => 'Boxed', 'image' => PL_ASSEST . 'admin/images/__tmp/row_boxed.png'
                     ),
                 ),
-                'value'             => 'standard'
+                'value' => 'standard'
 			),
             'background' => array(
                 'type'              => 'select',
@@ -203,13 +205,12 @@ class Playouts_Element_Row extends Playouts_Element {
 				'description'       => esc_html__( 'Select row background type', 'AAA' ),
                 'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
 				'options'           => array(
-                    'none' => 'None',
+                    '' => 'None',
                     'color' => 'Color',
                     'image' => 'Image',
                     'parallax' => 'Parallax',
                     'video' => 'Video',
                 ),
-                'value'             => 'none'
 			),
             'bg_color' => array(
                 'type'              => 'colorpicker',
@@ -229,6 +230,7 @@ class Playouts_Element_Row extends Playouts_Element {
                 'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
                 'options'           => array(
+                    ''                  => 'Default',
                     'top left'          => 'Top Left',
                     'top center'        => 'Top Center',
                     'top right'         => 'Top Right',
@@ -239,7 +241,6 @@ class Playouts_Element_Row extends Playouts_Element {
                     'bottom center'     => 'Bottom Center',
                     'bottom right'      => 'Bottom Right',
                 ),
-                'value'             => 'center center',
                 'width'             => 50
 			),
             'bg_image_size' => array(
@@ -248,11 +249,11 @@ class Playouts_Element_Row extends Playouts_Element {
                 'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
                 'options'           => array(
+                    ''                  => 'Default',
                     'auto'              => 'Auto',
                     'cover'             => 'Cover',
                     'contain'           => 'Contain',
                 ),
-                'value'             => 'cover',
                 'width'             => 50
 			),
             'bg_parallax_speed' => array(
@@ -299,6 +300,42 @@ class Playouts_Element_Row extends Playouts_Element {
                 'label'             => esc_html__( 'Overlay Background Color', 'AAA' ),
                 'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
+                'width'             => 50
+            ),
+            'overlay_bg_second' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Overlay Second Background Color ( Optional )', 'AAA' ),
+                'description'       => esc_html__( 'For gredient background color.', 'AAA' ),
+                'value'             => '#f5f5f5',
+                'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'width'             => 50
+			),
+            'overlay_direction' => array(
+                'label'             => esc_html__( 'Overlay Gredient Direction', 'AAA' ),
+                'type'              => 'select',
+                'options'           => array(
+                    'top right'         => 'Top Right',
+                    'top'               => 'Top',
+                    'left top'          => 'Top Left',
+                    'bottom right'      => 'Bottom Right',
+                    'bottom'            => 'Bottom',
+                    'bottom left'       => 'Bottom Left',
+                    'right'             => 'Right',
+                    'left'              => 'Left',
+                ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
+            ),
+            'overlay_opacity' => array(
+                'label'             => esc_html__( 'Overlay Opacity', 'AAA' ),
+                'type'              => 'number_slider',
+                'min'               => 0,
+                'max'               => 100,
+                'step'              => 1,
+                'value'             => 50,
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
             ),
             'text_color' => array(
                 'type'              => 'colorpicker',
@@ -310,7 +347,7 @@ class Playouts_Element_Row extends Playouts_Element {
                 'type'              => 'select',
 				'label'             => esc_html__( 'Text Alignment', 'AAA' ),
                 'options'           => array(
-                    'inherit'           => 'Inherit',
+                    ''                  => 'Inherit',
                     'left'              => 'Left',
                     'center'            => 'Center',
                     'right'             => 'Right',
@@ -337,7 +374,7 @@ class Playouts_Element_Row extends Playouts_Element {
                 'type'              => 'select',
 				'label'             => esc_html__( 'Vertical Alignment', 'AAA' ),
                 'options'           => array(
-                    'stretch'               => 'Stretch',
+                    ''                      => 'None',
                     'flex-start'            => 'Top',
                     'center'                => 'Middle',
                     'flex-end'              => 'Bottom',
@@ -384,14 +421,13 @@ class Playouts_Element_Row extends Playouts_Element {
                 'label'             => esc_html__( 'Animation', 'AAA' ),
                 'type'              => 'select',
                 'options'           => array(
-                    'none'      => 'None',
+                    ''          => 'None',
                     'scale'     => 'Scale',
                     'top'       => 'Top',
                     'right'     => 'Right',
                     'left'      => 'Left',
                     'bottom'    => 'Bottom',
                 ),
-                'value'             => 'none',
                 'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
             ),
             'animation_speed' => array(
@@ -399,10 +435,9 @@ class Playouts_Element_Row extends Playouts_Element {
                 'description'       => esc_html__( 'Item animation speed in milliseconds.', 'AAA' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'milliseconds.',
-                'min'               => 50,
+                'min'               => 0,
                 'max'               => 1000,
                 'step'              => 50,
-                'value'             => 200,
                 'depends'           => array( 'element' => 'animation', 'value' => array( 'scale', 'top', 'right', 'bottom', 'left' ) ),
                 'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
             ),
@@ -411,10 +446,9 @@ class Playouts_Element_Row extends Playouts_Element {
                 'description'       => esc_html__( 'Item animation speed in milliseconds.', 'AAA' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'milliseconds.',
-                'min'               => 50,
+                'min'               => 0,
                 'max'               => 500,
                 'step'              => 50,
-                'value'             => 100,
                 'depends'           => array( 'element' => 'animation', 'value' => array( 'scale', 'top', 'right', 'bottom', 'left' ) ),
                 'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
             ),
@@ -437,16 +471,23 @@ class Playouts_Element_Row extends Playouts_Element {
 
     }
 
+    static function construct( $atts = array(), $content = null ) {
+
+        self::$vertical_alignment = ( isset( $atts['vertical_alignment'] ) and $atts['vertical_alignment'] ) ? esc_attr( $atts['vertical_alignment'] ) : '';
+
+    }
+
     static function output( $atts = array(), $content = null ) {
 
         extract( $assigned_atts = shortcode_atts( array(
             'row_layout'        => 'standard',
             'is_hidden'         => false,
-            'background'        => 'none',
+
+            'background'        => '',
             'bg_color'          => '',
             'bg_image'          => '',
             'bg_image_position' => 'center center',
-            'bg_image_size'     => 'auto',
+            'bg_image_size'     => 'cover',
             'bg_parallax_speed' => 150,
             'bg_video_mp4'      => '',
             'bg_video_ogv'      => '',
@@ -454,20 +495,26 @@ class Playouts_Element_Row extends Playouts_Element {
             'bg_video_poster'   => '',
             'overlay_enable'    => false,
             'overlay_bg_color'  => '',
+            'overlay_bg_second' => '',
+            'overlay_direction' => 'top right',
+            'overlay_opacity'   => 0,
+
             'text_color'        => '',
             'text_alignment'    => '',
             'enable_static_height' => false,
             'static_height'     => '30',
-            'vertical_alignment' => 'stretch',
+            'vertical_alignment' => '',
             'margin_top'        => '',
             'margin_bottom'     => '',
             'padding_top'       => '',
             'padding_right'     => '',
             'padding_bottom'    => '',
             'padding_left'      => '',
+
             'animation'         => 'none',
-            'animation_speed'   => 200,
-            'animation_delay'   => 100,
+            'animation_speed'   => 0,
+            'animation_delay'   => 0,
+
             'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
@@ -475,12 +522,12 @@ class Playouts_Element_Row extends Playouts_Element {
 
         if( $is_hidden ) { return ''; }
 
-        $style = $class = $id = $overlay = '';
+        $style = $class = $id = $overlay = $_gredient = '';
 
         if( $enable_static_height ) { $style .= 'height:' . (int) $static_height . 'vh;'; }
         if( $text_color ) { $style .= 'color:' . esc_attr( $text_color ) . ';'; }
         if( $text_alignment ) { $style .= 'text-align:' . esc_attr( $text_alignment ) . ';'; }
-        if( $vertical_alignment ) { $style .= 'align-items:' . esc_attr( $vertical_alignment ) . ';'; }
+        //if( $vertical_alignment ) { $style .= 'align-items:' . esc_attr( $vertical_alignment ) . ';'; }
         if( $margin_top ) { $style .= 'margin-top:' . esc_attr( $margin_top ) . ( is_numeric( $margin_top ) ? 'px' : '' ) . ';'; }
         if( $margin_bottom ) { $style .= 'margin-bottom:' . esc_attr( $margin_bottom ) . ( is_numeric( $margin_bottom ) ? 'px' : '' ) . ';'; }
         if( $padding_top ) { $style .= 'padding-top:' . esc_attr( $padding_top ) . ( is_numeric( $padding_top ) ? 'px' : '' ) . ';'; }
@@ -493,7 +540,12 @@ class Playouts_Element_Row extends Playouts_Element {
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
 
         if( $overlay_enable ) {
-            $overlay = '<span class="pl-overlay" style="background-color:' . esc_attr( $overlay_bg_color ) . '"></span>';
+            $_gredient .= 'background-color:' . esc_attr( $overlay_bg_color ) . ';';
+            $_gredient .= 'opacity:' . $overlay_opacity * 0.01 . ';';
+            if( $overlay_bg_second ) {
+                $_gredient .= 'background:linear-gradient(to ' . esc_attr( $overlay_direction ) . ',' . esc_attr( $overlay_bg_color ) . ',' . esc_attr( $overlay_bg_second ) . ');';
+            }
+            $overlay = '<span class="pl-overlay" style="' . $_gredient . '"></span>';
         }
 
         // column animations
@@ -544,13 +596,12 @@ class Playouts_Element_Column extends Playouts_Element {
 				'description'       => esc_html__( 'Select row background type', 'AAA' ),
                 'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
 				'options'           => array(
-                    'none' => 'None',
-                    'color' => 'Color',
-                    'image' => 'Image',
-                    'parallax' => 'Parallax',
-                    'video' => 'Video',
-                ),
-                'value'             => 'none'
+                    ''          => 'None',
+                    'color'     => 'Color',
+                    'image'     => 'Image',
+                    'parallax'  => 'Parallax',
+                    'video'     => 'Video',
+                )
 			),
             'bg_color' => array(
                 'type'              => 'colorpicker',
@@ -570,6 +621,7 @@ class Playouts_Element_Column extends Playouts_Element {
                 'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
                 'options'           => array(
+                    ''                  => 'Default',
                     'top left'          => 'Top Left',
                     'top center'        => 'Top Center',
                     'top right'         => 'Top Right',
@@ -580,7 +632,6 @@ class Playouts_Element_Column extends Playouts_Element {
                     'bottom center'     => 'Bottom Center',
                     'bottom right'      => 'Bottom Right',
                 ),
-                'value'             => 'center center',
                 'width'             => 50
 			),
             'bg_image_size' => array(
@@ -589,11 +640,11 @@ class Playouts_Element_Column extends Playouts_Element {
                 'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
                 'options'           => array(
+                    ''                  => 'Default',
                     'auto'              => 'Auto',
                     'cover'             => 'Cover',
                     'contain'           => 'Contain',
                 ),
-                'value'             => 'cover',
                 'width'             => 50
 			),
             'bg_parallax_speed' => array(
@@ -640,6 +691,42 @@ class Playouts_Element_Column extends Playouts_Element {
                 'label'             => esc_html__( 'Overlay Background Color', 'AAA' ),
                 'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
+                'width'             => 50
+            ),
+            'overlay_bg_second' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Overlay Second Background Color ( Optional )', 'AAA' ),
+                'description'       => esc_html__( 'For gredient background color.', 'AAA' ),
+                'value'             => '#f5f5f5',
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
+                'width'             => 50
+			),
+            'overlay_direction' => array(
+                'label'             => esc_html__( 'Overlay Gredient Direction', 'AAA' ),
+                'type'              => 'select',
+                'options'           => array(
+                    'top right'         => 'Top Right',
+                    'top'               => 'Top',
+                    'left top'          => 'Top Left',
+                    'bottom right'      => 'Bottom Right',
+                    'bottom'            => 'Bottom',
+                    'bottom left'       => 'Bottom Left',
+                    'right'             => 'Right',
+                    'left'              => 'Left',
+                ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
+            ),
+            'overlay_opacity' => array(
+                'label'             => esc_html__( 'Overlay Opacity', 'AAA' ),
+                'type'              => 'number_slider',
+                'min'               => 0,
+                'max'               => 100,
+                'step'              => 1,
+                'value'             => 50,
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
             ),
             'text_color' => array(
                 'type'              => 'colorpicker',
@@ -651,34 +738,22 @@ class Playouts_Element_Column extends Playouts_Element {
                 'type'              => 'select',
 				'label'             => esc_html__( 'Text Alignment', 'AAA' ),
                 'options'           => array(
-                    'inherit'           => 'Inherit',
+                    ''                  => 'Inherit',
                     'left'              => 'Left',
                     'center'            => 'Center',
                     'right'             => 'Right',
                 ),
-                'value'             => '',
                 'width'             => 50
 			),
             'column_alignment' => array(
                 'type'              => 'select',
 				'label'             => esc_html__( 'Column Alignment', 'AAA' ),
                 'options'           => array(
-                    'auto'              => 'Auto',
+                    ''                  => 'Auto',
                     'flex-start'        => 'Top',
                     'center'            => 'Middle',
                     'flex-end'          => 'Bottom',
                 ),
-                'width'             => 50
-			),
-            'content_alignment' => array(
-                'type'              => 'select',
-				'label'             => esc_html__( 'Content Alignment', 'AAA' ),
-                'options'           => array(
-                    'flex-start'        => 'Top',
-                    'center'            => 'Middle',
-                    'flex-end'          => 'Bottom',
-                ),
-                'width'             => 50
 			),
             'margin_left' => array(
                 'type'              => 'textfield',
@@ -739,11 +814,12 @@ class Playouts_Element_Column extends Playouts_Element {
 
         extract( $assigned_atts = shortcode_atts( array(
             'col_width'         => '',
-            'background'        => 'none',
+
+            'background'        => '',
             'bg_color'          => '',
             'bg_image'          => '',
             'bg_image_position' => 'center center',
-            'bg_image_size'     => 'auto',
+            'bg_image_size'     => 'cover',
             'bg_parallax_speed' => 150,
             'bg_video_mp4'      => '',
             'bg_video_ogv'      => '',
@@ -751,29 +827,34 @@ class Playouts_Element_Column extends Playouts_Element {
             'bg_video_poster'   => '',
             'overlay_enable'    => false,
             'overlay_bg_color'  => '',
+            'overlay_bg_second' => '',
+            'overlay_direction' => 'top right',
+            'overlay_opacity'   => 0,
+
             'text_color'        => '',
             'text_alignment'    => '',
-            'column_alignment'  => 'auto',
-            'content_alignment' => 'flex-start',
+            'column_alignment'  => '',
             'margin_left'       => '',
             'margin_right'      => '',
             'padding_top'       => '',
             'padding_right'     => '',
             'padding_bottom'    => '',
             'padding_left'      => '',
+
             'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
         ), $atts ) );
 
-        $style = $class = $id = $overlay = $attr = '';
+        $style = $style_inside = $class = $id = $overlay = $attr = $_gredient = '';
 
         if( $col_width ) { $style .= 'width:' . (int) $col_width . '%;'; }
 
         if( $text_color ) { $style .= 'color:' . esc_attr( $text_color ) . ';'; }
         if( $text_alignment ) { $style .= 'text-align:' . esc_attr( $text_alignment ) . ';'; }
-        if( $column_alignment ) { $style .= 'align-self:' . esc_attr( $column_alignment ) . ';'; }
-        if( $content_alignment ) { $style .= 'justify-content:' . esc_attr( $content_alignment ) . ';'; }
+        if( $column_alignment ) { $style_inside .= 'align-self:' . esc_attr( $column_alignment ) . ';'; }
+        //if( $content_alignment ) { $style .= 'justify-content:' . esc_attr( $content_alignment ) . ';'; }
+        if( Playouts_Element_Row::$vertical_alignment ) { $style .= 'justify-content:' . esc_attr( Playouts_Element_Row::$vertical_alignment ) . ';'; }
         if( $padding_top ) { $style .= 'padding-top:' . esc_attr( $padding_top ) . ( is_numeric( $padding_top ) ? 'px' : '' ) . ';'; }
         if( $margin_left ) { $style .= 'margin-left:' . esc_attr( $margin_left ) . ( is_numeric( $margin_left ) ? 'px' : '' ) . ';'; }
         if( $margin_right ) { $style .= 'margin-right:' . esc_attr( $margin_right ) . ( is_numeric( $margin_right ) ? 'px' : '' ) . ';'; }
@@ -786,13 +867,18 @@ class Playouts_Element_Column extends Playouts_Element {
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
 
         if( $overlay_enable ) {
-            $overlay = '<span class="pl-overlay" style="background-color:' . esc_attr( $overlay_bg_color ) . '"></span>';
+            $_gredient .= 'background-color:' . esc_attr( $overlay_bg_color ) . ';';
+            $_gredient .= 'opacity:' . $overlay_opacity * 0.01 . ';';
+            if( $overlay_bg_second ) {
+                $_gredient .= 'background:linear-gradient(to ' . esc_attr( $overlay_direction ) . ',' . esc_attr( $overlay_bg_color ) . ',' . esc_attr( $overlay_bg_second ) . ');';
+            }
+            $overlay = '<span class="pl-overlay" style="' . $_gredient . '"></span>';
         }
 
         return '<div class="pl-column-outer' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
             Playouts_Public::set_background( $background, $assigned_atts ).
             $overlay.
-            '<div class="pl-column">'.
+            '<div class="pl-column" style="' . $style_inside . '">'.
                 $content.
             '</div>'.
         '</div>';
@@ -869,6 +955,144 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
                 'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
                 'width'             => 25
             ),
+            'background' => array(
+                'type'              => 'select',
+				'label'             => esc_html__( 'Background', 'AAA' ),
+				'description'       => esc_html__( 'Select row background type', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'options'           => array(
+                    '' => 'None',
+                    'color' => 'Color',
+                    'image' => 'Image',
+                    'parallax' => 'Parallax',
+                    'video' => 'Video',
+                ),
+			),
+            'bg_color' => array(
+                'type'              => 'colorpicker',
+				'label'             => esc_html__( 'Background Color', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'background', 'value' => 'color' ),
+			),
+            'bg_image' => array(
+                'type'              => 'image',
+				'label'             => esc_html__( 'Background Image', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
+			),
+            'bg_image_position' => array(
+                'type'              => 'select',
+				'label'             => esc_html__( 'Background Position', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
+                'options'           => array(
+                    ''                  => 'Default',
+                    'top left'          => 'Top Left',
+                    'top center'        => 'Top Center',
+                    'top right'         => 'Top Right',
+                    'center left'       => 'Center Left',
+                    'center center'     => 'Center Center',
+                    'center right'      => 'Center Right',
+                    'bottom left'       => 'Bottom Left',
+                    'bottom center'     => 'Bottom Center',
+                    'bottom right'      => 'Bottom Right',
+                ),
+                'width'             => 50
+			),
+            'bg_image_size' => array(
+                'type'              => 'select',
+				'label'             => esc_html__( 'Background Size', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
+                'options'           => array(
+                    ''                  => 'Default',
+                    'auto'              => 'Auto',
+                    'cover'             => 'Cover',
+                    'contain'           => 'Contain',
+                ),
+                'width'             => 50
+			),
+            'bg_parallax_speed' => array(
+                'type'              => 'number_slider',
+                'label'             => esc_html__( 'Parallax Speed', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'background', 'value' => 'parallax' ),
+                'min'               => 0,
+                'max'               => 300,
+                'step'              => 10,
+                'value'             => '',
+            ),
+            'bg_video_mp4' => array(
+                'type'              => 'file',
+                'label'             => esc_html__( 'Video Mp4', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'background', 'value' => 'video' ),
+            ),
+            'bg_video_ogv' => array(
+                'type'              => 'file',
+                'label'             => esc_html__( 'Video Ogv', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'background', 'value' => 'video' ),
+            ),
+            'bg_video_webm' => array(
+                'type'              => 'file',
+                'label'             => esc_html__( 'Video Webm', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'background', 'value' => 'video' ),
+            ),
+            'bg_video_poster' => array(
+                'type'              => 'image',
+                'label'             => esc_html__( 'Video Poster', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'background', 'value' => 'video' ),
+            ),
+            'overlay_enable' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Enable Overlay', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+            ),
+            'overlay_bg_color' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Overlay Background Color', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
+                'width'             => 50
+            ),
+            'overlay_bg_second' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Overlay Second Background Color ( Optional )', 'AAA' ),
+                'description'       => esc_html__( 'For gredient background color.', 'AAA' ),
+                'value'             => '#f5f5f5',
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
+                'width'             => 50
+			),
+            'overlay_direction' => array(
+                'label'             => esc_html__( 'Overlay Gredient Direction', 'AAA' ),
+                'type'              => 'select',
+                'options'           => array(
+                    'top right'         => 'Top Right',
+                    'top'               => 'Top',
+                    'left top'          => 'Top Left',
+                    'bottom right'      => 'Bottom Right',
+                    'bottom'            => 'Bottom',
+                    'bottom left'       => 'Bottom Left',
+                    'right'             => 'Right',
+                    'left'              => 'Left',
+                ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
+            ),
+            'overlay_opacity' => array(
+                'label'             => esc_html__( 'Overlay Opacity', 'AAA' ),
+                'type'              => 'number_slider',
+                'min'               => 0,
+                'max'               => 100,
+                'step'              => 1,
+                'value'             => 50,
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
+            ),
             'animation' => array(
                 'label'             => esc_html__( 'Animation', 'AAA' ),
                 'type'              => 'select',
@@ -939,15 +1163,33 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
             'padding_right'     => '',
             'padding_bottom'    => '',
             'padding_left'      => '',
+
+            'background'        => '',
+            'bg_color'          => '',
+            'bg_image'          => '',
+            'bg_image_position' => 'center center',
+            'bg_image_size'     => 'cover',
+            'bg_parallax_speed' => 150,
+            'bg_video_mp4'      => '',
+            'bg_video_ogv'      => '',
+            'bg_video_webm'     => '',
+            'bg_video_poster'   => '',
+            'overlay_enable'    => false,
+            'overlay_bg_color'  => '',
+            'overlay_bg_second' => '',
+            'overlay_direction' => 'top right',
+            'overlay_opacity'   => 0,
+
             'animation'         => 'none',
             'animation_speed'   => 200,
             'animation_delay'   => 100,
+
             'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
         ), $atts ) );
 
-        $style = $class = $id = '';
+        $style = $class = $id = $_gredient = '';
 
         if( $text_color ) { $style .= 'color:' . esc_attr( $text_color ) . ';'; }
         if( $text_alignment ) { $style .= 'text-align:' . esc_attr( $text_alignment ) . ';'; }
@@ -964,7 +1206,7 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
 
         // column animations
-        $_anim_class = $_anim_attr = '';
+        $_anim_class = $_anim_attr = $overlay = '';
         if( $animation and $animation !== 'none' ) {
 
             $_anim_class .= ' pl-animation-stagger';
@@ -975,7 +1217,18 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
 
         }
 
+        if( $overlay_enable ) {
+            $_gredient .= 'background-color:' . esc_attr( $overlay_bg_color ) . ';';
+            $_gredient .= 'opacity:' . $overlay_opacity * 0.01 . ';';
+            if( $overlay_bg_second ) {
+                $_gredient .= 'background:linear-gradient(to ' . esc_attr( $overlay_direction ) . ',' . esc_attr( $overlay_bg_color ) . ',' . esc_attr( $overlay_bg_second ) . ');';
+            }
+            $overlay = '<span class="pl-overlay" style="' . $_gredient . '"></span>';
+        }
+
         return '<div class="pl-row-inner-outer' . $class . '"' . $id . '>'.
+            Playouts_Public::set_background( $background, $assigned_atts ).
+            $overlay.
             '<div class="pl-row-inner' . $_anim_class . '" style="' . $style . '"' . $_anim_attr . '>'.
                 $content.
             '</div>'.
@@ -1056,6 +1309,144 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
                 'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
                 'width'             => 25
             ),
+            'background' => array(
+                'type'              => 'select',
+				'label'             => esc_html__( 'Background', 'AAA' ),
+				'description'       => esc_html__( 'Select row background type', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'options'           => array(
+                    ''          => 'None',
+                    'color'     => 'Color',
+                    'image'     => 'Image',
+                    'parallax'  => 'Parallax',
+                    'video'     => 'Video',
+                )
+			),
+            'bg_color' => array(
+                'type'              => 'colorpicker',
+				'label'             => esc_html__( 'Background Color', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'background', 'value' => 'color' ),
+			),
+            'bg_image' => array(
+                'type'              => 'image',
+				'label'             => esc_html__( 'Background Image', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
+			),
+            'bg_image_position' => array(
+                'type'              => 'select',
+				'label'             => esc_html__( 'Background Position', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
+                'options'           => array(
+                    ''                  => 'Default',
+                    'top left'          => 'Top Left',
+                    'top center'        => 'Top Center',
+                    'top right'         => 'Top Right',
+                    'center left'       => 'Center Left',
+                    'center center'     => 'Center Center',
+                    'center right'      => 'Center Right',
+                    'bottom left'       => 'Bottom Left',
+                    'bottom center'     => 'Bottom Center',
+                    'bottom right'      => 'Bottom Right',
+                ),
+                'width'             => 50
+			),
+            'bg_image_size' => array(
+                'type'              => 'select',
+				'label'             => esc_html__( 'Background Size', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
+                'options'           => array(
+                    ''                  => 'Default',
+                    'auto'              => 'Auto',
+                    'cover'             => 'Cover',
+                    'contain'           => 'Contain',
+                ),
+                'width'             => 50
+			),
+            'bg_parallax_speed' => array(
+                'type'              => 'number_slider',
+                'label'             => esc_html__( 'Parallax Speed', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'background', 'value' => 'parallax' ),
+                'min'               => 0,
+                'max'               => 300,
+                'step'              => 10,
+                'value'             => '',
+            ),
+            'bg_video_mp4' => array(
+                'type'              => 'file',
+                'label'             => esc_html__( 'Video Mp4', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'background', 'value' => 'video' ),
+            ),
+            'bg_video_ogv' => array(
+                'type'              => 'file',
+                'label'             => esc_html__( 'Video Ogv', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'background', 'value' => 'video' ),
+            ),
+            'bg_video_webm' => array(
+                'type'              => 'file',
+                'label'             => esc_html__( 'Video Webm', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'background', 'value' => 'video' ),
+            ),
+            'bg_video_poster' => array(
+                'type'              => 'image',
+                'label'             => esc_html__( 'Video Poster', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'background', 'value' => 'video' ),
+            ),
+            'overlay_enable' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Enable Overlay', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+            ),
+            'overlay_bg_color' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Overlay Background Color', 'AAA' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
+                'width'             => 50
+            ),
+            'overlay_bg_second' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Overlay Second Background Color ( Optional )', 'AAA' ),
+                'description'       => esc_html__( 'For gredient background color.', 'AAA' ),
+                'value'             => '#f5f5f5',
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
+                'width'             => 50
+			),
+            'overlay_direction' => array(
+                'label'             => esc_html__( 'Overlay Gredient Direction', 'AAA' ),
+                'type'              => 'select',
+                'options'           => array(
+                    'top right'         => 'Top Right',
+                    'top'               => 'Top',
+                    'left top'          => 'Top Left',
+                    'bottom right'      => 'Bottom Right',
+                    'bottom'            => 'Bottom',
+                    'bottom left'       => 'Bottom Left',
+                    'right'             => 'Right',
+                    'left'              => 'Left',
+                ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
+            ),
+            'overlay_opacity' => array(
+                'label'             => esc_html__( 'Overlay Opacity', 'AAA' ),
+                'type'              => 'number_slider',
+                'min'               => 0,
+                'max'               => 100,
+                'step'              => 1,
+                'value'             => 50,
+                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
+            ),
             'inline_class' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'CSS Classes', 'AAA' ),
@@ -1086,14 +1477,31 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
             'padding_right'     => '',
             'padding_bottom'    => '',
             'padding_left'      => '',
+
+            'background'        => '',
+            'bg_color'          => '',
+            'bg_image'          => '',
+            'bg_image_position' => 'center center',
+            'bg_image_size'     => 'cover',
+            'bg_parallax_speed' => 150,
+            'bg_video_mp4'      => '',
+            'bg_video_ogv'      => '',
+            'bg_video_webm'     => '',
+            'bg_video_poster'   => '',
+            'overlay_enable'    => false,
+            'overlay_bg_color'  => '',
+            'overlay_bg_second' => '',
+            'overlay_direction' => 'top right',
+            'overlay_opacity'   => 0,
+
             'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
         ), $atts ) );
 
-        $style = $class = $id = '';
+        $style = $class = $id = $overlay = $_gredient = '';
 
-        $style .= 'width:' . (int) $col_width . '%;';
+        if( $col_width ) { $style .= 'width:' . (int) $col_width . '%;'; }
 
         if( $text_color ) { $style .= 'color:' . esc_attr( $text_color ) . ';'; }
         if( $text_alignment ) { $style .= 'text-align:' . esc_attr( $text_alignment ) . ';'; }
@@ -1107,7 +1515,18 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
 
+        if( $overlay_enable ) {
+            $_gredient .= 'background-color:' . esc_attr( $overlay_bg_color ) . ';';
+            $_gredient .= 'opacity:' . $overlay_opacity * 0.01 . ';';
+            if( $overlay_bg_second ) {
+                $_gredient .= 'background:linear-gradient(to ' . esc_attr( $overlay_direction ) . ',' . esc_attr( $overlay_bg_color ) . ',' . esc_attr( $overlay_bg_second ) . ');';
+            }
+            $overlay = '<span class="pl-overlay" style="' . $_gredient . '"></span>';
+        }
+
         return '<div class="pl-column-inner-outer' . $class . '" style="' . $style . '"' . $id . '>'.
+            Playouts_Public::set_background( $background, $assigned_atts ).
+            $overlay.
             '<div class="pl-column-inner">'.
                 $content.
             '</div>'.
@@ -1137,7 +1556,7 @@ class Playouts_Element_Text extends Playouts_Element {
                 'type'              => 'select',
 				'label'             => esc_html__( 'Text Alignment', 'AAA' ),
                 'options'           => array(
-                    'inherit'           => 'Inherit',
+                    ''                  => 'Inherit',
                     'left'              => 'Left',
                     'center'            => 'Center',
                     'right'             => 'Right',
@@ -1174,7 +1593,7 @@ class Playouts_Element_Text extends Playouts_Element {
 
         extract( $assigned_atts = shortcode_atts( array(
             'text_color'        => '',
-            'text_alignment'    => '',
+            'text_alignment'    => 'inherit',
             'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
@@ -1643,6 +2062,18 @@ class Playouts_Element_Progress_Bars extends Playouts_Repeater_Element {
                 'depends'           => array( 'element' => 'enable_animation', 'value' => '1' ),
                 'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
             ),
+            'animation_delay' => array(
+                'label'             => esc_html__( 'Animation Delay', 'AAA' ),
+                'description'       => esc_html__( 'Animation delay between bars in milliseconds.', 'AAA' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'milliseconds.',
+                'min'               => 10,
+                'max'               => 300,
+                'step'              => 10,
+                'value'             => 80,
+                'depends'           => array( 'element' => 'enable_animation', 'value' => '1' ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+            ),
             'inline_class' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'CSS Classes', 'AAA' ),
@@ -1673,6 +2104,7 @@ class Playouts_Element_Progress_Bars extends Playouts_Repeater_Element {
         extract( $assigned_atts = shortcode_atts( array(
             'enable_animation'  => false,
             'animation_speed'   => 0,
+            'animation_delay'   => 0,
             'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
@@ -1684,9 +2116,10 @@ class Playouts_Element_Progress_Bars extends Playouts_Repeater_Element {
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
 
-        if( $enable_animation and $animation_speed ) {
+        if( $enable_animation and $animation_speed and $animation_delay ) {
             $class .= ' pl-is-animated';
-            $attr .= ' data-animation-delay="' . (int) $animation_speed * 0.001 . '"';
+            $attr .= ' data-animation-speed="' . (int) $animation_speed * 0.001 . '"';
+            $attr .= ' data-animation-delay="' . (int) $animation_delay * 0.001 . '"';
         }
 
         if( ! empty( $content ) ) {
@@ -1711,6 +2144,7 @@ class Playouts_Element_Progress_Bars_Item extends Playouts_Repeater_Item_Element
             'title' => array(
 				'label'              => esc_html__( 'Title', 'AAA' ),
 				'type'               => 'textfield',
+				'value'              => esc_html__( 'Some title goes here', 'AAA' ),
 			),
             'value' => array(
 				'label'              => esc_html__( 'Value ( Optional )', 'AAA' ),
@@ -1731,6 +2165,12 @@ class Playouts_Element_Progress_Bars_Item extends Playouts_Repeater_Item_Element
                 'type'              => 'colorpicker',
                 'width'             => 50
             ),
+            'bar_color_secondary' => array(
+                'label'             => esc_html__( 'Bar Secondary Color ( Optional )', 'AAA' ),
+                'description'       => esc_html__( 'For gredient background color.', 'AAA' ),
+                'type'              => 'colorpicker',
+                'width'             => 50
+            ),
             'bar_bg_color' => array(
                 'label'             => esc_html__( 'Bar Background Color', 'AAA' ),
                 'type'              => 'colorpicker',
@@ -1743,12 +2183,6 @@ class Playouts_Element_Progress_Bars_Item extends Playouts_Repeater_Item_Element
             ),
             'counter_color' => array(
                 'label'             => esc_html__( 'Counter Text Color', 'AAA' ),
-                'type'              => 'colorpicker',
-                'width'             => 50
-            ),
-            'bar_color_secondary' => array(
-                'label'             => esc_html__( 'Bar Secondary Color ( Optional )', 'AAA' ),
-                'description'       => esc_html__( 'For gredient background color.', 'AAA' ),
                 'type'              => 'colorpicker',
                 'width'             => 50
             ),
@@ -1765,7 +2199,7 @@ class Playouts_Element_Progress_Bars_Item extends Playouts_Repeater_Item_Element
                     'left'              => 'Left',
                     'left top'      => 'Top Left',
                 ),
-                'value'             => 'bottom right',
+                'value'             => 'right',
                 'width'             => 50
             ),
             'padding_top' => array(
@@ -1818,7 +2252,7 @@ class Playouts_Element_Progress_Bars_Item extends Playouts_Repeater_Item_Element
             'inline_css'        => '',
         ), $atts ) );
 
-        $style = $class = $id = '';
+        $style = $class = $id = $_bg = '';
 
         if( $padding_top ) { $style .= 'padding-top:' . esc_attr( $padding_top ) . ( is_numeric( $padding_top ) ? 'px' : '' ) . ';'; }
         if( $padding_bottom ) { $style .= 'padding-bottom:' . esc_attr( $padding_bottom ) . ( is_numeric( $padding_bottom ) ? 'px' : '' ) . ';'; }
@@ -5364,6 +5798,11 @@ class Playouts_Element_Icon extends Playouts_Element {
             'icon' => array(
                 'label'             => esc_html__( 'Icon', 'AAA' ),
                 'type'              => 'icon',
+                'value'             => 'bwpb-7s-album',
+            ),
+            'text' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Text ( Optional )', 'AAA' ),
             ),
             'font_size' => array(
                 'label'             => esc_html__( 'Font Size', 'AAA' ),
@@ -5428,6 +5867,7 @@ class Playouts_Element_Icon extends Playouts_Element {
 
         extract( $assigned_atts = shortcode_atts( array(
             'icon'              => '',
+            'text'              => '',
             'font_size'         => 60,
             'bold'              => false,
             'color_main'        => '',
@@ -5447,7 +5887,7 @@ class Playouts_Element_Icon extends Playouts_Element {
         $style .= $bold ? 'font-weight:800;' : '';
         $style .= ! empty( $font_size ) ? 'font-size:' . (int) $font_size . 'px;' : '';
 
-        $_gredient .= 'color:' . esc_attr( $color_main ) . ';';
+        $_gredient = 'color:' . esc_attr( $color_main ) . ';';
         if( $color_secondary ) {
             $_gredient .= 'background:linear-gradient(to ' . esc_attr( $direction ) . ',' . esc_attr( $color_main ) . ',' . esc_attr( $color_secondary ) . ');';
             $_gredient .= 'background-clip:text;-webkit-background-clip:text;text-fill-color:transparent;-webkit-text-fill-color:transparent;';
@@ -5455,6 +5895,7 @@ class Playouts_Element_Icon extends Playouts_Element {
 
         return '<div class="pl-icon' . $class . '" style="' . $style . '"' . $id . '>'.
             '<i class="' . esc_attr( $icon ) . '" style="' . $_gredient . '"></i>'.
+            ( ! empty( $text ) ? '<p>' . esc_html( $text ) . '</p>' : '' ) .
         '</div>';
 
     }

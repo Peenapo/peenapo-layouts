@@ -20,7 +20,7 @@ var Playouts = {
         });
 
         // overlay click, hide self
-        $('.pl-overlay').on('click', Playouts.overlay.hide);
+        $('.pl-overlay-main').on('click', Playouts.overlay.hide);
 
         // video modal
         $('.pl-video-modal').on('click', Playouts.elements.video_modal.expand);
@@ -35,13 +35,13 @@ var Playouts = {
 
         show: function() {
 
-            TweenLite.to( $('#pl-overlay'), .3, { opacity: .8, visibility: 'visible' });
+            TweenLite.to( $('#pl-overlay-main'), .3, { opacity: .8, visibility: 'visible' });
 
         }
 
         ,hide: function() {
 
-            TweenMax.to( $('#pl-overlay'), .3, { opacity: 0, onComplete: function() {
+            TweenMax.to( $('#pl-overlay-main'), .3, { opacity: 0, onComplete: function() {
                 this.target.css('visibility', 'hidden');
             }});
 
