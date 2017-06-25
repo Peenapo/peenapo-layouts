@@ -474,7 +474,7 @@
 
 
 /* icon */
-.pl-icon {font-size:60px;color:#111;}
+.pl-icon {font-size:60px;color:inherit;}
 .pl-icon i {display:inline-block;font-size:inherit;color:inherit;font-weight:inherit;vertical-align:middle;min-width:1em;text-align:center;}
 .pl-icon p {display:inline-block;padding-left:20px;margin:0;font-size:15px;vertical-align:middle;}
 

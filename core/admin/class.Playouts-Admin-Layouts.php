@@ -175,3 +175,22 @@ class Playouts_Layout_Heading_video extends Playouts_Admin_Layout {
     }
 }
 new Playouts_Layout_Heading_video;
+
+
+
+class Playouts_Layout_Split extends Playouts_Admin_Layout {
+
+    function init() {
+
+        $this->id = 'bw_layout_split';
+        $this->name = esc_html__( 'Split Page', 'AAA' );
+        $this->layout_view = 'row';
+        $this->image = PL_ASSEST . 'admin/images/__layouts/split.png';
+
+    }
+
+    static function output() {
+        return '[bw_row row_layout="full" background="color" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" enable_static_height="1" static_height="100"][bw_column col_width="50" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_row_inner text_alignment="inherit" enable_static_height="1" static_height="50" vertical_alignment="center" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" animation="none" animation_speed="200" animation_delay="100"][bw_column_inner col_width="50" text_alignment="inherit" background="image" bg_color="#e0e0e0" bg_image="http://localhost/pp/demo/wp-content/uploads/2017/03/francisco-moreno-157438.jpg" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][/bw_column_inner][bw_column_inner col_width="50" text_alignment="inherit" padding_right="10%" padding_left="10%" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][bw_icon icon="bwpb-7s-umbrella" font_size="60" direction="bottom right"][/bw_icon][bw_text inline_css="margin-top:30px;"]<p>Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed.</p>[/bw_text][bw_button label="Learn more" style="medium" border_radius="3" transform_top="1" shadow="1" margin_top="35"][/bw_button][/bw_column_inner][/bw_row_inner][bw_row_inner text_color="#ffffff" text_alignment="inherit" enable_static_height="1" static_height="50" vertical_alignment="center" background="color" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" animation="none" animation_speed="200" animation_delay="100"][bw_column_inner col_width="50" text_alignment="inherit" padding_right="10%" padding_left="10%" background="color" bg_color="#6925e8" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][bw_icon icon="bwpb-7s-science" font_size="60" direction="bottom right"][/bw_icon][bw_text inline_css="margin-top:30px;"]<p>Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed.</p>[/bw_text][bw_button label="Learn more" style="medium" border_radius="3" transform_top="1" shadow="1" margin_top="35"][/bw_button][/bw_column_inner][bw_column_inner col_width="50" text_alignment="inherit" background="image" bg_image="http://localhost/pp/demo/wp-content/uploads/2017/03/neslihan-gunaydin-3493.jpg" bg_image_position="center center" bg_image_size="cover" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][/bw_column_inner][/bw_row_inner][/bw_column][bw_column col_width="50" background="image" bg_image="http://localhost/pp/demo/wp-content/uploads/2017/03/mike-dennler-173199.jpg" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][/bw_column][/bw_row]';
+    }
+}
+new Playouts_Layout_Split;
