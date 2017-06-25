@@ -852,9 +852,11 @@ class Playouts_Element_Column extends Playouts_Element {
 
         if( $text_color ) { $style .= 'color:' . esc_attr( $text_color ) . ';'; }
         if( $text_alignment ) { $style .= 'text-align:' . esc_attr( $text_alignment ) . ';'; }
-        if( $column_alignment ) { $style_inside .= 'align-self:' . esc_attr( $column_alignment ) . ';'; }
+
         //if( $content_alignment ) { $style .= 'justify-content:' . esc_attr( $content_alignment ) . ';'; }
         if( Playouts_Element_Row::$vertical_alignment ) { $style .= 'justify-content:' . esc_attr( Playouts_Element_Row::$vertical_alignment ) . ';'; }
+        if( $column_alignment ) { $style_inside .= 'align-self:' . esc_attr( $column_alignment ) . ';'; }
+
         if( $padding_top ) { $style .= 'padding-top:' . esc_attr( $padding_top ) . ( is_numeric( $padding_top ) ? 'px' : '' ) . ';'; }
         if( $margin_left ) { $style .= 'margin-left:' . esc_attr( $margin_left ) . ( is_numeric( $margin_left ) ? 'px' : '' ) . ';'; }
         if( $margin_right ) { $style .= 'margin-right:' . esc_attr( $margin_right ) . ( is_numeric( $margin_right ) ? 'px' : '' ) . ';'; }
@@ -889,6 +891,8 @@ new Playouts_Element_Column;
 
 class Playouts_Element_Row_Inner extends Playouts_Element {
 
+    static $vertical_alignment;
+
     function init() {
 
         $this->module = 'bw_row_inner';
@@ -921,11 +925,26 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
                 'value'             => '',
                 'width'             => 50
 			),
+            'enable_static_height' => array(
+                'label'             => esc_html__( 'Set Static Row Height', 'AAA' ),
+                'type'              => 'true_false',
+			),
+            'static_height' => array(
+                'type'              => 'number_slider',
+                'label'             => esc_html__( 'Static Height in Percentage', 'AAA' ),
+                'description'       => esc_html__( 'Row height, 100% = full window height', 'AAA' ),
+                'depends'           => array( 'element' => 'enable_static_height', 'value' => '1' ),
+                'append_after'      => '%',
+                'min'               => 30,
+                'max'               => 100,
+                'step'              => 1,
+                'value'             => '',
+            ),
             'vertical_alignment' => array(
                 'type'              => 'select',
 				'label'             => esc_html__( 'Vertical Alignment', 'AAA' ),
                 'options'           => array(
-                    'stretch'               => 'Stretch',
+                    ''                      => 'None',
                     'flex-start'            => 'Top',
                     'center'                => 'Middle',
                     'flex-end'              => 'Bottom',
@@ -1150,13 +1169,21 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
 
     }
 
+    static function construct( $atts = array(), $content = null ) {
+
+        self::$vertical_alignment = ( isset( $atts['vertical_alignment'] ) and $atts['vertical_alignment'] ) ? esc_attr( $atts['vertical_alignment'] ) : '';
+
+    }
+
     static function output( $atts = array(), $content = null ) {
 
         extract( $assigned_atts = shortcode_atts( array(
             'is_hidden'         => false,
             'text_color'        => '',
             'text_alignment'    => '',
-            'vertical_alignment' => 'stretch',
+            'enable_static_height' => false,
+            'static_height'     => '30',
+            'vertical_alignment' => '',
             'margin_top'        => '',
             'margin_bottom'     => '',
             'padding_top'       => '',
@@ -1191,9 +1218,10 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
 
         $style = $class = $id = $_gredient = '';
 
+        if( $enable_static_height ) { $style .= 'height:' . (int) $static_height . 'vh;'; }
         if( $text_color ) { $style .= 'color:' . esc_attr( $text_color ) . ';'; }
         if( $text_alignment ) { $style .= 'text-align:' . esc_attr( $text_alignment ) . ';'; }
-        if( $vertical_alignment ) { $style .= 'align-items:' . esc_attr( $vertical_alignment ) . ';'; }
+        //if( $vertical_alignment ) { $style .= 'align-items:' . esc_attr( $vertical_alignment ) . ';'; }
         if( $margin_top ) { $style .= 'margin-top:' . esc_attr( $margin_top ) . ( is_numeric( $margin_top ) ? 'px' : '' ) . ';'; }
         if( $margin_bottom ) { $style .= 'margin-bottom:' . esc_attr( $margin_bottom ) . ( is_numeric( $margin_bottom ) ? 'px' : '' ) . ';'; }
         if( $padding_top ) { $style .= 'padding-top:' . esc_attr( $padding_top ) . ( is_numeric( $padding_top ) ? 'px' : '' ) . ';'; }
@@ -1274,16 +1302,15 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
                 'value'             => '',
                 'width'             => 50
 			),
-            'vertical_alignment' => array(
+            'column_alignment' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Vertical Alignment', 'AAA' ),
+				'label'             => esc_html__( 'Column Alignment', 'AAA' ),
                 'options'           => array(
-                    'inherit'           => 'Inherit',
-                    'top'               => 'Top',
-                    'middle'            => 'Middle',
-                    'bottom'            => 'Bottom',
+                    ''                  => 'Auto',
+                    'flex-start'        => 'Top',
+                    'center'            => 'Middle',
+                    'flex-end'          => 'Bottom',
                 ),
-                'value'             => '',
 			),
             'padding_top' => array(
                 'type'              => 'textfield',
@@ -1472,7 +1499,7 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
             'col_width'         => '',
             'text_color'        => '',
             'text_alignment'    => '',
-            'vertical_alignment' => 'inherit',
+            'column_alignment' => '',
             'padding_top'       => '',
             'padding_right'     => '',
             'padding_bottom'    => '',
@@ -1499,13 +1526,17 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
             'inline_css'        => '',
         ), $atts ) );
 
-        $style = $class = $id = $overlay = $_gredient = '';
+        $style = $class = $id = $overlay = $_gredient = $style_inside = '';
 
         if( $col_width ) { $style .= 'width:' . (int) $col_width . '%;'; }
 
         if( $text_color ) { $style .= 'color:' . esc_attr( $text_color ) . ';'; }
         if( $text_alignment ) { $style .= 'text-align:' . esc_attr( $text_alignment ) . ';'; }
-        if( $vertical_alignment ) { $style .= 'vertical-align:' . esc_attr( $vertical_alignment ) . ';'; }
+
+        //if( $vertical_alignment ) { $style .= 'vertical-align:' . esc_attr( $vertical_alignment ) . ';'; }
+        if( Playouts_Element_Row_Inner::$vertical_alignment ) { $style .= 'justify-content:' . esc_attr( Playouts_Element_Row_Inner::$vertical_alignment ) . ';'; }
+        if( $column_alignment ) { $style_inside .= 'align-self:' . esc_attr( $column_alignment ) . ';'; }
+
         if( $padding_top ) { $style .= 'padding-top:' . esc_attr( $padding_top ) . ( is_numeric( $padding_top ) ? 'px' : '' ) . ';'; }
         if( $padding_right ) { $style .= 'padding-right:' . esc_attr( $padding_right ) . ( is_numeric( $padding_right ) ? 'px' : '' ) . ';'; }
         if( $padding_bottom ) { $style .= 'padding-bottom:' . esc_attr( $padding_bottom ) . ( is_numeric( $padding_bottom ) ? 'px' : '' ) . ';'; }
@@ -1527,7 +1558,7 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
         return '<div class="pl-column-inner-outer' . $class . '" style="' . $style . '"' . $id . '>'.
             Playouts_Public::set_background( $background, $assigned_atts ).
             $overlay.
-            '<div class="pl-column-inner">'.
+            '<div class="pl-column-inner" style="' . $style_inside . '">'.
                 $content.
             '</div>'.
         '</div>';
@@ -1568,7 +1599,7 @@ class Playouts_Element_Text extends Playouts_Element {
 				'label'             => esc_html__( 'Content', 'AAA' ),
 				'type'              => 'editor',
 				'is_content'        => true,
-                'value'             => 'Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.',
+                'value'             => '<p>Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.</p>',
 			),
             'inline_class' => array(
                 'type'              => 'textfield',

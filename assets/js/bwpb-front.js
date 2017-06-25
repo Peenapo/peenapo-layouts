@@ -20,7 +20,7 @@ var Playouts = {
         });
 
         // overlay click, hide self
-        $('.pl-overlay-main').on('click', Playouts.overlay.hide);
+        $('.pl-overlay-main, .pl-overlay-container').on('click', Playouts.overlay.hide);
 
         // video modal
         $('.pl-video-modal').on('click', Playouts.elements.video_modal.expand);

@@ -156,3 +156,22 @@ class Playouts_Layout_About_2 extends Playouts_Admin_Layout {
     }
 }
 new Playouts_Layout_About_2;
+
+
+
+class Playouts_Layout_Heading_video extends Playouts_Admin_Layout {
+
+    function init() {
+
+        $this->id = 'bw_layout_heading_video';
+        $this->name = esc_html__( 'Heading Text with Video Modal', 'AAA' );
+        $this->layout_view = 'row';
+        $this->image = PL_ASSEST . 'admin/images/__layouts/heading_video.png';
+
+    }
+
+    static function output() {
+        return '[bw_row row_layout="full" background="image" bg_image="http://localhost/pp/demo/wp-content/uploads/2017/03/linas-bam-223729.jpg" overlay_enable="1" overlay_bg_color="#ffffff" overlay_direction="top right" overlay_opacity="90" text_color="#0c0c0c" text_alignment="center" enable_static_height="1" static_height="100" vertical_alignment="center"][bw_column overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_heading title="Awesome WordPress Plugin for Free" h_tag="h2" text_alignment="inherit" font_size_heading="62" font_size_content="15" font_size_top="15" bold_text="1" speed="450" delay="100"]<p>Mauris auctor sapien a quam consectetur rutrum. Nullam bibendum enim et nisi pretium venenatis vitae egestas urna. Vestibulum nec accumsan nulla, id tristique diam</p>[/bw_heading][bw_video_modal size="medium" size_button="medium" autoplay="1" color="#0a0a0a" bg_color="#ffffff" text="Watch the video" inline_css="margin-top:20px;"]https://www.youtube.com/watch?v=bSfshpw3MRo[/bw_video_modal][/bw_column][/bw_row]';
+    }
+}
+new Playouts_Layout_Heading_video;
