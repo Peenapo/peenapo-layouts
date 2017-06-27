@@ -194,3 +194,22 @@ class Playouts_Layout_Split extends Playouts_Admin_Layout {
     }
 }
 new Playouts_Layout_Split;
+
+
+
+class Playouts_Layout_Welcome extends Playouts_Admin_Layout {
+
+    function init() {
+
+        $this->id = 'bw_layout_welcome';
+        $this->name = esc_html__( 'Full-Height Welcome Text', 'AAA' );
+        $this->layout_view = 'row';
+        $this->image = PL_ASSEST . 'admin/images/__layouts/welcome.png';
+
+    }
+
+    static function output() {
+        return '[bw_row row_layout="standard" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" text_alignment="center" enable_static_height="1" static_height="100" vertical_alignment="center"][bw_column overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_row_inner text_alignment="inherit" padding_bottom="10" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" animation="bottom" animation_speed="400"][bw_column_inner overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_text]<p>Welcome</p>[/bw_text][/bw_column_inner][/bw_row_inner][bw_animated_text h_tag="h4" text_alignment="inherit" font_size="50" line_height="160" bold_text="1" speed="450" delay="100"][bw_animated_text_item text="Lorem ipsum dolor sit amet"][/bw_animated_text_item][bw_animated_text_item text="Sed imperdiet elementum nisivel"][/bw_animated_text_item][/bw_animated_text][bw_row_inner text_alignment="inherit" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" animation="bottom" animation_speed="400" animation_delay="50"][bw_column_inner overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_button label="Show me more please" link="#" style="large" bg_color_second="#ea6035" direction="bottom right" border_radius="60" transform_top="1" shadow="1" margin_top="30"][/bw_button][/bw_column_inner][/bw_row_inner][/bw_column][/bw_row]';
+    }
+}
+new Playouts_Layout_Welcome;

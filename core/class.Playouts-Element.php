@@ -447,7 +447,7 @@ class Playouts_Element_Row extends Playouts_Element {
                 'type'              => 'number_slider',
                 'append_after'      => 'milliseconds.',
                 'min'               => 0,
-                'max'               => 500,
+                'max'               => 1500,
                 'step'              => 50,
                 'depends'           => array( 'element' => 'animation', 'value' => array( 'scale', 'top', 'right', 'bottom', 'left' ) ),
                 'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
@@ -1143,8 +1143,8 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
                 'description'       => esc_html__( 'Item animation speed in milliseconds.', 'AAA' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'milliseconds.',
-                'min'               => 50,
-                'max'               => 500,
+                'min'               => 0,
+                'max'               => 1500,
                 'step'              => 50,
                 'value'             => 100,
                 'depends'           => array( 'element' => 'animation', 'value' => array( 'scale', 'top', 'right', 'bottom', 'left' ) ),
@@ -1209,7 +1209,7 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
 
             'animation'         => 'none',
             'animation_speed'   => 200,
-            'animation_delay'   => 100,
+            'animation_delay'   => 0,
 
             'inline_class'      => '',
             'inline_id'         => '',
@@ -1333,6 +1333,30 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
             'padding_left' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'Padding Left', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'width'             => 25
+            ),
+            'margin_top' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Margin Top', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'width'             => 25
+            ),
+            'margin_right' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Margin Right', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'width'             => 25
+            ),
+            'margin_bottom' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Margin Bottom', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'width'             => 25
+            ),
+            'margin_left' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Margin Left', 'AAA' ),
                 'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
                 'width'             => 25
             ),
@@ -1504,6 +1528,11 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
             'padding_right'     => '',
             'padding_bottom'    => '',
             'padding_left'      => '',
+            'column_alignment' => '',
+            'margin_top'       => '',
+            'margin_right'     => '',
+            'margin_bottom'    => '',
+            'margin_left'      => '',
 
             'background'        => '',
             'bg_color'          => '',
@@ -1541,6 +1570,11 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
         if( $padding_right ) { $style .= 'padding-right:' . esc_attr( $padding_right ) . ( is_numeric( $padding_right ) ? 'px' : '' ) . ';'; }
         if( $padding_bottom ) { $style .= 'padding-bottom:' . esc_attr( $padding_bottom ) . ( is_numeric( $padding_bottom ) ? 'px' : '' ) . ';'; }
         if( $padding_left ) { $style .= 'padding-left:' . esc_attr( $padding_left ) . ( is_numeric( $padding_left ) ? 'px' : '' ) . ';'; }
+
+        if( $margin_top ) { $style .= 'margin-top:' . esc_attr( $margin_top ) . ( is_numeric( $margin_top ) ? 'px' : '' ) . ';'; }
+        if( $margin_right ) { $style .= 'margin-right:' . esc_attr( $margin_right ) . ( is_numeric( $margin_right ) ? 'px' : '' ) . ';'; }
+        if( $margin_bottom ) { $style .= 'margin-bottom:' . esc_attr( $margin_bottom ) . ( is_numeric( $margin_bottom ) ? 'px' : '' ) . ';'; }
+        if( $margin_left ) { $style .= 'margin-left:' . esc_attr( $margin_left ) . ( is_numeric( $margin_left ) ? 'px' : '' ) . ';'; }
 
         $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
@@ -2356,6 +2390,28 @@ class Playouts_Element_Button extends Playouts_Element {
             'bg_color' => array(
                 'label'             => esc_html__( 'Background Color', 'AAA' ),
                 'type'              => 'colorpicker',
+                'width'             => 50
+            ),
+            'bg_color_second' => array(
+                'label'             => esc_html__( 'Second Background Color ( Optional )', 'AAA' ),
+                'description'       => esc_html__( 'For gredient background color.', 'AAA' ),
+                'type'              => 'colorpicker',
+                'width'             => 50
+            ),
+            'direction' => array(
+                'label'             => esc_html__( 'Gredient Direction', 'AAA' ),
+                'type'              => 'select',
+                'options'           => array(
+                    'top'               => 'Top',
+                    'top right'         => 'Top Right',
+                    'right'             => 'Right',
+                    'bottom right'      => 'Bottom Right',
+                    'bottom'            => 'Bottom',
+                    'bottom left'       => 'Bottom Left',
+                    'left'              => 'Left',
+                    'left top'          => 'Top Left',
+                ),
+                'value'             => 'bottom right',
             ),
             'text_color' => array(
                 'label'             => esc_html__( 'Text Color', 'AAA' ),
@@ -2444,6 +2500,8 @@ class Playouts_Element_Button extends Playouts_Element {
             'style'             => 'medium',
             'bold'              => false,
             'bg_color'          => '#f93d66',
+            'bg_color_second'   => '',
+            'direction'         => 'bottom right',
             'text_color'        => '',
             'border_radius'     => 0,
             'transform_top'     => false,
@@ -2459,7 +2517,7 @@ class Playouts_Element_Button extends Playouts_Element {
             'inline_css'        => '',
         ), $atts ) );
 
-        $_style = $class = $id = $attr = '';
+        $_style = $class = $id = $attr = $_gredient = '';
 
         if( $margin_top ) { $_style .= 'margin-top:' . esc_attr( $margin_top ) . ( is_numeric( $margin_top ) ? 'px' : '' ) . ';'; }
         if( $margin_right ) { $_style .= 'margin-right:' . esc_attr( $margin_right ) . ( is_numeric( $margin_right ) ? 'px' : '' ) . ';'; }
@@ -2473,7 +2531,6 @@ class Playouts_Element_Button extends Playouts_Element {
 
         $_style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
         $_style .= ! empty( $border_radius ) ? 'border-radius:' . (int) $border_radius . 'px;' : '';
-        $_style .= ! empty( $bg_color ) ? 'background-color:' . esc_attr( $bg_color ) . ';' : '';
         $_style .= ! empty( $text_color ) ? 'color:' . esc_attr( $text_color ) . ';' : '';
         $_style .= $bold ? 'font-weight:bold;' : '';
 
@@ -2483,7 +2540,10 @@ class Playouts_Element_Button extends Playouts_Element {
         $shadow_color = $hover_bg_color ? $hover_bg_color : $bg_color;
         $attr .= $shadow ? ' data-hover-shadow-override="' . esc_attr( $shadow_color ) . '"' : '';
 
-        return '<a href="' . esc_url( $link ) . '" class="pl-button' . $class . '" style="' . $_style . '"' . $id . $attr . '>'.
+        $_gredient .= 'background-color:' . esc_attr( $bg_color ) . ';';
+        $_gredient .= 'background:linear-gradient(to ' . esc_attr( $direction ) . ',' . esc_attr( $bg_color ) . ',' . esc_attr( $bg_color_second ) . ');';
+
+        return '<a href="' . esc_url( $link ) . '" class="pl-button' . $class . '" style="' . $_style . $_gredient . '"' . $id . $attr . '>'.
             esc_attr( $label ).
         '</a>';
 
