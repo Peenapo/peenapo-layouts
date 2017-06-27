@@ -49,7 +49,7 @@ class Playouts_Public {
         self::$modules = Playouts_Element::get_modules();
 
         # setup some options
-        #add_action( 'get_header', array( 'Playouts_Public', 'setup_header' ) );
+        add_action( 'get_header', array( 'Playouts_Public', 'setup_header' ) );
         # enqueue scripts
         add_action( 'wp_enqueue_scripts', array( 'Playouts_Public', 'enqueue_scripts' ) );
         # set custom css
@@ -275,8 +275,8 @@ class Playouts_Public {
                     break;
             }
 
-            return '<div class="bw-background-outer">'.
-                '<div class="bw-background bw-row-background-' . esc_attr( $background ) . $class . '" style="' . $style . '"' . $data_attr . '>' . $inner . '</div>'.
+            return '<div class="pl-background-outer">'.
+                '<div class="pl-background pl-background-' . esc_attr( $background ) . $class . '" style="' . $style . '"' . $data_attr . '>' . $inner . '</div>'.
             '</div>';
 
         }

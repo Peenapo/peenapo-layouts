@@ -305,14 +305,14 @@ class Playouts_Element_Row extends Playouts_Element {
             'overlay_bg_second' => array(
                 'type'              => 'colorpicker',
                 'label'             => esc_html__( 'Overlay Second Background Color ( Optional )', 'AAA' ),
-                'description'       => esc_html__( 'For gredient background color.', 'AAA' ),
+                'description'       => esc_html__( 'For gradient background color.', 'AAA' ),
                 'value'             => '#f5f5f5',
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
                 'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
                 'width'             => 50
 			),
             'overlay_direction' => array(
-                'label'             => esc_html__( 'Overlay Gredient Direction', 'AAA' ),
+                'label'             => esc_html__( 'Overlay Gradient Direction', 'AAA' ),
                 'type'              => 'select',
                 'options'           => array(
                     'top right'         => 'Top Right',
@@ -337,12 +337,17 @@ class Playouts_Element_Row extends Playouts_Element {
                 'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
             ),
-            'text_color' => array(
-                'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Text Color', 'AAA' ),
-                'value'             => '',
+            'vertical_alignment' => array(
+                'type'              => 'select',
+				'label'             => esc_html__( 'Vertical Alignment', 'AAA' ),
+                'options'           => array(
+                    ''                      => 'None',
+                    'flex-start'            => 'Top',
+                    'center'                => 'Middle',
+                    'flex-end'              => 'Bottom',
+                ),
                 'width'             => 50
-            ),
+			),
             'text_alignment' => array(
                 'type'              => 'select',
 				'label'             => esc_html__( 'Text Alignment', 'AAA' ),
@@ -357,7 +362,7 @@ class Playouts_Element_Row extends Playouts_Element {
 			),
             'enable_static_height' => array(
                 'label'             => esc_html__( 'Set Static Row Height', 'AAA' ),
-                'type'              => 'true_false',
+                'type'              => 'true_false'
 			),
             'static_height' => array(
                 'type'              => 'number_slider',
@@ -370,16 +375,11 @@ class Playouts_Element_Row extends Playouts_Element {
                 'step'              => 1,
                 'value'             => '',
             ),
-            'vertical_alignment' => array(
-                'type'              => 'select',
-				'label'             => esc_html__( 'Vertical Alignment', 'AAA' ),
-                'options'           => array(
-                    ''                      => 'None',
-                    'flex-start'            => 'Top',
-                    'center'                => 'Middle',
-                    'flex-end'              => 'Bottom',
-                ),
-			),
+            'text_color' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Text Color', 'AAA' ),
+                'value'             => ''
+            ),
             'margin_top' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'Margin Top', 'AAA' ),
@@ -522,7 +522,7 @@ class Playouts_Element_Row extends Playouts_Element {
 
         if( $is_hidden ) { return ''; }
 
-        $style = $class = $id = $overlay = $_gredient = '';
+        $style = $class = $id = $overlay = $_gradient = '';
 
         if( $enable_static_height ) { $style .= 'height:' . (int) $static_height . 'vh;'; }
         if( $text_color ) { $style .= 'color:' . esc_attr( $text_color ) . ';'; }
@@ -540,12 +540,12 @@ class Playouts_Element_Row extends Playouts_Element {
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
 
         if( $overlay_enable ) {
-            $_gredient .= 'background-color:' . esc_attr( $overlay_bg_color ) . ';';
-            $_gredient .= 'opacity:' . $overlay_opacity * 0.01 . ';';
+            $_gradient .= 'background-color:' . esc_attr( $overlay_bg_color ) . ';';
+            $_gradient .= 'opacity:' . $overlay_opacity * 0.01 . ';';
             if( $overlay_bg_second ) {
-                $_gredient .= 'background:linear-gradient(to ' . esc_attr( $overlay_direction ) . ',' . esc_attr( $overlay_bg_color ) . ',' . esc_attr( $overlay_bg_second ) . ');';
+                $_gradient .= 'background:linear-gradient(to ' . esc_attr( $overlay_direction ) . ',' . esc_attr( $overlay_bg_color ) . ',' . esc_attr( $overlay_bg_second ) . ');';
             }
-            $overlay = '<span class="pl-overlay" style="' . $_gredient . '"></span>';
+            $overlay = '<span class="pl-overlay" style="' . $_gradient . '"></span>';
         }
 
         // column animations
@@ -696,14 +696,14 @@ class Playouts_Element_Column extends Playouts_Element {
             'overlay_bg_second' => array(
                 'type'              => 'colorpicker',
                 'label'             => esc_html__( 'Overlay Second Background Color ( Optional )', 'AAA' ),
-                'description'       => esc_html__( 'For gredient background color.', 'AAA' ),
+                'description'       => esc_html__( 'For gradient background color.', 'AAA' ),
                 'value'             => '#f5f5f5',
                 'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
                 'width'             => 50
 			),
             'overlay_direction' => array(
-                'label'             => esc_html__( 'Overlay Gredient Direction', 'AAA' ),
+                'label'             => esc_html__( 'Overlay Gradient Direction', 'AAA' ),
                 'type'              => 'select',
                 'options'           => array(
                     'top right'         => 'Top Right',
@@ -846,7 +846,7 @@ class Playouts_Element_Column extends Playouts_Element {
             'inline_css'        => '',
         ), $atts ) );
 
-        $style = $style_inside = $class = $id = $overlay = $attr = $_gredient = '';
+        $style = $style_inside = $class = $id = $overlay = $attr = $_gradient = '';
 
         if( $col_width ) { $style .= 'width:' . (int) $col_width . '%;'; }
 
@@ -869,12 +869,12 @@ class Playouts_Element_Column extends Playouts_Element {
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
 
         if( $overlay_enable ) {
-            $_gredient .= 'background-color:' . esc_attr( $overlay_bg_color ) . ';';
-            $_gredient .= 'opacity:' . $overlay_opacity * 0.01 . ';';
+            $_gradient .= 'background-color:' . esc_attr( $overlay_bg_color ) . ';';
+            $_gradient .= 'opacity:' . $overlay_opacity * 0.01 . ';';
             if( $overlay_bg_second ) {
-                $_gredient .= 'background:linear-gradient(to ' . esc_attr( $overlay_direction ) . ',' . esc_attr( $overlay_bg_color ) . ',' . esc_attr( $overlay_bg_second ) . ');';
+                $_gradient .= 'background:linear-gradient(to ' . esc_attr( $overlay_direction ) . ',' . esc_attr( $overlay_bg_color ) . ',' . esc_attr( $overlay_bg_second ) . ');';
             }
-            $overlay = '<span class="pl-overlay" style="' . $_gredient . '"></span>';
+            $overlay = '<span class="pl-overlay" style="' . $_gradient . '"></span>';
         }
 
         return '<div class="pl-column-outer' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
@@ -1080,14 +1080,14 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
             'overlay_bg_second' => array(
                 'type'              => 'colorpicker',
                 'label'             => esc_html__( 'Overlay Second Background Color ( Optional )', 'AAA' ),
-                'description'       => esc_html__( 'For gredient background color.', 'AAA' ),
+                'description'       => esc_html__( 'For gradient background color.', 'AAA' ),
                 'value'             => '#f5f5f5',
                 'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
                 'width'             => 50
 			),
             'overlay_direction' => array(
-                'label'             => esc_html__( 'Overlay Gredient Direction', 'AAA' ),
+                'label'             => esc_html__( 'Overlay Gradient Direction', 'AAA' ),
                 'type'              => 'select',
                 'options'           => array(
                     'top right'         => 'Top Right',
@@ -1216,7 +1216,7 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
             'inline_css'        => '',
         ), $atts ) );
 
-        $style = $class = $id = $_gredient = '';
+        $style = $class = $id = $_gradient = '';
 
         if( $enable_static_height ) { $style .= 'height:' . (int) $static_height . 'vh;'; }
         if( $text_color ) { $style .= 'color:' . esc_attr( $text_color ) . ';'; }
@@ -1246,12 +1246,12 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
         }
 
         if( $overlay_enable ) {
-            $_gredient .= 'background-color:' . esc_attr( $overlay_bg_color ) . ';';
-            $_gredient .= 'opacity:' . $overlay_opacity * 0.01 . ';';
+            $_gradient .= 'background-color:' . esc_attr( $overlay_bg_color ) . ';';
+            $_gradient .= 'opacity:' . $overlay_opacity * 0.01 . ';';
             if( $overlay_bg_second ) {
-                $_gredient .= 'background:linear-gradient(to ' . esc_attr( $overlay_direction ) . ',' . esc_attr( $overlay_bg_color ) . ',' . esc_attr( $overlay_bg_second ) . ');';
+                $_gradient .= 'background:linear-gradient(to ' . esc_attr( $overlay_direction ) . ',' . esc_attr( $overlay_bg_color ) . ',' . esc_attr( $overlay_bg_second ) . ');';
             }
-            $overlay = '<span class="pl-overlay" style="' . $_gredient . '"></span>';
+            $overlay = '<span class="pl-overlay" style="' . $_gradient . '"></span>';
         }
 
         return '<div class="pl-row-inner-outer' . $class . '"' . $id . '>'.
@@ -1466,14 +1466,14 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
             'overlay_bg_second' => array(
                 'type'              => 'colorpicker',
                 'label'             => esc_html__( 'Overlay Second Background Color ( Optional )', 'AAA' ),
-                'description'       => esc_html__( 'For gredient background color.', 'AAA' ),
+                'description'       => esc_html__( 'For gradient background color.', 'AAA' ),
                 'value'             => '#f5f5f5',
                 'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
                 'width'             => 50
 			),
             'overlay_direction' => array(
-                'label'             => esc_html__( 'Overlay Gredient Direction', 'AAA' ),
+                'label'             => esc_html__( 'Overlay Gradient Direction', 'AAA' ),
                 'type'              => 'select',
                 'options'           => array(
                     'top right'         => 'Top Right',
@@ -1555,7 +1555,7 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
             'inline_css'        => '',
         ), $atts ) );
 
-        $style = $class = $id = $overlay = $_gredient = $style_inside = '';
+        $style = $class = $id = $overlay = $_gradient = $style_inside = '';
 
         if( $col_width ) { $style .= 'width:' . (int) $col_width . '%;'; }
 
@@ -1581,12 +1581,12 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
 
         if( $overlay_enable ) {
-            $_gredient .= 'background-color:' . esc_attr( $overlay_bg_color ) . ';';
-            $_gredient .= 'opacity:' . $overlay_opacity * 0.01 . ';';
+            $_gradient .= 'background-color:' . esc_attr( $overlay_bg_color ) . ';';
+            $_gradient .= 'opacity:' . $overlay_opacity * 0.01 . ';';
             if( $overlay_bg_second ) {
-                $_gredient .= 'background:linear-gradient(to ' . esc_attr( $overlay_direction ) . ',' . esc_attr( $overlay_bg_color ) . ',' . esc_attr( $overlay_bg_second ) . ');';
+                $_gradient .= 'background:linear-gradient(to ' . esc_attr( $overlay_direction ) . ',' . esc_attr( $overlay_bg_color ) . ',' . esc_attr( $overlay_bg_second ) . ');';
             }
-            $overlay = '<span class="pl-overlay" style="' . $_gredient . '"></span>';
+            $overlay = '<span class="pl-overlay" style="' . $_gradient . '"></span>';
         }
 
         return '<div class="pl-column-inner-outer' . $class . '" style="' . $style . '"' . $id . '>'.
@@ -2232,7 +2232,7 @@ class Playouts_Element_Progress_Bars_Item extends Playouts_Repeater_Item_Element
             ),
             'bar_color_secondary' => array(
                 'label'             => esc_html__( 'Bar Secondary Color ( Optional )', 'AAA' ),
-                'description'       => esc_html__( 'For gredient background color.', 'AAA' ),
+                'description'       => esc_html__( 'For gradient background color.', 'AAA' ),
                 'type'              => 'colorpicker',
                 'width'             => 50
             ),
@@ -2252,7 +2252,7 @@ class Playouts_Element_Progress_Bars_Item extends Playouts_Repeater_Item_Element
                 'width'             => 50
             ),
             'direction' => array(
-                'label'             => esc_html__( 'Gredient Direction', 'AAA' ),
+                'label'             => esc_html__( 'Gradient Direction', 'AAA' ),
                 'type'              => 'select',
                 'options'           => array(
                     'top'               => 'Top',
@@ -2380,6 +2380,7 @@ class Playouts_Element_Button extends Playouts_Element {
                     'medium'            => 'Medium',
                     'large'             => 'Large',
                     'extra_large'       => 'Extra Large',
+                    'huge'              => 'Huge',
                 ),
                 'value'             => 'medium'
             ),
@@ -2394,12 +2395,12 @@ class Playouts_Element_Button extends Playouts_Element {
             ),
             'bg_color_second' => array(
                 'label'             => esc_html__( 'Second Background Color ( Optional )', 'AAA' ),
-                'description'       => esc_html__( 'For gredient background color.', 'AAA' ),
+                'description'       => esc_html__( 'For gradient background color.', 'AAA' ),
                 'type'              => 'colorpicker',
                 'width'             => 50
             ),
             'direction' => array(
-                'label'             => esc_html__( 'Gredient Direction', 'AAA' ),
+                'label'             => esc_html__( 'Gradient Direction', 'AAA' ),
                 'type'              => 'select',
                 'options'           => array(
                     'top'               => 'Top',
@@ -2517,7 +2518,7 @@ class Playouts_Element_Button extends Playouts_Element {
             'inline_css'        => '',
         ), $atts ) );
 
-        $_style = $class = $id = $attr = $_gredient = '';
+        $_style = $class = $id = $attr = $_gradient = '';
 
         if( $margin_top ) { $_style .= 'margin-top:' . esc_attr( $margin_top ) . ( is_numeric( $margin_top ) ? 'px' : '' ) . ';'; }
         if( $margin_right ) { $_style .= 'margin-right:' . esc_attr( $margin_right ) . ( is_numeric( $margin_right ) ? 'px' : '' ) . ';'; }
@@ -2540,10 +2541,10 @@ class Playouts_Element_Button extends Playouts_Element {
         $shadow_color = $hover_bg_color ? $hover_bg_color : $bg_color;
         $attr .= $shadow ? ' data-hover-shadow-override="' . esc_attr( $shadow_color ) . '"' : '';
 
-        $_gredient .= 'background-color:' . esc_attr( $bg_color ) . ';';
-        $_gredient .= 'background:linear-gradient(to ' . esc_attr( $direction ) . ',' . esc_attr( $bg_color ) . ',' . esc_attr( $bg_color_second ) . ');';
+        $_gradient .= 'background-color:' . esc_attr( $bg_color ) . ';';
+        $_gradient .= 'background:linear-gradient(to ' . esc_attr( $direction ) . ',' . esc_attr( $bg_color ) . ',' . esc_attr( $bg_color_second ) . ');';
 
-        return '<a href="' . esc_url( $link ) . '" class="pl-button' . $class . '" style="' . $_style . $_gredient . '"' . $id . $attr . '>'.
+        return '<a href="' . esc_url( $link ) . '" class="pl-button' . $class . '" style="' . $_style . $_gradient . '"' . $id . $attr . '>'.
             esc_attr( $label ).
         '</a>';
 
@@ -2936,6 +2937,11 @@ class Playouts_Element_Auto_Type extends Playouts_Element {
                 'type'              => 'colorpicker',
 				'label'             => esc_html__( 'Auto Type Color', 'AAA' ),
 			),
+            'bold_text' => array(
+                'label'             => esc_html__( 'Bold Text', 'AAA' ),
+                'type'              => 'true_false',
+                'value'             => '1',
+            ),
             'inline_class' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'CSS Classes', 'AAA' ),
@@ -2963,6 +2969,7 @@ class Playouts_Element_Auto_Type extends Playouts_Element {
             'font_size'         => 75,
             'text_color'        => '',
             'auto_type_color'   => '',
+            'bold_text'         => false,
             'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
@@ -2974,6 +2981,7 @@ class Playouts_Element_Auto_Type extends Playouts_Element {
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
         $style .= ! empty( $font_size ) ? 'font-size:' . (int) $font_size . 'px;' : '';
         $style .= ! empty( $text_color ) ? 'color:' . esc_attr( $text_color ) . ';' : '';
+        $style .= $bold_text ? 'font-weight:800;' : '';
 
         $id = 'pl-auto-type-' . Playouts_Shortcode_Parser::get_unique_id();
 
@@ -4059,7 +4067,7 @@ class Playouts_Element_Image_Stack_Item extends Playouts_Repeater_Item_Element {
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
 
-        $transform = 'transform:translateX(' . (int) $position_top . '%) translateY(' . (int) $position_left . '%);';
+        $transform = 'transform:translateY(' . (int) $position_top . '%) translateX(' . (int) $position_left . '%);';
 
         if( $shadow ) {
             $style_inner .= 'box-shadow:0 55px 120px rgba(0,0,0,0.1), 0 16px 72px rgba(0,0,0,0.11);';
@@ -4914,12 +4922,12 @@ class Playouts_Element_Heading extends Playouts_Element {
 }
 new Playouts_Element_Heading;
 
-class Playouts_Element_Gredient_Text extends Playouts_Element {
+class Playouts_Element_Gradient_Text extends Playouts_Element {
 
     function init() {
 
-        $this->module = 'bw_gredient_text';
-        $this->name = esc_html__( 'Gredient Text', 'AAA' );
+        $this->module = 'bw_gradient_text';
+        $this->name = esc_html__( 'Gradient Text', 'AAA' );
         $this->view = 'element';
         $this->category = array( 'content' => __( 'Content', 'AAA' ) );
         $this->module_color = '#4dd2e6';
@@ -4927,7 +4935,7 @@ class Playouts_Element_Gredient_Text extends Playouts_Element {
             'text' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'Text', 'AAA' ),
-                'value'             => esc_html__( 'This is a text with gredient', 'AAA' ),
+                'value'             => esc_html__( 'This is a text with gradient', 'AAA' ),
             ),
             'h_tag' => array(
                 'label'             => esc_html__( 'Select Heading Title Tag', 'AAA' ),
@@ -4967,7 +4975,7 @@ class Playouts_Element_Gredient_Text extends Playouts_Element {
                 'width'             => 50
 			),
             'direction' => array(
-                'label'             => esc_html__( 'Gredient Direction', 'AAA' ),
+                'label'             => esc_html__( 'Gradient Direction', 'AAA' ),
                 'type'              => 'select',
                 'options'           => array(
                     'top'               => 'Top',
@@ -5030,7 +5038,7 @@ class Playouts_Element_Gredient_Text extends Playouts_Element {
             'inline_css'        => '',
         ), $atts ) );
 
-        $style = $class = $id = $_gredient = '';
+        $style = $class = $id = $_gradient = '';
 
         $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
@@ -5042,17 +5050,17 @@ class Playouts_Element_Gredient_Text extends Playouts_Element {
         $style .= $bold_text ? 'font-weight:800;' : '';
 
         $_tag = esc_attr( $h_tag );
-        $_gredient .= 'color:' . esc_attr( $text_color_from ) . ';';
-        $_gredient .= 'background:linear-gradient(to ' . esc_attr( $direction ) . ',' . esc_attr( $text_color_from ) . ',' . esc_attr( $text_color_to ) . ');';
-        $_gredient .= 'background-clip:text;-webkit-background-clip:text;text-fill-color:transparent;-webkit-text-fill-color:transparent;';
+        $_gradient .= 'color:' . esc_attr( $text_color_from ) . ';';
+        $_gradient .= 'background:linear-gradient(to ' . esc_attr( $direction ) . ',' . esc_attr( $text_color_from ) . ',' . esc_attr( $text_color_to ) . ');';
+        $_gradient .= 'background-clip:text;-webkit-background-clip:text;text-fill-color:transparent;-webkit-text-fill-color:transparent;';
 
-        return '<div class="pl-gredient' . $class . '" style="' . $style . '"' . $id . '>'.
-            "<$_tag class='pl-gredient-text' style='" . $_gredient . "'>" . esc_attr( $text ) . "</$_tag>" .
+        return '<div class="pl-gradient' . $class . '" style="' . $style . '"' . $id . '>'.
+            "<$_tag class='pl-gradient-text' style='" . $_gradient . "'>" . esc_attr( $text ) . "</$_tag>" .
         '</div>';
 
     }
 }
-new Playouts_Element_Gredient_Text;
+new Playouts_Element_Gradient_Text;
 
 class Playouts_Element_Notion_Box extends Playouts_Element {
 
@@ -5683,7 +5691,7 @@ class Playouts_Element_Pricing_Tables_Item extends Playouts_Repeater_Item_Elemen
                 'width'             => 50
             ),
             'direction' => array(
-                'label'             => esc_html__( 'Gredient Direction', 'AAA' ),
+                'label'             => esc_html__( 'Gradient Direction', 'AAA' ),
                 'type'              => 'select',
                 'options'           => array(
                     'top'               => 'Top',
@@ -5921,7 +5929,7 @@ class Playouts_Element_Icon extends Playouts_Element {
                 'width'             => 50
             ),
             'direction' => array(
-                'label'             => esc_html__( 'Gredient Direction', 'AAA' ),
+                'label'             => esc_html__( 'Gradient Direction', 'AAA' ),
                 'type'              => 'select',
                 'options'           => array(
                     'top'               => 'Top',
@@ -5934,6 +5942,30 @@ class Playouts_Element_Icon extends Playouts_Element {
                     'left top'      => 'Top Left',
                 ),
                 'value'             => 'bottom right',
+            ),
+            'margin_top' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Margin Top', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'width'             => 25
+            ),
+            'margin_right' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Margin Right', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'width'             => 25
+            ),
+            'margin_bottom' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Margin Bottom', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'width'             => 25
+            ),
+            'margin_left' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Margin Left', 'AAA' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'width'             => 25
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
@@ -5964,6 +5996,10 @@ class Playouts_Element_Icon extends Playouts_Element {
             'color_main'        => '',
             'color_secondary'   => '',
             'direction'         => '',
+            'margin_top'       => '',
+            'margin_right'     => '',
+            'margin_bottom'    => '',
+            'margin_left'      => '',
             'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
@@ -5978,14 +6014,19 @@ class Playouts_Element_Icon extends Playouts_Element {
         $style .= $bold ? 'font-weight:800;' : '';
         $style .= ! empty( $font_size ) ? 'font-size:' . (int) $font_size . 'px;' : '';
 
-        $_gredient = 'color:' . esc_attr( $color_main ) . ';';
+        if( $margin_top ) { $style .= 'margin-top:' . esc_attr( $margin_top ) . ( is_numeric( $margin_top ) ? 'px' : '' ) . ';'; }
+        if( $margin_right ) { $style .= 'margin-right:' . esc_attr( $margin_right ) . ( is_numeric( $margin_right ) ? 'px' : '' ) . ';'; }
+        if( $margin_bottom ) { $style .= 'margin-bottom:' . esc_attr( $margin_bottom ) . ( is_numeric( $margin_bottom ) ? 'px' : '' ) . ';'; }
+        if( $margin_left ) { $style .= 'margin-left:' . esc_attr( $margin_left ) . ( is_numeric( $margin_left ) ? 'px' : '' ) . ';'; }
+
+        $_gradient = 'color:' . esc_attr( $color_main ) . ';';
         if( $color_secondary ) {
-            $_gredient .= 'background:linear-gradient(to ' . esc_attr( $direction ) . ',' . esc_attr( $color_main ) . ',' . esc_attr( $color_secondary ) . ');';
-            $_gredient .= 'background-clip:text;-webkit-background-clip:text;text-fill-color:transparent;-webkit-text-fill-color:transparent;';
+            $_gradient .= 'background:linear-gradient(to ' . esc_attr( $direction ) . ',' . esc_attr( $color_main ) . ',' . esc_attr( $color_secondary ) . ');';
+            $_gradient .= 'background-clip:text;-webkit-background-clip:text;text-fill-color:transparent;-webkit-text-fill-color:transparent;';
         }
 
         return '<div class="pl-icon' . $class . '" style="' . $style . '"' . $id . '>'.
-            '<i class="' . esc_attr( $icon ) . '" style="' . $_gredient . '"></i>'.
+            '<i class="' . esc_attr( $icon ) . '" style="' . $_gradient . '"></i>'.
             ( ! empty( $text ) ? '<p>' . esc_html( $text ) . '</p>' : '' ) .
         '</div>';
 
@@ -6049,11 +6090,11 @@ class Playouts_Element_Google_Map extends Playouts_Repeater_Element {
                 'depends'           => array( 'element' => 'custom_center', 'value' => '1' ),
                 'width'             => 50
             ),
-            'bounds' => array(
+            /*'bounds' => array(
                 'label'             => esc_html__( 'Center Map Between Pins', 'AAA' ),
                 'description'       => esc_html__( "Center the map between all the available pins automatically. If enable, it will ignore the 'Custom Map Center' option.", 'AAA' ),
                 'type'              => 'true_false',
-            ),
+            ),*/
             'styles' => array(
                 'type'              => 'base64',
                 'label'             => esc_html__( 'Map Styles ( Advanced )', 'AAA' ),
@@ -6093,7 +6134,7 @@ class Playouts_Element_Google_Map extends Playouts_Repeater_Element {
             'custom_center'         => false,
             'custom_center_lat'     => '',
             'custom_center_lng'     => '',
-            'bounds'                => false,
+            //'bounds'                => false,
             'styles'                => '',
             'inline_class'          => '',
             'inline_id'             => '',
@@ -6124,7 +6165,8 @@ class Playouts_Element_Google_Map extends Playouts_Repeater_Element {
             $attr .= ' data-center-lat="' . esc_attr( $custom_center_lat ) . '"';
             $attr .= ' data-center-lng="' . esc_attr( $custom_center_lng ) . '"';
         }
-        $attr .= $bounds ? ' data-bounds="true"' : '';
+        //$attr .= $bounds ? ' data-bounds="true"' : '';
+        $attr .= $enable_controls_zoom ? ' data-zoom-controls="true"' : '';
 
         if( ! empty( $content ) ) {
             return '<div class="pl-google-map-outer"' . $id . '>'.
@@ -6184,7 +6226,7 @@ class Playouts_Element_Google_Map_Item extends Playouts_Repeater_Item_Element {
             data-title="' . esc_attr( $title ) . '"
             data-lat="' . esc_attr( $lat ) . '"
             data-lng="' . esc_attr( $lng ) . '"
-            data-title="' . esc_attr( $image ) . '">
+            data-image="' . esc_url( $image ) . '">
         </li>';
 
     }

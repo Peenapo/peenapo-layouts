@@ -239,7 +239,7 @@ var Playouts = {
                         zoom                : typeof self.attr('data-zoom-level') !== 'undefined' ? parseInt( self.attr('data-zoom-level'), 10 ) : 17,
                         center              : map_center,
                         styles              : _styles,
-                        zoomControl         : ( typeof self.attr('data-zoom') !== 'undefined' && self.attr('data-zoom') ) == 'true' ? true : false,
+                        zoomControl         : ( typeof self.attr('data-zoom-controls') !== 'undefined' && self.attr('data-zoom-controls') == 'true' ) ? true : false,
                         scrollwheel         : false,
                         mapTypeControl      : false,
                         streetViewControl   : false,
@@ -257,7 +257,8 @@ var Playouts = {
                             marker = new google.maps.Marker({
                                 position: new google.maps.LatLng( parseFloat( $pin.attr('data-lat') ), parseFloat( $pin.attr('data-lng') ) ),
                                 map: map,
-                                title: $pin.attr('data-title')
+                                title: $pin.attr('data-title'),
+                                icon: typeof $pin.attr('data-image') !== 'undefined' ? $pin.attr('data-image') : '',
                             });
 
                             // extend the bounds to include each marker's position
@@ -280,10 +281,10 @@ var Playouts = {
                             }
                         });
 
-                        if( typeof self.attr('data-bounds') !== 'undefined' ) {
+                        //if( typeof self.attr('data-bounds') !== 'undefined' ) {
                             // now fit the map to the newly inclusive bounds
                             map.fitBounds( bounds );
-                        }
+                        //}
 
                     }
 
