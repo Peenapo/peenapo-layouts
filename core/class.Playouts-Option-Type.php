@@ -499,7 +499,7 @@ class Playouts_Option_Type_Image extends Playouts_Option_Type {
                 </div>
                 <div class='bwpb-image-preview'>
                     <img src='{$value}' alt=''>
-                    <span class='bwpb-image-remove'></span>
+                    <span class='bwpb-image-remove'><i class='bwpb-plus'><span></span></i></span>
                 </div>
             </div>";
 
@@ -548,6 +548,14 @@ class Playouts_Option_Type_Number_Slider extends Playouts_Option_Type {
     static function template( $values ) {
 
         extract( (array) $values );
+
+        if( empty( $value ) ) {
+            if( $min ) {
+                $value = $min;
+            }else{
+                $value = 0;
+            }
+        }
 
         $__out = self::get_option_heading( $label, $description );
         $__out .= "<div class='bwpb-option-number-slider'>
@@ -811,9 +819,9 @@ class Playouts_Option_Type_Google_Font extends Playouts_Option_Type {
         </select>
 
         <!-- variants -->
-        <select class='bwpc-font-variants'>
+        <select class="bwpc-font-variants" multiple>
             <?php if( isset( $current_value->variants ) && ! empty( $current_value->variants ) && is_array( $current_value->variants ) ): ?>
-                <?php echo "<option value=''>" . esc_html__( 'Select font variant', 'AAA' ) . "</option>"; ?>
+                <?php //echo "<option value=''>" . esc_html__( 'Select font variant', 'AAA' ) . "</option>"; ?>
                 <?php foreach ( $current_value->variants as $key => $variant ): ?>
                     <?php echo "<option value='{$variant}'>{$variant}</option>"; ?>
                 <?php endforeach; ?>
@@ -821,7 +829,7 @@ class Playouts_Option_Type_Google_Font extends Playouts_Option_Type {
         </select>
 
         <!-- subsets -->
-        <select class='bwpc-font-subsets' multiple>
+        <select class="bwpc-font-subsets" multiple>
             <?php if( isset( $current_value->subsets ) && ! empty( $current_value->subsets ) && is_array( $current_value->subsets ) ): ?>
                 <?php foreach ( $current_value->subsets as $key => $subset ): ?>
                     <?php echo "<option value='{$subset}'>{$subset}</option>"; ?>

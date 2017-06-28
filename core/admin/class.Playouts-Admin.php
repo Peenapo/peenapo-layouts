@@ -65,6 +65,12 @@ class Playouts_Admin {
         // TODO: add this into an option
         //$classes[] = 'bwpb-editor-hidden';
 
+        if( Playouts_Admin::$status ) {
+            if( ! ( isset( Playouts_Admin::$options['show_editor'] ) and Playouts_Admin::$options['show_editor'] ) ) {
+                $classes[] = 'pl-hide-editor';
+            }
+        }
+
         return $classes;
 
     }
@@ -259,6 +265,10 @@ class Playouts_Admin {
                 add_action( 'save_post', array( 'Playouts_Admin', 'save' ) );
 
             }
+        }else{
+
+            add_action( 'add_meta_boxes', array( 'Playouts_Admin', 'editor_not_supported' ) );
+
         }
     }
 
@@ -311,6 +321,22 @@ class Playouts_Admin {
             );
 
         }
+    }
+
+
+
+    static function editor_not_supported() {
+
+        $currnet_post_type = get_post_type();
+
+        add_meta_box(
+            'peenapo_layouts_editor_not_supported',
+            __( 'Peenapo Layouts Report', 'peenapo-layouts-txd' ),
+            array( 'Playouts_Admin', 'metabox_section_editor_not_supported' ),
+            $currnet_post_type,
+            'normal',
+            'high'
+        );
 
     }
 
@@ -344,10 +370,22 @@ class Playouts_Admin {
     static function metabox_section_switch( $post ) {
 
         /*
-         * get main template
+         * get template for switch section
          *
          */
         do_action( 'bwpb_get_template_switch' );
+
+    }
+
+
+
+    static function metabox_section_editor_not_supported() {
+
+        /*
+         * get template for editor not supported
+         *
+         */
+        do_action( 'bwpb_get_template_editor_not_supported' );
 
     }
 
@@ -474,7 +512,7 @@ class Playouts_Admin {
 
     static function enqueue_scripts() {
 
-        if( self::$status_post_type ) {
+        if( self::$status_post_type or ( isset( $_GET['page'] ) and $_GET['page'] == 'playouts_options' ) ) {
 
             //TODO: fix this
             # css

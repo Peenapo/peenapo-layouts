@@ -120,7 +120,8 @@ class Playouts_Public_Fonts {
         if( isset( $font_obj->variants ) ) {
             $variants .= self::variants( $font_obj->variants );
         }
-        self::$font_declarations .= $selectors . '{font-family:"' . esc_html( $font_obj->family ) . '";' . esc_attr( $variants ) . '}';
+        //self::$font_declarations .= $selectors . '{font-family:"' . esc_html( $font_obj->family ) . '";' . esc_attr( $variants ) . '}';
+        self::$font_declarations .= $selectors . '{font-family:"' . esc_html( $font_obj->family ) . '";}';
 
     }
 }

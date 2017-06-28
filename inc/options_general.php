@@ -8,6 +8,12 @@ $pl_options = array(
         'description'       => sprintf( esc_html__( 'Add Google Map Api Key to display your maps correctly. You can get the key from %s.', 'AAA' ), '<a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank" rel="nofollow">' . esc_attr__( 'here', 'AAA' ) . '</a>' ),
     )
 
+    ,'show_editor' => array(
+        'type'              => 'true_false',
+        'label'             => esc_html__( 'Show Content Editor', 'AAA' ),
+        'description'       => esc_html__( 'Show the WordPress Content Editor while Peenapo Layouts is active', 'AAA' ),
+    )
+
     ,'post_types_heading' => array(
         'type'              => 'heading',
         'label'             => esc_html__( 'Select Post Types', 'AAA' ),

@@ -1028,14 +1028,23 @@ Playouts_Option_Type.option_types.number_slider = {
 
         $('.bwpb-option-number-slider').each(function() {
 
-            var self = $('.bwpb-number-slider', this);
-            var min = parseFloat( self.attr('data-min') );
-            var max = parseFloat( self.attr('data-max') );
-            var step = parseFloat( self.attr('data-step') );
-            var value = parseFloat( self.attr('data-value') );
+            var self    = $('.bwpb-number-slider', this);
+            var min     = parseFloat( self.attr('data-min') );
+            var max     = parseFloat( self.attr('data-max') );
+            var step    = parseFloat( self.attr('data-step') );
+            var value   = parseFloat( self.attr('data-value') );
 
-            if( isNaN( min ) || isNaN( max ) || isNaN( step ) || isNaN( value ) ) {
-                min = 0; max = 100; step = 1; value = 0;
+            if( isNaN( min ) ) {
+                min = 0;
+            }
+            if( isNaN( max ) ) {
+                max = 100;
+            }
+            if( isNaN( step ) ) {
+                step = 1;
+            }
+            if( isNaN( value ) ) {
+                value = 0;
             }
 
             self.slider({
@@ -1253,13 +1262,26 @@ var Pl_google_font = {
         }
 
         // variants
-        $variants.empty().css('display', 'none');
+        /*$variants.empty().css('display', 'none');
 
         if( variants.length > 1 ) {
             var out = '';
             out += '<option value="">Select font variant</option>'; // TODO: translate this via i18n
             for ( i = 0; i < variants.length; i++ ) {
                 out += '<option value="' + variants[i] + '" ' + ( ( typeof current_value.variants !== 'undefined' && current_value.variants == variants[i] ) ? 'selected="selected"' : '' ) + '>' + variants[i] + '</option>';
+            }
+            $( out ).appendTo( $variants.css('display', 'block') );
+        }*/
+        $variants.empty().css('display', 'none');
+
+        if( variants.length > 1 ) {
+            var out = '';
+            var currentVariant = [];
+            if( typeof current_value.variants !== 'undefined' ) {
+                currentVariant = current_value.variants.split(',');
+            }
+            for ( i = 0; i < variants.length; i++ ) {
+                out += '<option value="' + variants[i] + '" ' + ( ( $.inArray( variants[i], currentVariant ) >= 0 ) ? 'selected="selected"' : '' ) + '>' + variants[i] + '</option>';
             }
             $( out ).appendTo( $variants.css('display', 'block') );
         }
@@ -2743,7 +2765,7 @@ var Bwpb = {
         $('#bwpb-switch-button').removeClass('bw-switch-active');
 
         // hide the editor if enabled
-        if( $('#bwpb-main').hasClass('bwpb-editor-hidden') ) {
+        if( $('#bwpb-main').hasClass('pl-hide-editor') ) {
             $('#postdivrich').css('display', 'none');
         }
 
@@ -2767,7 +2789,7 @@ var Bwpb = {
         $('#bwpb-switch-button').addClass('bw-switch-active');
 
         // show the editor if enabled
-        if( $('#bwpb-main').hasClass('bwpb-editor-hidden') ) {
+        if( $('#bwpb-main').hasClass('pl-hide-editor') ) {
             $('#postdivrich').css('display', 'block');
         }
 
@@ -2898,6 +2920,7 @@ var Bwpb = {
         $(document).ready(function() {
 
             Pl_guide.start();
+            //postdivrich
 
         });
 
@@ -3305,7 +3328,7 @@ var Bwpb = {
 
         // TODO: this looks messy
         if( ( Pl_modal.placement == 'before' || Pl_modal.placement == 'after' ) && module_id !== 'bw_row' ) { // content elements without parent
-            if( module_id == 'bw_row_inner' && parent_id ) {
+            if( module_id == 'bw_row_inner' && parent_id && ! ( Pl_modal.placement !== 'before' || Pl_modal.placement !== 'after' ) ) {
                 // do nothing
             }else if( ! this.added_manually ) { // manually added
                 parent_id = this.latest_element_id;

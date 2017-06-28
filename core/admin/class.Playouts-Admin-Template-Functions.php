@@ -21,6 +21,10 @@ class Playouts_Admin_Template_Functions {
         self::get_template( 'admin/switch' );
     }
 
+    static function get_template_editor_not_supported() {
+        self::get_template( 'admin/editor-not-supported' );
+    }
+
     static function get_template_header() {
         self::get_template( 'admin/header' );
     }

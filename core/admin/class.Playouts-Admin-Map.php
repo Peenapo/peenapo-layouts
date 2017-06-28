@@ -29,7 +29,7 @@ class Playouts_Admin_Map {
 
     static function map_data_object() {
 
-        if( Playouts_Admin::$status_post_type ) {
+        if( Playouts_Admin::$status_post_type or ( isset( $_GET['page'] ) and $_GET['page'] == 'playouts_options' ) ) {
 
             $map_modules = $map_modules_repeater = $map_modules_repeater_item = $map_layouts = array();
 
