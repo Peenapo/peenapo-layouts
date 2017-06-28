@@ -23,7 +23,7 @@ $block_edit_buttons = "
         <div class='bwpb-option bwpb-open-prompt bwpb-button-save-custom-layout' title='" .  __( 'Save Layout', 'peenapo-layouts-txd' ) . "' data-save-layout='element' data-prompt='save-layout'><i class='pl-icon-import'></i></div>
         <div class='bwpb-option bwpb-trash' title='" .  __( 'Delete', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-trash'></i></div>
     </div>
-    <span class='bwpb-block-plus bwpb-open-modal' data-view='column' data-placement='manually_after'><i class='bwpb-plus'></i></span>
+    <span class='bwpb-block-plus bwpb-open-modal' data-view='column' data-placement='manually_after'><i class='bwpb-plus'><span></span></i></span>
 </div>";
 
 $block_drag = "
@@ -42,7 +42,7 @@ $block_drag = "
         </div>
         <?php echo $block_drag; ?>
         <div class="bwpb-col-drag-bg"></div>
-        <span class="bwpb-row-plus bwpb-open-modal" data-view="row" data-placement="after"><i class="bwpb-plus"></i></span>
+        <span class="bwpb-row-plus bwpb-open-modal" data-view="row" data-placement="after"><i class="bwpb-plus"><span></span></i></span>
     </div>
 </script>
 
@@ -50,7 +50,7 @@ $block_drag = "
 <script type="text/template" id="bwpb_template-column">
     <div class="bwpb-block block-column bwpb-is-empty" data-id="" data-module="" data-col-width="">
         <div class="bwpb-block-container">
-            <span class="bwpb-col-plus bwpb-open-modal" data-view="column" data-placement="insert_bottom"><i class="bwpb-plus"></i></span>
+            <span class="bwpb-col-plus bwpb-open-modal" data-view="column" data-placement="insert_bottom"><i class="bwpb-plus"><span></span></i></span>
             <div class="bwpb-content"></div>
         </div>
         <span class="bwpb-column-drag"><span class="bwpb-col-drag-handle"></span></span>
@@ -69,7 +69,7 @@ $block_drag = "
         </div>
         <?php echo $block_drag; ?>
         <div class="bwpb-col-drag-bg"></div>
-        <span class="bwpb-row-plus bwpb-open-modal" data-view="column" data-placement="after"><i class="bwpb-plus"></i></span>
+        <span class="bwpb-row-plus bwpb-open-modal" data-view="column" data-placement="after"><i class="bwpb-plus"><span></span></i></span>
     </div>
 </script>
 
@@ -77,7 +77,7 @@ $block_drag = "
 <script type="text/template" id="bwpb_template-column_inner">
     <div class="bwpb-block block-column block-column-inner bwpb-is-empty" data-id="" data-module="" data-col-width="">
         <div class="bwpb-block-container">
-            <span class="bwpb-col-plus bwpb-open-modal" data-view="column" data-placement="insert_bottom"><i class="bwpb-plus"></i></span>
+            <span class="bwpb-col-plus bwpb-open-modal" data-view="column" data-placement="insert_bottom"><i class="bwpb-plus"><span></span></i></span>
             <div class="bwpb-content"></div>
         </div>
         <span class="bwpb-column-drag"><span class="bwpb-col-drag-handle"></span></span>
@@ -117,10 +117,12 @@ $block_drag = "
 <script type="text/html" id="bwpb_template-panel_repeater_item">
     <div class="bwpb-item" data-id="">
         <div class="bwpb-item-container bwpb-no-select">
-            <a href="#" class="bwpb-item-drag-handle">DRAG</a>
-            <a href="#" class="bwpb-item-edit">EDIT</a>
-            <a href="#" class="bwpb-item-delete">DELETE</a>
-            <a href="#" class="bwpb-item-duplicate">DRUPLICATE</a>
+            <div class="bwpb-repeater-controls">
+                <span class="bwpb-item-drag-handle" title="<?php esc_html_e( 'Move', 'peenapo-layouts-txd' ); ?>"><i class='pl-icon-move'></i></span>
+                <span class="bwpb-item-edit" title="<?php esc_html_e( 'Edit', 'peenapo-layouts-txd' ); ?>"><i class='pl-icon-edit'></i></span>
+                <span class="bwpb-item-duplicate" title="<?php esc_html_e( 'Duplicate', 'peenapo-layouts-txd' ); ?>"><i class='pl-icon-duplicate'></i></span>
+                <span class="bwpb-item-delete" title="<?php esc_html_e( 'Delete', 'peenapo-layouts-txd' ); ?>"><i class='pl-icon-trash'></i></span>
+            </div>
         </div>
         <?php echo $block_drag; ?>
     </div>
@@ -139,6 +141,9 @@ $block_drag = "
 <!-- panel column -->
 <script type="text/template" id="bwpb_template-panel_columns">
     <div class="bwpb-option-column" data-column-width="" data-id="">
+        <div class="bwpb-option-column-inner">
+            <i class='pl-icon-edit'></i>
+        </div>
         <span class="bwpb-option-column-drag"><span class="bwpb-option-column-dragger"></span></span>
         <span class="bwpb-column-label"></span>
     </div>

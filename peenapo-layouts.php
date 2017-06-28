@@ -41,12 +41,6 @@ if( ! defined( 'PL_ASSEST' ) ) { define( 'PL_ASSEST', PL_URL . 'assets/' ); }
 class Playouts_Bootstrap {
 
 	/*
-	 * post types to render the plugin
-	 *
-	 */
-	static $post_types = array();
-
-	/*
 	 * holds all active plugins
 	 *
 	 */
@@ -106,9 +100,6 @@ class Playouts_Bootstrap {
 	 *
 	 */
 	static function set_globals() {
-
-		// TODO: load this via settings panel
-		self::$post_types = apply_filters( 'bwpb_post_types', array( 'page', 'post', 'pl_layout', 'bw_pt_gallery', /*'bw_pt_portfolio'*/ ) );
 
 		self::$active_plugins = get_option( 'active_plugins' );
 

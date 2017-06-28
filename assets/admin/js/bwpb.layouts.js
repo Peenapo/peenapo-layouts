@@ -40,9 +40,11 @@ var BwpbPrompt = {
 
     before_hide: function() {
 
-        $('#bwpb-overlay').css({ 'visibility': 'hidden', 'opacity': 0 });
-        $('#bwpb-overlay').off('click.pl_click_overlay_prompt');
-        $('.bwpb-prompt').on('click.bwpb_panel_info_click', '.bwpb-icon-info', Bwpb_settings_panel.on_click_info_icon);
+        if( ! $('.bwpb-prompt-confirm--remove-repeater').length ) {
+            $('#bwpb-overlay').css({ 'visibility': 'hidden', 'opacity': 0 });
+            $('#bwpb-overlay').off('click.pl_click_overlay_prompt');
+            $('.bwpb-prompt').on('click.bwpb_panel_info_click', '.bwpb-icon-info', Bwpb_settings_panel.on_click_info_icon);
+        }
 
     },
 
@@ -104,10 +106,11 @@ var BwpbPrompt = {
 
         // the prompt container
         var $prompt = $('.bwpb-prompt').removeClass('bwpb-prompted');
-
+console.log(111);
         // wait for the animation to stop and remove the template
         setTimeout(function() {
             $prompt.remove();
+            console.log(222);
         }, 220 );
 
         $('.bwpb-prompt-confirm').off('click.pl_prompt_confirm');

@@ -171,9 +171,16 @@ class Playouts_Admin_Ajax {
 
 		if ( ! isset( $_POST['playouts_options'] ) or empty( $_POST['playouts_options'] ) ) { return; }
 
-		$options = array_map( 'sanitize_text_field', $_POST['playouts_options'] );
+		$options_new = array();
+		foreach( $_POST['playouts_options'] as $key => $option_value ) {
+			if( is_array( $option_value ) ) {
+				$options_new[ $key ] = array_map( 'sanitize_text_field', $option_value );
+			}else{
+				$options_new[ $key ] = sanitize_text_field( $option_value );
+			}
+		}
 
-		update_option( 'pl_layouts_options', $options );
+		update_option( 'pl_layouts_options', $options_new );
 
 		wp_send_json_success();
 

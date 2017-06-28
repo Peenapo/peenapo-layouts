@@ -1,7 +1,7 @@
 <div class="bwpb-prompt bwpb-prompt-confirm bwpb-panel bwpb-panel-size-smaller bwpb-panel-form">
     <div class="bwpb-panel-header">
         <h4 class="bwpb-panel-title"><?php _e( 'Save Layout', 'peenapo-layouts-txd' ); ?></h4>
-        <span class="bwpb-button-close bwpb-prompt-close bwpb-prompt-key-escape"><span><?php _e( 'Close', 'AAA' ); ?></span><i class="bwpb-plus bwpb-close"></i></span>
+        <span class="bwpb-button-close bwpb-prompt-close bwpb-prompt-key-escape"><em><?php _e( 'Close', 'AAA' ); ?></em><i class="bwpb-plus bwpb-close"><span></span></i></span>
     </div>
     <div class="bwpb-panel-tabs"></div>
     <div class="bwpb-panel-content">

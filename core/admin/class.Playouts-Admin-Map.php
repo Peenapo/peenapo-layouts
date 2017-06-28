@@ -29,68 +29,71 @@ class Playouts_Admin_Map {
 
     static function map_data_object() {
 
-        $map_modules = $map_modules_repeater = $map_modules_repeater_item = $map_layouts = array();
+        if( Playouts_Admin::$status_post_type ) {
 
-        foreach( Playouts_Element::get_modules() as $module ) {
-            $map_modules[ $module->module ] = $module;
+            $map_modules = $map_modules_repeater = $map_modules_repeater_item = $map_layouts = array();
+
+            foreach( Playouts_Element::get_modules() as $module ) {
+                $map_modules[ $module->module ] = $module;
+            }
+
+            foreach( Playouts_Repeater_Element::get_modules_repeater() as $module ) {
+                $map_modules_repeater[ $module->module ] = $module;
+            }
+
+            foreach( Playouts_Repeater_Item_Element::get_modules_repeater_item() as $module ) {
+                $map_modules_repeater_item[ $module->module ] = $module;
+            }
+
+            foreach( Playouts_Admin_Layout::get_layouts_output() as $layout ) {
+                $map_layouts[ $layout['id'] ] = $layout['output'];
+            }
+
+            $screen_edit = $screen_layouts_options = false;
+            if( function_exists( 'get_current_screen' ) ) {
+                $screen = get_current_screen();
+                $screen_edit = $screen->parent_base == 'edit';
+                //$screen_layouts_options = $screen->parent_base == 'playouts_options';
+            }
+
+            $bwpb_data = array(
+
+                'map'                           => json_encode( $map_modules ),
+                'map_repeater'                  => json_encode( $map_modules_repeater ),
+                'map_repeater_item'             => json_encode( $map_modules_repeater_item ),
+                'map_layouts'                   => $map_layouts,
+                'map_custom_layouts'            => Playouts_Admin_Layout_Custom::get_layouts_output(),
+                'map_custom_layout_categories'  => Playouts_Admin_Layout_Custom::get_categories(),
+                'map_favorites'                 => json_encode( Playouts_Admin_Modal::$favorites ),
+
+                'status'                        => Playouts_Admin::$status,
+                'post_id'                       => get_the_ID(),
+                'screen_edit'                   => $screen_edit,
+                'path_assets'                   => PL_ASSEST,
+
+                'i18n'                          => Playouts_Admin_Map::$strings,
+
+                'security' => array(
+                    'panel_get_options'         => wp_create_nonce( 'pl-nonce-get-options' ),
+                    'panel_get_taxonomies'      => wp_create_nonce( 'pl-nonce-get-taxonomies' ),
+                    'save_layout'               => wp_create_nonce( 'pl-nonce-save-layout' ),
+                    'save_layout_options'       => wp_create_nonce( 'pl-nonce-save-layout-options' ),
+                    'save_favorites'            => wp_create_nonce( 'pl-nonce-save-favorites' ),
+                ),
+
+                'module_dependencies'           => Playouts_Admin_Modal::get_dependencies_inverted(),
+                'panel_general_tab'             => apply_filters( 'pl_panel_general_tab', __( 'General', 'AAA' ) ),
+                'modules'                       => implode( '|', Playouts_Element::get_modules_raw() ),
+                'module_colors'                 => Playouts_Element::get_modules_color(),
+
+            );
+
+            //if( $screen_layouts_options ) {
+                //$bwpb_data['layouts_options'] = Playouts_Admin_Settings::get_layouts_options();
+            //}
+
+            wp_localize_script( 'bwpb-mapper', 'bwpb_data', $bwpb_data );
         }
-
-        foreach( Playouts_Repeater_Element::get_modules_repeater() as $module ) {
-            $map_modules_repeater[ $module->module ] = $module;
-        }
-
-        foreach( Playouts_Repeater_Item_Element::get_modules_repeater_item() as $module ) {
-            $map_modules_repeater_item[ $module->module ] = $module;
-        }
-
-        foreach( Playouts_Admin_Layout::get_layouts_output() as $layout ) {
-            $map_layouts[ $layout['id'] ] = $layout['output'];
-        }
-
-        $screen_edit = $screen_layouts_options = false;
-        if( function_exists( 'get_current_screen' ) ) {
-            $screen = get_current_screen();
-            $screen_edit = $screen->parent_base == 'edit';
-            //$screen_layouts_options = $screen->parent_base == 'playouts_options';
-        }
-
-        $bwpb_data = array(
-
-            'map'                           => json_encode( $map_modules ),
-            'map_repeater'                  => json_encode( $map_modules_repeater ),
-            'map_repeater_item'             => json_encode( $map_modules_repeater_item ),
-            'map_layouts'                   => $map_layouts,
-            'map_custom_layouts'            => Playouts_Admin_Layout_Custom::get_layouts_output(),
-            'map_custom_layout_categories'  => Playouts_Admin_Layout_Custom::get_categories(),
-            'map_favorites'                 => json_encode( Playouts_Admin_Modal::$favorites ),
-
-            'status'                        => Playouts_Admin::$status,
-            'post_id'                       => get_the_ID(),
-            'screen_edit'                   => $screen_edit,
-            'path_assets'                   => PL_ASSEST,
-
-            'i18n'                          => Playouts_Admin_Map::$strings,
-
-            'security' => array(
-                'panel_get_options'         => wp_create_nonce( 'pl-nonce-get-options' ),
-                'panel_get_taxonomies'      => wp_create_nonce( 'pl-nonce-get-taxonomies' ),
-                'save_layout'               => wp_create_nonce( 'pl-nonce-save-layout' ),
-                'save_layout_options'       => wp_create_nonce( 'pl-nonce-save-layout-options' ),
-                'save_favorites'            => wp_create_nonce( 'pl-nonce-save-favorites' ),
-            ),
-
-            'module_dependencies'           => Playouts_Admin_Modal::get_dependencies_inverted(),
-            'panel_general_tab'             => apply_filters( 'pl_panel_general_tab', __( 'General', 'AAA' ) ),
-            'modules'                       => implode( '|', Playouts_Element::get_modules_raw() ),
-            'module_colors'                 => Playouts_Element::get_modules_color(),
-
-        );
-
-        //if( $screen_layouts_options ) {
-            //$bwpb_data['layouts_options'] = Playouts_Admin_Settings::get_layouts_options();
-        //}
-
-        wp_localize_script( 'bwpb-mapper', 'bwpb_data', $bwpb_data );
 
     }
 

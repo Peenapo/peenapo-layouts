@@ -3,6 +3,41 @@
 //(function($) {
 window.jQuery = window.$ = jQuery;
 
+var Pl_tooltip = {
+
+    start: function() {
+
+        $('.pl-trigger-tooltip').on('mouseenter', Pl_tooltip.over);
+        $('.pl-trigger-tooltip').on('mouseleave', Pl_tooltip.leave);
+        $('.pl-trigger-tooltip').on('click', Pl_tooltip.leave);
+
+    }
+
+    ,over: function() {
+
+        var self = $(this);
+
+        if( typeof self.attr('data-tooltip') == 'undefined' || self.attr('data-tooltip') == '' ) { return; }
+
+        $tooltip = $('<span class="pl-tooltip">' + self.attr('data-tooltip') + '</span>');
+
+        self.append( $tooltip );
+        TweenLite.set( $tooltip, { marginLeft: ( $tooltip.outerWidth() * -.5 ) + self.outerWidth() * 0.5 } );
+        TweenLite.fromTo( $tooltip, .15, { opacity: 0, y:-5 }, { opacity: 1, y: 0} );
+
+    }
+
+    ,leave: function() {
+
+        var self = $(this);
+
+        $('.pl-tooltip').remove();
+
+    }
+
+}
+Pl_tooltip.start();
+
 
 /*
  * panel to add custom styles to the current page
@@ -29,6 +64,13 @@ var Bwpb_custom_css_panel = {
         // save custom css
         Bwpb_custom_css_panel.$panel.on('click', '.bwpb-button-save', Bwpb_custom_css_panel.save);
 
+
+    },
+
+    on_custom_css_escape: function(e) {
+        if( e.keyCode == 27 ) {
+            Bwpb_custom_css_panel.close();
+        }
     },
 
     edit: function() {
@@ -45,6 +87,8 @@ var Bwpb_custom_css_panel = {
         Bwpb_custom_css_panel.$panel.addClass('bwpb-open bwpb-done');
         // overlay
         $('#bwpb-overlay').css({'visibility':'visible', 'opacity':1});
+        // bind escape
+        $(document).on('keyup.pl_custom_css_escape', Bwpb_custom_css_panel.on_custom_css_escape);
 
     },
 
@@ -52,6 +96,8 @@ var Bwpb_custom_css_panel = {
 
         Bwpb_custom_css_panel.$panel.removeClass( 'bwpb-open bwpb-done' );
         $('#bwpb-overlay').css({'visibility':'hidden', 'opacity':0});
+
+        $(document).off('keyup.pl_custom_css_escape');
 
     },
 
@@ -171,6 +217,18 @@ var Bwpb_settings_panel = {
         // bind the info icon to expand description area
         Bwpb_settings_panel.$panel.on('click.bwpb_panel_info_click', '.bwpb-icon-info', Bwpb_settings_panel.on_click_info_icon);
 
+        $(document).on('keyup.options_panel_escape', Bwpb_settings_panel.on_panel_escape);
+
+
+    },
+
+    on_panel_escape: function(e) {
+
+        if( e.keyCode == 27 ) {
+            //Bwpb_settings_panel.close();
+            $('#bwpb-panel-settings .bwpb-panel-footer .bwpb-button-close').trigger('click');
+        }
+
     },
 
     open_inside: function( id ) {
@@ -217,6 +275,8 @@ var Bwpb_settings_panel = {
     },
 
     on_click_insider_save: function() {
+
+        $('.bwpb-panel-tabs .bwpb-tabs-back').remove();
 
         if( Bwpb_settings_panel.$panel.hasClass('bwpb-ajaxing') ) { return; }
         // lets save the panel options without closing the panel
@@ -267,6 +327,8 @@ var Bwpb_settings_panel = {
         Bwpb_settings_panel.$panel.off('click.bwpb_panel_info_click');
         // clear the current settings panel id
         Bwpb_settings_panel.panel_edit_id = 0;
+
+        $(document).off('keyup.options_panel_escape');
 
     },
 
@@ -582,7 +644,10 @@ var Bwpb_settings_panel = {
         // get tinymce content
         $( '.bwpb-panel-content .bwpb-tinymce-container.tmce-active', Bwpb_settings_panel.$panel ).each(function() {
             if( typeof $('textarea:first', this).attr('name') !== 'undefined' ) {
-                new_values[ $('textarea:first', this).attr('name') ] = tinymce.get( $(this).attr('data-editor-id') ).getContent();
+                var editor_content = tinymce.get( $(this).attr('data-editor-id') );
+                if( editor_content !== null ) {
+                    new_values[ $('textarea:first', this).attr('name') ] = editor_content.getContent();
+                }
             }
         });
 
@@ -1563,6 +1628,8 @@ var Pl_repeater = {
      */
     start: function( $template, options ) {
 
+        if( ! Bwpb_settings_panel.panel_edit_id ) { return; }
+
         Pl_repeater.current_repeater_module = BwpbMapper.__mapper_data[ Bwpb_settings_panel.panel_edit_id ].module;
         Pl_repeater.current_repeater_module_item = BwpbMapper.__mapper_data[ Bwpb_settings_panel.panel_edit_id ].module_item;
 
@@ -1662,7 +1729,7 @@ var Pl_repeater = {
         var self = $(this), $item = self.closest('.bwpb-item');
 
         //$item.remove();
-        Bwpb.remove_module( $('#bwpb-main .bwpb-block-repeater-item[data-id="' + $item.attr('data-id') + '"]') );
+        Bwpb.remove_module( $('#bwpb-main .bwpb-block-repeater-item[data-id="' + $item.attr('data-id') + '"]'), true );
 
     },
 
@@ -1825,7 +1892,6 @@ var Pl_modal = {
 
         $('.bwpb-modal-tabs li:first-child').trigger('click');
         $('.bwpb-modal-categories li:first-child').trigger('click');
-
 
     },
 
@@ -2151,11 +2217,16 @@ var Pl_modal = {
         // set modal id
         Pl_modal.module_parent_id = $parentBlock.length ? $parentBlock.attr('data-id') : 0;
 
+        // set layouts tab
+        if( self.attr('data-modal-tab') !== 'undefined' ) {
+            $('.bwpb-modal-tabs li[data-tab="' + self.attr('data-modal-tab') + '"]').trigger('click');
+        }
+
         $('#bwpb-overlay').css({'visibility':'visible', 'opacity':1});
         Pl_modal.$modal.addClass('bwpb-modal-open');
 
         // bind esc
-        $(document).on('keyup', Pl_modal.on_modal_escape);
+        $(document).on('keyup.pl_modal_escape', Pl_modal.on_modal_escape);
 
 
     },
@@ -2720,12 +2791,12 @@ var Bwpb = {
 
         // display the welcome message
         show: function() {
-            $('#bwpb-welcome-add').css('display', 'block');
+            $('#pl-welcome').css('display', 'block');
         },
 
         // hide the welcome message
         hide: function() {
-            $('#bwpb-welcome-add').css('display', 'none');
+            $('#pl-welcome').css('display', 'none');
         }
 
     },
@@ -2774,6 +2845,19 @@ var Bwpb = {
     },
 
     block_hovers: function() {
+
+        // hide row controls when over first element
+        $('.bwpb-module-bw_row').each(function() {
+            var $first_module = $('.bwpb-module-bw_column', this).eq(0).find(' > .bwpb-block-container > .bwpb-content > .bwpb-block');
+            if( $first_module.length ) {
+                $first_module.find('> .bwpb-block-container').on('mouseenter', function() {
+                    $(this).closest('.bwpb-module-bw_row').addClass('bwpb-row-is-over-element');
+                }).on('mouseleave', function() {
+                    $(this).closest('.bwpb-module-bw_row').removeClass('bwpb-row-is-over-element');
+                });
+            }
+        });
+
 
         $('.block-row').off('mouseenter')
         .on('mouseenter', function(e) {
@@ -2932,8 +3016,6 @@ var Bwpb = {
             callback: Bwpb.empty_ui
         });
 
-        //console.log( 111 );
-
         //$(document).on('keyup.pl_confirm_enter', Bwpb.on_confirm_enter);
         //$(document).on('keyup.pl_confirm_escape', Bwpb.on_confirm_escape);
 
@@ -2958,6 +3040,10 @@ var Bwpb = {
     confirm: function( args ) {
 
         BwpbPrompt.prompt_open( 'confirm' );
+
+        if( typeof args.wide !== 'undfined' && args.wide == true ) {
+            $('.bwpb-prompt-confirm').removeClass('bwpb-panel-size-smaller').addClass('bwpb-prompt-confirm--remove-repeater');
+        }
 
         var $confirm = $('.bwpb-prompt-confirm');
 
@@ -3073,14 +3159,15 @@ var Bwpb = {
      * remove module from the ui
      *
      */
-    remove_module: function( self ) {
+    remove_module: function( self, wide = false ) {
 
         Bwpb.confirm({
             title: window.bwpb_data.i18n.confirm_delete_title,
             description: window.bwpb_data.i18n.confirm_delete_description,
             callback: function() {
                 Bwpb.remove_module_callback( self );
-            }
+            },
+            wide
         });
 
         //$(document).on('keyup.pl_confirm_enter', Bwpb.on_confirm_enter);
@@ -3216,8 +3303,11 @@ var Bwpb = {
             $('> .bwpb-column-width em', __module).html( col_width_value );
         }
 
-        if( ( Pl_modal.placement == 'before' || Pl_modal.placement == 'after' ) && module_id !== 'bw_row' && module_id !== 'bw_row_inner' ) { // content elements without parent
-            if( ! this.added_manually ) { // manually added
+        // TODO: this looks messy
+        if( ( Pl_modal.placement == 'before' || Pl_modal.placement == 'after' ) && module_id !== 'bw_row' ) { // content elements without parent
+            if( module_id == 'bw_row_inner' && parent_id ) {
+                // do nothing
+            }else if( ! this.added_manually ) { // manually added
                 parent_id = this.latest_element_id;
             }else{ // not manually added element without row
                 var auto_id = Bwpb.get_unique_id();

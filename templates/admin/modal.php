@@ -10,7 +10,7 @@
                 <?php do_action( 'pl_modal_tabs' ); ?>
             </div>
             <div class="bwpb-cell bwpb-align-right">
-                <span class="bwpb-button-close"><span><?php _e( 'Close', 'AAA' ); ?></span><i class="bwpb-plus bwpb-close"></i></span>
+                <span class="bwpb-button-close"><em><?php _e( 'Close', 'AAA' ); ?></em><i class="bwpb-plus bwpb-close"><span></span></i></span>
             </div>
         </div>
 

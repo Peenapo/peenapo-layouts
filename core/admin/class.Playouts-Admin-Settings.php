@@ -105,7 +105,7 @@ class Playouts_Admin_Settings {
         $support_layouts_settings = array(
             'options'       => array( 'label' => __( 'Options', 'AAA' ) ),
             'fonts'         => array( 'label' => __( 'Fonts', 'AAA' ) ),
-            'portability'   => array( 'label' => __( 'Portability', 'AAA' ) ),
+            //'portability'   => array( 'label' => __( 'Portability', 'AAA' ) ),
         );
         self::$support_layouts_settings = apply_filters( 'bwg_support', $support_layouts_settings );
 

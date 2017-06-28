@@ -16,10 +16,22 @@ class Playouts_Admin {
     static $status = false;
 
     /*
+     * is plugin enabled for the current post type
+     *
+     */
+    static $status_post_type = false;
+
+    /*
      * holds the plugin settings options
      *
      */
     static $options = array();
+
+	/*
+	 * post types to render the plugin
+	 *
+	 */
+	static $post_types = array();
 
 	/*
 	 * initiates the admin functions
@@ -27,14 +39,14 @@ class Playouts_Admin {
 	 */
     static function init() {
 
+        # the init actions
+        add_action( 'init', array( 'Playouts_Admin', 'actions' ) );
+
         # main container classes
         add_action( 'bwpb_main_class', array( 'Playouts_Admin', 'main_class' ) );
 
         # switch button classes
         add_action( 'bwpb_switch_class', array( 'Playouts_Admin', 'switch_class' ) );
-
-        # the init actions
-        add_action( 'init', array( 'Playouts_Admin', 'actions' ) );
 
         # enqueue scripts
         add_action( 'admin_enqueue_scripts', array( 'Playouts_Admin', 'enqueue_scripts' ) );
@@ -201,7 +213,24 @@ class Playouts_Admin {
 
     }
 
+    static function check_post_type( $post_id = false ) {
+
+        if( ! $post_id ) { return; }
+
+        $enabled_post_types = isset( Playouts_Admin::$options['post_types'] ) ? Playouts_Admin::$options['post_types'] : array( 'post', 'page' );
+        if( array_key_exists( get_post_type( $post_id ), Playouts_Admin::$post_types ) ) {
+
+            self::$status_post_type = true;
+
+        }
+
+    }
+
     static function on_load_post() {
+
+        # get the plugin options
+        self::$options = get_option( 'pl_layouts_options' );
+        self::$post_types = isset( self::$options['post_types'] ) ? self::$options['post_types'] : array( 'post', 'page' );
 
         # get current post type
         $screen = get_current_screen();
@@ -210,16 +239,16 @@ class Playouts_Admin {
         # if the post type supports wordpress editor
         if( post_type_supports( $current_post_type, 'editor' ) ) {
             # if plugin supports current post type
-            if( in_array( $current_post_type, Playouts_Bootstrap::$post_types ) ) {
+            if( array_key_exists( $current_post_type, Playouts_Admin::$post_types ) ) {
 
-                # set the options
-                self::$options = get_option( 'pl_layouts_options' );
-
-                # set the status of the current post type
+                # get the post id
                 $post_id = isset( $_GET['post'] ) ? (int)$_GET['post'] : false;
+
+                # check the post status
                 self::check_status( $post_id );
-                # add switch button after post title
-                //add_action( 'edit_form_after_title', array( 'Playouts_Admin', 'after_title' ) );
+                # check the post type status
+                self::check_post_type( $post_id );
+
                 # add custom body classes
                 add_filter( 'admin_body_class', array( 'Playouts_Admin', 'admin_body_class' ) );
                 # register page builder
@@ -238,7 +267,7 @@ class Playouts_Admin {
      *
      */
     static function admin_body_class( $classes ) {
-        if( self::$status ) {
+        if( self::$status and self::$status_post_type ) {
             return "{$classes} bwpb-active";
         }
     }
@@ -261,7 +290,7 @@ class Playouts_Admin {
 
         $currnet_post_type = get_post_type();
 
-        if( in_array( $currnet_post_type, Playouts_Bootstrap::$post_types ) ) {
+        if( self::$status_post_type ) {
 
             add_meta_box(
                 'peenapo_layouts_section_ui',
@@ -444,37 +473,41 @@ class Playouts_Admin {
     }
 
     static function enqueue_scripts() {
-        //TODO: fix this
-        # css
-        wp_enqueue_style( 'wp-color-picker' );
-		wp_enqueue_style( 'bwpb', PL_ASSEST . 'admin/css/style.css' );
-		wp_enqueue_style( 'bwpb-jquery-ui', PL_ASSEST . 'admin/css/vendors/jquery-ui.css' );
 
-        # google fonts
-        $query_args = array(
-            'family' => 'Palanquin+Dark:400,600|Oxygen:400',
-            'subset' => 'latin',
-        );
-        wp_enqueue_style( 'bwpb-google-fonts', add_query_arg( $query_args, "//fonts.googleapis.com/css" ), array(), null );
+        if( self::$status_post_type ) {
 
-		# js
-        if( isset( $_GET['page'] ) and $_GET['page'] == 'playouts_options' ) {
-            wp_enqueue_media();
+            //TODO: fix this
+            # css
+            wp_enqueue_style( 'wp-color-picker' );
+    		wp_enqueue_style( 'bwpb', PL_ASSEST . 'admin/css/style.css' );
+    		wp_enqueue_style( 'bwpb-jquery-ui', PL_ASSEST . 'admin/css/vendors/jquery-ui.css' );
+
+            # google fonts
+            $query_args = array(
+                'family' => 'Palanquin+Dark:400,600|Oxygen:400',
+                'subset' => 'latin',
+            );
+            wp_enqueue_style( 'bwpb-google-fonts', add_query_arg( $query_args, "//fonts.googleapis.com/css" ), array(), null );
+
+    		# js
+            if( isset( $_GET['page'] ) and $_GET['page'] == 'playouts_options' ) {
+                wp_enqueue_media();
+            }
+    		wp_enqueue_script( array( "jquery", "jquery-ui-core", "jquery-ui-dialog", "jquery-ui-sortable", "wp-color-picker", "jquery-ui-slider" ) );
+            wp_register_script( 'bwpb', PL_ASSEST . 'admin/js/main.js', array('jquery-ui-sortable'), '1.0', true );
+    		wp_localize_script( 'bwpb', 'bwpb_admin_root', array( 'ajax' => admin_url( 'admin-ajax.php' ) ) );
+            wp_enqueue_script( 'bwpb-smart-resize', PL_ASSEST . 'admin/js/vendors/jquery-smartresize-master/jquery.debouncedresize.js', array(), '1.0', true );
+            wp_enqueue_script( 'bwpb-vendors', PL_ASSEST . 'admin/js/vendors.js', array(), '1.0', true );
+            wp_enqueue_script( 'bwpb-php-default', PL_ASSEST . 'admin/js/vendors/php.default/php.default.min.js', array(), '1.0', true );
+            wp_enqueue_script( 'bwpb-colorpicker', PL_ASSEST . 'admin/js/vendors/wpcolorpicker/wp-colorpicker.min.js', array(), '1.0', true );
+            wp_enqueue_script( 'bwpb-blocker', PL_ASSEST . 'admin/js/bwpb.blocker.js', array(), '1.0', true );
+            wp_enqueue_script( 'bwpb-shortcoder', PL_ASSEST . 'admin/js/bwpb.shortcoder.js', array(), '1.0', true );
+            wp_enqueue_script( 'bwpb-layouts', PL_ASSEST . 'admin/js/bwpb.layouts.js', array(), '1.0', true );
+            wp_enqueue_script( 'bwpb-mapper', PL_ASSEST . 'admin/js/bwpb.mapper.js', array(), '1.0', true );
+
+    		wp_enqueue_script( 'bwpb' );
+
         }
-		wp_enqueue_script( array( "jquery", "jquery-ui-core", "jquery-ui-dialog", "jquery-ui-sortable", "wp-color-picker", "jquery-ui-slider" ) );
-        wp_register_script( 'bwpb', PL_ASSEST . 'admin/js/main.js', array('jquery-ui-sortable'), '1.0', true );
-		wp_localize_script( 'bwpb', 'bwpb_admin_root', array( 'ajax' => admin_url( 'admin-ajax.php' ) ) );
-        wp_enqueue_script( 'bwpb-smart-resize', PL_ASSEST . 'admin/js/vendors/jquery-smartresize-master/jquery.debouncedresize.js', array(), '1.0', true );
-        wp_enqueue_script( 'bwpb-vendors', PL_ASSEST . 'admin/js/vendors.js', array(), '1.0', true );
-        wp_enqueue_script( 'bwpb-php-default', PL_ASSEST . 'admin/js/vendors/php.default/php.default.min.js', array(), '1.0', true );
-        wp_enqueue_script( 'bwpb-colorpicker', PL_ASSEST . 'admin/js/vendors/wpcolorpicker/wp-colorpicker.min.js', array(), '1.0', true );
-        wp_enqueue_script( 'bwpb-blocker', PL_ASSEST . 'admin/js/bwpb.blocker.js', array(), '1.0', true );
-        wp_enqueue_script( 'bwpb-shortcoder', PL_ASSEST . 'admin/js/bwpb.shortcoder.js', array(), '1.0', true );
-        wp_enqueue_script( 'bwpb-layouts', PL_ASSEST . 'admin/js/bwpb.layouts.js', array(), '1.0', true );
-        wp_enqueue_script( 'bwpb-mapper', PL_ASSEST . 'admin/js/bwpb.mapper.js', array(), '1.0', true );
-
-		wp_enqueue_script( 'bwpb' );
-
     }
 
 }

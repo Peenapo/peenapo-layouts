@@ -147,6 +147,40 @@ class Playouts_Option_Type {
         return $output;
 
     }
+
+    /*
+     * echo the option html
+     *
+     */
+    static function render_option( $option_name, $atts, $parent = false ) {
+
+        if( isset( $atts['type'] ) and ! empty( $atts['type'] ) ) {
+
+            $otypes = self::get_otypes();
+            $values = get_option('pl_layouts_options');
+
+            $atts['name'] = 'playouts_options' . ( $parent ? '[' . $parent . ']' : '' ) . '[' . $option_name . ']';
+
+            if( $parent ) {
+                $atts['value'] = ( isset( $values[ $parent ] ) and isset( $values[ $parent ][ $option_name ] ) ) ? $values[ $parent ][ $option_name ] : '';
+            }else{
+                $atts['value'] = isset( $values[ $option_name ] ) ? $values[ $option_name ] : '';
+            }
+
+            echo self::get_option_template( $otypes[ $atts['type'] ]->class_name, (object) $atts );
+
+        }
+        // array option
+        elseif( is_array( $atts ) ) {
+
+            foreach( $atts as $key => $attr ) {
+                self::render_option( $key, $attr, $option_name );
+            }
+
+        }
+
+    }
+
 }
 
 class Playouts_Option_Type_Dummy extends Playouts_Option_Type {
@@ -657,7 +691,7 @@ class Playouts_Option_Type_Repeater extends Playouts_Option_Type {
         $__out  = self::get_option_heading( $label, $description );
         $__out .= '<div class="bwpb-option-repeater" data-repeater-module="">';
         $__out .= '<div class="bwpb-repeater-content"></div>';
-        $__out .= '<div class="bwpb-repeater-plus"><i class="bwpb-plus"></i></div>';
+        $__out .= '<div class="bwpb-repeater-plus"><i class="bwpb-plus"><span></span></i></div>';
         $__out .= '</div>';
 
         return $__out;

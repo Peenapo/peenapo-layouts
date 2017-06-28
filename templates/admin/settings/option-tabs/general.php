@@ -14,13 +14,7 @@
 
                 foreach( $layouts_options as $option_name => $attr ) {
 
-                    $otypes = Playouts_Option_Type::get_otypes();
-                    $values = get_option('pl_layouts_options');
-
-                    $attr['name'] = 'playouts_options[' . $option_name . ']';
-                    $attr['value'] = isset( $values[ $option_name ] ) ? $values[ $option_name ] : '';
-
-        		    echo Playouts_Option_Type::get_option_template( $otypes[ $attr['type'] ]->class_name, (object) $attr );
+                    Playouts_Option_Type::render_option( $option_name, $attr );
 
                 }
 

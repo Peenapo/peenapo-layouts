@@ -1,101 +1,30 @@
 <?php
 
-return array(
+$pl_options = array(
 
     'google_map_api_key' => array(
+        'type'              => 'textfield',
         'label'             => esc_html__( 'Google Map Api Key', 'AAA' ),
         'description'       => sprintf( esc_html__( 'Add Google Map Api Key to display your maps correctly. You can get the key from %s.', 'AAA' ), '<a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank" rel="nofollow">' . esc_attr__( 'here', 'AAA' ) . '</a>' ),
-        'type'              => 'textfield',
-    ),
+    )
 
-    'select1' => array(
-        'label'             => esc_html__( 'Select', 'AAA' ),
-        'type'              => 'select',
-        'description'       => esc_html__( 'Some description', 'AAA' ),
-        'options'           => array(
-            'some1' => 'Some 1',
-            'some2' => 'Some 2',
-            'some3' => 'Some 3',
-        ),
-        'value'             => 'some2'
-    ),
-
-    'icon2' => array(
-        'label'             => esc_html__( 'Checkbox 2', 'AAA' ),
-        'type'              => 'icon',
-    ),
-
-    'radio12' => array(
-        'label'             => esc_html__( 'Radio Image', 'AAA' ),
-        'type'              => 'radio_image',
-        'description'       => esc_html__( 'Some description', 'AAA' ),
-        'options'           => array(
-            'some1' => array(
-                'label' => 'Some 1', 'image' => PL_ASSEST . 'img/__tmp/row_full_width_background.png'
-            ),
-            'some2' => array(
-                'label' => 'Some 2', 'image' => PL_ASSEST . 'img/__tmp/row_in_container.png'
-            ),
-        ),
-        'value'             => 'some1'
-    ),
-
-    'radio11' => array(
-        'label'             => esc_html__( 'Some Radio Button', 'AAA' ),
-        'type'              => 'radio',
-        'description'       => esc_html__( 'Some description', 'AAA' ),
-        'options'           => array(
-            'some1' => 'Some 1',
-            'some2' => 'Some 2',
-            'some3' => 'Some 3',
-        ),
-        'value'             => 'some1'
-    ),
-
-    'option1' => array(
-        'label' => __( 'Some name 1', 'AAA' ),
-        'type' => 'textfield',
-        'value' => 'Some value 1',
-        'description' => __( 'Some description 1', 'AAA' ),
-        'width' => 50
-    ),
-
-    'option2' => array(
-        'label' => __( 'Some name 2', 'AAA' ),
-        'type' => 'textfield',
-        'value' => 'Some value 2',
-        'description' => __( 'Some description 2', 'AAA' ),
-        'width' => 50
-    ),
-
-    'select1' => array(
-        'label'             => esc_html__( 'Select', 'AAA' ),
-        'type'              => 'sidebars',
-        'description'       => esc_html__( 'Some description', 'AAA' ),
-    ),
-
-    'number_slider1' => array(
-        'label'             => esc_html__( 'Number Slider', 'AAA' ),
-        'type'              => 'number_slider',
-        'description'       => esc_html__( 'Some description', 'AAA' ),
-        'append_before'     => 'before..',
-        'append_after'      => 'after..',
-        'min'               => 10,
-        'max'               => 100,
-        'step'              => 5,
-        'value'             => 55,
-    ),
-
-    'image3' => array(
-        'label'             => esc_html__( 'Image Depends', 'AAA' ),
-        'type'              => 'image',
-        'value'             => '',
-        'depends'           => array( 'element' => 'checkbox11', 'value' => '1' ),
-    ),
-
-    'checkbox11' => array(
-        'label'             => esc_html__( 'Checkbox', 'AAA' ),
-        'type'              => 'true_false',
-    ),
+    ,'post_types_heading' => array(
+        'type'              => 'heading',
+        'label'             => esc_html__( 'Select Post Types', 'AAA' ),
+        'description'       => esc_html__( 'Select the post types where to render the plugin', 'AAA' ),
+    )
 
 );
+
+foreach( get_post_types( array( 'public'   => true ), 'objects' ) as $post_type ) {
+
+    if( $post_type->name == 'attachment' ) { continue; }
+
+    $pl_options['post_types'][ $post_type->name ] = array(
+        'type'              => 'true_false',
+        'label'             => $post_type->label,
+    );
+
+}
+
+return $pl_options;
