@@ -56,7 +56,7 @@ class Playouts_Admin_Map {
                 //$screen_layouts_options = $screen->parent_base == 'playouts_options';
             }
 
-            $bwpb_data = array(
+            $pl_data = array(
 
                 'map'                           => json_encode( $map_modules ),
                 'map_repeater'                  => json_encode( $map_modules_repeater ),
@@ -82,17 +82,17 @@ class Playouts_Admin_Map {
                 ),
 
                 'module_dependencies'           => Playouts_Admin_Modal::get_dependencies_inverted(),
-                'panel_general_tab'             => apply_filters( 'pl_panel_general_tab', __( 'General', 'AAA' ) ),
+                'panel_general_tab'             => apply_filters( 'pl_panel_general_tab', __( 'General', 'peenapo-layouts-txd' ) ),
                 'modules'                       => implode( '|', Playouts_Element::get_modules_raw() ),
                 'module_colors'                 => Playouts_Element::get_modules_color(),
 
             );
 
             //if( $screen_layouts_options ) {
-                //$bwpb_data['layouts_options'] = Playouts_Admin_Settings::get_layouts_options();
+                //$pl_data['layouts_options'] = Playouts_Admin_Settings::get_layouts_options();
             //}
 
-            wp_localize_script( 'bwpb-mapper', 'bwpb_data', $bwpb_data );
+            wp_localize_script( 'pl-mapper', 'pl_data', $pl_data );
         }
 
     }
@@ -101,24 +101,24 @@ class Playouts_Admin_Map {
 
         self::$strings = array(
 
-            'empty_all'                         => __( 'Press Ok to delete all the elements, cancel to leave', 'AAA' ),
-            'all'                               => __( 'All', 'AAA' ),
-            'options'                           => __( 'Options', 'AAA' ),
-            'back_to_parent'                    => __( '&larr;&nbsp; Back to parent element', 'AAA' ),
-            'option'                            => __( 'Options', 'AAA' ),
+            'empty_all'                         => __( 'Press Ok to delete all the elements, cancel to leave', 'peenapo-layouts-txd' ),
+            'all'                               => __( 'All', 'peenapo-layouts-txd' ),
+            'options'                           => __( 'Options', 'peenapo-layouts-txd' ),
+            'back_to_parent'                    => __( '&larr;&nbsp; Back to parent element', 'peenapo-layouts-txd' ),
+            'option'                            => __( 'Options', 'peenapo-layouts-txd' ),
 
-            'confirm_empty_title'               => __( 'Empty Content?', 'AAA' ),
-            'confirm_empty_description'         => __( 'Are you sure you want to take this action?', 'AAA' ),
-            'confirm_delete_title'              => __( 'Remove Module?', 'AAA' ),
-            'confirm_delete_description'        => __( 'Are you sure you want to take this action?', 'AAA' ),
+            'confirm_empty_title'               => __( 'Empty Content?', 'peenapo-layouts-txd' ),
+            'confirm_empty_description'         => __( 'Are you sure you want to take this action?', 'peenapo-layouts-txd' ),
+            'confirm_delete_title'              => __( 'Remove Module?', 'peenapo-layouts-txd' ),
+            'confirm_delete_description'        => __( 'Are you sure you want to take this action?', 'peenapo-layouts-txd' ),
 
             'notifications' => array(
-                'module_not_found'              => __( 'The module "{{value}}" was not found!', 'AAA' ),
-                'template_not_found'            => __( 'The template "{{value}}" was not found!', 'AAA' ),
-                'module_no_template'            => __( 'The module "{{value}}" does not have a template!', 'AAA' ),
-                'layout_empty'                  => __( 'Layout cannot be empty!', 'AAA' ),
-                'module_not_mapped'             => __( 'The module was not found in the mapping!', 'AAA' ),
-                'bad_hex'                       => __( 'Bad hex "{{value}}"!', 'AAA' ),
+                'module_not_found'              => __( 'The module "{{value}}" was not found!', 'peenapo-layouts-txd' ),
+                'template_not_found'            => __( 'The template "{{value}}" was not found!', 'peenapo-layouts-txd' ),
+                'module_no_template'            => __( 'The module "{{value}}" does not have a template!', 'peenapo-layouts-txd' ),
+                'layout_empty'                  => __( 'Layout cannot be empty!', 'peenapo-layouts-txd' ),
+                'module_not_mapped'             => __( 'The module was not found in the mapping!', 'peenapo-layouts-txd' ),
+                'bad_hex'                       => __( 'Bad hex "{{value}}"!', 'peenapo-layouts-txd' ),
             ),
 
         );

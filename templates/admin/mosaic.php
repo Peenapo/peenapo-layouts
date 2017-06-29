@@ -1,3 +1,3 @@
-<div class='bwpb-blocks-holder bwpb-no-select'>
-    <div class='bwpb-blocks'></div>
+<div class='pl-blocks-holder pl-no-select'>
+    <div class='pl-blocks'></div>
 </div>

@@ -1,1 +1,1 @@
-<span id="bwpb-overlay" class="bwpb-overlay"></span>
+<span id="pl-overlay" class="pl-overlay"></span>

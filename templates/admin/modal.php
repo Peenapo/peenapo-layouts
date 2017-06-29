@@ -1,30 +1,30 @@
-<div id="bwpb-modal" class="bwpb-modal bwpb-modal-has-favorites">
+<div id="pl-modal" class="pl-modal pl-modal-has-favorites">
 
-    <div class="bwpb-modal-header">
+    <div class="pl-modal-header">
 
-        <div class="bwpb-table">
-            <div class="bwpb-cell">
-                <h4><?php _e( 'Add Modules', 'AAA' ); ?></h4>
+        <div class="pl-table">
+            <div class="pl-cell">
+                <h4><?php _e( 'Add Modules', 'peenapo-layouts-txd' ); ?></h4>
             </div>
-            <div class="bwpb-cell">
+            <div class="pl-cell">
                 <?php do_action( 'pl_modal_tabs' ); ?>
             </div>
-            <div class="bwpb-cell bwpb-align-right">
-                <span class="bwpb-button-close"><em><?php _e( 'Close', 'AAA' ); ?></em><i class="bwpb-plus bwpb-close"><span></span></i></span>
+            <div class="pl-cell pl-align-right">
+                <span class="pl-button-close"><em><?php _e( 'Close', 'peenapo-layouts-txd' ); ?></em><i class="pl-plus pl-close"><span></span></i></span>
             </div>
         </div>
 
     </div>
 
-    <div class="bwpb-modal-content">
+    <div class="pl-modal-content">
 
         <?php do_action( 'pl_modal_tabs_content' ); ?>
 
     </div>
 
-    <div class="bwpb-modal-favorites">
+    <div class="pl-modal-favorites">
 
-        <?php do_action( 'bwpb_get_template_modal_favorites' ); ?>
+        <?php do_action( 'pl_get_template_modal_favorites' ); ?>
 
     </div>
 

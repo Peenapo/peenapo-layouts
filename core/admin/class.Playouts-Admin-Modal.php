@@ -56,7 +56,7 @@ class Playouts_Admin_Modal {
      *
      */
     static function get_tabs_html() {
-        ?><ul class="bwpb-modal-tabs bwpb-no-select">
+        ?><ul class="pl-modal-tabs pl-no-select">
             <?php foreach( self::$tabs as $tab ): ?>
                 <li data-tab="<?php echo esc_attr( $tab->id ); ?>"><?php echo esc_html( $tab->name ); ?></li>
             <?php endforeach; ?>
@@ -70,7 +70,7 @@ class Playouts_Admin_Modal {
     static function get_tabs_content_html() {
 
         foreach( self::$tabs as $tab ):
-            ?><div class="bwpb-tab-content bwpb-tab-content-<?php echo esc_attr( $tab->id ); ?>">
+            ?><div class="pl-tab-content pl-tab-content-<?php echo esc_attr( $tab->id ); ?>">
 
                 <?php if( is_callable( $tab->class_name . '::output' ) ) {
 
@@ -207,7 +207,7 @@ class Playouts_Admin_Modal_Tab_Modules extends Playouts_Admin_Modal_Tab {
     function init() {
 
         $this->id = 'modules';
-        $this->name = esc_html__( 'Modules', 'AAA' );
+        $this->name = esc_html__( 'Modules', 'peenapo-layouts-txd' );
 
     }
 
@@ -215,12 +215,12 @@ class Playouts_Admin_Modal_Tab_Modules extends Playouts_Admin_Modal_Tab {
 
         ob_start(); ?>
 
-        <div class="bwpb-modal-bar">
+        <div class="pl-modal-bar">
 
-            <span><?php _e( 'Sort by', 'AAA' ); ?></span>
+            <span><?php _e( 'Sort by', 'peenapo-layouts-txd' ); ?></span>
 
-            <ul class="bwpb-modal-categories bwpb-no-select">
-                <li data-category="*"><?php esc_html_e( 'All', 'AAA' ); ?></li>
+            <ul class="pl-modal-categories pl-no-select">
+                <li data-category="*"><?php esc_html_e( 'All', 'peenapo-layouts-txd' ); ?></li>
                 <?php foreach( Playouts_Element::get_modules_categories() as $id => $label ): ?>
                     <li data-category="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $label ); ?></li>
                 <?php endforeach; ?>
@@ -228,15 +228,15 @@ class Playouts_Admin_Modal_Tab_Modules extends Playouts_Admin_Modal_Tab {
 
         </div>
 
-        <ul class="bwpb-modal-elements bwpb-modal-modules bwpb-no-select">
+        <ul class="pl-modal-elements pl-modal-modules pl-no-select">
             <?php foreach( Playouts_Element::get_modules_arr() as $id => $module ): ?>
                 <?php if( $module['public'] ): ?>
                     <li data-view="<?php echo esc_attr( $module['view'] ); ?>"
                         data-module="<?php echo esc_attr( $id ); ?>"
                         data-category="<?php echo esc_attr( $module['category'] ); ?>"
                         data-id="module-<?php echo esc_attr( $id ); ?>"
-                        <?php if( in_array( 'module-' . $id, Playouts_Admin_Modal::$favorites ) ) { echo 'class="bwpb-is-favorite"'; } ?>>
-                            <div class="bwpb-element">
+                        <?php if( in_array( 'module-' . $id, Playouts_Admin_Modal::$favorites ) ) { echo 'class="pl-is-favorite"'; } ?>>
+                            <div class="pl-element">
                                 <span><?php echo esc_html( $module['name'] ); ?></span>
                             </div>
                     </li>
@@ -259,7 +259,7 @@ class Playouts_Admin_Modal_Tab_Layouts extends Playouts_Admin_Modal_Tab {
     function init() {
 
         $this->id = 'layouts';
-        $this->name = esc_html__( 'Layouts', 'AAA' );
+        $this->name = esc_html__( 'Layouts', 'peenapo-layouts-txd' );
 
     }
 
@@ -267,12 +267,12 @@ class Playouts_Admin_Modal_Tab_Layouts extends Playouts_Admin_Modal_Tab {
 
         ob_start(); ?>
 
-        <div class="bwpb-modal-bar">
+        <div class="pl-modal-bar">
 
-            <span><?php _e( 'Sort by', 'AAA' ); ?></span>
+            <span><?php _e( 'Sort by', 'peenapo-layouts-txd' ); ?></span>
 
-            <ul class="bwpb-modal-categories bwpb-no-select">
-                <li data-category="*"><?php esc_html_e( 'All', 'AAA' ); ?></li>
+            <ul class="pl-modal-categories pl-no-select">
+                <li data-category="*"><?php esc_html_e( 'All', 'peenapo-layouts-txd' ); ?></li>
                 <?php foreach( Playouts_Admin_Layout::get_layout_categories() as $id => $label ): ?>
                     <li data-category="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $label ); ?></li>
                 <?php endforeach; ?>
@@ -280,16 +280,16 @@ class Playouts_Admin_Modal_Tab_Layouts extends Playouts_Admin_Modal_Tab {
 
         </div>
 
-        <ul class="bwpb-modal-elements bwpb-modal-layouts bwpb-no-select">
+        <ul class="pl-modal-elements pl-modal-layouts pl-no-select">
             <?php foreach( Playouts_Admin_Layout::get_modules_arr() as $id => $layout ): ?>
                 <?php if( $layout['public'] ): ?>
                     <li data-view="<?php echo esc_attr( $layout['layout_view'] ); ?>"
                         data-layout="<?php echo esc_attr( $id ); ?>"
                         data-category="<?php echo esc_attr( $layout['category'] ); ?>"
                         data-id="layout-<?php echo esc_attr( $id ); ?>"
-                        <?php if( in_array( 'layout-' . $id, Playouts_Admin_Modal::$favorites ) ) { echo 'class="bwpb-is-favorite"'; } ?>>
-                            <div class="bwpb-element">
-                                <div class="bwpb-element-image<?php if( basename( $layout['image'] ) == 'default-layout.png' ) { echo ' bwpb-element-default-image'; } ?>">
+                        <?php if( in_array( 'layout-' . $id, Playouts_Admin_Modal::$favorites ) ) { echo 'class="pl-is-favorite"'; } ?>>
+                            <div class="pl-element">
+                                <div class="pl-element-image<?php if( basename( $layout['image'] ) == 'default-layout.png' ) { echo ' pl-element-default-image'; } ?>">
                                     <img src="<?php echo esc_url( $layout['image'] ); ?>" alt="">
                                 </div>
                                 <span><?php echo esc_html( $layout['name'] ); ?></span>
@@ -314,7 +314,7 @@ class Playouts_Admin_Modal_Tab_Custom_Layouts extends Playouts_Admin_Modal_Tab {
     function init() {
 
         $this->id = 'custom_layouts';
-        $this->name = esc_html__( 'Custom Layouts', 'AAA' );
+        $this->name = esc_html__( 'Custom Layouts', 'peenapo-layouts-txd' );
 
     }
 
@@ -324,12 +324,12 @@ class Playouts_Admin_Modal_Tab_Custom_Layouts extends Playouts_Admin_Modal_Tab {
 
         <?php $custom_layout_categories = Playouts_Admin_Layout_Custom::get_categories(); ?>
 
-        <div class="bwpb-modal-bar">
+        <div class="pl-modal-bar">
 
-            <span><?php _e( 'Sort by', 'AAA' ); ?></span>
+            <span><?php _e( 'Sort by', 'peenapo-layouts-txd' ); ?></span>
 
-            <ul class="bwpb-modal-categories bwpb-modal-multiple-categories bwpb-no-select">
-                <li data-category="*"><?php esc_html_e( 'All', 'AAA' ); ?></li>
+            <ul class="pl-modal-categories pl-modal-multiple-categories pl-no-select">
+                <li data-category="*"><?php esc_html_e( 'All', 'peenapo-layouts-txd' ); ?></li>
                 <?php if( $custom_layout_categories ): ?>
                     <?php foreach( $custom_layout_categories as $id => $name ): ?>
                         <li data-category="<?php echo $id; ?>"><?php echo $name; ?></li>
@@ -341,15 +341,15 @@ class Playouts_Admin_Modal_Tab_Custom_Layouts extends Playouts_Admin_Modal_Tab {
 
         <?php $custom_layouts = Playouts_Admin_Layout_Custom::get_layouts_output(); ?>
         <?php if( ! empty( $custom_layouts ) ): ?>
-            <ul class="bwpb-modal-elements bwpb-modal-layouts bwpb-modal-custom-layouts bwpb-no-select">
+            <ul class="pl-modal-elements pl-modal-layouts pl-modal-custom-layouts pl-no-select">
                 <?php foreach( $custom_layouts as $custom_layout_id => $custom_layout ) : ?>
                     <li data-layout-id="<?php echo $custom_layout_id; ?>"
                         data-view="<?php echo $custom_layout['view']; ?>"
                         data-category="<?php echo $custom_layout['category']; ?>"
                         data-id="custom-layout-<?php echo $custom_layout_id; ?>"
-                        <?php if( in_array( 'custom-layout-' . $custom_layout_id, Playouts_Admin_Modal::$favorites ) ) { echo 'class="bwpb-is-favorite"'; } ?>>
-                            <div class="bwpb-element">
-                                <div class="bwpb-element-image">
+                        <?php if( in_array( 'custom-layout-' . $custom_layout_id, Playouts_Admin_Modal::$favorites ) ) { echo 'class="pl-is-favorite"'; } ?>>
+                            <div class="pl-element">
+                                <div class="pl-element-image">
                                     <img src="<?php echo PL_ASSEST; ?>admin/images/default-layout.png" alt="">
                                 </div>
                                 <span><?php echo esc_html( $custom_layout['name'] ); ?></span>

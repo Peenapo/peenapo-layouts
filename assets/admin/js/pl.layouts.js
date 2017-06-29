@@ -8,7 +8,7 @@ window.jQuery = window.$ = jQuery;
  * the prompt will be called only when needed
  *
  */
-var BwpbPrompt = {
+var Pl_prompt = {
 
     /*
      * start here
@@ -26,24 +26,24 @@ var BwpbPrompt = {
      */
     bind: function() {
 
-        $('#bwpb-main').on('click', '.bwpb-open-prompt', function() {
-            BwpbPrompt.prompt_open( $(this).attr('data-prompt') );
+        $('#pl-main').on('click', '.pl-open-prompt', function() {
+            Pl_prompt.prompt_open( $(this).attr('data-prompt') );
         });
 
     },
 
     before_show: function() {
-        $('#bwpb-overlay').css({ 'visibility': 'visible', 'opacity': 1 });
-        $('#bwpb-overlay').on('click.pl_click_overlay_prompt', BwpbPrompt.on_click_prompt_close);
-        $('.bwpb-prompt').on('click.bwpb_panel_info_click', '.bwpb-icon-info', Bwpb_settings_panel.on_click_info_icon);
+        $('#pl-overlay').css({ 'visibility': 'visible', 'opacity': 1 });
+        $('#pl-overlay').on('click.pl_click_overlay_prompt', Pl_prompt.on_click_prompt_close);
+        $('.pl-prompt').on('click.pl_panel_info_click', '.pl-icon-info', Pl_settings_panel.on_click_info_icon);
     },
 
     before_hide: function() {
 
-        if( ! $('.bwpb-prompt-confirm--remove-repeater').length ) {
-            $('#bwpb-overlay').css({ 'visibility': 'hidden', 'opacity': 0 });
-            $('#bwpb-overlay').off('click.pl_click_overlay_prompt');
-            $('.bwpb-prompt').on('click.bwpb_panel_info_click', '.bwpb-icon-info', Bwpb_settings_panel.on_click_info_icon);
+        if( ! $('.pl-prompt-confirm--remove-repeater').length ) {
+            $('#pl-overlay').css({ 'visibility': 'hidden', 'opacity': 0 });
+            $('#pl-overlay').off('click.pl_click_overlay_prompt');
+            $('.pl-prompt').on('click.pl_panel_info_click', '.pl-icon-info', Pl_settings_panel.on_click_info_icon);
         }
 
     },
@@ -60,52 +60,52 @@ var BwpbPrompt = {
         if( $('[data-prompt-id="' + prompt_id + '"]').length ) { return; }
 
         // get the template html and convert to jquery object
-        var $prompt = $( $('#bwpb-template-prompt-' + prompt_id).html() ).attr('data-prompt-id', prompt_id);
+        var $prompt = $( $('#pl-template-prompt-' + prompt_id).html() ).attr('data-prompt-id', prompt_id);
 
         // append the prompt after the main container
-        $('#bwpb-main').append( $prompt );
+        $('#pl-main').append( $prompt );
 
-        BwpbPrompt.before_show();
+        Pl_prompt.before_show();
 
         // show the prompt
         setTimeout(function() {
-            $prompt.addClass('bwpb-prompted').find('.bwpb-panel-content').css('opacity', 1);
+            $prompt.addClass('pl-prompted').find('.pl-panel-content').css('opacity', 1);
         }, 50);
 
         // bind the close button
-        $prompt.on('click.bwpb_prompt_close', '.bwpb-prompt-close', BwpbPrompt.on_click_prompt_close);
-        $prompt.on('click.bwpb_prompt_close', '.bwpb-prompt-button-save-layout', BwpbPrompt.on_click_prompt_button_save_layout);
+        $prompt.on('click.pl_prompt_close', '.pl-prompt-close', Pl_prompt.on_click_prompt_close);
+        $prompt.on('click.pl_prompt_close', '.pl-prompt-button-save-layout', Pl_prompt.on_click_prompt_button_save_layout);
 
         if( prompt_id == 'save-layout' ) {
-            BwpbPrompt.before_prompt_save_layout();
+            Pl_prompt.before_prompt_save_layout();
         }
 
         // bind keys
-        $(document).on('keyup.pl_prompt_enter', BwpbPrompt.on_prompt_key_enter);
-        $(document).on('keyup.pl_prompt_escape', BwpbPrompt.on_prompt_key_escape);
+        $(document).on('keyup.pl_prompt_enter', Pl_prompt.on_prompt_key_enter);
+        $(document).on('keyup.pl_prompt_escape', Pl_prompt.on_prompt_key_escape);
 
     },
 
     on_prompt_key_enter: function(e) {
         if( e.keyCode == 13 ) {
-            $('.bwpb-prompt-key-enter').trigger('click');
+            $('.pl-prompt-key-enter').trigger('click');
         }
     },
 
     on_prompt_key_escape: function(e) {
         if( e.keyCode == 27 ) {
-            $('.bwpb-prompt-key-escape').trigger('click');
+            $('.pl-prompt-key-escape').trigger('click');
         }
     },
 
     close: function() {
 
-        if( ! $('.bwpb-prompt.bwpb-prompted').length ) { return; }
+        if( ! $('.pl-prompt.pl-prompted').length ) { return; }
 
-        BwpbPrompt.before_hide();
+        Pl_prompt.before_hide();
 
         // the prompt container
-        var $prompt = $('.bwpb-prompt').removeClass('bwpb-prompted');
+        var $prompt = $('.pl-prompt').removeClass('pl-prompted');
 console.log(111);
         // wait for the animation to stop and remove the template
         setTimeout(function() {
@@ -113,7 +113,7 @@ console.log(111);
             console.log(222);
         }, 220 );
 
-        $('.bwpb-prompt-confirm').off('click.pl_prompt_confirm');
+        $('.pl-prompt-confirm').off('click.pl_prompt_confirm');
 
         $(document).off('keyup.pl_prompt_enter');
         $(document).off('keyup.pl_prompt_escape');
@@ -122,18 +122,18 @@ console.log(111);
 
     ajaxing_start: function() {
 
-        var $prompt = $('.bwpb-prompt');
+        var $prompt = $('.pl-prompt');
         if( $prompt.length ) {
-            $prompt.addClass('bwpb-prompt-ajaxing');
+            $prompt.addClass('pl-prompt-ajaxing');
         }
 
     },
 
     ajaxing_end: function() {
 
-        var $prompt = $('.bwpb-prompt');
+        var $prompt = $('.pl-prompt');
         if( $prompt.length ) {
-            $prompt.removeClass('bwpb-prompt-ajaxing');
+            $prompt.removeClass('pl-prompt-ajaxing');
         }
 
     },
@@ -143,11 +143,11 @@ console.log(111);
         var $categories = $('.bw-save-layout-cats'),
             $template;
 
-        for ( var category in window.bwpb_data.map_custom_layout_categories ) {
-            $template = $( $('#bwpb_template-save_custom_layout_category_item').html() );
+        for ( var category in window.pl_data.map_custom_layout_categories ) {
+            $template = $( $('#pl_template-save_custom_layout_category_item').html() );
             $template.find('input').attr('value', category).attr('id', 'layout-checkbox-' + category );
             $template.find('label').attr('for', 'layout-checkbox-' + category );
-            $template.find('span').html( window.bwpb_data.map_custom_layout_categories[ category ] );
+            $template.find('span').html( window.pl_data.map_custom_layout_categories[ category ] );
             $template.appendTo( $('.bw-save-layout-cats') );
         }
 
@@ -157,32 +157,32 @@ console.log(111);
 
         e.preventDefault();
 
-        if( $('.bwpb-prompt').hasClass('bwpb-prompt-ajaxing') ) { return; }
+        if( $('.pl-prompt').hasClass('pl-prompt-ajaxing') ) { return; }
 
-        var layout_name = $('#bwpb-field-layout-name').val();
+        var layout_name = $('#pl-field-layout-name').val();
 
         if( layout_name !== '' ) {
 
-            BwpbPrompt.ajaxing_start();
+            Pl_prompt.ajaxing_start();
 
             var layout_name = layout_name,
-                layout_content = BwpbLayouts.custom_layout_content,
-                layout_new_category = $('#bwpb-field-layout-category').val(),
+                layout_content = Pl_layouts.custom_layout_content,
+                layout_new_category = $('#pl-field-layout-category').val(),
                 layout_categories = $('.bw-save-layout-cats input:checked').map(function() {
                     return this.value;
                 }).get();
 
-            BwpbLayouts.send_layout( layout_name, layout_content, layout_categories, layout_new_category );
+            Pl_layouts.send_layout( layout_name, layout_content, layout_categories, layout_new_category );
 
         }else{
-            $('#bwpb-field-layout-name').focus();
+            $('#pl-field-layout-name').focus();
         }
 
     },
 
     on_layout_saving_end: function() {
 
-        $('#bwpb-field-layout-name').val('');
+        $('#pl-field-layout-name').val('');
 
     },
 
@@ -194,13 +194,13 @@ console.log(111);
 
         e.preventDefault();
 
-        BwpbPrompt.close();
+        Pl_prompt.close();
 
     }
 }
-BwpbPrompt.start();
+Pl_prompt.start();
 
-var BwpbLayouts = {
+var Pl_layouts = {
 
     /*
      * are we in an post edit page with pl_layout post type
@@ -235,7 +235,7 @@ var BwpbLayouts = {
     start: function() {
 
         // set screen
-        this.screen_edit_layout = window.bwpb_data.screen_edit && window.typenow == 'pl_layout';
+        this.screen_edit_layout = window.pl_data.screen_edit && window.typenow == 'pl_layout';
 
         this.bind();
 
@@ -243,7 +243,7 @@ var BwpbLayouts = {
 
     bind: function() {
 
-        $('#bwpb-main').on('click', '.bwpb-button-save-custom-layout', BwpbLayouts.on_click_save_custom_layout);
+        $('#pl-main').on('click', '.pl-button-save-custom-layout', Pl_layouts.on_click_save_custom_layout);
 
     },
 
@@ -251,23 +251,23 @@ var BwpbLayouts = {
 
         var self = $(this);
         var save_type = self.attr('data-save-layout');
-        var parent_id = self.closest('.bwpb-block').attr('data-id');
+        var parent_id = self.closest('.pl-block').attr('data-id');
 
         switch( save_type ) {
             case 'content':
-                BwpbLayouts.custom_layout_content = Bwpb.wpautop( BwpbShortcoder.get_editor_content() );
+                Pl_layouts.custom_layout_content = Pl_main.wpautop( Pl_shortcoder.get_editor_content() );
                 break;
             case 'row':
-                BwpbLayouts.flush_custom_layout_content_by_module_id( parent_id, false );
-                BwpbLayouts.custom_layout_content = BwpbLayouts.custom_layout_content;
+                Pl_layouts.flush_custom_layout_content_by_module_id( parent_id, false );
+                Pl_layouts.custom_layout_content = Pl_layouts.custom_layout_content;
                 break;
             case 'column':
-                BwpbLayouts.flush_custom_layout_content_by_module_id( parent_id, true );
-                BwpbLayouts.custom_layout_content = '[bw_row dummy="yes"][bw_column dummy="yes"]' + BwpbLayouts.custom_layout_content + '[/bw_column][/bw_row]';
+                Pl_layouts.flush_custom_layout_content_by_module_id( parent_id, true );
+                Pl_layouts.custom_layout_content = '[bw_row dummy="yes"][bw_column dummy="yes"]' + Pl_layouts.custom_layout_content + '[/bw_column][/bw_row]';
                 break;
             case 'element':
-                BwpbLayouts.flush_custom_layout_content_by_module_id( parent_id, false );
-                BwpbLayouts.custom_layout_content = '[bw_row dummy="yes"][bw_column dummy="yes"]' + BwpbLayouts.custom_layout_content + '[/bw_column][/bw_row]';
+                Pl_layouts.flush_custom_layout_content_by_module_id( parent_id, false );
+                Pl_layouts.custom_layout_content = '[bw_row dummy="yes"][bw_column dummy="yes"]' + Pl_layouts.custom_layout_content + '[/bw_column][/bw_row]';
                 break;
         }
 
@@ -275,16 +275,16 @@ var BwpbLayouts = {
 
     /*on_click_save_layout: function() {
 
-        BwpbPrompt.open_prompt( $(this) );
+        Pl_prompt.open_prompt( $(this) );
 
-        //BwpbLayouts.save_layout();
+        //Pl_layouts.save_layout();
 
     },*/
 
     /*save_layout: function() {
 
-        var layout = BwpbShortcoder.get_editor_content();
-        BwpbLayouts.send_layout( Bwpb.wpautop( layout ) );
+        var layout = Pl_shortcoder.get_editor_content();
+        Pl_layouts.send_layout( Pl_main.wpautop( layout ) );
 
     },*/
 
@@ -292,10 +292,10 @@ var BwpbLayouts = {
 
         $.ajax({
             type: 'POST',
-            url: bwpb_admin_root.ajax,
+            url: pl_admin_root.ajax,
             data: {
                 action              : '__save_layout',
-                nonce               : bwpb_data.security.save_layout,
+                nonce               : pl_data.security.save_layout,
                 layout_name         : layout_name,
                 layout_content      : layout_content,
                 layout_categories   : layout_categories,
@@ -304,11 +304,11 @@ var BwpbLayouts = {
             dataType: 'json',
             success: function( response ) {
 
-                BwpbPrompt.ajaxing_end(); // remove ajaxing class
-                BwpbPrompt.on_layout_saving_end(); // callback for prompt layout save
+                Pl_prompt.ajaxing_end(); // remove ajaxing class
+                Pl_prompt.on_layout_saving_end(); // callback for prompt layout save
 
-                window.bwpb_data.map_custom_layouts = response.custom_layouts; // refresh layouts
-                window.bwpb_data.map_custom_layout_categories = response.custom_layout_categories; // refresh layout categories
+                window.pl_data.map_custom_layouts = response.custom_layouts; // refresh layouts
+                window.pl_data.map_custom_layout_categories = response.custom_layout_categories; // refresh layout categories
 
                 Pl_modal.reload_custom_layouts();
                 Pl_modal.reload_custom_layout_categories();
@@ -316,24 +316,24 @@ var BwpbLayouts = {
             }
         });
 
-        BwpbPrompt.close(); // close the prompt modal
+        Pl_prompt.close(); // close the prompt modal
 
     },
 
     push_layout: function( layout, parent_id = 0, layout_view = false ) {
 
         if( layout_view ) {
-            layout = BwpbLayouts.remove_dummy_modules( layout, layout_view );
+            layout = Pl_layouts.remove_dummy_modules( layout, layout_view );
         }
 
         if( layout == '' ) {
-            Bwpb.notify( 'layout_empty', module );
+            Pl_main.notify( 'layout_empty', module );
             return;
         }
 
         this.layout_parent_id = parent_id;
 
-        BwpbInterface.send_ajax( layout, true, true, true );
+        Pl_interface.send_ajax( layout, true, true, true );
 
     },
 
@@ -359,7 +359,7 @@ var BwpbLayouts = {
      */
     flush_custom_layout_content_by_module_id: function( module_id, exclude_parent = false ) {
 
-        BwpbLayouts.match_tree_modules_children_by_id( BwpbMapper.__mapper_tree, module_id, exclude_parent );
+        Pl_layouts.match_tree_modules_children_by_id( Pl_mapper.__mapper_tree, module_id, exclude_parent );
 
     },
 
@@ -373,16 +373,16 @@ var BwpbLayouts = {
                 var focus_obj = exclude_parent ? tree_modules_obj[i].children : tree_modules_obj[i];
                 var focus_holder = [];
                 focus_holder.push( tree_modules_obj[i] );
-                BwpbLayouts.custom_layout_content = BwpbShortcoder.reload_shortcodes_and_push( focus_holder, false );
+                Pl_layouts.custom_layout_content = Pl_shortcoder.reload_shortcodes_and_push( focus_holder, false );
                 break;
             }
 
             if( tree_modules_obj[i].children && $.isArray( tree_modules_obj[i].children ) ) {
-                BwpbLayouts.match_tree_modules_children_by_id( tree_modules_obj[i].children, module_id, exclude_parent );
+                Pl_layouts.match_tree_modules_children_by_id( tree_modules_obj[i].children, module_id, exclude_parent );
             }
         }
 
     },
 
 }
-BwpbLayouts.start();
+Pl_layouts.start();

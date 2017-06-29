@@ -23,7 +23,7 @@ class Playouts_Public_Map {
 
     static function front_params() {
 
-        wp_localize_script( 'bwpb-front', 'bwpb_params', array(
+        wp_localize_script( 'pl-front', 'pl_params', array(
 
             'is_mobile' => wp_is_mobile(),
             'i18n' => Playouts_Public_Map::$strings,
@@ -36,10 +36,10 @@ class Playouts_Public_Map {
 
         self::$strings = array(
 
-            'days' => __( 'Days', 'AAA' ),
-            'hours' => __( 'Hours', 'AAA' ),
-            'minutes' => __( 'Minutes', 'AAA' ),
-            'seconds' => __( 'Seconds', 'AAA' ),
+            'days' => __( 'Days', 'peenapo-layouts-txd' ),
+            'hours' => __( 'Hours', 'peenapo-layouts-txd' ),
+            'minutes' => __( 'Minutes', 'peenapo-layouts-txd' ),
+            'seconds' => __( 'Seconds', 'peenapo-layouts-txd' ),
 
         );
 

@@ -4,20 +4,20 @@ $pl_options = array(
 
     'google_map_api_key' => array(
         'type'              => 'textfield',
-        'label'             => esc_html__( 'Google Map Api Key', 'AAA' ),
-        'description'       => sprintf( esc_html__( 'Add Google Map Api Key to display your maps correctly. You can get the key from %s.', 'AAA' ), '<a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank" rel="nofollow">' . esc_attr__( 'here', 'AAA' ) . '</a>' ),
+        'label'             => esc_html__( 'Google Map Api Key', 'peenapo-layouts-txd' ),
+        'description'       => sprintf( esc_html__( 'Add Google Map Api Key to display your maps correctly. You can get the key from %s.', 'peenapo-layouts-txd' ), '<a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank" rel="nofollow">' . esc_attr__( 'here', 'peenapo-layouts-txd' ) . '</a>' ),
     )
 
     ,'show_editor' => array(
         'type'              => 'true_false',
-        'label'             => esc_html__( 'Show Content Editor', 'AAA' ),
-        'description'       => esc_html__( 'Show the WordPress Content Editor while Peenapo Layouts is active', 'AAA' ),
+        'label'             => esc_html__( 'Show Content Editor', 'peenapo-layouts-txd' ),
+        'description'       => esc_html__( 'Show the WordPress Content Editor while Peenapo Layouts is active', 'peenapo-layouts-txd' ),
     )
 
     ,'post_types_heading' => array(
         'type'              => 'heading',
-        'label'             => esc_html__( 'Select Post Types', 'AAA' ),
-        'description'       => esc_html__( 'Select the post types where to render the plugin', 'AAA' ),
+        'label'             => esc_html__( 'Select Post Types', 'peenapo-layouts-txd' ),
+        'description'       => esc_html__( 'Select the post types where to render the plugin', 'peenapo-layouts-txd' ),
     )
 
 );

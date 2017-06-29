@@ -37,8 +37,8 @@ class Playouts_Admin_Settings {
 
         // add our admin menu
         add_menu_page(
-            __( 'Peenapo Panel', 'AAA' ),                       # page title
-            __( 'Peenapo Layouts', 'AAA' ),                            # menu title
+            __( 'Peenapo Panel', 'peenapo-layouts-txd' ),                       # page title
+            __( 'Peenapo Layouts', 'peenapo-layouts-txd' ),                            # menu title
             'manage_options',                                   # capability
             'playouts_options',                                 # menu slug
             array( 'Playouts_Admin_Settings', 'page_settings' ), # callback function
@@ -48,8 +48,8 @@ class Playouts_Admin_Settings {
         // create the settings submenu
         add_submenu_page(
             'playouts_options',                                 # parent slug name
-            __( 'Peenapo Layouts Settings Panel', 'AAA' ),      # page title
-            __( 'Settings', 'AAA' ),                    # menu title
+            __( 'Peenapo Layouts Settings Panel', 'peenapo-layouts-txd' ),      # page title
+            __( 'Settings', 'peenapo-layouts-txd' ),                    # menu title
             'manage_options',                                   # capability
             'playouts_options'                                  # menu slug
         );
@@ -57,8 +57,8 @@ class Playouts_Admin_Settings {
         // create submenu that points to view pl_layout post type
         add_submenu_page(
             'playouts_options',
-            __( 'Custom Layouts', 'AAA' ),
-            __( 'Custom Layouts', 'AAA' ),
+            __( 'Custom Layouts', 'peenapo-layouts-txd' ),
+            __( 'Custom Layouts', 'peenapo-layouts-txd' ),
             'manage_options',
             'edit.php?post_type=pl_layout'
         );
@@ -69,8 +69,8 @@ class Playouts_Admin_Settings {
         // theme options submenu
         /*add_submenu_page(
             'playouts_options',
-            __( 'Theme Options', 'AAA' ),
-            __( 'Theme Options', 'AAA' ),
+            __( 'Theme Options', 'peenapo-layouts-txd' ),
+            __( 'Theme Options', 'peenapo-layouts-txd' ),
             'manage_options',
             'pl_theme_options',
             array( 'Playouts_Admin_Settings', 'guide_theme_options' )
@@ -80,7 +80,7 @@ class Playouts_Admin_Settings {
 
     /*
      * the callback of our options panel page
-     * get "bwpb_get_template_settings" template
+     * get "pl_get_template_settings" template
      *
      */
     static function page_settings() {
@@ -94,7 +94,7 @@ class Playouts_Admin_Settings {
 
         self::actions();
 
-        do_action( 'bwpb_get_template_settings' );
+        do_action( 'pl_get_template_settings' );
 
         # load footer templates
         add_action( 'admin_footer', array( 'Playouts_Admin', 'footer_templates' ) );
@@ -103,9 +103,9 @@ class Playouts_Admin_Settings {
     static function set_support() {
 
         $support_layouts_settings = array(
-            'options'       => array( 'label' => __( 'Options', 'AAA' ) ),
-            'fonts'         => array( 'label' => __( 'Fonts', 'AAA' ) ),
-            //'portability'   => array( 'label' => __( 'Portability', 'AAA' ) ),
+            'options'       => array( 'label' => __( 'Options', 'peenapo-layouts-txd' ) ),
+            'fonts'         => array( 'label' => __( 'Fonts', 'peenapo-layouts-txd' ) ),
+            //'portability'   => array( 'label' => __( 'Portability', 'peenapo-layouts-txd' ) ),
         );
         self::$support_layouts_settings = apply_filters( 'bwg_support', $support_layouts_settings );
 
@@ -114,13 +114,13 @@ class Playouts_Admin_Settings {
     static function set_strings() {
 
         self::$strings = (object) array(
-            'not_complete' => __('Not complete', 'AAA'),
-            'complete' => __('Complete', 'AAA'),
-            'api_not_complete' => __('API Connection: Disconnected', 'AAA'),
-            'api_complete' => __('API Connection: Connected', 'AAA'),
-            'demo_not_complete' => __('Not Imported', 'AAA'),
-            'demo_complete' => __('Imported', 'AAA'),
-            'recommended' => __('RECOMMENDED', 'AAA'),
+            'not_complete' => __('Not complete', 'peenapo-layouts-txd'),
+            'complete' => __('Complete', 'peenapo-layouts-txd'),
+            'api_not_complete' => __('API Connection: Disconnected', 'peenapo-layouts-txd'),
+            'api_complete' => __('API Connection: Connected', 'peenapo-layouts-txd'),
+            'demo_not_complete' => __('Not Imported', 'peenapo-layouts-txd'),
+            'demo_complete' => __('Imported', 'peenapo-layouts-txd'),
+            'recommended' => __('RECOMMENDED', 'peenapo-layouts-txd'),
         );
 
     }
@@ -141,7 +141,7 @@ class Playouts_Admin_Settings {
     /*static function get_layouts_options() {
 
         $layouts_options_arr = require PL_DIR . 'inc/options.php';
-        $layouts_options_filter = apply_filters( 'bwpb_layouts_options', $layouts_options_arr );
+        $layouts_options_filter = apply_filters( 'pl_layouts_options', $layouts_options_arr );
         $layouts_options_values = get_option( 'pl_layouts_options' );
 
         $layouts_options_new = array();
@@ -163,7 +163,7 @@ class Playouts_Admin_Settings {
      *
      */
     /*static function guide_theme_options() {
-        do_action( 'bwpb_get_template_settings_theme_options' );
+        do_action( 'pl_get_template_settings_theme_options' );
     }*/
 
     static function panel_categories_section() {
@@ -175,7 +175,7 @@ class Playouts_Admin_Settings {
 
     static function get_categories_section() {
         ?><a href="<?php echo admin_url( 'edit-tags.php?taxonomy=pl_layout_category' ); ?>" class="bw-manage-layout-categories">
-            <?php _e( 'Manage Layout Categories', 'AAA' ); ?>
+            <?php _e( 'Manage Layout Categories', 'peenapo-layouts-txd' ); ?>
         </a><?php
     }
 

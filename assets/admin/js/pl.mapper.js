@@ -2,7 +2,7 @@
 
 window.jQuery = window.$ = jQuery;
 
-var BwpbMapper = {
+var Pl_mapper = {
 
     /*
      * contains all data for modules
@@ -86,9 +86,9 @@ var BwpbMapper = {
         // clear the current tree object
         this.__mapper_tree = [];
         // parse the current ui modules
-        this.parse_modules_and_build_tree( $('#bwpb-main .bwpb-blocks'), false );
+        this.parse_modules_and_build_tree( $('#pl-main .pl-blocks'), false );
         // returns shortcodes string and update the html editor content if set to "true"
-        BwpbShortcoder.reload_shortcodes_and_push( this.__mapper_tree, append_shortcode );
+        Pl_shortcoder.reload_shortcodes_and_push( this.__mapper_tree, append_shortcode );
 
     },
 
@@ -102,9 +102,9 @@ var BwpbMapper = {
 
         var push_to_object = parent_obj ? parent_obj.children : self.__mapper_tree;
 
-        var $container = parent_obj ? $modules.find('.bwpb-content:first') : $modules;
+        var $container = parent_obj ? $modules.find('.pl-content:first') : $modules;
 
-        $container.children('.bwpb-block').each(function() {
+        $container.children('.pl-block').each(function() {
 
             var $e = $(this);
 
@@ -115,7 +115,7 @@ var BwpbMapper = {
 
             push_to_object.push( current );
 
-            if( $( '.bwpb-block', $e ).length > 0 ) {
+            if( $( '.pl-block', $e ).length > 0 ) {
                 self.parse_modules_and_build_tree( $e, current );
             }
 
@@ -153,17 +153,17 @@ var BwpbMapper = {
         for ( var i = 0; i < tree_length; i++ ) {
 
             if( tree_obj[i].id == module_id ) {
-                BwpbMapper.parser_tree_return_value = tree_obj[i].children;
+                Pl_mapper.parser_tree_return_value = tree_obj[i].children;
                 break;
             }
 
             if( tree_obj[i].children && $.isArray( tree_obj[i].children ) ) {
-                BwpbMapper.get_tree_modules_children_by_id( tree_obj[i].children, module_id );
+                Pl_mapper.get_tree_modules_children_by_id( tree_obj[i].children, module_id );
             }
 
         }
 
-        return BwpbMapper.parser_tree_return_value;
+        return Pl_mapper.parser_tree_return_value;
 
     }
 

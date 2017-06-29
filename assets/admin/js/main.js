@@ -43,9 +43,9 @@ Pl_tooltip.start();
  * panel to add custom styles to the current page
  *
  */
-var Bwpb_custom_css_panel = {
+var Pl_custom_css_panel = {
 
-    $panel: $('#bwpb-custom-css'),
+    $panel: $('#pl-custom-css'),
 
     start: function() {
 
@@ -56,46 +56,46 @@ var Bwpb_custom_css_panel = {
     bind: function() {
 
         // open custom css panel
-        $('.bwpb-open-custom-css-panel').on('click', Bwpb_custom_css_panel.edit);
+        $('.pl-open-custom-css-panel').on('click', Pl_custom_css_panel.edit);
 
         // close panel
-        Bwpb_custom_css_panel.$panel.on('click', '.bwpb-button-close', Bwpb_custom_css_panel.close);
+        Pl_custom_css_panel.$panel.on('click', '.pl-button-close', Pl_custom_css_panel.close);
 
         // save custom css
-        Bwpb_custom_css_panel.$panel.on('click', '.bwpb-button-save', Bwpb_custom_css_panel.save);
+        Pl_custom_css_panel.$panel.on('click', '.pl-button-save', Pl_custom_css_panel.save);
 
 
     },
 
     on_custom_css_escape: function(e) {
         if( e.keyCode == 27 ) {
-            Bwpb_custom_css_panel.close();
+            Pl_custom_css_panel.close();
         }
     },
 
     edit: function() {
 
         // close any settings panel
-        Bwpb_settings_panel.close();
+        Pl_settings_panel.close();
         // open the panel
-        Bwpb_custom_css_panel.open();
+        Pl_custom_css_panel.open();
 
     },
 
     open: function() {
 
-        Bwpb_custom_css_panel.$panel.addClass('bwpb-open bwpb-done');
+        Pl_custom_css_panel.$panel.addClass('pl-open pl-done');
         // overlay
-        $('#bwpb-overlay').css({'visibility':'visible', 'opacity':1});
+        $('#pl-overlay').css({'visibility':'visible', 'opacity':1});
         // bind escape
-        $(document).on('keyup.pl_custom_css_escape', Bwpb_custom_css_panel.on_custom_css_escape);
+        $(document).on('keyup.pl_custom_css_escape', Pl_custom_css_panel.on_custom_css_escape);
 
     },
 
     close: function() {
 
-        Bwpb_custom_css_panel.$panel.removeClass( 'bwpb-open bwpb-done' );
-        $('#bwpb-overlay').css({'visibility':'hidden', 'opacity':0});
+        Pl_custom_css_panel.$panel.removeClass( 'pl-open pl-done' );
+        $('#pl-overlay').css({'visibility':'hidden', 'opacity':0});
 
         $(document).off('keyup.pl_custom_css_escape');
 
@@ -107,7 +107,7 @@ var Bwpb_custom_css_panel = {
      */
     save: function() {
 
-        Bwpb_custom_css_panel.close();
+        Pl_custom_css_panel.close();
 
     },
 
@@ -117,9 +117,9 @@ var Bwpb_custom_css_panel = {
  * panel to edit element's options
  *
  */
-var Bwpb_settings_panel = {
+var Pl_settings_panel = {
 
-    $panel: $('#bwpb-panel-settings'),
+    $panel: $('#pl-panel-settings'),
 
     /*
      * the id of the element we are currently editing
@@ -149,7 +149,7 @@ var Bwpb_settings_panel = {
         // TODO: move panel variables like $panel in this object
         // and other init options, if any..
 
-        Bwpb_settings_panel.bind();
+        Pl_settings_panel.bind();
 
     },
 
@@ -160,14 +160,14 @@ var Bwpb_settings_panel = {
     bind: function() {
 
         // edit options
-        $('#bwpb-main').on('click', '.bwpb-edit', Bwpb_settings_panel.edit);
-        $('#bwpb-main').on('click', '.bwpb-edit-columns', Bwpb_settings_panel.edit_columns);
+        $('#pl-main').on('click', '.pl-edit', Pl_settings_panel.edit);
+        $('#pl-main').on('click', '.pl-edit-columns', Pl_settings_panel.edit_columns);
 
         // close panel
-        Bwpb_settings_panel.$panel.on('click', '.bwpb-button-close', Bwpb_settings_panel.close);
+        Pl_settings_panel.$panel.on('click', '.pl-button-close', Pl_settings_panel.close);
 
         // save settings panel
-        Bwpb_settings_panel.$panel.on('click', '.bwpb-button-save', Bwpb_settings_panel.save);
+        Pl_settings_panel.$panel.on('click', '.pl-button-save', Pl_settings_panel.save);
     },
 
     /*
@@ -175,7 +175,7 @@ var Bwpb_settings_panel = {
      *
      */
     edit: function() {
-        Bwpb_settings_panel.open( $(this).closest('.bwpb-block').attr('data-id') );
+        Pl_settings_panel.open( $(this).closest('.pl-block').attr('data-id') );
     },
 
     /*
@@ -183,15 +183,15 @@ var Bwpb_settings_panel = {
      *
      */
     edit_columns: function() {
-        Bwpb_settings_panel.open( $(this).closest('.bwpb-block').attr('data-id'), 'row_columns' );
+        Pl_settings_panel.open( $(this).closest('.pl-block').attr('data-id'), 'row_columns' );
     },
 
     edit_by_id: function( id ) {
-        Bwpb_settings_panel.open( id );
+        Pl_settings_panel.open( id );
     },
 
     edit_inside: function( id ) {
-        Bwpb_settings_panel.open_inside( id );
+        Pl_settings_panel.open_inside( id );
     },
 
     /*
@@ -201,23 +201,23 @@ var Bwpb_settings_panel = {
     open: function( id, tab = false ) {
 
         // this is the element we are currently editing
-        var data = BwpbMapper.__mapper_data[ id ];
+        var data = Pl_mapper.__mapper_data[ id ];
 
             // set the title of the panel
-            Bwpb_settings_panel.set_title( data.name );
+            Pl_settings_panel.set_title( data.name );
             // close any other settings panels
-            Bwpb_settings_panel.close();
+            Pl_settings_panel.close();
             // set the overlay
-            $('#bwpb-overlay').css({'visibility':'visible', 'opacity':1});
+            $('#pl-overlay').css({'visibility':'visible', 'opacity':1});
 
         // get and generate all the settings via js
-        Bwpb_settings_panel.get_settings( id, data, tab );
+        Pl_settings_panel.get_settings( id, data, tab );
         // display the panel
-        Bwpb_settings_panel.show();
+        Pl_settings_panel.show();
         // bind the info icon to expand description area
-        Bwpb_settings_panel.$panel.on('click.bwpb_panel_info_click', '.bwpb-icon-info', Bwpb_settings_panel.on_click_info_icon);
+        Pl_settings_panel.$panel.on('click.pl_panel_info_click', '.pl-icon-info', Pl_settings_panel.on_click_info_icon);
 
-        $(document).on('keyup.options_panel_escape', Bwpb_settings_panel.on_panel_escape);
+        $(document).on('keyup.options_panel_escape', Pl_settings_panel.on_panel_escape);
 
 
     },
@@ -225,66 +225,66 @@ var Bwpb_settings_panel = {
     on_panel_escape: function(e) {
 
         if( e.keyCode == 27 ) {
-            //Bwpb_settings_panel.close();
-            $('#bwpb-panel-settings .bwpb-panel-footer .bwpb-button-close').trigger('click');
+            //Pl_settings_panel.close();
+            $('#pl-panel-settings .pl-panel-footer .pl-button-close').trigger('click');
         }
 
     },
 
     open_inside: function( id ) {
 
-        Bwpb_settings_panel.tabs.set_insider_last_tab();
+        Pl_settings_panel.tabs.set_insider_last_tab();
 
         // lets set the insider id before we do anything
-        Bwpb_settings_panel.panel_edit_insider_id = Bwpb_settings_panel.panel_edit_id;
+        Pl_settings_panel.panel_edit_insider_id = Pl_settings_panel.panel_edit_id;
 
         // this is the element we are currently editing
-        var data = BwpbMapper.__mapper_data[ id ];
+        var data = Pl_mapper.__mapper_data[ id ];
 
         // add class to save button
-        Bwpb_settings_panel.$panel.find('.bwpb-button-save').addClass('bwpb-button-save-insider');
-        Bwpb_settings_panel.$panel.find('.bwpb-button-close').addClass('bwpb-button-close-insider');
+        Pl_settings_panel.$panel.find('.pl-button-save').addClass('pl-button-save-insider');
+        Pl_settings_panel.$panel.find('.pl-button-close').addClass('pl-button-close-insider');
 
         // bind the insider buttons
-        Bwpb_settings_panel.$panel.on('click.bwpb_insider_back_button', '.bwpb-tabs-back', Bwpb_settings_panel.on_click_insider_back_to_parent);
-        Bwpb_settings_panel.$panel.on('click.bwpb_insider_save', '.bwpb-button-save-insider', Bwpb_settings_panel.on_click_insider_save);
-        Bwpb_settings_panel.$panel.on('click.bwpb_insider_close', '.bwpb-button-close-insider', Bwpb_settings_panel.on_click_insider_back_to_parent);
+        Pl_settings_panel.$panel.on('click.pl_insider_back_button', '.pl-tabs-back', Pl_settings_panel.on_click_insider_back_to_parent);
+        Pl_settings_panel.$panel.on('click.pl_insider_save', '.pl-button-save-insider', Pl_settings_panel.on_click_insider_save);
+        Pl_settings_panel.$panel.on('click.pl_insider_close', '.pl-button-close-insider', Pl_settings_panel.on_click_insider_back_to_parent);
 
         // unbind the info icon
-        Bwpb_settings_panel.$panel.off('click.bwpb_panel_info_click');
+        Pl_settings_panel.$panel.off('click.pl_panel_info_click');
         // get and generate all the settings via js
-        Bwpb_settings_panel.get_settings( id, data, false, true );
+        Pl_settings_panel.get_settings( id, data, false, true );
         // display the panel
-        Bwpb_settings_panel.show();
+        Pl_settings_panel.show();
         // bind the info icon to expand description area
-        Bwpb_settings_panel.$panel.on('click.bwpb_panel_info_click', '.bwpb-icon-info', Bwpb_settings_panel.on_click_info_icon);
+        Pl_settings_panel.$panel.on('click.pl_panel_info_click', '.pl-icon-info', Pl_settings_panel.on_click_info_icon);
 
     },
 
     on_click_insider_back_to_parent: function() {
 
-        $('.bwpb-panel-tabs .bwpb-tabs-back').remove();
+        $('.pl-panel-tabs .pl-tabs-back').remove();
 
-        if( Bwpb_settings_panel.$panel.hasClass('bwpb-ajaxing') ) { return; }
+        if( Pl_settings_panel.$panel.hasClass('pl-ajaxing') ) { return; }
 
         // edit the insider parent by its id
-        Bwpb_settings_panel.edit_by_id( Bwpb_settings_panel.panel_edit_insider_id );
+        Pl_settings_panel.edit_by_id( Pl_settings_panel.panel_edit_insider_id );
         // close insider
-        Bwpb_settings_panel.close_insider();
+        Pl_settings_panel.close_insider();
 
     },
 
     on_click_insider_save: function() {
 
-        $('.bwpb-panel-tabs .bwpb-tabs-back').remove();
+        $('.pl-panel-tabs .pl-tabs-back').remove();
 
-        if( Bwpb_settings_panel.$panel.hasClass('bwpb-ajaxing') ) { return; }
+        if( Pl_settings_panel.$panel.hasClass('pl-ajaxing') ) { return; }
         // lets save the panel options without closing the panel
-        Bwpb_settings_panel.save( false );
+        Pl_settings_panel.save( false );
         // edit the insider parent by its id
-        Bwpb_settings_panel.edit_by_id( Bwpb_settings_panel.panel_edit_insider_id );
+        Pl_settings_panel.edit_by_id( Pl_settings_panel.panel_edit_insider_id );
         // close insider
-        Bwpb_settings_panel.close_insider();
+        Pl_settings_panel.close_insider();
 
     },
 
@@ -295,13 +295,13 @@ var Bwpb_settings_panel = {
      */
     close_insider: function() {
 
-        Bwpb_settings_panel.$panel.find('.bwpb-button-save').removeClass('bwpb-button-save-insider');
-        Bwpb_settings_panel.$panel.find('.bwpb-button-close').removeClass('bwpb-button-close-insider');
+        Pl_settings_panel.$panel.find('.pl-button-save').removeClass('pl-button-save-insider');
+        Pl_settings_panel.$panel.find('.pl-button-close').removeClass('pl-button-close-insider');
 
-        Bwpb_settings_panel.$panel.off('click.bwpb_insider_save');
-        Bwpb_settings_panel.$panel.off('click.bwpb_insider_close');
+        Pl_settings_panel.$panel.off('click.pl_insider_save');
+        Pl_settings_panel.$panel.off('click.pl_insider_close');
 
-        Bwpb_settings_panel.panel_edit_insider_id = 0;
+        Pl_settings_panel.panel_edit_insider_id = 0;
 
     },
 
@@ -311,22 +311,22 @@ var Bwpb_settings_panel = {
      */
     close: function() {
 
-        if( $(this).hasClass('bwpb-button-close-insider') ) { return; }
+        if( $(this).hasClass('pl-button-close-insider') ) { return; }
 
         // close the panel
-        Bwpb_settings_panel.$panel.removeClass( 'bwpb-open' );
+        Pl_settings_panel.$panel.removeClass( 'pl-open' );
         // hide overlay
-        $('#bwpb-overlay').css({ 'visibility': 'hidden', 'opacity': 0 });
+        $('#pl-overlay').css({ 'visibility': 'hidden', 'opacity': 0 });
         // release option types dependencies
-        Bwpb_dependencies.release_deps();
+        Pl_dependencies.release_deps();
         // call option types onclose callbacks
-        Bwpb_settings_panel.on_close_options_panel_callbacks();
+        Pl_settings_panel.on_close_options_panel_callbacks();
         // remove tabs
-        Bwpb_settings_panel.tabs.end();
+        Pl_settings_panel.tabs.end();
         // unbind the info icon
-        Bwpb_settings_panel.$panel.off('click.bwpb_panel_info_click');
+        Pl_settings_panel.$panel.off('click.pl_panel_info_click');
         // clear the current settings panel id
-        Bwpb_settings_panel.panel_edit_id = 0;
+        Pl_settings_panel.panel_edit_id = 0;
 
         $(document).off('keyup.options_panel_escape');
 
@@ -357,7 +357,7 @@ var Bwpb_settings_panel = {
     },
 
     show: function() {
-        Bwpb_settings_panel.$panel.addClass( 'bwpb-open' );
+        Pl_settings_panel.$panel.addClass( 'pl-open' );
     },
 
     tabs: {
@@ -366,10 +366,10 @@ var Bwpb_settings_panel = {
 
             if( Object.keys( panel_tabs ).length <= 1 ) { return; }
 
-            Bwpb_settings_panel.tabs.get_html( panel_tabs );
-            Bwpb_settings_panel.tabs.bind();
-            Bwpb_settings_panel.tabs.set_tab_general();
-            Bwpb_settings_panel.tabs.active( tab_active );
+            Pl_settings_panel.tabs.get_html( panel_tabs );
+            Pl_settings_panel.tabs.bind();
+            Pl_settings_panel.tabs.set_tab_general();
+            Pl_settings_panel.tabs.active( tab_active );
 
         },
 
@@ -379,31 +379,31 @@ var Bwpb_settings_panel = {
 
             var tabs_html = '<ul>';
             for( var panel_tab in panel_tabs ) {
-                tabs_html += '<li data-tab-id="' + panel_tab + '"' + ( tab_id == 0 ? ' class="bwpb-active"' : '' ) + '>' + panel_tabs[ panel_tab ] + '</li>';
+                tabs_html += '<li data-tab-id="' + panel_tab + '"' + ( tab_id == 0 ? ' class="pl-active"' : '' ) + '>' + panel_tabs[ panel_tab ] + '</li>';
                 tab_id++;
             }
             tabs_html += '</ul>';
 
-            var $tabs = $('.bwpb-panel-tabs', Bwpb_settings_panel.$panel);
+            var $tabs = $('.pl-panel-tabs', Pl_settings_panel.$panel);
 
             $tabs.find('ul').remove();
             $tabs.append( tabs_html );
-            $('.bwpb-panel-tabs li').css({ 'top': 0, 'opacity': 1 });
+            $('.pl-panel-tabs li').css({ 'top': 0, 'opacity': 1 });
 
-            $('.bwpb-panel-tabs').removeClass('bwpb-loading');
+            $('.pl-panel-tabs').removeClass('pl-loading');
 
         },
 
         bind: function() {
 
-            $('.bwpb-panel-tabs li').on('click', Bwpb_settings_panel.tabs.switch_tab);
+            $('.pl-panel-tabs li').on('click', Pl_settings_panel.tabs.switch_tab);
 
         },
 
         set_tab_general: function() {
 
-            $('.bwpb-panel-row', Bwpb_settings_panel.$panel).addClass('bwpb-tab-hidden');
-            $('.bwpb-row-tab-general', Bwpb_settings_panel.$panel).removeClass('bwpb-tab-hidden');
+            $('.pl-panel-row', Pl_settings_panel.$panel).addClass('pl-tab-hidden');
+            $('.pl-row-tab-general', Pl_settings_panel.$panel).removeClass('pl-tab-hidden');
 
         },
 
@@ -412,74 +412,74 @@ var Bwpb_settings_panel = {
             var self = $(this);
             var tab_id = self.attr('data-tab-id');
 
-            $('.bwpb-panel-tabs li').removeClass('bwpb-active');
-            self.addClass('bwpb-active');
+            $('.pl-panel-tabs li').removeClass('pl-active');
+            self.addClass('pl-active');
 
-            $('.bwpb-panel-row', Bwpb_settings_panel.$panel).addClass('bwpb-tab-hidden');
-            $('.bwpb-row-tab-' + tab_id, Bwpb_settings_panel.$panel).removeClass('bwpb-tab-hidden');
+            $('.pl-panel-row', Pl_settings_panel.$panel).addClass('pl-tab-hidden');
+            $('.pl-row-tab-' + tab_id, Pl_settings_panel.$panel).removeClass('pl-tab-hidden');
 
-            var $panel_content = $('.bwpb-panel-form');
+            var $panel_content = $('.pl-panel-form');
 
-            Bwpb_dependencies.set_deps();
+            Pl_dependencies.set_deps();
 
         },
 
         tabs_inside: function() {
 
             // hide tabs and add back button
-            var $tabs = $('.bwpb-panel-tabs ul li'),
-                $back = $('<span class="bwpb-tabs-back">' + window.bwpb_data.i18n.back_to_parent + '</span>');
+            var $tabs = $('.pl-panel-tabs ul li'),
+                $back = $('<span class="pl-tabs-back">' + window.pl_data.i18n.back_to_parent + '</span>');
 
-            $('.bwpb-panel-tabs').append( $back );
+            $('.pl-panel-tabs').append( $back );
 
-            $('#bwpb-panel-settings .bwpb-panel-title').html( BwpbMapper.__mapper_data[ Bwpb_settings_panel.panel_edit_id ].name + ' ' + window.bwpb_data.i18n.option );
+            $('#pl-panel-settings .pl-panel-title').html( Pl_mapper.__mapper_data[ Pl_settings_panel.panel_edit_id ].name + ' ' + window.pl_data.i18n.option );
 
         },
 
         set_insider_last_tab: function() {
 
-            Bwpb_settings_panel.panel_edit_insider_tab = $('.bwpb-panel-tabs li.bwpb-active').attr('data-tab-id');
+            Pl_settings_panel.panel_edit_insider_tab = $('.pl-panel-tabs li.pl-active').attr('data-tab-id');
 
         },
 
         trigger_insider_last_tab: function() {
 
-            if( ! Bwpb_settings_panel.panel_edit_insider_id && Bwpb_settings_panel.panel_edit_insider_tab ) {
-                $('.bwpb-panel-tabs li[data-tab-id="' + Bwpb_settings_panel.panel_edit_insider_tab + '"]').trigger('click');
-                Bwpb_settings_panel.panel_edit_insider_tab = false;
+            if( ! Pl_settings_panel.panel_edit_insider_id && Pl_settings_panel.panel_edit_insider_tab ) {
+                $('.pl-panel-tabs li[data-tab-id="' + Pl_settings_panel.panel_edit_insider_tab + '"]').trigger('click');
+                Pl_settings_panel.panel_edit_insider_tab = false;
             }
         },
 
         active: function( tab_active ) {
 
             if( tab_active ) {
-                $('.bwpb-panel-tabs li[data-tab-id="' + tab_active + '"]').trigger('click');
+                $('.pl-panel-tabs li[data-tab-id="' + tab_active + '"]').trigger('click');
             }
 
         },
 
         loading: function() {
 
-            $('.bwpb-panel-tabs').addClass('bwpb-loading');
+            $('.pl-panel-tabs').addClass('pl-loading');
 
         },
 
         end: function() {
 
-            $('.bwpb-panel-tabs ul', Bwpb_settings_panel.$panel).remove();
+            $('.pl-panel-tabs ul', Pl_settings_panel.$panel).remove();
 
         }
 
     },
 
     set_title: function( title ) {
-        $('.bwpb-panel-title', Bwpb_settings_panel.$panel).html( title + ' ' + window.bwpb_data.i18n.options );
+        $('.pl-panel-title', Pl_settings_panel.$panel).html( title + ' ' + window.pl_data.i18n.options );
     },
 
     after_open: function() {
 
         // set parent tab on insiders
-        Bwpb_settings_panel.tabs.trigger_insider_last_tab();
+        Pl_settings_panel.tabs.trigger_insider_last_tab();
 
     },
 
@@ -489,10 +489,10 @@ var Bwpb_settings_panel = {
 
         var self = $(this);
 
-        self.toggleClass('bwpb-info-active');
+        self.toggleClass('pl-info-active');
 
-        var $info = self.closest('.bwpb-panel-row').find('.bwpb-header-info');
-        if( self.hasClass('bwpb-info-active') ) {
+        var $info = self.closest('.pl-panel-row').find('.pl-header-info');
+        if( self.hasClass('pl-info-active') ) {
             TweenLite.to( $info, .3, { height: $info.find('p').outerHeight() } );
         }else{
             TweenLite.to( $info, .3, { height: 0 } );
@@ -505,24 +505,24 @@ var Bwpb_settings_panel = {
         var self = this;
 
         // use js to display the options output
-        Bwpb_settings_panel.panel_edit_id = uid;
+        Pl_settings_panel.panel_edit_id = uid;
 
-        Bwpb_settings_panel.tabs.loading();
+        Pl_settings_panel.tabs.loading();
 
         var settings_html = '';
-        var $panel_content = $( '.bwpb-panel-content', Bwpb_settings_panel.$panel );
+        var $panel_content = $( '.pl-panel-content', Pl_settings_panel.$panel );
         var option_type_callbacks = {}; // holds the option type callbacks, we will call them after at the end when all options were loaded.
-        var panel_tabs = { 'general' : bwpb_data.panel_general_tab };
+        var panel_tabs = { 'general' : pl_data.panel_general_tab };
 
         $panel_content.empty();
-        Bwpb_settings_panel.$panel.removeClass('bwpb-done').addClass('bwpb-ajaxing');
+        Pl_settings_panel.$panel.removeClass('pl-done').addClass('pl-ajaxing');
 
         $.ajax({
             type: 'POST',
-            url: bwpb_admin_root.ajax,
+            url: pl_admin_root.ajax,
             data: {
                 'action'        : '__panel_get_options',
-                'security'      : window.bwpb_data.security.panel_get_options,
+                'security'      : window.pl_data.security.panel_get_options,
                 'options'       : JSON.stringify( data.params )
             },
             success: function( response ) {
@@ -548,7 +548,7 @@ var Bwpb_settings_panel = {
 
                     // run the option callback
                     if( typeof Playouts_Option_Type.option_types[ _option_type ] !== 'undefined' ) {
-                        var $template = Bwpb_settings_panel.$panel.find('.bwpb-panel-row[data-id="' + options.name + '"]');
+                        var $template = Pl_settings_panel.$panel.find('.pl-panel-row[data-id="' + options.name + '"]');
                         Playouts_Option_Type.option_types[ _option_type ].option_onopen_callback( $template, options );
                     }
 
@@ -556,7 +556,7 @@ var Bwpb_settings_panel = {
 
                 setTimeout(function() {
                     // manage panel classes after we are done
-                    Bwpb_settings_panel.$panel.removeClass('bwpb-ajaxing').addClass('bwpb-done');
+                    Pl_settings_panel.$panel.removeClass('pl-ajaxing').addClass('pl-done');
                 }, 50);
 
                 // lets keep the option_types to call the onclose callback when closing the options panel
@@ -568,27 +568,27 @@ var Bwpb_settings_panel = {
                  *
                  */
                 if( inside ) {
-                    Bwpb_settings_panel.tabs.tabs_inside();
+                    Pl_settings_panel.tabs.tabs_inside();
                 }
 
                 /*
                  * handle panel tabs
                  *
                  */
-                Bwpb_settings_panel.tabs.start( panel_tabs, tab );
+                Pl_settings_panel.tabs.start( panel_tabs, tab );
 
                 /*
                  * run dependencies.
                  * create dependency when one option depends on other option's value,
                  *
                  */
-                Bwpb_dependencies.create_deps();
+                Pl_dependencies.create_deps();
 
                 /*
                  * final retouch
                  *
                  */
-                Bwpb_settings_panel.after_open();
+                Pl_settings_panel.after_open();
 
             }
         });
@@ -608,7 +608,7 @@ var Bwpb_settings_panel = {
          * we want to store this value as base64 code and not as plain text
          *
          */
-        $('.bwpb-panel-row[data-type="base64"]', Bwpb_settings_panel.$panel).each(function() {
+        $('.pl-panel-row[data-type="base64"]', Pl_settings_panel.$panel).each(function() {
             var $row = $(this);
             var $input = $('input', $row);
             var value = $('textarea', $row).val();
@@ -629,7 +629,7 @@ var Bwpb_settings_panel = {
 
         var new_values = {};
 
-        var form_data = $('#bwpb-panel-form').serializeArray();
+        var form_data = $('#pl-panel-form').serializeArray();
 
         for( var i = 0; i < form_data.length; i++ ) {
             if( typeof new_values[ form_data[i].name ] !== 'undefined' ) { // add comma separated values for multiple choices
@@ -642,7 +642,7 @@ var Bwpb_settings_panel = {
         }
 
         // get tinymce content
-        $( '.bwpb-panel-content .bwpb-tinymce-container.tmce-active', Bwpb_settings_panel.$panel ).each(function() {
+        $( '.pl-panel-content .pl-tinymce-container.tmce-active', Pl_settings_panel.$panel ).each(function() {
             if( typeof $('textarea:first', this).attr('name') !== 'undefined' ) {
                 var editor_content = tinymce.get( $(this).attr('data-editor-id') );
                 if( editor_content !== null ) {
@@ -661,14 +661,14 @@ var Bwpb_settings_panel = {
      */
     save: function( close = true ) {
 
-        if( Bwpb_settings_panel.$panel.hasClass('bwpb-ajaxing') ) { return; }
+        if( Pl_settings_panel.$panel.hasClass('pl-ajaxing') ) { return; }
 
         // do some stuff before we get the new values and save
-        Bwpb_settings_panel.before_save();
+        Pl_settings_panel.before_save();
         // get the new option values from the panel
-        var new_option_values = Bwpb_settings_panel.parse_saved_fields();
+        var new_option_values = Pl_settings_panel.parse_saved_fields();
         // now update the element with the new option values
-        var uid = Bwpb_settings_panel.update_map_obj_on_fields( new_option_values, close );
+        var uid = Pl_settings_panel.update_map_obj_on_fields( new_option_values, close );
 
     },
 
@@ -679,11 +679,11 @@ var Bwpb_settings_panel = {
      */
     update_map_obj_on_fields: function( fields, close = true ) {
 
-        var uid = Bwpb_settings_panel.panel_edit_id;
+        var uid = Pl_settings_panel.panel_edit_id;
 
         if( typeof uid === 'string' ) {
 
-            var b = BwpbMapper.__mapper_data[ uid ];
+            var b = Pl_mapper.__mapper_data[ uid ];
 
             // empty params ( if public )
             for( var param in b.params ) {
@@ -711,12 +711,12 @@ var Bwpb_settings_panel = {
             }
 
             // get new shortcode and append to content
-            BwpbShortcoder.reload_shortcodes_and_push( BwpbMapper.__mapper_tree, true );
+            Pl_shortcoder.reload_shortcodes_and_push( Pl_mapper.__mapper_tree, true );
             // close the panel settings
             if( close ) {
-                Bwpb_settings_panel.close();
+                Pl_settings_panel.close();
             }else{
-                Bwpb_settings_panel.on_close_options_panel_callbacks();
+                Pl_settings_panel.on_close_options_panel_callbacks();
             }
 
         }
@@ -726,7 +726,7 @@ var Bwpb_settings_panel = {
 
 }
 
-var Bwpb_dependencies = {
+var Pl_dependencies = {
 
     /*
      * hold the deps in the current options panel,
@@ -741,7 +741,7 @@ var Bwpb_dependencies = {
      */
     create_deps: function( group = false ) {
 
-        var $panel_content = $('.bwpb-panel-form');
+        var $panel_content = $('.pl-panel-form');
 
         $panel_content.find('[data-depends-on]').each(function() {
 
@@ -755,21 +755,21 @@ var Bwpb_dependencies = {
             }
 
             // check the dependency on panel load
-            Bwpb_dependencies.check_row_dependency( $row, $depends_on_field );
+            Pl_dependencies.check_row_dependency( $row, $depends_on_field );
 
             // check dependency on input change
-            $depends_on_field.on('change.bwpb_click_depends_change', function() {
-                Bwpb_dependencies.check_row_dependency( $row, $depends_on_field );
+            $depends_on_field.on('change.pl_click_depends_change', function() {
+                Pl_dependencies.check_row_dependency( $row, $depends_on_field );
             });
 
-            Bwpb_dependencies.current_panel_deps.push( depends_on_field );
+            Pl_dependencies.current_panel_deps.push( depends_on_field );
         });
 
     },
 
     set_deps: function() {
 
-        var $panel_content = $('.bwpb-panel-form');
+        var $panel_content = $('.pl-panel-form');
 
         $panel_content.find('[data-depends-on]').each(function() {
 
@@ -778,7 +778,7 @@ var Bwpb_dependencies = {
 
             $depends_on_field = $('[name="' + depends_on_field + '"]', $panel_content);
 
-            Bwpb_dependencies.check_row_dependency( $row, $depends_on_field );
+            Pl_dependencies.check_row_dependency( $row, $depends_on_field );
 
         });
 
@@ -790,11 +790,11 @@ var Bwpb_dependencies = {
      */
     release_deps: function() {
 
-        for( var dep in Bwpb_dependencies.current_panel_deps ) {
-            $('[name="' + Bwpb_dependencies.current_panel_deps[dep] + '"]', $('#bwpb-panel-settings .bwpb-panel-content')).off('change.bwpb_click_depends_change');
+        for( var dep in Pl_dependencies.current_panel_deps ) {
+            $('[name="' + Pl_dependencies.current_panel_deps[dep] + '"]', $('#pl-panel-settings .pl-panel-content')).off('change.pl_click_depends_change');
         }
         // empty the dependency array
-        Bwpb_dependencies.current_panel_deps = [];
+        Pl_dependencies.current_panel_deps = [];
 
     },
 
@@ -810,17 +810,17 @@ var Bwpb_dependencies = {
         if( $depends_on_field.is(':checkbox') ) {
 
             depends_value = $depends_on_field.is(':checked');
-            Bwpb_dependencies.check_row_dependency_by_val( $row, $depends_on_field, depends_value );
+            Pl_dependencies.check_row_dependency_by_val( $row, $depends_on_field, depends_value );
 
         }else if( $depends_on_field.is(':radio') ) {
 
-            depends_value = $depends_on_field.closest('.bwpb-panel-row').find('input:checked').val();
-            Bwpb_dependencies.check_row_dependency_by_val( $row, $depends_on_field, depends_value );
+            depends_value = $depends_on_field.closest('.pl-panel-row').find('input:checked').val();
+            Pl_dependencies.check_row_dependency_by_val( $row, $depends_on_field, depends_value );
 
         }else{
 
             depends_value = $row.attr('data-depends-value');
-            Bwpb_dependencies.check_row_dependency_by_val( $row, $depends_on_field, depends_value );
+            Pl_dependencies.check_row_dependency_by_val( $row, $depends_on_field, depends_value );
 
         }
 
@@ -832,20 +832,20 @@ var Bwpb_dependencies = {
             var depends_value_split = depends_value.split(',');
             for( var i = 0; i < depends_value_split.length; i++ ) {
                if( $depends_on_field.val() == depends_value_split[i] ) {
-                   Bwpb_dependencies.show_row( $row );
+                   Pl_dependencies.show_row( $row );
                    break;
                }else{
-                   Bwpb_dependencies.hide_row( $row )
+                   Pl_dependencies.hide_row( $row )
                }
             }
         }else{
-            $depends_on_field.val() == depends_value ? Bwpb_dependencies.show_row( $row ) : Bwpb_dependencies.hide_row( $row );
+            $depends_on_field.val() == depends_value ? Pl_dependencies.show_row( $row ) : Pl_dependencies.hide_row( $row );
         }
 
     },
 
     show_row: function( $row ) {
-        var height = $row.find('.bwpb-panel-row-inner').outerHeight();
+        var height = $row.find('.pl-panel-row-inner').outerHeight();
         TweenLite.to( $row, .3, { height: height, borderRightWidth: 1, borderBottomWidth: 1, onComplete: function() {
             TweenLite.set( $row, { height: 'auto' } );
         }});
@@ -879,7 +879,7 @@ Playouts_Option_Type.option_types.colorpicker = {
 
     option_onopen_callback: function( $template, options ) {
 
-        $('.bwpb-colorpicker').wpColorPickerAlpha();
+        $('.pl-colorpicker').wpColorPickerAlpha();
 
     },
 
@@ -890,20 +890,20 @@ Playouts_Option_Type.option_types.image = {
 
     option_onopen_callback: function( $template, options ) {
 
-        $('.bwpb-option-image', $template).each(function() {
+        $('.pl-option-image', $template).each(function() {
 
             var self = $(this);
             var $input = self.find('input');
-            var $thumbnail_img = $('.bwpb-image-preview img', self);
+            var $thumbnail_img = $('.pl-image-preview img', self);
 
-            self.find('.bwpb-image-remove').on('click', function(e) {
-                self.removeClass('bwpb-has-image');
+            self.find('.pl-image-remove').on('click', function(e) {
+                self.removeClass('pl-has-image');
                 $input.val('');
                 $thumbnail_img.attr( 'src', '' );
                 return false;
             });
 
-            self.find('.bwpb-upload-button').on('click', function(e) {
+            self.find('.pl-upload-button').on('click', function(e) {
 
                 e.preventDefault();
 
@@ -918,7 +918,7 @@ Playouts_Option_Type.option_types.image = {
                     attachment = custom_uploader.state().get('selection').first().toJSON();
 
                     $input.val( attachment.url );
-                    self.addClass('bwpb-has-image');
+                    self.addClass('pl-has-image');
                     var image_url = ( typeof attachment.sizes.full !== 'undefined' ) ? attachment.sizes.full.url : attachment.url;
                     $thumbnail_img.attr( 'src', image_url );
 
@@ -939,12 +939,12 @@ Playouts_Option_Type.option_types.file = {
 
     option_onopen_callback: function( $template, options ) {
 
-        $('.bwpb-option-file', $template).each(function() {
+        $('.pl-option-file', $template).each(function() {
 
             var self = $(this);
             var $input = self.find('input[type="text"]');
 
-            self.find('.bwpb-upload-button').on('click', function(e) {
+            self.find('.pl-upload-button').on('click', function(e) {
                 e.preventDefault();
 
                 //Extend the wp.media object
@@ -975,16 +975,16 @@ Playouts_Option_Type.option_types.radio_image = {
 
     option_onopen_callback: function( $template, options ) {
 
-        $template.find('.bwpb-option-radio-image').each(function() {
+        $template.find('.pl-option-radio-image').each(function() {
             Playouts_Option_Type.option_types.radio_image.check_radio_image( $(this) );
         });
 
-        $template.find('.bwpb-radio-image').on('click', function() {
+        $template.find('.pl-radio-image').on('click', function() {
 
             var self = $(this);
 
-            self.closest('.bwpb-row-option-radio_image').find('.bwpb-radio-image').removeClass('bwpb-radio-active');
-            self.addClass('bwpb-radio-active');
+            self.closest('.pl-row-option-radio_image').find('.pl-radio-image').removeClass('pl-radio-active');
+            self.addClass('pl-radio-active');
 
         });
 
@@ -992,7 +992,7 @@ Playouts_Option_Type.option_types.radio_image = {
 
     check_radio_image: function( self ) {
         if( self.find('input').is(':checked') ) {
-            self.find('.bwpb-radio-image').addClass('bwpb-radio-active');
+            self.find('.pl-radio-image').addClass('pl-radio-active');
         }
     },
 
@@ -1003,16 +1003,16 @@ Playouts_Option_Type.option_types.true_false = {
 
     option_onopen_callback: function( $template, options ) {
 
-        $template.on('click', '.bwpb-true-false input', function() {
+        $template.on('click', '.pl-true-false input', function() {
 
-            var self = $(this).closest('.bwpb-true-false');
+            var self = $(this).closest('.pl-true-false');
 
             $('input', self).trigger('click');
 
             if( $('input', self).is(':checked') ) {
-                self.addClass('bwpb-active');
+                self.addClass('pl-active');
             }else{
-                self.removeClass('bwpb-active');
+                self.removeClass('pl-active');
             }
 
         });
@@ -1026,9 +1026,9 @@ Playouts_Option_Type.option_types.number_slider = {
 
     option_onopen_callback: function( $template, options ) {
 
-        $('.bwpb-option-number-slider').each(function() {
+        $('.pl-option-number-slider').each(function() {
 
-            var self    = $('.bwpb-number-slider', this);
+            var self    = $('.pl-number-slider', this);
             var min     = parseFloat( self.attr('data-min') );
             var max     = parseFloat( self.attr('data-max') );
             var step    = parseFloat( self.attr('data-step') );
@@ -1055,7 +1055,7 @@ Playouts_Option_Type.option_types.number_slider = {
                 value          : value,
                 slide: function( event, ui ) {
                     $('input', self).val( ui.value );
-                    self.closest('.bwpb-panel-row').find('.bwpb-option-number-slider i').html( ui.value );
+                    self.closest('.pl-panel-row').find('.pl-option-number-slider i').html( ui.value );
                 }
             });
 
@@ -1069,42 +1069,42 @@ Playouts_Option_Type.option_types.icon = {
 
     option_onopen_callback: function( $template, options ) {
 
-        var self = $template.find('.bwpb-option-icon');
-        var $container = self.find('.bwpb-icon-container');
-        var $expand = self.find('.bwpb-icon-expand');
+        var self = $template.find('.pl-option-icon');
+        var $container = self.find('.pl-icon-container');
+        var $expand = self.find('.pl-icon-expand');
 
         // get the icon template and append it into the icon container
-        $container.html( $('#bwpb_icons').html() );
+        $container.html( $('#pl_icons').html() );
 
         // binds
         $expand.on('click', Playouts_Option_Type.option_types.icon.expand);
         $container.on('click', 'li', Playouts_Option_Type.option_types.icon.select_icon);
 
         // if no icon is selected, select the first one by default
-        if( self.find('.bwpb-icon-label i').attr('class') == '' ) {
+        if( self.find('.pl-icon-label i').attr('class') == '' ) {
             $container.find('li:first-child').trigger('click');
         }
 
         // add class active for selected icons
-        $container.find('li[data-value="' + self.find('.bwpb-icon-label i').attr('class') + '"]').addClass('bwpb-active');
+        $container.find('li[data-value="' + self.find('.pl-icon-label i').attr('class') + '"]').addClass('pl-active');
 
     },
 
     option_onclose_callback: function( options ) {},
 
     expand: function() {
-        $(this).closest('.bwpb-option-icon').toggleClass('bwpb-expand');
+        $(this).closest('.pl-option-icon').toggleClass('pl-expand');
     },
 
     select_icon: function() {
         var self = $(this);
-        var $option = self.closest('.bwpb-option-icon');
+        var $option = self.closest('.pl-option-icon');
         var icon = self.attr('data-value');
 
-        $option.find('.bwpb-icon-container li').removeClass('bwpb-active');
-        self.addClass('bwpb-active');
+        $option.find('.pl-icon-container li').removeClass('pl-active');
+        self.addClass('pl-active');
         $option.find('input').val( icon );
-        $option.find('.bwpb-icon-label i').attr('class', icon);
+        $option.find('.pl-icon-label i').attr('class', icon);
 
 
     }
@@ -1117,7 +1117,7 @@ Playouts_Option_Type.option_types.editor = {
         // tinymce
         if( window.tinyMCEPreInit && window.tinyMCEPreInit.mceInit[ wpActiveEditor ] ) {
 
-            var editor_id = 'bwpb_tinymce_' + options.name;
+            var editor_id = 'pl_tinymce_' + options.name;
 
             window.tinyMCEPreInit.mceInit[ editor_id ] = _.extend({}, window.tinyMCEPreInit.mceInit[ wpActiveEditor ], {
                 id: editor_id,
@@ -1158,13 +1158,13 @@ Playouts_Option_Type.option_types.editor = {
     option_onclose_callback: function() {
         // clean tinymce
         if( typeof tinymce !== 'undefined' ) {
-            tinymce.remove('.bwpb-tinymce-container textarea');
+            tinymce.remove('.pl-tinymce-container textarea');
         }
 
     },
 
     switch_editor: function(e) {
-        var $container = $(e).closest('.bwpb-tinymce-container');
+        var $container = $(e).closest('.pl-tinymce-container');
         var tab = $(e).attr('data-switch');
         window.switchEditors.go( $container.attr('data-editor-id'), tab );
         $container.removeClass('tmce-active html-active').addClass( tab + '-active' );
@@ -1351,23 +1351,23 @@ var Pl_columns = {
 
         Pl_columns.bind();
 
-        var col_obj = $.extend( {}, BwpbMapper.get_tree_modules_children_by_id( BwpbMapper.__mapper_tree, Bwpb_settings_panel.panel_edit_id ) );
+        var col_obj = $.extend( {}, Pl_mapper.get_tree_modules_children_by_id( Pl_mapper.__mapper_tree, Pl_settings_panel.panel_edit_id ) );
         var $col_template, col_width;
 
         // loop the col object and add param values
         for( col in col_obj ) {
 
-            col_obj[col]['col_data'] = BwpbMapper.__mapper_data[ col_obj[col].id ];
+            col_obj[col]['col_data'] = Pl_mapper.__mapper_data[ col_obj[col].id ];
             col_width = col_obj[col]['col_data']['params']['col_width']['value'];
             if( ! col_width ) { col_width = 100; }
 
-            $col_template = $( $('#bwpb_template-panel_columns').html() );
+            $col_template = $( $('#pl_template-panel_columns').html() );
             $col_template.css( 'width', col_width + '%' );
 
             $col_template.attr( 'data-column-width', col_width ).attr( 'data-id', col_obj[col].id );
-            $col_template.find('.bwpb-column-label').html( col_width );
+            $col_template.find('.pl-column-label').html( col_width );
 
-            $template.find('.bwpb-option-columns').append( $col_template );
+            $template.find('.pl-option-columns').append( $col_template );
 
         }
 
@@ -1377,27 +1377,27 @@ var Pl_columns = {
 
     bind: function() {
 
-        $('#bwpb-panel-settings').on('click.pl_panel_add_column', '.bwpb-option-add-column', Pl_columns.on_click_add_column);
-        $('#bwpb-panel-settings').on('click.pl_panel_remove_column', '.bwpb-option-remove-column', Pl_columns.on_click_remove_column);
-        $('#bwpb-panel-settings').on('click.pl_click_column', '.bwpb-option-column', Pl_columns.on_click_column);
+        $('#pl-panel-settings').on('click.pl_panel_add_column', '.pl-option-add-column', Pl_columns.on_click_add_column);
+        $('#pl-panel-settings').on('click.pl_panel_remove_column', '.pl-option-remove-column', Pl_columns.on_click_remove_column);
+        $('#pl-panel-settings').on('click.pl_click_column', '.pl-option-column', Pl_columns.on_click_column);
 
     },
 
     unbind: function() {
 
-        $('#bwpb-panel-settings').off('click.pl_panel_add_column');
-        $('#bwpb-panel-settings').off('click.pl_panel_remove_column');
-        $('#bwpb-panel-settings').off('click.pl_click_column');
+        $('#pl-panel-settings').off('click.pl_panel_add_column');
+        $('#pl-panel-settings').off('click.pl_panel_remove_column');
+        $('#pl-panel-settings').off('click.pl_click_column');
 
     },
 
     on_click_column: function() {
 
-        Bwpb_settings_panel.save( false );
+        Pl_settings_panel.save( false );
 
-        Bwpb_settings_panel.$panel.removeClass('bwpb-done').addClass('bwpb-ajaxing');
+        Pl_settings_panel.$panel.removeClass('pl-done').addClass('pl-ajaxing');
 
-        Bwpb_settings_panel.edit_inside( $(this).attr('data-id') );
+        Pl_settings_panel.edit_inside( $(this).attr('data-id') );
 
     },
 
@@ -1405,7 +1405,7 @@ var Pl_columns = {
 
         e.preventDefault();
 
-        var cols = Pl_columns.crop_column( $('#bwpb-main .bwpb-block[data-id="' + Bwpb_settings_panel.panel_edit_id + '"]'), true );
+        var cols = Pl_columns.crop_column( $('#pl-main .pl-block[data-id="' + Pl_settings_panel.panel_edit_id + '"]'), true );
 
         Pl_columns.set_panel_columns( cols );
 
@@ -1415,7 +1415,7 @@ var Pl_columns = {
 
         e.preventDefault();
 
-        var cols = Pl_columns.crop_column( $('#bwpb-main .bwpb-block[data-id="' + Bwpb_settings_panel.panel_edit_id + '"]'), false );
+        var cols = Pl_columns.crop_column( $('#pl-main .pl-block[data-id="' + Pl_settings_panel.panel_edit_id + '"]'), false );
 
         Pl_columns.set_panel_columns( cols );
 
@@ -1425,17 +1425,17 @@ var Pl_columns = {
 
         if( typeof cols !== 'undefined' ) {
 
-            var $cols = $('.bwpb-option-columns'), template = $('#bwpb_template-panel_columns').html();
+            var $cols = $('.pl-option-columns'), template = $('#pl_template-panel_columns').html();
 
-            $('.bwpb-option-columns').empty();
+            $('.pl-option-columns').empty();
 
             for( var i = 0; i < cols.length; i++ ) {
 
                 var $template = $( template );
-                $template.attr('data-column-width', cols[i]).css('width', cols[i] + '%').find('.bwpb-column-label').html( cols[i] );
+                $template.attr('data-column-width', cols[i]).css('width', cols[i] + '%').find('.pl-column-label').html( cols[i] );
 
                 // get the new ids of the columns using the parent id
-                var tree_obj_columns = BwpbMapper.get_tree_modules_children_by_id( BwpbMapper.__mapper_tree, Bwpb_settings_panel.panel_edit_id );
+                var tree_obj_columns = Pl_mapper.get_tree_modules_children_by_id( Pl_mapper.__mapper_tree, Pl_settings_panel.panel_edit_id );
                 // and set the new ids as data param
                 $template.attr('data-id', tree_obj_columns[i].id );
 
@@ -1454,7 +1454,7 @@ var Pl_columns = {
      */
     crop_column: function( $module, sum ) {
 
-        var column_length = $(' > .bwpb-block-container > .bwpb-content > .bwpb-block', $module).length + ( sum ? +1 : -1 );
+        var column_length = $(' > .pl-block-container > .pl-content > .pl-block', $module).length + ( sum ? +1 : -1 );
         if( column_length > 8 || column_length < 1 ) { return; }
         var col_values = [];
         var col_push = 100 / column_length;
@@ -1480,15 +1480,15 @@ var Pl_columns = {
         var current_column_ids = [];
         var merge_data = {};
 
-        var $row = $('#bwpb-main *[data-id="' + parent_id + '"]');
-        var $cols = $row.hasClass('bwpb-module-bw_row') ? $row.find('.bwpb-module-bw_column') : $row.find('.bwpb-module-bw_column_inner');
+        var $row = $('#pl-main *[data-id="' + parent_id + '"]');
+        var $cols = $row.hasClass('pl-module-bw_row') ? $row.find('.pl-module-bw_column') : $row.find('.pl-module-bw_column_inner');
         cols = cols.split(',');
 
         // get current cols data
         $cols.each(function() {
 
             var $oldCol = $(this);
-            var current_col_html = $oldCol.hasClass('bwpb-isnt-empty') ? $( '.bwpb-content', $oldCol ).html() : '';
+            var current_col_html = $oldCol.hasClass('pl-isnt-empty') ? $( '.pl-content', $oldCol ).html() : '';
             current_column_modules.push( current_col_html );
             current_column_ids.push( $oldCol.attr('data-id') );
 
@@ -1501,9 +1501,9 @@ var Pl_columns = {
             // get current col data and push it to the new col
             // this will save the changes on column switch
             if( typeof current_column_ids[i] !== 'undefined' ) {
-                if( typeof BwpbMapper.__mapper_data[ current_column_ids[i] ] !== 'undefined' ) {
+                if( typeof Pl_mapper.__mapper_data[ current_column_ids[i] ] !== 'undefined' ) {
 
-                    var col_params = BwpbMapper.__mapper_data[ current_column_ids[i] ].params;
+                    var col_params = Pl_mapper.__mapper_data[ current_column_ids[i] ].params;
                     for( var param in col_params ) {
 
                         var col_param_value = col_params[ param ].value;
@@ -1512,10 +1512,10 @@ var Pl_columns = {
                         }
                     }
                     // remove the previous column data
-                    delete BwpbMapper.__mapper_data[ current_column_ids[i] ];
+                    delete Pl_mapper.__mapper_data[ current_column_ids[i] ];
                 }
             }
-            new_cols.push( Bwpb.add_module( $cols.attr('data-module'), parent_id, false, merge_data, current_column_ids[i] ) );
+            new_cols.push( Pl_main.add_module( $cols.attr('data-module'), parent_id, false, merge_data, current_column_ids[i] ) );
         }
 
         // loop the column modules and place them in the new columns
@@ -1525,17 +1525,17 @@ var Pl_columns = {
 
                 if( typeof new_cols[i] !== 'undefined' ) {
 
-                    var $module = $('#bwpb-main .bwpb-block[data-id="' + new_cols[i] + '"]').removeClass('bwpb-is-empty').addClass('bwpb-isnt-empty');
-                    $(' > .bwpb-block-container > .bwpb-content', $module).html( current_column_modules[i] );
+                    var $module = $('#pl-main .pl-block[data-id="' + new_cols[i] + '"]').removeClass('pl-is-empty').addClass('pl-isnt-empty');
+                    $(' > .pl-block-container > .pl-content', $module).html( current_column_modules[i] );
 
                 }else{
 
                     for( var j = i; j < current_column_modules.length; j++ ) {
 
                         if( current_column_modules[j] !== '' ) {
-                            $('#bwpb-main .bwpb-block[data-id="' + new_cols[i-1] + '"]').removeClass('bwpb-is-empty').addClass('bwpb-isnt-empty').find('.bwpb-content:first').append( current_column_modules[j] );
+                            $('#pl-main .pl-block[data-id="' + new_cols[i-1] + '"]').removeClass('pl-is-empty').addClass('pl-isnt-empty').find('.pl-content:first').append( current_column_modules[j] );
                         }else{
-                            $('#bwpb-main .bwpb-block[data-id="' + new_cols[i-1] + '"]').removeClass('bwpb-isnt-empty').addClass('bwpb-is-empty');
+                            $('#pl-main .pl-block[data-id="' + new_cols[i-1] + '"]').removeClass('pl-isnt-empty').addClass('pl-is-empty');
                         }
 
                     }
@@ -1543,17 +1543,17 @@ var Pl_columns = {
             }
         }
 
-        BwpbMapper.map_tree( true ); // re-map tree object
-        Bwpb.reload_ui_functions(); // reload  ui
+        Pl_mapper.map_tree( true ); // re-map tree object
+        Pl_main.reload_ui_functions(); // reload  ui
 
     },
 
     draggable: function() {
 
-        $('.bwpb-option-column-drag').draggable({
+        $('.pl-option-column-drag').draggable({
             axis            : 'x',
-            handle          : '.bwpb-option-column-dragger',
-            containment     : '.bwpb-option-columns',
+            handle          : '.pl-option-column-dragger',
+            containment     : '.pl-option-columns',
             stop            : Pl_columns.on_column_stop,
             drag            : Pl_columns.on_column_drag
         });
@@ -1569,11 +1569,11 @@ var Pl_columns = {
         var $drag_separator = ui.helper;
         var col_values = [];
 
-        $drag_separator.closest('.bwpb-option-columns').find('.bwpb-option-column').each(function() {
+        $drag_separator.closest('.pl-option-columns').find('.pl-option-column').each(function() {
             col_values.push( $(this).attr('data-column-width') );
         });
 
-        Pl_columns.add_column( col_values.join(','), Bwpb_settings_panel.panel_edit_id );
+        Pl_columns.add_column( col_values.join(','), Pl_settings_panel.panel_edit_id );
 
         $drag_separator.removeAttr('style');
 
@@ -1586,15 +1586,15 @@ var Pl_columns = {
     on_column_drag: function( e, ui ) {
 
         var $drag_separator = ui.helper,
-            $col_left = $drag_separator.closest('.bwpb-option-column'),
+            $col_left = $drag_separator.closest('.pl-option-column'),
             $col_right = $col_left.next();
 
-        var left = parseFloat( ( ui.position.left / $drag_separator.closest('.bwpb-option-columns').width() ) * 100 ).toFixed(1),
+        var left = parseFloat( ( ui.position.left / $drag_separator.closest('.pl-option-columns').width() ) * 100 ).toFixed(1),
             numChange = parseFloat( $col_left.attr('data-column-width') ) - left,
             right = parseFloat( $col_right.attr('data-column-width') ) + numChange,
             change_widths = true;
 
-        //$drag_separator.closest('.bwpb-option-columns').addClass('bwpb-columns-dragging');
+        //$drag_separator.closest('.pl-option-columns').addClass('pl-columns-dragging');
 
         // column widths limits
         if( left < 12.5 || right < 12.5 ) {
@@ -1604,8 +1604,8 @@ var Pl_columns = {
 
         if( change_widths ) {
 
-            $('.bwpb-column-label', $col_left).html( left );
-            $('.bwpb-column-label', $col_right).html( right.toFixed(1) );
+            $('.pl-column-label', $col_left).html( left );
+            $('.pl-column-label', $col_right).html( right.toFixed(1) );
 
             // change column width
             $col_left.css('width', left + '%');
@@ -1618,7 +1618,7 @@ var Pl_columns = {
 
     end: function() {
 
-        //$('.bwpb-option-column-drag').draggable('destroy');
+        //$('.pl-option-column-drag').draggable('destroy');
         Pl_columns.unbind();
 
     }
@@ -1650,29 +1650,29 @@ var Pl_repeater = {
      */
     start: function( $template, options ) {
 
-        if( ! Bwpb_settings_panel.panel_edit_id ) { return; }
+        if( ! Pl_settings_panel.panel_edit_id ) { return; }
 
-        Pl_repeater.current_repeater_module = BwpbMapper.__mapper_data[ Bwpb_settings_panel.panel_edit_id ].module;
-        Pl_repeater.current_repeater_module_item = BwpbMapper.__mapper_data[ Bwpb_settings_panel.panel_edit_id ].module_item;
+        Pl_repeater.current_repeater_module = Pl_mapper.__mapper_data[ Pl_settings_panel.panel_edit_id ].module;
+        Pl_repeater.current_repeater_module_item = Pl_mapper.__mapper_data[ Pl_settings_panel.panel_edit_id ].module_item;
 
         Pl_repeater.build_items();
 
         Pl_repeater.sort(); // make the items sortable
 
-        $template.on('click', '.bwpb-repeater-plus', Pl_repeater.on_click_plus);
-        $template.on('click', '.bwpb-item-delete', Pl_repeater.on_click_delete);
-        $template.on('click', '.bwpb-item-duplicate', Pl_repeater.on_click_duplicate);
-        $template.on('click', '.bwpb-item-edit', Pl_repeater.on_click_edit);
+        $template.on('click', '.pl-repeater-plus', Pl_repeater.on_click_plus);
+        $template.on('click', '.pl-item-delete', Pl_repeater.on_click_delete);
+        $template.on('click', '.pl-item-duplicate', Pl_repeater.on_click_duplicate);
+        $template.on('click', '.pl-item-edit', Pl_repeater.on_click_edit);
 
     },
 
     sort: function() {
 
-        $('.bwpb-repeater-content').sortable({
+        $('.pl-repeater-content').sortable({
             axis            : 'y',
-            items           : '> .bwpb-item',
-            handle          : '.bwpb-item-drag-handle',
-            placeholder     : 'bwpb-placeholder-repeater',
+            items           : '> .pl-item',
+            handle          : '.pl-item-drag-handle',
+            placeholder     : 'pl-placeholder-repeater',
             stop            : Pl_repeater.sort_on_stop,
             drag            : Pl_repeater.sort_on_drag
         });
@@ -1681,23 +1681,23 @@ var Pl_repeater = {
 
     sort_on_drag: function( e, ui ) {
 
-        ui.item.addClass('bwpb-drag');
+        ui.item.addClass('pl-drag');
 
     },
 
     sort_on_stop: function( e, ui ) {
 
-        ui.item.removeClass('bwpb-drag');
+        ui.item.removeClass('pl-drag');
         Pl_repeater.re_order_ui_repeaters(e, ui);
 
     },
 
     re_order_ui_repeaters: function( e, ui ) {
 
-        var $repeater = ui.item.closest('.bwpb-repeater-content');
-        var $repeater_items = $repeater.find(' > .bwpb-item');
-        var $repeater_ui = $('.bwpb-block[data-id="' + Bwpb_settings_panel.panel_edit_id + '"]').find('.bwpb-content');
-        var $repeater_ui_items = $repeater_ui.find(' > .bwpb-block-repeater-item').detach();
+        var $repeater = ui.item.closest('.pl-repeater-content');
+        var $repeater_items = $repeater.find(' > .pl-item');
+        var $repeater_ui = $('.pl-block[data-id="' + Pl_settings_panel.panel_edit_id + '"]').find('.pl-content');
+        var $repeater_ui_items = $repeater_ui.find(' > .pl-block-repeater-item').detach();
 
         $repeater_items.each(function() {
             var self = $(this);
@@ -1719,7 +1719,7 @@ var Pl_repeater = {
      */
     build_items: function() {
 
-        var $items = $('#bwpb-main').find('.bwpb-block-repeater[data-id="' + Bwpb_settings_panel.panel_edit_id + '"] .bwpb-content > .bwpb-block-repeater-item');
+        var $items = $('#pl-main').find('.pl-block-repeater[data-id="' + Pl_settings_panel.panel_edit_id + '"] .pl-content > .pl-block-repeater-item');
 
         $items.each(function() {
 
@@ -1742,16 +1742,16 @@ var Pl_repeater = {
         Pl_repeater.add_repeater_item();
 
         // this will save the repeater items on every plus click
-        //Bwpb_settings_panel.save( false );
+        //Pl_settings_panel.save( false );
 
     },
 
     on_click_delete: function() {
 
-        var self = $(this), $item = self.closest('.bwpb-item');
+        var self = $(this), $item = self.closest('.pl-item');
 
         //$item.remove();
-        Bwpb.remove_module( $('#bwpb-main .bwpb-block-repeater-item[data-id="' + $item.attr('data-id') + '"]'), true );
+        Pl_main.remove_module( $('#pl-main .pl-block-repeater-item[data-id="' + $item.attr('data-id') + '"]'), true );
 
     },
 
@@ -1760,13 +1760,13 @@ var Pl_repeater = {
         e.preventDefault();
 
         var self = $(this);
-        var $repeater = self.closest('.bwpb-item')
+        var $repeater = self.closest('.pl-item')
         var id = $repeater.attr('data-id');
 
         // duplicate ui block
-        var $to_duplicate = $('#bwpb-main .bwpb-block-repeater .bwpb-block-repeater-item[data-id="' + id + '"]');
+        var $to_duplicate = $('#pl-main .pl-block-repeater .pl-block-repeater-item[data-id="' + id + '"]');
         var $clone = $to_duplicate.clone(); // duplicate as block in html
-        var new_id = Bwpb.clone_module_parameters( $clone ); // closed data object for new elements
+        var new_id = Pl_main.clone_module_parameters( $clone ); // closed data object for new elements
 
         $clone.insertAfter( $to_duplicate ); // insert closed module in html
 
@@ -1774,8 +1774,8 @@ var Pl_repeater = {
         var $repeater_clone = $repeater.clone().attr('data-id', new_id);
         $repeater_clone.insertAfter( $repeater );
 
-        //Bwpb.reload(); // reinit items based on editor content
-        //Bwpb.reload_ui_functions(); // refresh blocks
+        //Pl_main.reload(); // reinit items based on editor content
+        //Pl_main.reload_ui_functions(); // refresh blocks
 
     },
 
@@ -1783,7 +1783,7 @@ var Pl_repeater = {
 
         e.preventDefault();
 
-        var $to_duplicate = e.closest('.bwpb-block'); // module to duplicate
+        var $to_duplicate = e.closest('.pl-block'); // module to duplicate
         var $clone = $to_duplicate.clone(); // duplicate as block in html
         this.clone_module_parameters( $clone ); // closed data object for new elements
         $clone.insertAfter( $to_duplicate ); // insert closed module in html
@@ -1794,11 +1794,11 @@ var Pl_repeater = {
 
     on_click_edit: function() {
 
-        Bwpb_settings_panel.save( false );
+        Pl_settings_panel.save( false );
 
-        Bwpb_settings_panel.$panel.removeClass('bwpb-done').addClass('bwpb-ajaxing');
+        Pl_settings_panel.$panel.removeClass('pl-done').addClass('pl-ajaxing');
 
-        Bwpb_settings_panel.edit_inside( $(this).closest('.bwpb-item').attr('data-id') );
+        Pl_settings_panel.edit_inside( $(this).closest('.pl-item').attr('data-id') );
 
     },
 
@@ -1811,23 +1811,23 @@ var Pl_repeater = {
 
         var uid;
 
-        var template = $('#bwpb_template-panel_repeater_item').html();
+        var template = $('#pl_template-panel_repeater_item').html();
         var $item = $( template );
 
         if( id ) { // if module exists and we have its id
             uid = id;
-            $item.addClass('bwpb-item-exists');
+            $item.addClass('pl-item-exists');
         }else{ // create a new item
-            uid = Bwpb.get_unique_id();
-            var data = $.extend( {}, Bwpb.all_modules_repeater_item[ Pl_repeater.current_repeater_module_item ] );
-            BwpbMapper.map_data( uid, data, {} );
+            uid = Pl_main.get_unique_id();
+            var data = $.extend( {}, Pl_main.all_modules_repeater_item[ Pl_repeater.current_repeater_module_item ] );
+            Pl_mapper.map_data( uid, data, {} );
         }
 
         $item.attr( 'data-id', uid );
 
-        $('.bwpb-repeater-content').append( $item );
+        $('.pl-repeater-content').append( $item );
 
-        $('.bwpb-option-repeater').removeClass('bwpb-is-empty').addClass('bwpb-isnt-empty');
+        $('.pl-option-repeater').removeClass('pl-is-empty').addClass('pl-isnt-empty');
 
     },
 
@@ -1837,7 +1837,7 @@ var Pl_repeater = {
      */
     before_save: function() {
 
-        $('.bwpb-repeater-content').sortable('destroy'); // kill sorting
+        $('.pl-repeater-content').sortable('destroy'); // kill sorting
 
     },
 
@@ -1847,22 +1847,22 @@ var Pl_repeater = {
      */
     save: function() {
 
-        $('.bwpb-repeater-content .bwpb-item').each(function() {
+        $('.pl-repeater-content .pl-item').each(function() {
 
             var self = $(this);
-            if( ! self.hasClass('bwpb-item-exists') ) {
+            if( ! self.hasClass('pl-item-exists') ) {
 
                 var id = self.attr('data-id');
-                Bwpb.add_module( Pl_repeater.current_repeater_module_item, Bwpb_settings_panel.panel_edit_id, false, {}, id );
+                Pl_main.add_module( Pl_repeater.current_repeater_module_item, Pl_settings_panel.panel_edit_id, false, {}, id );
 
             }
 
         });
 
         // map tree and build shortcodes
-        BwpbMapper.map_tree( true );
+        Pl_mapper.map_tree( true );
         // reload ui
-        Bwpb.reload_ui_functions();
+        Pl_main.reload_ui_functions();
 
     }
 
@@ -1891,7 +1891,7 @@ var Pl_modal = {
      * jquery object of the modal
      *
      */
-    $modal: $('#bwpb-modal'),
+    $modal: $('#pl-modal'),
 
     /*
      * set to true if we add new favorite elements
@@ -1912,8 +1912,8 @@ var Pl_modal = {
 
     prepare_tabs: function() {
 
-        $('.bwpb-modal-tabs li:first-child').trigger('click');
-        $('.bwpb-modal-categories li:first-child').trigger('click');
+        $('.pl-modal-tabs li:first-child').trigger('click');
+        $('.pl-modal-categories li:first-child').trigger('click');
 
     },
 
@@ -1923,11 +1923,11 @@ var Pl_modal = {
      */
     bind: function() {
 
-        $(document).on('click', '#bwpb-main .bwpb-open-modal', Pl_modal.open);
-        Pl_modal.$modal.on('click', '.bwpb-button-close', Pl_modal.close);
-        Pl_modal.$modal.on('click', '.bwpb-modal-tabs li', Pl_modal.tab_click);
-        Pl_modal.$modal.on('click', '.bwpb-modal-categories li', Pl_modal.category_click);
-        Pl_modal.$modal.on('click', '.bwpb-button-add', Pl_modal.on_click_favorites_button);
+        $(document).on('click', '#pl-main .pl-open-modal', Pl_modal.open);
+        Pl_modal.$modal.on('click', '.pl-button-close', Pl_modal.close);
+        Pl_modal.$modal.on('click', '.pl-modal-tabs li', Pl_modal.tab_click);
+        Pl_modal.$modal.on('click', '.pl-modal-categories li', Pl_modal.category_click);
+        Pl_modal.$modal.on('click', '.pl-button-add', Pl_modal.on_click_favorites_button);
         Pl_modal.bind_elements();
         Pl_modal.bind_favorites();
 
@@ -1935,17 +1935,17 @@ var Pl_modal = {
 
     bind_elements: function() {
 
-        Pl_modal.$modal.on('click.bwpb_module_click', '.bwpb-modal-modules li', Pl_modal.module_click);
-        Pl_modal.$modal.on('click.bwpb_layout_click', '.bwpb-modal-layouts li', Pl_modal.layout_click);
+        Pl_modal.$modal.on('click.pl_module_click', '.pl-modal-modules li', Pl_modal.module_click);
+        Pl_modal.$modal.on('click.pl_layout_click', '.pl-modal-layouts li', Pl_modal.layout_click);
 
     },
 
     bind_favorites: function() {
 
-        Pl_modal.$modal.on('click.bwpb_favorite_click', '.bwpb-favorite-list li', Pl_modal.on_favorite_click);
+        Pl_modal.$modal.on('click.pl_favorite_click', '.pl-favorite-list li', Pl_modal.on_favorite_click);
 
         // run list sortable
-        var $list = Pl_modal.$modal.find('.bwpb-favorite-list');
+        var $list = Pl_modal.$modal.find('.pl-favorite-list');
         if( $list.hasClass('ui-sortable') ) {
             $list.sortable('destroy');
         }
@@ -1954,21 +1954,21 @@ var Pl_modal = {
 
     unbind_elements: function() {
 
-        Pl_modal.$modal.off('click.bwpb_module_click');
-        Pl_modal.$modal.off('click.bwpb_layout_click');
+        Pl_modal.$modal.off('click.pl_module_click');
+        Pl_modal.$modal.off('click.pl_layout_click');
 
     },
 
     unbind_favorites: function() {
 
-        Pl_modal.$modal.off('click.bwpb_favorite_click');
+        Pl_modal.$modal.off('click.pl_favorite_click');
 
         // remove list sortable
-        Pl_modal.$modal.find('.bwpb-favorite-list').sortable({
+        Pl_modal.$modal.find('.pl-favorite-list').sortable({
 
             items                   : ' > li',
             cursor                  : 'move',
-            placeholder             : 'bwpb-placeholder-favorite',
+            placeholder             : 'pl-placeholder-favorite',
             axis                    : 'y',
             start                   : Pl_modal.on_drag_start,
             stop                    : Pl_modal.on_drag_stop,
@@ -1979,7 +1979,7 @@ var Pl_modal = {
 
     on_drag_start: function( e, ui ) {
 
-        ui.item.addClass('bwpb-drag');
+        ui.item.addClass('pl-drag');
 
     },
 
@@ -1987,26 +1987,26 @@ var Pl_modal = {
 
         Pl_modal.favorites_has_changed = true;
 
-        ui.item.removeClass('bwpb-drag');
+        ui.item.removeClass('pl-drag');
 
     },
 
     on_click_favorites_button: function() {
 
-        var $button = Pl_modal.$modal.find('.bwpb-button-add'),
-            class_active = 'bwpb-favorite-active';
+        var $button = Pl_modal.$modal.find('.pl-button-add'),
+            class_active = 'pl-favorite-active';
 
         Pl_modal.$modal.toggleClass( class_active );
 
         if( Pl_modal.$modal.hasClass( class_active ) ) {
             $button.html( $button.attr('data-label-save') );
             Pl_modal.unbind_elements();
-            Pl_modal.$modal.on('click.bwpb_add_favorite', '.bwpb-modal-elements li', Pl_modal.on_click_add_favorite);
+            Pl_modal.$modal.on('click.pl_add_favorite', '.pl-modal-elements li', Pl_modal.on_click_add_favorite);
             Pl_modal.unbind_favorites();
         }else{
             $button.html( $button.attr('data-label-manage') );
             Pl_modal.bind_elements();
-            Pl_modal.$modal.off('click.bwpb_add_favorite');
+            Pl_modal.$modal.off('click.pl_add_favorite');
             Pl_modal.favorites_save();
             Pl_modal.bind_favorites();
         }
@@ -2019,18 +2019,18 @@ var Pl_modal = {
 
             var data = [];
 
-            $('#bwpb-favorites .bwpb-favorite-list li').each(function() {
+            $('#pl-favorites .pl-favorite-list li').each(function() {
                 var self = $(this);
                 data.push( {'id': self.attr('data-id'), 'label': self.html()} );
             });
 
             $.ajax({
                 type: 'POST',
-                url: bwpb_admin_root.ajax,
+                url: pl_admin_root.ajax,
                 dataType: 'json',
                 data: {
                     action        : '__save_favorites',
-                    security      : window.bwpb_data.security.save_favorites,
+                    security      : window.pl_data.security.save_favorites,
                     favorites     : data
                 },
                 beforeSend: function () {
@@ -2050,25 +2050,25 @@ var Pl_modal = {
     on_click_add_favorite: function() {
 
         var self = $(this),
-            $favorites = $('#bwpb-favorites .bwpb-favorite-list'),
+            $favorites = $('#pl-favorites .pl-favorite-list'),
             id = self.attr('data-id');
 
         Pl_modal.favorites_has_changed = true;
 
-        self.toggleClass('bwpb-is-favorite');
+        self.toggleClass('pl-is-favorite');
 
-        if( self.hasClass('bwpb-is-favorite') ) {
+        if( self.hasClass('pl-is-favorite') ) {
 
             var $fav = $('<li></li>');
             $fav.attr('data-id', id).html( self.find('span').html() );
             $favorites.prepend( $fav );
-            $favorites.removeClass('bwpb-empty');
+            $favorites.removeClass('pl-empty');
 
         }else{
 
             $favorites.find('li[data-id="' + id + '"]').remove();
             if( $favorites.find('li').length <= 0 ) {
-                $favorites.addClass('bwpb-empty');
+                $favorites.addClass('pl-empty');
             }
 
         }
@@ -2079,11 +2079,11 @@ var Pl_modal = {
 
         var self = $(this);
 
-        $('.bwpb-modal-tabs li').removeClass('bwpb-tab-active');
-        self.addClass('bwpb-tab-active');
+        $('.pl-modal-tabs li').removeClass('pl-tab-active');
+        self.addClass('pl-tab-active');
 
-        $('.bwpb-tab-content').removeClass('bwpb-tab-active');
-        $('.bwpb-tab-content.bwpb-tab-content-' + self.attr('data-tab')).addClass('bwpb-tab-active');
+        $('.pl-tab-content').removeClass('pl-tab-active');
+        $('.pl-tab-content.pl-tab-content-' + self.attr('data-tab')).addClass('pl-tab-active');
 
     },
 
@@ -2091,19 +2091,19 @@ var Pl_modal = {
 
         var self = $(this),
             $tab_list = self.closest('ul'),
-            $tab_content = self.closest('.bwpb-tab-content');
+            $tab_content = self.closest('.pl-tab-content');
 
-        $('li', $tab_list).removeClass('bwpb-category-active');
-        self.addClass('bwpb-category-active');
+        $('li', $tab_list).removeClass('pl-category-active');
+        self.addClass('pl-category-active');
 
-        $('.bwpb-modal-elements li', $tab_content).css('display', 'none');
+        $('.pl-modal-elements li', $tab_content).css('display', 'none');
         if( self.attr('data-category') == '*' ) {
-            $('.bwpb-modal-elements li', $tab_content).css('display', 'inline-block');
+            $('.pl-modal-elements li', $tab_content).css('display', 'inline-block');
         }else{
-            if( $tab_content.find('.bwpb-modal-categories').hasClass('bwpb-modal-multiple-categories') ) {
-                $('.bwpb-modal-elements li[data-category*="%' + self.attr('data-category') + '%"]', $tab_content).css('display', 'inline-block');
+            if( $tab_content.find('.pl-modal-categories').hasClass('pl-modal-multiple-categories') ) {
+                $('.pl-modal-elements li[data-category*="%' + self.attr('data-category') + '%"]', $tab_content).css('display', 'inline-block');
             }else{
-                $('.bwpb-modal-elements li[data-category="' + self.attr('data-category') + '"]', $tab_content).css('display', 'inline-block');
+                $('.pl-modal-elements li[data-category="' + self.attr('data-category') + '"]', $tab_content).css('display', 'inline-block');
             }
         }
 
@@ -2116,13 +2116,13 @@ var Pl_modal = {
      */
     reload_custom_layout_categories: function() {
 
-        var _list = '<li data-category="*">' + window.bwpb_data.i18n.all + '</li>';
+        var _list = '<li data-category="*">' + window.pl_data.i18n.all + '</li>';
 
-        for ( var id in window.bwpb_data.map_custom_layout_categories ) {
-            _list += '<li data-category="' + id + '">' + window.bwpb_data.map_custom_layout_categories[ id ] + '</li>';
+        for ( var id in window.pl_data.map_custom_layout_categories ) {
+            _list += '<li data-category="' + id + '">' + window.pl_data.map_custom_layout_categories[ id ] + '</li>';
         }
 
-        $('.bwpb-tab-content-custom_layouts .bwpb-modal-categories').html( _list ).find('li:first').trigger('click');
+        $('.pl-tab-content-custom_layouts .pl-modal-categories').html( _list ).find('li:first').trigger('click');
 
     },
 
@@ -2130,21 +2130,21 @@ var Pl_modal = {
 
         var _list = '';
 
-        for ( var id in window.bwpb_data.map_custom_layouts ) {
+        for ( var id in window.pl_data.map_custom_layouts ) {
             _list = '<li data-layout-id="' + id + '"' +
-                'data-view="' + window.bwpb_data.map_custom_layouts[id].view + '"' +
-                'data-category="' + window.bwpb_data.map_custom_layouts[id].category + '"' +
+                'data-view="' + window.pl_data.map_custom_layouts[id].view + '"' +
+                'data-category="' + window.pl_data.map_custom_layouts[id].category + '"' +
                 'data-id="custom-layout-' + id + '">' +
-                    '<div class="bwpb-element">' +
-                        '<div class="bwpb-element-image">' +
-                            '<img src="' + window.bwpb_data.path_assets + 'admin/images/default-layout.png" alt="">' +
+                    '<div class="pl-element">' +
+                        '<div class="pl-element-image">' +
+                            '<img src="' + window.pl_data.path_assets + 'admin/images/default-layout.png" alt="">' +
                         '</div>' +
-                        '<span>' + window.bwpb_data.map_custom_layouts[id].name + '</span>' +
+                        '<span>' + window.pl_data.map_custom_layouts[id].name + '</span>' +
                     '</div>' +
             '</li>' + _list;
         }
 
-        $('.bwpb-tab-content-custom_layouts .bwpb-modal-elements').html( _list );
+        $('.pl-tab-content-custom_layouts .pl-modal-elements').html( _list );
 
     },
 
@@ -2158,22 +2158,23 @@ var Pl_modal = {
         if( typeof self.attr('data-view') == 'undefined' ) { return; }
 
         var view_request = self.attr('data-view');
-        var visible_views = window.bwpb_data.module_dependencies[ view_request ];
-        var $modules = $('#bwpb-modal .bwpb-modal-modules');
+        var visible_views = window.pl_data.module_dependencies[ view_request ];
+
+        var $modules = $('#pl-modal .pl-modal-modules');
 
         if( view_request == 'row' ) { view_request = '__solo'; }
 
         if( view_request == '__solo' ) { // display all the modules if __solo
 
-            $modules.find('li').removeClass('bwpb-module-hidden');
+            $modules.find('li').removeClass('pl-module-hidden');
 
         }else{ // display modules with the currect view
 
-            $modules.find('li').addClass('bwpb-module-hidden');
+            $modules.find('li').addClass('pl-module-hidden');
 
             for( var i = 0; i < visible_views.length; i++ ) {
 
-                $modules.find('li[data-view="' + visible_views[i] + '"]').removeClass('bwpb-module-hidden');
+                $modules.find('li[data-view="' + visible_views[i] + '"]').removeClass('pl-module-hidden');
 
             }
 
@@ -2190,23 +2191,23 @@ var Pl_modal = {
         if( typeof self.attr('data-view') == 'undefined' ) { return; }
 
         var view_request = self.attr('data-view');
-        var visible_views = window.bwpb_data.module_dependencies[ view_request ];
-        var $layouts = $('#bwpb-modal .bwpb-modal-layouts');
+        var visible_views = window.pl_data.module_dependencies[ view_request ];
+        var $layouts = $('#pl-modal .pl-modal-layouts');
 
         if( view_request == 'row' ) { view_request = '__solo'; }
 
         if( view_request == '__solo' ) { // display all the layouts if __solo
 
-            $layouts.find('li').addClass('bwpb-layout-hidden');
-            $layouts.find('li[data-view="row"]').removeClass('bwpb-layout-hidden');
+            $layouts.find('li').addClass('pl-layout-hidden');
+            $layouts.find('li[data-view="row"]').removeClass('pl-layout-hidden');
 
         }else{ // display layouts with matching view
 
-            $layouts.find('li').addClass('bwpb-layout-hidden');
+            $layouts.find('li').addClass('pl-layout-hidden');
 
             for( var i = 0; i < visible_views.length; i++ ) {
 
-                $layouts.find('li[data-view="' + visible_views[i] + '"]').removeClass('bwpb-layout-hidden');
+                $layouts.find('li[data-view="' + visible_views[i] + '"]').removeClass('pl-layout-hidden');
 
             }
 
@@ -2223,7 +2224,7 @@ var Pl_modal = {
         e.preventDefault();
 
         var self = $(this);
-        var $parentBlock = self.closest('.bwpb-block');
+        var $parentBlock = self.closest('.pl-block');
 
         Pl_modal.check_dependencies( self );
         Pl_modal.check_dependencies_layouts( self );
@@ -2234,18 +2235,18 @@ var Pl_modal = {
         }
 
         // close any panel
-        Bwpb_settings_panel.close();
+        Pl_settings_panel.close();
 
         // set modal id
         Pl_modal.module_parent_id = $parentBlock.length ? $parentBlock.attr('data-id') : 0;
 
         // set layouts tab
         if( self.attr('data-modal-tab') !== 'undefined' ) {
-            $('.bwpb-modal-tabs li[data-tab="' + self.attr('data-modal-tab') + '"]').trigger('click');
+            $('.pl-modal-tabs li[data-tab="' + self.attr('data-modal-tab') + '"]').trigger('click');
         }
 
-        $('#bwpb-overlay').css({'visibility':'visible', 'opacity':1});
-        Pl_modal.$modal.addClass('bwpb-modal-open');
+        $('#pl-overlay').css({'visibility':'visible', 'opacity':1});
+        Pl_modal.$modal.addClass('pl-modal-open');
 
         // bind esc
         $(document).on('keyup.pl_modal_escape', Pl_modal.on_modal_escape);
@@ -2265,8 +2266,8 @@ var Pl_modal = {
      */
     close: function() {
 
-        Pl_modal.$modal.removeClass('bwpb-modal-open');
-        $('#bwpb-overlay').css({'visibility':'hidden', 'opacity':0});
+        Pl_modal.$modal.removeClass('pl-modal-open');
+        $('#pl-overlay').css({'visibility':'hidden', 'opacity':0});
 
         // bind esc
         $(document).off('keyup.pl_modal_escape');
@@ -2284,24 +2285,24 @@ var Pl_modal = {
         // close modal
         Pl_modal.close();
 
-        Bwpb.added_manually = true;
+        Pl_main.added_manually = true;
 
         var module = self.attr('data-module');
 
-        var uid = Bwpb.add_module( module, Pl_modal.module_parent_id, true, false );
+        var uid = Pl_main.add_module( module, Pl_modal.module_parent_id, true, false );
 
         // map tree
-        BwpbMapper.map_tree( true );
+        Pl_mapper.map_tree( true );
 
         // open settings on create
-        var openOnCreate = BwpbMapper.__mapper_data[ uid ].open_settings_on_create;
+        var openOnCreate = Pl_mapper.__mapper_data[ uid ].open_settings_on_create;
         if( openOnCreate !== 'undefined' && openOnCreate === true ) {
-            Bwpb_settings_panel.open( uid );
+            Pl_settings_panel.open( uid );
         }
 
-        Bwpb.reload_ui_functions();
+        Pl_main.reload_ui_functions();
 
-        Bwpb.added_manually = false;
+        Pl_main.added_manually = false;
 
     },
 
@@ -2309,7 +2310,7 @@ var Pl_modal = {
 
         var self = $(this);
 
-        if( self.hasClass('bwpb-layout-hidden') ) { return; }
+        if( self.hasClass('pl-layout-hidden') ) { return; }
 
         // close modal
         Pl_modal.close();
@@ -2318,12 +2319,12 @@ var Pl_modal = {
 
         // built-in layouts
         if( typeof layout !== 'undefined' ) {
-            BwpbLayouts.push_layout( window.bwpb_data.map_layouts[ layout ], Pl_modal.module_parent_id );
+            Pl_layouts.push_layout( window.pl_data.map_layouts[ layout ], Pl_modal.module_parent_id );
         }
         // custom layouts
         else{
             var custom_layout_id = self.attr('data-layout-id');
-            BwpbLayouts.push_layout( window.bwpb_data.map_custom_layouts[ custom_layout_id ].content, Pl_modal.module_parent_id, self.attr('data-view') );
+            Pl_layouts.push_layout( window.pl_data.map_custom_layouts[ custom_layout_id ].content, Pl_modal.module_parent_id, self.attr('data-view') );
         }
 
     },
@@ -2332,13 +2333,13 @@ var Pl_modal = {
 
         var id = $(this).attr('data-id');
 
-        $('#bwpb-modal .bwpb-modal-elements li[data-id="' + id + '"]').trigger('click');
+        $('#pl-modal .pl-modal-elements li[data-id="' + id + '"]').trigger('click');
 
     }
 
 }
 
-var Bwpb_sort = {
+var Pl_sort = {
 
     start: function() {
 
@@ -2354,22 +2355,22 @@ var Bwpb_sort = {
      */
     update: function( e, ui ) {
 
-        Bwpb.reload(); // re-build the modules based on editor's content
+        Pl_main.reload(); // re-build the modules based on editor's content
 
     },
 
     receive: function( e, ui ) {
 
         var self = $(this);
-        self.closest('.bwpb-block').removeClass('bwpb-is-empty').addClass('bwpb-isnt-empty');
+        self.closest('.pl-block').removeClass('pl-is-empty').addClass('pl-isnt-empty');
 
     },
 
     remove: function( e, ui ) {
 
         var self = $(this);
-        if( ! self.find('.bwpb-block').length ) {
-            self.closest('.bwpb-block').removeClass('bwpb-isnt-empty').addClass('bwpb-is-empty');
+        if( ! self.find('.pl-block').length ) {
+            self.closest('.pl-block').removeClass('pl-isnt-empty').addClass('pl-is-empty');
         }
 
     },
@@ -2380,18 +2381,18 @@ var Bwpb_sort = {
 
             start: function() {
 
-                $( "#bwpb-main .bwpb-blocks" ).sortable({
+                $( "#pl-main .pl-blocks" ).sortable({
 
-                    items                   : ' > .bwpb-block',
-                    connectWith             : '.bwpb-row-content',
+                    items                   : ' > .pl-block',
+                    connectWith             : '.pl-row-content',
                     cursor                  : 'move',
                     cursorAt                : { left: 15, top: 17 },
-                    handle                  : '.bwpb-drag:first',
-                    placeholder             : 'bwpb-placeholder-row',
+                    handle                  : '.pl-drag:first',
+                    placeholder             : 'pl-placeholder-row',
                     distance                : 15,
-                    update                  : Bwpb_sort.update,
-                    start                   : function( e, ui ) { ui.item.toggleClass('bwpb-drag'); },
-                    stop                    : function( e, ui ) { ui.item.toggleClass('bwpb-drag'); }
+                    update                  : Pl_sort.update,
+                    start                   : function( e, ui ) { ui.item.toggleClass('pl-drag'); },
+                    stop                    : function( e, ui ) { ui.item.toggleClass('pl-drag'); }
 
                 });
 
@@ -2401,52 +2402,52 @@ var Bwpb_sort = {
 
         blocks: {
 
-            blocks_element: '#bwpb-main .block-column > .bwpb-block-container > .bwpb-content',
+            blocks_element: '#pl-main .block-column > .pl-block-container > .pl-content',
 
             start: function() {
 
-                var __modules = $( Bwpb_sort.sort.blocks.blocks_element );
+                var __modules = $( Pl_sort.sort.blocks.blocks_element );
 
                 __modules.sortable({
 
-                    items                   : '> .bwpb-separator-block, > .bwpb-block-draggable, > .bwpb-module-bw_row_inner',
-                    connectWith             : Bwpb_sort.sort.blocks.blocks_element,
+                    items                   : '> .pl-separator-block, > .pl-block-draggable, > .pl-module-bw_row_inner',
+                    connectWith             : Pl_sort.sort.blocks.blocks_element,
                     cursor                  : 'move',
                     cursorAt                : { left: 15, top: 17 },
                     forcePlaceholderSize    : true,
-                    placeholder             : 'bwpb-placeholder-block',
+                    placeholder             : 'pl-placeholder-block',
                     distance                : 15,
-                    update                  : Bwpb_sort.update,
-                    receive                 : Bwpb_sort.receive,
-                    remove                  : Bwpb_sort.remove,
+                    update                  : Pl_sort.update,
+                    receive                 : Pl_sort.receive,
+                    remove                  : Pl_sort.remove,
                     tolerance               : 'pointer',
-                    start                   : Bwpb_sort.sort.blocks.on_blocks_start,
-                    stop                    : Bwpb_sort.sort.blocks.on_blocks_stop,
+                    start                   : Pl_sort.sort.blocks.on_blocks_start,
+                    stop                    : Pl_sort.sort.blocks.on_blocks_stop,
 
                 });
             },
 
             on_blocks_start: function( e, ui ) {
 
-                var __modules = $( Bwpb_sort.sort.blocks.blocks_element );
+                var __modules = $( Pl_sort.sort.blocks.blocks_element );
 
-                ui.item.addClass('bwpb-drag'); // convert to edit block
-                ui.item.closest('.bwpb-block.block-row').addClass('bwpb-block-dragging');
+                ui.item.addClass('pl-drag'); // convert to edit block
+                ui.item.closest('.pl-block.block-row').addClass('pl-block-dragging');
 
-                if ( ui.item.hasClass('bwpb-module-bw_row_inner') ) { // inner row
-                    __modules.sortable('option', 'connectWith', '.bwpb-module-bw_column > .bwpb-block-container > .bwpb-content');
+                if ( ui.item.hasClass('pl-module-bw_row_inner') ) { // inner row
+                    __modules.sortable('option', 'connectWith', '.pl-module-bw_column > .pl-block-container > .pl-content');
                     __modules.sortable('refresh');
                 }
             },
 
             on_blocks_stop: function( e, ui ) {
 
-                var __modules = $( Bwpb_sort.sort.blocks.blocks_element );
+                var __modules = $( Pl_sort.sort.blocks.blocks_element );
 
-                ui.item.removeClass('bwpb-drag'); // removes the edit block style
-                ui.item.closest('.bwpb-block.block-row').removeClass('bwpb-block-dragging');
+                ui.item.removeClass('pl-drag'); // removes the edit block style
+                ui.item.closest('.pl-block.block-row').removeClass('pl-block-dragging');
 
-                if ( ui.item.hasClass('bwpb-module-bw_row_inner') ) { // inner row
+                if ( ui.item.hasClass('pl-module-bw_row_inner') ) { // inner row
                     __modules.sortable('option', 'connectWith', connections);
                     __modules.sortable('refresh');
                 }
@@ -2457,19 +2458,19 @@ var Bwpb_sort = {
 
             start: function() {
 
-                $('.bwpb-column-drag').draggable({
+                $('.pl-column-drag').draggable({
                     axis: 'x',
-                    handle: '.bwpb-col-drag-handle',
-                    containment: '.bwpb-content',
-                    start: Bwpb_sort.sort.columns.on_column_start,
-                    stop: Bwpb_sort.sort.columns.on_column_stop,
-                    drag: Bwpb_sort.sort.columns.on_column_drag
+                    handle: '.pl-col-drag-handle',
+                    containment: '.pl-content',
+                    start: Pl_sort.sort.columns.on_column_start,
+                    stop: Pl_sort.sort.columns.on_column_stop,
+                    drag: Pl_sort.sort.columns.on_column_drag
                 });
 
             },
 
             on_column_start: function( e, ui ) {
-                ui.helper.closest('.block-row').addClass('bwpb-column-dragging');
+                ui.helper.closest('.block-row').addClass('pl-column-dragging');
             },
 
             /*
@@ -2481,11 +2482,11 @@ var Bwpb_sort = {
                 var $drag_separator = ui.helper,
                     $row = $drag_separator.closest('.block-row');
 
-                $row.removeClass('bwpb-column-dragging');
+                $row.removeClass('pl-column-dragging');
 
                 var col_values = [];
-                $(' > .bwpb-block-container > .bwpb-content > .bwpb-block', $row).each(function() {
-                    col_values.push( $(' > .bwpb-column-width > .bwpb-col-width-label em', this).html() );
+                $(' > .pl-block-container > .pl-content > .pl-block', $row).each(function() {
+                    col_values.push( $(' > .pl-column-width > .pl-col-width-label em', this).html() );
                 });
                 Pl_columns.add_column( col_values.join(','), $row.attr('data-id') );
 
@@ -2501,7 +2502,7 @@ var Bwpb_sort = {
                     $col_left = $drag_separator.closest('.block-column'),
                     $col_right = $col_left.next();
 
-                var left = parseFloat( ( ui.position.left / $drag_separator.closest('.bwpb-content').width() ) * 100 ).toFixed(1),
+                var left = parseFloat( ( ui.position.left / $drag_separator.closest('.pl-content').width() ) * 100 ).toFixed(1),
                     numChange = parseFloat( $col_left.attr('data-col-width') ) - left,
                     right = parseFloat( $col_right.attr('data-col-width') ) + numChange,
                     change_widths = true;
@@ -2514,8 +2515,8 @@ var Bwpb_sort = {
 
                 if( change_widths ) {
 
-                    $('> .bwpb-column-width > .bwpb-col-width-label em', $col_left).html( left );
-                    $('> .bwpb-column-width > .bwpb-col-width-label em', $col_right).html( right.toFixed(1) );
+                    $('> .pl-column-width > .pl-col-width-label em', $col_left).html( left );
+                    $('> .pl-column-width > .pl-col-width-label em', $col_right).html( right.toFixed(1) );
 
                     // change column width
                     $col_left.css('width', left + '%');
@@ -2542,7 +2543,7 @@ var Pl_guide = {
 
     section_layout_settings: function() {
 
-        if( $('.bwpb-panel-form').length ) {
+        if( $('.pl-panel-form').length ) {
             Pl_guide.render_options();
         }
 
@@ -2552,7 +2553,7 @@ var Pl_guide = {
 
         var _option_type;
 
-        $('.plg-layouts-options .bwpb-panel-row').each(function() {
+        $('.plg-layouts-options .pl-panel-row').each(function() {
 
             _option_type = $(this).attr('data-type');
 
@@ -2564,14 +2565,14 @@ var Pl_guide = {
 
         });
 
-        //var layouts_options_arr = $.parseJSON( window.bwpb_data.layouts_options ), param;
+        //var layouts_options_arr = $.parseJSON( window.pl_data.layouts_options ), param;
         /*var option_type_callbacks = {}; // holds the option type callbacks, we will call them after at the end when all options were loaded.
 
         for( param in layouts_options_arr ) {
 
-            //var data = BwpbMapper.__mapper_data[ uid ];
+            //var data = Pl_mapper.__mapper_data[ uid ];
             var _option_type = layouts_options_arr[ param ].type;
-            var _template = $( '#bwpb-template-option-' + _option_type ).html();
+            var _template = $( '#pl-template-option-' + _option_type ).html();
 
             if( typeof _template !== 'undefined' ) {
 
@@ -2594,14 +2595,14 @@ var Pl_guide = {
         }*/
 
         // bind info icon
-        $('.plg-layouts-options').on('click.bwpb_panel_info_click', '.bwpb-icon-info', Bwpb_settings_panel.on_click_info_icon);
+        $('.plg-layouts-options').on('click.pl_panel_info_click', '.pl-icon-info', Pl_settings_panel.on_click_info_icon);
 
         /*
          * run dependencies.
          * create dependency when one option depends on other option's value,
          *
          */
-        Bwpb_dependencies.create_deps( 'playouts_options' );
+        Pl_dependencies.create_deps( 'playouts_options' );
 
     },
 
@@ -2620,11 +2621,11 @@ var Pl_guide = {
 
         data += $form.serialize();
         data += '&action=__save_layout_options';
-        data += '&security=' + bwpb_data.security.save_layout_options;
+        data += '&security=' + pl_data.security.save_layout_options;
 
         $.ajax({
             type: 'POST',
-            url: bwpb_admin_root.ajax,
+            url: pl_admin_root.ajax,
             dataType: 'json',
             data: data,
             beforeSend: function () {
@@ -2674,25 +2675,25 @@ var Pl_guide = {
  * main object to start the main functions
  *
  */
-var Bwpb = {
+var Pl_main = {
 
     /*
      *
      *
      */
-    all_modules: $.parseJSON( window.bwpb_data.map ),
+    all_modules: $.parseJSON( window.pl_data.map ),
 
     /*
      *
      *
      */
-    all_modules_repeater: $.parseJSON( window.bwpb_data.map_repeater ),
+    all_modules_repeater: $.parseJSON( window.pl_data.map_repeater ),
 
     /*
      *
      *
      */
-    all_modules_repeater_item: $.parseJSON( window.bwpb_data.map_repeater_item ),
+    all_modules_repeater_item: $.parseJSON( window.pl_data.map_repeater_item ),
 
     /*
      * the id of the last module added
@@ -2728,12 +2729,12 @@ var Bwpb = {
         this.bind();
 
         // fire on edit screen only
-        if( window.bwpb_data.screen_edit ) {
+        if( window.pl_data.screen_edit ) {
             this.status_check();
         }
 
-        Bwpb_settings_panel.start();
-        Bwpb_custom_css_panel.start();
+        Pl_settings_panel.start();
+        Pl_custom_css_panel.start();
         Pl_modal.start();
 
     },
@@ -2749,7 +2750,7 @@ var Bwpb = {
         }
         // standard post type edit screen
         else{
-            bwpb_data.status ? this.status_enable() : this.status_disable();
+            pl_data.status ? this.status_enable() : this.status_disable();
         }
     },
 
@@ -2759,13 +2760,13 @@ var Bwpb = {
      */
     status_enable: function() {
 
-        Bwpb.welcome.hide();
+        Pl_main.welcome.hide();
 
         // toggle the switch button
-        $('#bwpb-switch-button').removeClass('bw-switch-active');
+        $('#pl-switch-button').removeClass('bw-switch-active');
 
         // hide the editor if enabled
-        if( $('#bwpb-main').hasClass('pl-hide-editor') ) {
+        if( $('#pl-main').hasClass('pl-hide-editor') ) {
             $('#postdivrich').css('display', 'none');
         }
 
@@ -2773,9 +2774,9 @@ var Bwpb = {
         $('#peenapo_layouts_section_ui').css('display', 'block');
 
         // set the hidden field value to true, so we can save it on post update
-        $('#bwpb_status').val(1);
+        $('#pl_status').val(1);
 
-        Bwpb.reload_module_ui();
+        Pl_main.reload_module_ui();
 
     },
 
@@ -2786,10 +2787,10 @@ var Bwpb = {
     status_disable: function() {
 
         // toggle the switch button
-        $('#bwpb-switch-button').addClass('bw-switch-active');
+        $('#pl-switch-button').addClass('bw-switch-active');
 
         // show the editor if enabled
-        if( $('#bwpb-main').hasClass('pl-hide-editor') ) {
+        if( $('#pl-main').hasClass('pl-hide-editor') ) {
             $('#postdivrich').css('display', 'block');
         }
 
@@ -2797,7 +2798,7 @@ var Bwpb = {
         $('#peenapo_layouts_section_ui').css('display', 'none');
 
         // set the hidden field value to none, so we can save it on post update
-        $('#bwpb_status').val('');
+        $('#pl_status').val('');
     },
 
     /*
@@ -2808,7 +2809,7 @@ var Bwpb = {
 
         // check if there are any elements in our module ui
         check: function() {
-            BwpbMapper.__mapper_tree.length === 0 ? Bwpb.welcome.show() : Bwpb.welcome.hide();
+            Pl_mapper.__mapper_tree.length === 0 ? Pl_main.welcome.show() : Pl_main.welcome.hide();
         },
 
         // display the welcome message
@@ -2830,13 +2831,13 @@ var Bwpb = {
     reload_module_ui: function() {
 
         // empty latest ids
-        Bwpb.clear_ids();
+        Pl_main.clear_ids();
         // empty the mapping objects
-        BwpbMapper.__clear_mapper();
+        Pl_mapper.__clear_mapper();
         // empty the ui modules
-        BwpbInterface.empty_modules();
+        Pl_interface.empty_modules();
         // parse the editors content and get the new info
-        BwpbInterface.parse();
+        Pl_interface.parse();
 
     },
 
@@ -2847,11 +2848,11 @@ var Bwpb = {
     reload: function() {
 
         // clear the mapped tree data
-        BwpbMapper.__clear_mapper_tree();
+        Pl_mapper.__clear_mapper_tree();
         // and build it again based on the blocks
-        BwpbMapper.parse_modules_and_build_tree( $('#bwpb-main .bwpb-blocks'), false );
+        Pl_mapper.parse_modules_and_build_tree( $('#pl-main .pl-blocks'), false );
         // get the new shortcode and insert it to the editor
-        BwpbShortcoder.append_shortcodes( BwpbShortcoder.reload_shortcodes_and_push( BwpbMapper.__mapper_tree, false ) );
+        Pl_shortcoder.append_shortcodes( Pl_shortcoder.reload_shortcodes_and_push( Pl_mapper.__mapper_tree, false ) );
 
     },
 
@@ -2861,21 +2862,21 @@ var Bwpb = {
      */
     reload_ui_functions: function() {
 
-        Bwpb_sort.start();
-        Bwpb.block_hovers();
+        Pl_sort.start();
+        Pl_main.block_hovers();
 
     },
 
     block_hovers: function() {
 
         // hide row controls when over first element
-        $('.bwpb-module-bw_row').each(function() {
-            var $first_module = $('.bwpb-module-bw_column', this).eq(0).find(' > .bwpb-block-container > .bwpb-content > .bwpb-block');
+        $('.pl-module-bw_row').each(function() {
+            var $first_module = $('.pl-module-bw_column', this).eq(0).find(' > .pl-block-container > .pl-content > .pl-block');
             if( $first_module.length ) {
-                $first_module.find('> .bwpb-block-container').on('mouseenter', function() {
-                    $(this).closest('.bwpb-module-bw_row').addClass('bwpb-row-is-over-element');
+                $first_module.find('> .pl-block-container').on('mouseenter', function() {
+                    $(this).closest('.pl-module-bw_row').addClass('pl-row-is-over-element');
                 }).on('mouseleave', function() {
-                    $(this).closest('.bwpb-module-bw_row').removeClass('bwpb-row-is-over-element');
+                    $(this).closest('.pl-module-bw_row').removeClass('pl-row-is-over-element');
                 });
             }
         });
@@ -2887,11 +2888,11 @@ var Bwpb = {
             var $block = $(this);
 
             if( $block.hasClass('block-row-inner') ) {
-                //$block.closest('.bwpb-module-bw_row').trigger('mouseleave');
-                $block.closest('.bwpb-module-bw_row').removeClass('bwpb-hover');
+                //$block.closest('.pl-module-bw_row').trigger('mouseleave');
+                $block.closest('.pl-module-bw_row').removeClass('pl-hover');
             }
 
-            $block.addClass('bwpb-hover');
+            $block.addClass('pl-hover');
 
             return;
 
@@ -2900,10 +2901,10 @@ var Bwpb = {
             var $block = $(this);
 
             if( $block.hasClass('block-row-inner') ) {
-                $block.closest('.bwpb-module-bw_row').addClass('bwpb-hover');
+                $block.closest('.pl-module-bw_row').addClass('pl-hover');
             }
 
-            $block.removeClass('bwpb-hover');
+            $block.removeClass('pl-hover');
 
             return;
 
@@ -2931,9 +2932,9 @@ var Bwpb = {
      *
      */
     clear_ids: function() {
-        Bwpb.latest_element_id = 0;
-        Bwpb.latest_row_id = 0;
-        Bwpb.latest_col_id = 0;
+        Pl_main.latest_element_id = 0;
+        Pl_main.latest_row_id = 0;
+        Pl_main.latest_col_id = 0;
     },
 
     escape_param: function( value ) {
@@ -2953,16 +2954,16 @@ var Bwpb = {
      */
     bind: function() {
 
-        var $main = $('#bwpb-main');
+        var $main = $('#pl-main');
 
-        $main.on('click', 'a[href="#"]',                    Bwpb.on_click_empty_url); // disable empty urls
-        $main.on('click', '.bwpb-blocks .bwpb-cut',         Bwpb.on_click_crop_column); // crop column
-        $main.on('click', '.bwpb-blocks .bwpb-trash',       Bwpb.on_click_remove_module); // remove module
-        $main.on('click', '.bwpb-blocks .bwpb-visibility',  Bwpb.on_click_module_visibility); // toggle module visibility
-        $main.on('click', '.bwpb-blocks .bwpb-duplicate',   Bwpb.on_click_module_duplicate); // duplicate module
-        $main.on('click', '.bwpb-empty-content',            Bwpb.on_click_empty_all_content); // remove all the modules and empty the page
-        $('#bwpb-switch-button').on('click',                Bwpb.on_click_switch_button); // toggle the switch button
-        $('#bwpb-overlay').on('click',                      Bwpb.on_click_overlay); // close any modals
+        $main.on('click', 'a[href="#"]',                    Pl_main.on_click_empty_url); // disable empty urls
+        $main.on('click', '.pl-blocks .pl-cut',         Pl_main.on_click_crop_column); // crop column
+        $main.on('click', '.pl-blocks .pl-trash',       Pl_main.on_click_remove_module); // remove module
+        $main.on('click', '.pl-blocks .pl-visibility',  Pl_main.on_click_module_visibility); // toggle module visibility
+        $main.on('click', '.pl-blocks .pl-duplicate',   Pl_main.on_click_module_duplicate); // duplicate module
+        $main.on('click', '.pl-empty-content',            Pl_main.on_click_empty_all_content); // remove all the modules and empty the page
+        $('#pl-switch-button').on('click',                Pl_main.on_click_switch_button); // toggle the switch button
+        $('#pl-overlay').on('click',                      Pl_main.on_click_overlay); // close any modals
 
     },
 
@@ -2972,8 +2973,8 @@ var Bwpb = {
      */
     on_click_overlay: function() {
         Pl_modal.close();
-        Bwpb_settings_panel.close();
-        Bwpb_custom_css_panel.close();
+        Pl_settings_panel.close();
+        Pl_custom_css_panel.close();
     },
 
     /*
@@ -2997,7 +2998,7 @@ var Bwpb = {
      *
      */
     on_click_crop_column: function() {
-        Pl_columns.crop_column( $(this).closest('.bwpb-block'), true );
+        Pl_columns.crop_column( $(this).closest('.pl-block'), true );
     },
 
     /*
@@ -3005,10 +3006,10 @@ var Bwpb = {
      *
      */
     on_click_remove_module: function() {
-        if( $(this).closest('.bwpb-block').hasClass('block-column') ) {
+        if( $(this).closest('.pl-block').hasClass('block-column') ) {
             return;
         }
-        Bwpb.remove_module( $(this) );
+        Pl_main.remove_module( $(this) );
     },
 
     /*
@@ -3016,7 +3017,7 @@ var Bwpb = {
      *
      */
     on_click_module_visibility: function() {
-        Bwpb.module_visibility( $(this) );
+        Pl_main.module_visibility( $(this) );
     },
 
     /*
@@ -3024,7 +3025,7 @@ var Bwpb = {
      *
      */
     on_click_module_duplicate: function() {
-        Bwpb.module_dusplicate( $(this) );
+        Pl_main.module_dusplicate( $(this) );
     },
 
     /*
@@ -3033,28 +3034,13 @@ var Bwpb = {
      */
     on_click_empty_all_content: function() {
 
-        Bwpb.confirm({
-            title: window.bwpb_data.i18n.confirm_empty_title,
-            description: window.bwpb_data.i18n.confirm_empty_description,
-            callback: Bwpb.empty_ui
+        Pl_main.confirm({
+            title: window.pl_data.i18n.confirm_empty_title,
+            description: window.pl_data.i18n.confirm_empty_description,
+            callback: Pl_main.empty_ui
         });
 
-        //$(document).on('keyup.pl_confirm_enter', Bwpb.on_confirm_enter);
-        //$(document).on('keyup.pl_confirm_escape', Bwpb.on_confirm_escape);
-
     },
-
-    /*on_confirm_enter: function(e) {
-        if( e.keyCode == 13 ) {
-            $('.bwpb-prompt-button-confirm').trigger('click');
-        }
-    },
-
-    on_confirm_escape: function(e) {
-        if( e.keyCode == 27 ) {
-            $('.bwpb-prompt-close').trigger('click');
-        }
-    },*/
 
     /*
      * custom confirm dialog
@@ -3062,18 +3048,18 @@ var Bwpb = {
      */
     confirm: function( args ) {
 
-        BwpbPrompt.prompt_open( 'confirm' );
+        Pl_prompt.prompt_open( 'confirm' );
 
         if( typeof args.wide !== 'undfined' && args.wide == true ) {
-            $('.bwpb-prompt-confirm').removeClass('bwpb-panel-size-smaller').addClass('bwpb-prompt-confirm--remove-repeater');
+            $('.pl-prompt-confirm').removeClass('pl-panel-size-smaller').addClass('pl-prompt-confirm--remove-repeater');
         }
 
-        var $confirm = $('.bwpb-prompt-confirm');
+        var $confirm = $('.pl-prompt-confirm');
 
-        $confirm.find('.bwpb-panel-title').html( args.title );
-        $confirm.find('.bwpb-panel-row-inner').html( args.description );
+        $confirm.find('.pl-panel-title').html( args.title );
+        $confirm.find('.pl-panel-row-inner').html( args.description );
 
-        $('.bwpb-prompt-confirm').on('click.pl_prompt_confirm', '.bwpb-prompt-button-confirm', args.callback);
+        $('.pl-prompt-confirm').on('click.pl_prompt_confirm', '.pl-prompt-button-confirm', args.callback);
 
     },
 
@@ -3083,11 +3069,11 @@ var Bwpb = {
      */
     empty_ui: function() {
 
-        BwpbInterface.empty_modules(); // empty ui html
-        BwpbMapper.__clear_mapper(); // clear mapper objects
-        BwpbShortcoder.set_editor_content(''); // empty the editor
-        Bwpb.welcome.show(); // show welcome message
-        BwpbPrompt.close(); // close the prompt if any
+        Pl_interface.empty_modules(); // empty ui html
+        Pl_mapper.__clear_mapper(); // clear mapper objects
+        Pl_shortcoder.set_editor_content(''); // empty the editor
+        Pl_main.welcome.show(); // show welcome message
+        Pl_prompt.close(); // close the prompt if any
 
     },
 
@@ -3096,7 +3082,7 @@ var Bwpb = {
      *
      */
     on_click_switch_button: function() {
-        $(this).hasClass('bw-switch-active') ? Bwpb.status_enable() : Bwpb.status_disable();
+        $(this).hasClass('bw-switch-active') ? Pl_main.status_enable() : Pl_main.status_disable();
     },
 
     /*
@@ -3104,7 +3090,7 @@ var Bwpb = {
      *
      */
     loading: function() {
-        $('#bwpb-main').addClass('bwpb-main-ajaxing');
+        $('#pl-main').addClass('pl-main-ajaxing');
     },
 
     /*
@@ -3112,7 +3098,7 @@ var Bwpb = {
      *
      */
     loaded: function() {
-        $('#bwpb-main').removeClass('bwpb-main-ajaxing');
+        $('#pl-main').removeClass('pl-main-ajaxing');
     },
 
     /*
@@ -3123,13 +3109,13 @@ var Bwpb = {
     module_visibility: function(e) {
 
         var $row = e.closest('.block-row');
-        $row.toggleClass('bwpb-row-hidden');
+        $row.toggleClass('pl-row-hidden');
 
         // update the visibility param of the clicked row
-        BwpbMapper.update_mapper_module_options( $row.attr('data-id'), 'is_hidden', $row.hasClass('bwpb-row-hidden') ? 'true' : '' );
+        Pl_mapper.update_mapper_module_options( $row.attr('data-id'), 'is_hidden', $row.hasClass('pl-row-hidden') ? 'true' : '' );
 
         // flush the shortcodes
-        BwpbShortcoder.reload_shortcodes_and_push( BwpbMapper.__mapper_tree, true );
+        Pl_shortcoder.reload_shortcodes_and_push( Pl_mapper.__mapper_tree, true );
 
     },
 
@@ -3139,7 +3125,7 @@ var Bwpb = {
      */
     module_dusplicate: function( self ) {
 
-        var $to_duplicate = self.closest('.bwpb-block'); // module to duplicate
+        var $to_duplicate = self.closest('.pl-block'); // module to duplicate
         var $clone = $to_duplicate.clone(); // duplicate as block in html
         this.clone_module_parameters( $clone ); // closed data object for new elements
         $clone.insertAfter( $to_duplicate ); // insert closed module in html
@@ -3163,9 +3149,9 @@ var Bwpb = {
         var new_id = this.get_unique_id(); // get a new id for the new module
 
         // we will clone the owner object options, so we can get the same option values
-        var cloned_map_object = $.extend( true, {}, BwpbMapper.__mapper_data[ owner_id ] );
+        var cloned_map_object = $.extend( true, {}, Pl_mapper.__mapper_data[ owner_id ] );
 
-        BwpbMapper.__mapper_data[ new_id ] = cloned_map_object;
+        Pl_mapper.__mapper_data[ new_id ] = cloned_map_object;
         $clone.attr( 'data-id', new_id );
 
         if( $( '*[data-id]', $clone ) ) {
@@ -3184,17 +3170,17 @@ var Bwpb = {
      */
     remove_module: function( self, wide = false ) {
 
-        Bwpb.confirm({
-            title: window.bwpb_data.i18n.confirm_delete_title,
-            description: window.bwpb_data.i18n.confirm_delete_description,
+        Pl_main.confirm({
+            title: window.pl_data.i18n.confirm_delete_title,
+            description: window.pl_data.i18n.confirm_delete_description,
             callback: function() {
-                Bwpb.remove_module_callback( self );
+                Pl_main.remove_module_callback( self );
             },
             wide
         });
 
-        //$(document).on('keyup.pl_confirm_enter', Bwpb.on_confirm_enter);
-        //$(document).on('keyup.pl_confirm_escape', Bwpb.on_confirm_escape);
+        //$(document).on('keyup.pl_confirm_enter', Pl_main.on_confirm_enter);
+        //$(document).on('keyup.pl_confirm_escape', Pl_main.on_confirm_escape);
 
     },
 
@@ -3205,19 +3191,19 @@ var Bwpb = {
         var $column = self.closest('.block-column');
 
         // remove repeater item, if any
-        if( $('#bwpb-panel-settings .bwpb-repeater-content').length ) {
-            $('#bwpb-panel-settings .bwpb-repeater-content .bwpb-item[data-id="' + item_id + '"]').remove();
+        if( $('#pl-panel-settings .pl-repeater-content').length ) {
+            $('#pl-panel-settings .pl-repeater-content .pl-item[data-id="' + item_id + '"]').remove();
         }
 
-        self.closest('.bwpb-block').remove(); // remove as block in ui
+        self.closest('.pl-block').remove(); // remove as block in ui
         this.reload(); // reload all
         this.reload_ui_functions(); // reload ui functions as sorting
         this.welcome.check(); // check if welcome message is needed
-        BwpbPrompt.close(); // close the prompt if any
+        Pl_prompt.close(); // close the prompt if any
 
         // set empty class
-        if( $column.find(' > .bwpb-block-container > .bwpb-content > .bwpb-block').length == 0 ) {
-            $column.removeClass('bwpb-isnt-empty').addClass('bwpb-is-empty');
+        if( $column.find(' > .pl-block-container > .pl-content > .pl-block').length == 0 ) {
+            $column.removeClass('pl-isnt-empty').addClass('pl-is-empty');
         }
 
     },
@@ -3227,7 +3213,7 @@ var Bwpb = {
      *
      */
     module_exists: function( module ) {
-        return typeof Bwpb.all_modules[ module ] === 'object';
+        return typeof Pl_main.all_modules[ module ] === 'object';
     },
 
     /*
@@ -3241,15 +3227,15 @@ var Bwpb = {
      */
     add_module: function( module, parent_id, auto_place_modules, merge_data, id = false ) {
 
-        if( Bwpb.module_exists( module ) ) { // check if the module exists
-            var uid = id ? id : Bwpb.get_unique_id(); // the of the module id
-            var data = $.extend( true, {}, Bwpb.all_modules[ module ] );
-            BwpbMapper.map_data( uid, data, merge_data ); // add the new object to the map
-            Bwpb.create_element( uid, module, parent_id, auto_place_modules, merge_data ); // create the element
+        if( Pl_main.module_exists( module ) ) { // check if the module exists
+            var uid = id ? id : Pl_main.get_unique_id(); // the of the module id
+            var data = $.extend( true, {}, Pl_main.all_modules[ module ] );
+            Pl_mapper.map_data( uid, data, merge_data ); // add the new object to the map
+            Pl_main.create_element( uid, module, parent_id, auto_place_modules, merge_data ); // create the element
 
             return uid;
 
-        }else{ Bwpb.notify( 'module_no_template', module ); }
+        }else{ Pl_main.notify( 'module_no_template', module ); }
 
     },
 
@@ -3266,7 +3252,7 @@ var Bwpb = {
      */
     create_element: function( uid, module_id, parent_id, auto_place_modules, merge_data ) {
 
-        Bwpb.before_create_element(); // do something before creating the element
+        Pl_main.before_create_element(); // do something before creating the element
 
         var data, view, _module;
 
@@ -3276,35 +3262,35 @@ var Bwpb = {
             view = 'repeater_item';
             _module = data.repeater_module;
         }else{ // not repeater
-            data = $.extend( true, {}, Bwpb.all_modules[ module_id ] ); // clone module data
+            data = $.extend( true, {}, Pl_main.all_modules[ module_id ] ); // clone module data
             view = ( typeof data.view !== 'undefined' ) ? data.view : 'element'; // the view of the current module
             _module = data.module;
         }*/
 
-        data = $.extend( true, {}, Bwpb.all_modules[ module_id ] ); // clone module data
+        data = $.extend( true, {}, Pl_main.all_modules[ module_id ] ); // clone module data
         view = ( typeof data.view !== 'undefined' ) ? data.view : 'element'; // the view of the current module
         _module = data.module;
 
         // if template does not exists
-        if( ! $( '#bwpb_template-' + view ).length ) {
-            Bwpb.notify( 'template_not_found', view );
+        if( ! $( '#pl_template-' + view ).length ) {
+            Pl_main.notify( 'template_not_found', view );
             return;
         }
 
         // merge the extra parameters
         if( merge_data ) {
-            BwpbMapper.sync_object_data( data, merge_data );
+            Pl_mapper.sync_object_data( data, merge_data );
         }
 
-        Bwpb.set_latest_ids( uid, view ); // set the latest ids
+        Pl_main.set_latest_ids( uid, view ); // set the latest ids
 
         // get module template and convert to jquery obj
-        var __module = $( $( '#bwpb_template-' + view ).html() );
+        var __module = $( $( '#pl_template-' + view ).html() );
 
         // add params, classes, set labels
-        __module.attr( 'data-id', uid ).find('.just-edit .bwpb-label').html( data.name );
+        __module.attr( 'data-id', uid ).find('.just-edit .pl-label').html( data.name );
         __module.attr( 'data-module', _module );
-        __module.addClass('bwpb-module-' + _module);
+        __module.addClass('pl-module-' + _module);
 
         /*
          * do stuff based on module_id or view
@@ -3312,7 +3298,7 @@ var Bwpb = {
          */
         if( view == 'row' || view == 'row_inner' ) {
             if( typeof merge_data.is_hidden !== 'undefined' && Boolean( merge_data.is_hidden ) == true ) {
-                __module.addClass('bwpb-row-hidden');
+                __module.addClass('pl-row-hidden');
             }
         }
         if( view == 'column' || view == 'column_inner' ) {
@@ -3323,7 +3309,7 @@ var Bwpb = {
             __module.attr( 'data-col-width', col_width_value );
 
             // add percent
-            $('> .bwpb-column-width em', __module).html( col_width_value );
+            $('> .pl-column-width em', __module).html( col_width_value );
         }
 
         // TODO: this looks messy
@@ -3333,35 +3319,35 @@ var Bwpb = {
             }else if( ! this.added_manually ) { // manually added
                 parent_id = this.latest_element_id;
             }else{ // not manually added element without row
-                var auto_id = Bwpb.get_unique_id();
+                var auto_id = Pl_main.get_unique_id();
                 this.add_module( 'bw_row', parent_id, auto_place_modules, false, auto_id );
                 parent_id = this.latest_col_id;
             }
         }
 
         // place the element in the ui
-        Bwpb.place_element( module_id, __module, parent_id );
+        Pl_main.place_element( module_id, __module, parent_id );
 
         // if row, call some column inside, except when auto_place_modules
         // is not requested ( the col will be pushed after )
         if( auto_place_modules ) {
             if( module_id == 'bw_row' ) {
-                Bwpb.add_module( 'bw_column', uid, auto_place_modules, false );
+                Pl_main.add_module( 'bw_column', uid, auto_place_modules, false );
             }
             // same for inner row
             if( module_id == 'bw_row_inner' ) {
-                Bwpb.add_module( 'bw_column_inner', uid, auto_place_modules, false );
+                Pl_main.add_module( 'bw_column_inner', uid, auto_place_modules, false );
             }
         }
 
         // modules coloring
-        Bwpb.element_colors( __module, data );
+        Pl_main.element_colors( __module, data );
 
     },
 
     before_create_element: function() {
 
-        Bwpb.welcome.hide();
+        Pl_main.welcome.hide();
 
     },
 
@@ -3403,7 +3389,7 @@ var Bwpb = {
 
         }else{
 
-            Bwpb.notify( 'bad_hex', hex );
+            Pl_main.notify( 'bad_hex', hex );
 
         }
 
@@ -3415,10 +3401,10 @@ var Bwpb = {
      */
     element_colors: function( __module, data ) {
 
-        if( $('.bwpb-label', __module).length && typeof window.bwpb_data.module_colors[ data.module ] !== 'undefined' ) {
-            var rgb_color = Bwpb.hex_to_rgb( window.bwpb_data.module_colors[ data.module ], .25 );
-            $('.bwpb-label, .bwpb-option-holder, .bwpb-plus', __module).css( 'background-color', window.bwpb_data.module_colors[ data.module ] );
-            $('.bwpb-label, .bwpb-option-holder, .bwpb-plus', __module).css( 'box-shadow', '0px 3px 30px 0px ' + rgb_color );
+        if( $('.pl-label', __module).length && typeof window.pl_data.module_colors[ data.module ] !== 'undefined' ) {
+            var rgb_color = Pl_main.hex_to_rgb( window.pl_data.module_colors[ data.module ], .25 );
+            $('.pl-label, .pl-option-holder, .pl-plus', __module).css( 'background-color', window.pl_data.module_colors[ data.module ] );
+            $('.pl-label, .pl-option-holder, .pl-plus', __module).css( 'box-shadow', '0px 3px 30px 0px ' + rgb_color );
         }
 
     },
@@ -3436,37 +3422,37 @@ var Bwpb = {
         switch( Pl_modal.placement ) {
 
             case 'top': // on top of all elements
-                $('#bwpb-main .bwpb-blocks').prepend( __module );
+                $('#pl-main .pl-blocks').prepend( __module );
                 break;
 
             case 'bottom': // on bottom of all elements
-                $('#bwpb-main .bwpb-blocks').append( __module );
+                $('#pl-main .pl-blocks').append( __module );
                 break;
 
             case 'before':
-                $('#bwpb-main .bwpb-block[data-id="' + parent_id + '"]').before( __module );
+                $('#pl-main .pl-block[data-id="' + parent_id + '"]').before( __module );
                 break;
 
             case 'after':
-                $('#bwpb-main .bwpb-block[data-id="' + parent_id + '"]').after( __module );
+                $('#pl-main .pl-block[data-id="' + parent_id + '"]').after( __module );
                 break;
 
             case 'manually_after': // same as after, but this won't auto insert row and column
-                $('#bwpb-main .bwpb-block[data-id="' + parent_id + '"]').after( __module );
+                $('#pl-main .pl-block[data-id="' + parent_id + '"]').after( __module );
                 break;
 
             case 'insert_top':
-                $('#bwpb-main .bwpb-block[data-id="' + parent_id + '"] .bwpb-content:first').prepend( __module );
+                $('#pl-main .pl-block[data-id="' + parent_id + '"] .pl-content:first').prepend( __module );
                 break;
 
             case 'insert_bottom': // default
-                $('#bwpb-main .bwpb-block[data-id="' + parent_id + '"] .bwpb-content:first').append( __module );
+                $('#pl-main .pl-block[data-id="' + parent_id + '"] .pl-content:first').append( __module );
                 break;
 
         }
 
         if( module_id !== 'bw_column' ) {
-            $('#bwpb-main .bwpb-block[data-id="' + parent_id + '"]').closest('.bwpb-block').removeClass('bwpb-is-empty').addClass('bwpb-isnt-empty');
+            $('#pl-main .pl-block[data-id="' + parent_id + '"]').closest('.pl-block').removeClass('pl-is-empty').addClass('pl-isnt-empty');
         }
 
         Pl_modal.placement = 'insert_bottom'; // reset to default element placement
@@ -3475,18 +3461,18 @@ var Bwpb = {
 
         if( parent_id ) { // has parent
 
-            $destination = $('#bwpb-main .bwpb-block[data-id="' + parent_id + '"] .bwpb-content:first');
+            $destination = $('#pl-main .pl-block[data-id="' + parent_id + '"] .pl-content:first');
 
             Pl_modal.placement ? $destination.prepend( __module ) : $destination.append( __module );
             //$destination.append( __module ); // TODO: fix this, column cropping not working if removed
 
             if( module_id !== 'bw_column' ) {
-                $('#bwpb-main .bwpb-block[data-id="' + parent_id + '"]').closest('.bwpb-block').removeClass('bwpb-is-empty').addClass('bwpb-isnt-empty');
+                $('#pl-main .pl-block[data-id="' + parent_id + '"]').closest('.pl-block').removeClass('pl-is-empty').addClass('pl-isnt-empty');
             }
 
         }else{ // has no parent
 
-            var $main_blocks = $('#bwpb-main .bwpb-blocks');
+            var $main_blocks = $('#pl-main .pl-blocks');
 
             Pl_modal.placement ? $main_blocks.prepend( __module ) : $main_blocks.append( __module );
 
@@ -3563,7 +3549,7 @@ var Bwpb = {
     notify: function( type, value ) {
 
         var output = '';
-        var i18n_errors_strings = window.bwpb_data.i18n.notifications;
+        var i18n_errors_strings = window.pl_data.i18n.notifications;
 
         if( typeof i18n_errors_strings[ type ] !== 'undefined' ) {
             console.log( i18n_errors_strings[ type ].replace( '{{value}}', value ) );
@@ -3578,7 +3564,7 @@ var Bwpb = {
  *
  */
 $(document).ready(function() {
-    Bwpb.start();
+    Pl_main.start();
 });
 
 //})( jQuery );

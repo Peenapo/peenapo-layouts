@@ -43,10 +43,10 @@ class Playouts_Admin {
         add_action( 'init', array( 'Playouts_Admin', 'actions' ) );
 
         # main container classes
-        add_action( 'bwpb_main_class', array( 'Playouts_Admin', 'main_class' ) );
+        add_action( 'pl_main_class', array( 'Playouts_Admin', 'main_class' ) );
 
         # switch button classes
-        add_action( 'bwpb_switch_class', array( 'Playouts_Admin', 'switch_class' ) );
+        add_action( 'pl_switch_class', array( 'Playouts_Admin', 'switch_class' ) );
 
         # enqueue scripts
         add_action( 'admin_enqueue_scripts', array( 'Playouts_Admin', 'enqueue_scripts' ) );
@@ -63,7 +63,7 @@ class Playouts_Admin {
     static function main_class( $classes ) {
 
         // TODO: add this into an option
-        //$classes[] = 'bwpb-editor-hidden';
+        //$classes[] = 'pl-editor-hidden';
 
         if( Playouts_Admin::$status ) {
             if( ! ( isset( Playouts_Admin::$options['show_editor'] ) and Playouts_Admin::$options['show_editor'] ) ) {
@@ -115,22 +115,22 @@ class Playouts_Admin {
 
         # register the taxonomy
     	$taxonomy_labels = array(
-    		'name'                       => _x( 'Categories', 'taxonomy general name', 'AAA' ),
-    		'singular_name'              => _x( 'Category', 'taxonomy singular name', 'AAA' ),
-    		'search_items'               => __( 'Search Categories', 'AAA' ),
-    		'popular_items'              => __( 'Popular Categories', 'AAA' ),
-    		'all_items'                  => __( 'All Categories', 'AAA' ),
+    		'name'                       => _x( 'Categories', 'taxonomy general name', 'peenapo-layouts-txd' ),
+    		'singular_name'              => _x( 'Category', 'taxonomy singular name', 'peenapo-layouts-txd' ),
+    		'search_items'               => __( 'Search Categories', 'peenapo-layouts-txd' ),
+    		'popular_items'              => __( 'Popular Categories', 'peenapo-layouts-txd' ),
+    		'all_items'                  => __( 'All Categories', 'peenapo-layouts-txd' ),
     		'parent_item'                => null,
     		'parent_item_colon'          => null,
-    		'edit_item'                  => __( 'Edit Category', 'AAA' ),
-    		'update_item'                => __( 'Update Category', 'AAA' ),
-    		'add_new_item'               => __( 'Add New Category', 'AAA' ),
-    		'new_item_name'              => __( 'New Category Name', 'AAA' ),
-    		'separate_items_with_commas' => __( 'Separate categories with commas', 'AAA' ),
-    		'add_or_remove_items'        => __( 'Add or remove categories', 'AAA' ),
-    		'choose_from_most_used'      => __( 'Choose from the most used categories', 'AAA' ),
-    		'not_found'                  => __( 'No categories found.', 'AAA' ),
-    		'menu_name'                  => __( 'Categories', 'AAA' ),
+    		'edit_item'                  => __( 'Edit Category', 'peenapo-layouts-txd' ),
+    		'update_item'                => __( 'Update Category', 'peenapo-layouts-txd' ),
+    		'add_new_item'               => __( 'Add New Category', 'peenapo-layouts-txd' ),
+    		'new_item_name'              => __( 'New Category Name', 'peenapo-layouts-txd' ),
+    		'separate_items_with_commas' => __( 'Separate categories with commas', 'peenapo-layouts-txd' ),
+    		'add_or_remove_items'        => __( 'Add or remove categories', 'peenapo-layouts-txd' ),
+    		'choose_from_most_used'      => __( 'Choose from the most used categories', 'peenapo-layouts-txd' ),
+    		'not_found'                  => __( 'No categories found.', 'peenapo-layouts-txd' ),
+    		'menu_name'                  => __( 'Categories', 'peenapo-layouts-txd' ),
     	);
     	$taxonomy_args = array(
     		'hierarchical'          => false,
@@ -146,7 +146,7 @@ class Playouts_Admin {
 
         # tagonomies as params
         $labels = array(
-            'name'                  => esc_html__( 'Layout View', 'AAA' )
+            'name'                  => esc_html__( 'Layout View', 'peenapo-layouts-txd' )
         );
     	$args = array(
             'hierarchical'          => false,
@@ -160,24 +160,24 @@ class Playouts_Admin {
 
         # register the post type
         $post_type_labels = array(
-            'name'                  => _x( 'Layouts', 'post type general name', 'AAA' ),
-            'singular_name'         => _x( 'Layout', 'post type singular name', 'AAA' ),
-            'menu_name'             => _x( 'Layouts', 'admin menu', 'AAA' ),
-            'name_admin_bar'        => _x( 'Layout', 'add new on admin bar', 'AAA' ),
-            'add_new'               => _x( 'Add New', 'layout', 'AAA' ),
-            'add_new_item'          => __( 'Add New Layout', 'AAA' ),
-            'new_item'              => __( 'New Layout', 'AAA' ),
-            'edit_item'             => __( 'Edit Layout', 'AAA' ),
-            'view_item'             => __( 'View Layout', 'AAA' ),
-            'all_items'             => __( 'All Layouts', 'AAA' ),
-            'search_items'          => __( 'Search Layouts', 'AAA' ),
-            'parent_item_colon'     => __( 'Parent Layouts:', 'AAA' ),
-            'not_found'             => __( 'No books found.', 'AAA' ),
-            'not_found_in_trash'    => __( 'No books found in Trash.', 'AAA' )
+            'name'                  => _x( 'Layouts', 'post type general name', 'peenapo-layouts-txd' ),
+            'singular_name'         => _x( 'Layout', 'post type singular name', 'peenapo-layouts-txd' ),
+            'menu_name'             => _x( 'Layouts', 'admin menu', 'peenapo-layouts-txd' ),
+            'name_admin_bar'        => _x( 'Layout', 'add new on admin bar', 'peenapo-layouts-txd' ),
+            'add_new'               => _x( 'Add New', 'layout', 'peenapo-layouts-txd' ),
+            'add_new_item'          => __( 'Add New Layout', 'peenapo-layouts-txd' ),
+            'new_item'              => __( 'New Layout', 'peenapo-layouts-txd' ),
+            'edit_item'             => __( 'Edit Layout', 'peenapo-layouts-txd' ),
+            'view_item'             => __( 'View Layout', 'peenapo-layouts-txd' ),
+            'all_items'             => __( 'All Layouts', 'peenapo-layouts-txd' ),
+            'search_items'          => __( 'Search Layouts', 'peenapo-layouts-txd' ),
+            'parent_item_colon'     => __( 'Parent Layouts:', 'peenapo-layouts-txd' ),
+            'not_found'             => __( 'No books found.', 'peenapo-layouts-txd' ),
+            'not_found_in_trash'    => __( 'No books found in Trash.', 'peenapo-layouts-txd' )
     	);
     	$post_type_args = array(
             'labels'                => $post_type_labels,
-            'description'           => __( 'Layouts', 'AAA' ),
+            'description'           => __( 'Layouts', 'peenapo-layouts-txd' ),
             'taxonomies'            => array( 'pl_layout_category' ),
             'public'                => false,
             'publicly_queryable'    => false,
@@ -201,7 +201,7 @@ class Playouts_Admin {
          * get switch button template
          *
          *
-        do_action( 'bwpb_get_template_switch_button' );
+        do_action( 'pl_get_template_switch_button' );
 
     }*/
 
@@ -214,8 +214,8 @@ class Playouts_Admin {
 
         if( ! $post_id ) { return; }
 
-        $bwpb_status = get_post_meta( $post_id, '__pl_status', true );
-        self::$status = $bwpb_status;
+        $pl_status = get_post_meta( $post_id, '__pl_status', true );
+        self::$status = $pl_status;
 
     }
 
@@ -223,8 +223,8 @@ class Playouts_Admin {
 
         if( ! $post_id ) { return; }
 
-        $enabled_post_types = isset( Playouts_Admin::$options['post_types'] ) ? Playouts_Admin::$options['post_types'] : array( 'post', 'page' );
-        if( array_key_exists( get_post_type( $post_id ), Playouts_Admin::$post_types ) ) {
+        $enabled_post_types = isset( self::$options['post_types'] ) ? self::$options['post_types'] : array( 'post', 'page', 'pl_layout' );
+        if( array_key_exists( get_post_type( $post_id ), self::$post_types ) ) {
 
             self::$status_post_type = true;
 
@@ -236,7 +236,7 @@ class Playouts_Admin {
 
         # get the plugin options
         self::$options = get_option( 'pl_layouts_options' );
-        self::$post_types = isset( self::$options['post_types'] ) ? self::$options['post_types'] : array( 'post', 'page' );
+        self::$post_types = isset( self::$options['post_types'] ) ? array_merge( array( 'pl_layout' => 1 ), self::$options['post_types'] ) : array( 'post', 'page', 'pl_layout' );
 
         # get current post type
         $screen = get_current_screen();
@@ -245,7 +245,7 @@ class Playouts_Admin {
         # if the post type supports wordpress editor
         if( post_type_supports( $current_post_type, 'editor' ) ) {
             # if plugin supports current post type
-            if( array_key_exists( $current_post_type, Playouts_Admin::$post_types ) ) {
+            if( array_key_exists( $current_post_type, self::$post_types ) ) {
 
                 # get the post id
                 $post_id = isset( $_GET['post'] ) ? (int)$_GET['post'] : false;
@@ -278,7 +278,7 @@ class Playouts_Admin {
      */
     static function admin_body_class( $classes ) {
         if( self::$status and self::$status_post_type ) {
-            return "{$classes} bwpb-active";
+            return "{$classes} pl-active";
         }
     }
 
@@ -349,11 +349,11 @@ class Playouts_Admin {
 
     static function get_custom_css() {
 
-        $bwpb_custom_css = get_post_meta( get_the_ID(), '__pl_custom_css', true );
-        if ( ! isset( $bwpb_custom_css ) or $bwpb_custom_css == '' ) {
-            $bwpb_custom_css = '';
+        $pl_custom_css = get_post_meta( get_the_ID(), '__pl_custom_css', true );
+        if ( ! isset( $pl_custom_css ) or $pl_custom_css == '' ) {
+            $pl_custom_css = '';
         }
-        return $bwpb_custom_css;
+        return $pl_custom_css;
 
     }
 
@@ -363,7 +363,7 @@ class Playouts_Admin {
          * get main template
          *
          */
-        do_action( 'bwpb_get_template_main' );
+        do_action( 'pl_get_template_main' );
 
     }
 
@@ -373,7 +373,7 @@ class Playouts_Admin {
          * get template for switch section
          *
          */
-        do_action( 'bwpb_get_template_switch' );
+        do_action( 'pl_get_template_switch' );
 
     }
 
@@ -385,18 +385,18 @@ class Playouts_Admin {
          * get template for editor not supported
          *
          */
-        do_action( 'bwpb_get_template_editor_not_supported' );
+        do_action( 'pl_get_template_editor_not_supported' );
 
     }
 
     static function get_free_id() {
 
-        $last_id = get_option( 'bwpb_last_block_id', 0 );
+        $last_id = get_option( 'pl_last_block_id', 0 );
 
         if ( $last_id <= 2 ) { $last_id = 2; }
         $last_id++;
 
-        update_option( 'bwpb_last_block_id', $last_id );
+        update_option( 'pl_last_block_id', $last_id );
 
         return $last_id;
 
@@ -425,25 +425,25 @@ class Playouts_Admin {
          * generate all the element's templates
          *
          */
-        do_action( 'bwpb_get_template_elements' );
+        do_action( 'pl_get_template_elements' );
 
         /*
          * other partials
          *
          */
-        do_action( 'bwpb_get_template_partials' );
+        do_action( 'pl_get_template_partials' );
 
         /*
          * get template for settings panel
          *
          */
-        do_action( 'bwpb_get_template_settings_panel' );
+        do_action( 'pl_get_template_settings_panel' );
 
         /*
          * generate a template for our icons
          *
          */
-        do_action( 'bwpb_get_template_icons' );
+        do_action( 'pl_get_template_icons' );
 
     }
 
@@ -453,7 +453,7 @@ class Playouts_Admin {
 
         if ( ! current_user_can( 'edit_post', $post_id ) ) { return; }
 
-        $status = self::get_post_param( 'bwpb_status' );
+        $status = self::get_post_param( 'pl_status' );
         $custom_css = isset( $_POST['bw_custom_css'] ) ? strip_tags( $_POST['bw_custom_css'] ) : '';
 
         // TODO: fix this
@@ -514,36 +514,36 @@ class Playouts_Admin {
 
         if( self::$status_post_type or ( isset( $_GET['page'] ) and $_GET['page'] == 'playouts_options' ) ) {
 
-            //TODO: fix this
+            //TODO: fix this mess
             # css
             wp_enqueue_style( 'wp-color-picker' );
-    		wp_enqueue_style( 'bwpb', PL_ASSEST . 'admin/css/style.css' );
-    		wp_enqueue_style( 'bwpb-jquery-ui', PL_ASSEST . 'admin/css/vendors/jquery-ui.css' );
+    		wp_enqueue_style( 'pl', PL_ASSEST . 'admin/css/style.css' );
+    		wp_enqueue_style( 'pl-jquery-ui', PL_ASSEST . 'admin/css/vendors/jquery-ui.css' );
 
             # google fonts
             $query_args = array(
                 'family' => 'Palanquin+Dark:400,600|Oxygen:400',
                 'subset' => 'latin',
             );
-            wp_enqueue_style( 'bwpb-google-fonts', add_query_arg( $query_args, "//fonts.googleapis.com/css" ), array(), null );
+            wp_enqueue_style( 'pl-google-fonts', add_query_arg( $query_args, "//fonts.googleapis.com/css" ), array(), null );
 
     		# js
             if( isset( $_GET['page'] ) and $_GET['page'] == 'playouts_options' ) {
                 wp_enqueue_media();
             }
     		wp_enqueue_script( array( "jquery", "jquery-ui-core", "jquery-ui-dialog", "jquery-ui-sortable", "wp-color-picker", "jquery-ui-slider" ) );
-            wp_register_script( 'bwpb', PL_ASSEST . 'admin/js/main.js', array('jquery-ui-sortable'), '1.0', true );
-    		wp_localize_script( 'bwpb', 'bwpb_admin_root', array( 'ajax' => admin_url( 'admin-ajax.php' ) ) );
-            wp_enqueue_script( 'bwpb-smart-resize', PL_ASSEST . 'admin/js/vendors/jquery-smartresize-master/jquery.debouncedresize.js', array(), '1.0', true );
-            wp_enqueue_script( 'bwpb-vendors', PL_ASSEST . 'admin/js/vendors.js', array(), '1.0', true );
-            wp_enqueue_script( 'bwpb-php-default', PL_ASSEST . 'admin/js/vendors/php.default/php.default.min.js', array(), '1.0', true );
-            wp_enqueue_script( 'bwpb-colorpicker', PL_ASSEST . 'admin/js/vendors/wpcolorpicker/wp-colorpicker.min.js', array(), '1.0', true );
-            wp_enqueue_script( 'bwpb-blocker', PL_ASSEST . 'admin/js/bwpb.blocker.js', array(), '1.0', true );
-            wp_enqueue_script( 'bwpb-shortcoder', PL_ASSEST . 'admin/js/bwpb.shortcoder.js', array(), '1.0', true );
-            wp_enqueue_script( 'bwpb-layouts', PL_ASSEST . 'admin/js/bwpb.layouts.js', array(), '1.0', true );
-            wp_enqueue_script( 'bwpb-mapper', PL_ASSEST . 'admin/js/bwpb.mapper.js', array(), '1.0', true );
+            wp_register_script( 'pl', PL_ASSEST . 'admin/js/main.js', array('jquery-ui-sortable'), '1.0', true );
+    		wp_localize_script( 'pl', 'pl_admin_root', array( 'ajax' => admin_url( 'admin-ajax.php' ) ) );
+            wp_enqueue_script( 'pl-smart-resize', PL_ASSEST . 'admin/js/vendors/jquery-smartresize-master/jquery.debouncedresize.js', array(), '1.0', true );
+            wp_enqueue_script( 'pl-vendors', PL_ASSEST . 'admin/js/vendors.js', array(), '1.0', true );
+            wp_enqueue_script( 'pl-php-default', PL_ASSEST . 'admin/js/vendors/php.default/php.default.min.js', array(), '1.0', true );
+            wp_enqueue_script( 'pl-colorpicker', PL_ASSEST . 'admin/js/vendors/wpcolorpicker/wp-colorpicker.min.js', array(), '1.0', true );
+            wp_enqueue_script( 'pl-blocker', PL_ASSEST . 'admin/js/pl.blocker.js', array(), '1.0', true );
+            wp_enqueue_script( 'pl-shortcoder', PL_ASSEST . 'admin/js/pl.shortcoder.js', array(), '1.0', true );
+            wp_enqueue_script( 'pl-layouts', PL_ASSEST . 'admin/js/pl.layouts.js', array(), '1.0', true );
+            wp_enqueue_script( 'pl-mapper', PL_ASSEST . 'admin/js/pl.mapper.js', array(), '1.0', true );
 
-    		wp_enqueue_script( 'bwpb' );
+    		wp_enqueue_script( 'pl' );
 
         }
     }

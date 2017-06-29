@@ -1,6 +1,6 @@
 <div id="pl-guide" class="pl-guide">
 
-    <?php do_action( 'bwpb_get_template_settings_header' ); ?>
+    <?php do_action( 'pl_get_template_settings_header' ); ?>
 
     <div class="plg-content">
 

@@ -65,11 +65,11 @@ class Playouts_Option_Type {
 
     static function get_option_heading( $label, $description ) {
 
-        $info = $description ? '<i class="bwpb-icon-info bwpb-no-select"></i>' : '';
+        $info = $description ? '<i class="pl-icon-info pl-no-select"></i>' : '';
 
         $__out = "<h5>{$label}{$info}</h5>";
         if( $description ) {
-            $__out .= "<div class='bwpb-header-info'><p>{$description}</p></div>";
+            $__out .= "<div class='pl-header-info'><p>{$description}</p></div>";
         }
         return $__out;
     }
@@ -89,7 +89,7 @@ class Playouts_Option_Type {
             // ui_hide: won't be visible in the options panel, but still will be queried as parameter
             elseif( isset( $values->ui_hide ) and $values->ui_hide == true ) {
 
-                $output .= '<div class="bwpb-panel-row bwpb-panel-row-hidden">';
+                $output .= '<div class="pl-panel-row pl-panel-row-hidden">';
                 $output .= call_user_func_array( $class_name . '::template', array( $values ) );
                 $output .= '</div>';
 
@@ -106,11 +106,11 @@ class Playouts_Option_Type {
                     $styles = '';
                     $depends = isset( $values->depends );
 
-                    $class  = 'bwpb-panel-row';
-                    $class .= ' bwpb-row-option-' . $values->type;
-                    $class .= isset( $values->tab ) ? ' bwpb-row-tab-' . array_shift( array_keys( (array) $values->tab ) ) : ' bwpb-row-tab-general';
+                    $class  = 'pl-panel-row';
+                    $class .= ' pl-row-option-' . $values->type;
+                    $class .= isset( $values->tab ) ? ' pl-row-tab-' . array_shift( array_keys( (array) $values->tab ) ) : ' pl-row-tab-general';
                     if( $depends ) {
-                        $class .= ' bwpb-row-depends';
+                        $class .= ' pl-row-depends';
                         $styles .= 'height:0;';
                     }
                     if( isset( $values->width ) ) {
@@ -129,7 +129,7 @@ class Playouts_Option_Type {
                         }
                     }
 
-                    $output .= "<div class='{$class}' style='{$styles}'{$attr}><div class='bwpb-panel-row-inner'>";
+                    $output .= "<div class='{$class}' style='{$styles}'{$attr}><div class='pl-panel-row-inner'>";
                     $output .= call_user_func_array( $class_name . '::template', array( $values ) );
                     $output .= '</div></div>';
 
@@ -138,8 +138,8 @@ class Playouts_Option_Type {
 
         }else{
 
-            $output .= '<div class="bwpb-panel-row' . ( isset( $values->tab ) ? ' bwpb-row-tab-' . array_shift( array_keys( (array) $values->tab ) ) : ' bwpb-row-tab-general' ) . '"><div class="bwpb-panel-row-inner">';
-            $output .= '<div class="bwpb-panel-no-option">' . sprintf( esc_html__( 'Option type "%1$s" doesn\'t exists.', 'AAA' ), $values->type ) . '</div>';
+            $output .= '<div class="pl-panel-row' . ( isset( $values->tab ) ? ' pl-row-tab-' . array_shift( array_keys( (array) $values->tab ) ) : ' pl-row-tab-general' ) . '"><div class="pl-panel-row-inner">';
+            $output .= '<div class="pl-panel-no-option">' . sprintf( esc_html__( 'Option type "%1$s" doesn\'t exists.', 'peenapo-layouts-txd' ), $values->type ) . '</div>';
             $output .= '</div></div>';
 
         }
@@ -188,7 +188,7 @@ class Playouts_Option_Type_Dummy extends Playouts_Option_Type {
     function init() {
 
         $this->id = 'dummy';
-        $this->name = esc_html__( 'Dummy', 'AAA' );
+        $this->name = esc_html__( 'Dummy', 'peenapo-layouts-txd' );
 
     }
 
@@ -205,7 +205,7 @@ class Playouts_Option_Type_Heading extends Playouts_Option_Type {
     function init() {
 
         $this->id = 'heading';
-        $this->name = esc_html__( 'Heading', 'AAA' );
+        $this->name = esc_html__( 'Heading', 'peenapo-layouts-txd' );
 
     }
 
@@ -228,7 +228,7 @@ class Playouts_Option_Type_Textfield extends Playouts_Option_Type {
     function init() {
 
         $this->id = 'textfield';
-        $this->name = esc_html__( 'Textfield', 'AAA' );
+        $this->name = esc_html__( 'Textfield', 'peenapo-layouts-txd' );
 
     }
 
@@ -252,7 +252,7 @@ class Playouts_Option_Type_Textarea extends Playouts_Option_Type {
     function init() {
 
         $this->id = 'textarea';
-        $this->name = esc_html__( 'Textarea', 'AAA' );
+        $this->name = esc_html__( 'Textarea', 'peenapo-layouts-txd' );
 
     }
 
@@ -274,7 +274,7 @@ class Playouts_Option_Type_Editor extends Playouts_Option_Type {
     function init() {
 
         $this->id = 'editor';
-        $this->name = esc_html__( 'Editor', 'AAA' );
+        $this->name = esc_html__( 'Editor', 'peenapo-layouts-txd' );
 
     }
 
@@ -284,24 +284,24 @@ class Playouts_Option_Type_Editor extends Playouts_Option_Type {
 
         $__out = self::get_option_heading( $label, $description );
 
-        $__out .= "<div class='bwpb-tinymce-container tmce-active' data-editor-id='bwpb_tinymce_{$name}'>";
-        $__out .= "<div id='wp-bwpb_tinymce_{$name}-editor-tools' class='wp-editor-tools hide-if-no-js'>";
+        $__out .= "<div class='pl-tinymce-container tmce-active' data-editor-id='pl_tinymce_{$name}'>";
+        $__out .= "<div id='wp-pl_tinymce_{$name}-editor-tools' class='wp-editor-tools hide-if-no-js'>";
 
         $media = '';
         if ( current_user_can( 'upload_files' ) ) {
             ob_start();
-            do_action( 'media_buttons', "bwpb_tinymce_{$name}" );
+            do_action( 'media_buttons', "pl_tinymce_{$name}" );
             $media = ob_get_clean();
         }
 
-        $__out .= "<div id='wp-bwpb_tinymce_{$name}-media-buttons' class='wp-media-buttons'>{$media}</div>";
+        $__out .= "<div id='wp-pl_tinymce_{$name}-media-buttons' class='wp-media-buttons'>{$media}</div>";
 
         $__out .= "<div class='wp-editor-tabs'>
-                    <button type='button' data-switch='tmce' class='wp-switch-editor switch-tmce' onclick='Playouts_Option_Type.option_types.editor.switch_editor(this);'>" . __( 'Visual', 'AAA' ) . "</button>
-                    <button type='button' data-switch='html' class='wp-switch-editor switch-html' onclick='Playouts_Option_Type.option_types.editor.switch_editor(this);'>" . __( 'Text', 'AAA' ) . "</button>
+                    <button type='button' data-switch='tmce' class='wp-switch-editor switch-tmce' onclick='Playouts_Option_Type.option_types.editor.switch_editor(this);'>" . __( 'Visual', 'peenapo-layouts-txd' ) . "</button>
+                    <button type='button' data-switch='html' class='wp-switch-editor switch-html' onclick='Playouts_Option_Type.option_types.editor.switch_editor(this);'>" . __( 'Text', 'peenapo-layouts-txd' ) . "</button>
                 </div>
             </div>
-            <textarea id='bwpb_tinymce_{$name}' class='bwpb-tinymce-textarea' name= '{$name}'>{$value}</textarea>
+            <textarea id='pl_tinymce_{$name}' class='pl-tinymce-textarea' name= '{$name}'>{$value}</textarea>
         </div>";
 
         return $__out;
@@ -315,7 +315,7 @@ class Playouts_Option_Type_Base64 extends Playouts_Option_Type {
     function init() {
 
         $this->id = 'base64';
-        $this->name = esc_html__( 'Base 64', 'AAA' );
+        $this->name = esc_html__( 'Base 64', 'peenapo-layouts-txd' );
 
     }
 
@@ -338,7 +338,7 @@ class Playouts_Option_Type_Colorpicker extends Playouts_Option_Type {
     function init() {
 
         $this->id = 'colorpicker';
-        $this->name = esc_html__( 'Color Picker', 'AAA' );
+        $this->name = esc_html__( 'Color Picker', 'peenapo-layouts-txd' );
 
     }
 
@@ -347,7 +347,7 @@ class Playouts_Option_Type_Colorpicker extends Playouts_Option_Type {
         extract( (array) $values );
 
         $__out = self::get_option_heading( $label, $description );
-        $__out .= "<input type='text' name='{$name}' value='{$value}' class='bwpb-colorpicker' data-default-color=''>";
+        $__out .= "<input type='text' name='{$name}' value='{$value}' class='pl-colorpicker' data-default-color=''>";
 
         return $__out;
 
@@ -360,7 +360,7 @@ class Playouts_Option_Type_True_False extends Playouts_Option_Type {
     function init() {
 
         $this->id = 'true_false';
-        $this->name = esc_html__( 'True False', 'AAA' );
+        $this->name = esc_html__( 'True False', 'peenapo-layouts-txd' );
 
     }
 
@@ -370,11 +370,11 @@ class Playouts_Option_Type_True_False extends Playouts_Option_Type {
 
         $__out = self::get_option_heading( $label, $description );
 
-        $__active = $value ? ' bwpb-active' : '';
+        $__active = $value ? ' pl-active' : '';
         $__checked = $value ? ' checked="checked"' : '';
 
-        $__out .= "<label class='bwpb-true-false{$__active}' for='bwpb_true_false_{$name}'>".
-            "<input type='checkbox' name='{$name}' id='bwpb_true_false_{$name}' value='1'{$__checked}>".
+        $__out .= "<label class='pl-true-false{$__active}' for='pl_true_false_{$name}'>".
+            "<input type='checkbox' name='{$name}' id='pl_true_false_{$name}' value='1'{$__checked}>".
         "</label>";
 
         return $__out;
@@ -388,7 +388,7 @@ class Playouts_Option_Type_Radio extends Playouts_Option_Type {
     function init() {
 
         $this->id = 'radio';
-        $this->name = esc_html__( 'Radio Button', 'AAA' );
+        $this->name = esc_html__( 'Radio Button', 'peenapo-layouts-txd' );
 
     }
 
@@ -401,8 +401,8 @@ class Playouts_Option_Type_Radio extends Playouts_Option_Type {
         $key = 0;
         foreach( $options as $__value => $__label ) {
             $__checked = $value == $__value ? ' checked="checked"' : '';
-            $__out .= "<label class='bwpb-option-radio' for='bwpb_radio_{$name}_{$key}'>
-                <input id='bwpb_radio_{$name}_{$key}' type='radio' name='{$name}' value='{$__value}'{$__checked}>{$__label}
+            $__out .= "<label class='pl-option-radio' for='pl_radio_{$name}_{$key}'>
+                <input id='pl_radio_{$name}_{$key}' type='radio' name='{$name}' value='{$__value}'{$__checked}>{$__label}
             </label>";
             $key++;
         }
@@ -418,7 +418,7 @@ class Playouts_Option_Type_Radio_Image extends Playouts_Option_Type {
     function init() {
 
         $this->id = 'radio_image';
-        $this->name = esc_html__( 'Radio Image Button', 'AAA' );
+        $this->name = esc_html__( 'Radio Image Button', 'peenapo-layouts-txd' );
 
     }
 
@@ -432,12 +432,12 @@ class Playouts_Option_Type_Radio_Image extends Playouts_Option_Type {
         foreach( $options as $__value => $__option ) {
             $__option = (object) $__option;
             $__checked = $value == $__value ? ' checked="checked"' : '';
-            $__out .= "<label class='bwpb-option-radio-image' for='bwpb_radio_{$name}_{$__key}'>
-                <div class='bwpb-radio-image bwpb-no-select'>
+            $__out .= "<label class='pl-option-radio-image' for='pl_radio_{$name}_{$__key}'>
+                <div class='pl-radio-image pl-no-select'>
                     <img src='{$__option->image}' alt=''>
                     <span>{$__option->label}</span>
                 </div>
-                <input id='bwpb_radio_{$name}_{$__key}' type='radio' name='{$name}' value='{$__value}'{$__checked}>
+                <input id='pl_radio_{$name}_{$__key}' type='radio' name='{$name}' value='{$__value}'{$__checked}>
             </label>";
             $__key++;
         }
@@ -453,7 +453,7 @@ class Playouts_Option_Type_Select extends Playouts_Option_Type {
     function init() {
 
         $this->id = 'select';
-        $this->name = esc_html__( 'Select', 'AAA' );
+        $this->name = esc_html__( 'Select', 'peenapo-layouts-txd' );
 
     }
 
@@ -482,7 +482,7 @@ class Playouts_Option_Type_Image extends Playouts_Option_Type {
     function init() {
 
         $this->id = 'image';
-        $this->name = esc_html__( 'Image', 'AAA' );
+        $this->name = esc_html__( 'Image', 'peenapo-layouts-txd' );
 
     }
 
@@ -491,15 +491,15 @@ class Playouts_Option_Type_Image extends Playouts_Option_Type {
         extract( (array) $values );
 
         $__out = self::get_option_heading( $label, $description );
-        $__has_image = ! empty( $value ) ? ' bwpb-has-image' : '';
-        $__out .= "<div class='bwpb-option-image{$__has_image}'>
-                <div class='bwpb-upload-field'>
+        $__has_image = ! empty( $value ) ? ' pl-has-image' : '';
+        $__out .= "<div class='pl-option-image{$__has_image}'>
+                <div class='pl-upload-field'>
                     <input type='text' name='{$name}' value='{$value}' />
-                    <a href='#' class='bwpb-button-round bwpb-upload-button'>" . __( 'Upload Image', 'AAA' ) . "</a>
+                    <a href='#' class='pl-button-round pl-upload-button'>" . __( 'Upload Image', 'peenapo-layouts-txd' ) . "</a>
                 </div>
-                <div class='bwpb-image-preview'>
+                <div class='pl-image-preview'>
                     <img src='{$value}' alt=''>
-                    <span class='bwpb-image-remove'><i class='bwpb-plus'><span></span></i></span>
+                    <span class='pl-image-remove'><i class='pl-plus'><span></span></i></span>
                 </div>
             </div>";
 
@@ -514,7 +514,7 @@ class Playouts_Option_Type_File extends Playouts_Option_Type {
     function init() {
 
         $this->id = 'file';
-        $this->name = esc_html__( 'File', 'AAA' );
+        $this->name = esc_html__( 'File', 'peenapo-layouts-txd' );
 
     }
 
@@ -523,10 +523,10 @@ class Playouts_Option_Type_File extends Playouts_Option_Type {
         extract( (array) $values );
 
         $__out = self::get_option_heading( $label, $description );
-        $__out .= "<div class='bwpb-option-file'>
-            <div class='bwpb-upload-field'>
+        $__out .= "<div class='pl-option-file'>
+            <div class='pl-upload-field'>
                 <input type='text' name='{$name}' value='{$value}' />
-                <div class='bwpb-button-round bwpb-upload-button'>" . __( 'Select File', 'AAA' ) . "</div>
+                <div class='pl-button-round pl-upload-button'>" . __( 'Select File', 'peenapo-layouts-txd' ) . "</div>
             </div>
         </div>";
 
@@ -541,7 +541,7 @@ class Playouts_Option_Type_Number_Slider extends Playouts_Option_Type {
     function init() {
 
         $this->id = 'number_slider';
-        $this->name = esc_html__( 'Number Slider', 'AAA' );
+        $this->name = esc_html__( 'Number Slider', 'peenapo-layouts-txd' );
 
     }
 
@@ -558,9 +558,9 @@ class Playouts_Option_Type_Number_Slider extends Playouts_Option_Type {
         }
 
         $__out = self::get_option_heading( $label, $description );
-        $__out .= "<div class='bwpb-option-number-slider'>
-            <span class='bwpb-nslider-heading'>{$append_before} <i>{$value}</i> {$append_after}</span>
-            <div class='bwpb-number-slider' data-min='{$min}' data-max='{$max}' data-step='{$step}' data-value='{$value}'>
+        $__out .= "<div class='pl-option-number-slider'>
+            <span class='pl-nslider-heading'>{$append_before} <i>{$value}</i> {$append_after}</span>
+            <div class='pl-number-slider' data-min='{$min}' data-max='{$max}' data-step='{$step}' data-value='{$value}'>
                 <input type='hidden' name='{$name}' value='{$value}'>
             </div>
         </div>";
@@ -578,7 +578,7 @@ class Playouts_Option_Type_Sidebar extends Playouts_Option_Type {
     function init() {
 
         $this->id = 'sidebars';
-        $this->name = esc_html__( 'Sidebars', 'AAA' );
+        $this->name = esc_html__( 'Sidebars', 'peenapo-layouts-txd' );
 
     }
 
@@ -591,7 +591,7 @@ class Playouts_Option_Type_Sidebar extends Playouts_Option_Type {
 
         $__out = self::get_option_heading( $label, $description );
         $__out .= "<select name='{$name}'>";
-        $__out .= "<option value='0'>" . esc_html__( 'Select Sidebar', 'AAA' ) . "</option>";
+        $__out .= "<option value='0'>" . esc_html__( 'Select Sidebar', 'peenapo-layouts-txd' ) . "</option>";
         foreach( $wp_registered_sidebars as $sidebar ) {
             $__checked = $value == $sidebar['id'] ? ' selected="selected"' : '';
             $__out .= "<option value='{$sidebar['id']}'{$__checked}>{$sidebar['name']}</option>";
@@ -610,7 +610,7 @@ class Playouts_Option_Type_Icon extends Playouts_Option_Type {
     function init() {
 
         $this->id = 'icon';
-        $this->name = esc_html__( 'Icon', 'AAA' );
+        $this->name = esc_html__( 'Icon', 'peenapo-layouts-txd' );
 
     }
 
@@ -619,13 +619,13 @@ class Playouts_Option_Type_Icon extends Playouts_Option_Type {
         extract( (array) $values );
 
         $__out = self::get_option_heading( $label, $description );
-        $__out .= "<div class='bwpb-option-icon'>
-            <div class='bwpb-icon-buttons'>
-                <div class='bwpb-icon-label'><i class='{$value}'></i></div>
-                <div class='bwpb-icon-expand'><i></i></div>
+        $__out .= "<div class='pl-option-icon'>
+            <div class='pl-icon-buttons'>
+                <div class='pl-icon-label'><i class='{$value}'></i></div>
+                <div class='pl-icon-expand'><i></i></div>
             </div>
             <input type='hidden' name='{$name}' value='{$value}'>
-            <ul class='bwpb-icon-container' data-font='{$value}' data-icon='{$value}'></ul>
+            <ul class='pl-icon-container' data-font='{$value}' data-icon='{$value}'></ul>
         </div>";
 
         return $__out;
@@ -639,7 +639,7 @@ class Playouts_Option_Type_Taxonomy extends Playouts_Option_Type {
     function init() {
 
         $this->id = 'taxonomy';
-        $this->name = esc_html__( 'Taxonomy', 'AAA' );
+        $this->name = esc_html__( 'Taxonomy', 'peenapo-layouts-txd' );
 
     }
 
@@ -673,7 +673,7 @@ class Playouts_Option_Type_Taxonomy extends Playouts_Option_Type {
         $__multiple = isset( $multiple ) ? ' multiple' : '';
 
         $__out = self::get_option_heading( $label, $description );
-        $__out .= "<div class='bwpb-option-taxonomy bwpb-ajaxing'>";
+        $__out .= "<div class='pl-option-taxonomy pl-ajaxing'>";
         $__out .= "<select name='{$name}'{$__multiple}>{$__out_select}</select>";
         $__out .= "</div>";
 
@@ -688,7 +688,7 @@ class Playouts_Option_Type_Repeater extends Playouts_Option_Type {
     function init() {
 
         $this->id = 'repeater';
-        $this->name = esc_html__( 'Repeater', 'AAA' );
+        $this->name = esc_html__( 'Repeater', 'peenapo-layouts-txd' );
 
     }
 
@@ -697,9 +697,9 @@ class Playouts_Option_Type_Repeater extends Playouts_Option_Type {
         extract( (array) $values );
 
         $__out  = self::get_option_heading( $label, $description );
-        $__out .= '<div class="bwpb-option-repeater" data-repeater-module="">';
-        $__out .= '<div class="bwpb-repeater-content"></div>';
-        $__out .= '<div class="bwpb-repeater-plus"><i class="bwpb-plus"><span></span></i></div>';
+        $__out .= '<div class="pl-option-repeater" data-repeater-module="">';
+        $__out .= '<div class="pl-repeater-content"></div>';
+        $__out .= '<div class="pl-repeater-plus"><i class="pl-plus"><span></span></i></div>';
         $__out .= '</div>';
 
         return $__out;
@@ -713,7 +713,7 @@ class Playouts_Option_Type_Columns extends Playouts_Option_Type {
     function init() {
 
         $this->id = 'columns';
-        $this->name = esc_html__( 'Columns', 'AAA' );
+        $this->name = esc_html__( 'Columns', 'peenapo-layouts-txd' );
 
     }
 
@@ -722,10 +722,10 @@ class Playouts_Option_Type_Columns extends Playouts_Option_Type {
         extract( (array) $values );
 
         $__out  = self::get_option_heading( $label, $description );
-        $__out .= '<div class="bwpb-option-columns"></div>';
-        $__out .= '<div class="bwpb-column-actions">';
-        $__out .= '<a href="#" class="bwpb-button-round bwpb-option-remove-column">' . __( 'Remove Columns', 'AAA' ) . '</a>';
-        $__out .= '<a href="#" class="bwpb-button-round bwpb-button-primary bwpb-option-add-column">' . __( 'Add New Columns', 'AAA' ) . '</a>';
+        $__out .= '<div class="pl-option-columns"></div>';
+        $__out .= '<div class="pl-column-actions">';
+        $__out .= '<a href="#" class="pl-button-round pl-option-remove-column">' . __( 'Remove Columns', 'peenapo-layouts-txd' ) . '</a>';
+        $__out .= '<a href="#" class="pl-button-round pl-button-primary pl-option-add-column">' . __( 'Add New Columns', 'peenapo-layouts-txd' ) . '</a>';
         $__out .= '</div>';
 
         return $__out;
@@ -739,7 +739,7 @@ class Playouts_Option_Type_Thumbnail_Sizes extends Playouts_Option_Type {
     function init() {
 
         $this->id = 'thumbnail_sizes';
-        $this->name = esc_html__( 'Thumbnail Sizes', 'AAA' );
+        $this->name = esc_html__( 'Thumbnail Sizes', 'peenapo-layouts-txd' );
 
     }
 
@@ -774,7 +774,7 @@ class Playouts_Option_Type_Google_Font extends Playouts_Option_Type {
     function init() {
 
         $this->id = 'google_font';
-        $this->name = esc_html__( 'Google Font', 'AAA' );
+        $this->name = esc_html__( 'Google Font', 'peenapo-layouts-txd' );
 
 		self::$google_fonts = require PL_DIR . 'inc/google_fonts.php';
 
@@ -812,7 +812,7 @@ class Playouts_Option_Type_Google_Font extends Playouts_Option_Type {
         <input type="hidden" class="bwpc-font-value" value='<?php echo (string) stripslashes( $current_value_json ); ?>' name="<?php echo $name; ?>" data-id="<?php echo $name; ?>">
         <!-- font family -->
         <select class="bwpc-font-family">
-            <option value=""><?php esc_html_e( 'Select Font', 'AAA' ); ?></option>
+            <option value=""><?php esc_html_e( 'Select Font', 'peenapo-layouts-txd' ); ?></option>
             <?php foreach ( self::$google_fonts as $key => $font ) {
                 self::get_font_option( $font, $key, $current_value );
             } ?>
@@ -821,7 +821,7 @@ class Playouts_Option_Type_Google_Font extends Playouts_Option_Type {
         <!-- variants -->
         <select class="bwpc-font-variants" multiple>
             <?php if( isset( $current_value->variants ) && ! empty( $current_value->variants ) && is_array( $current_value->variants ) ): ?>
-                <?php //echo "<option value=''>" . esc_html__( 'Select font variant', 'AAA' ) . "</option>"; ?>
+                <?php //echo "<option value=''>" . esc_html__( 'Select font variant', 'peenapo-layouts-txd' ) . "</option>"; ?>
                 <?php foreach ( $current_value->variants as $key => $variant ): ?>
                     <?php echo "<option value='{$variant}'>{$variant}</option>"; ?>
                 <?php endforeach; ?>

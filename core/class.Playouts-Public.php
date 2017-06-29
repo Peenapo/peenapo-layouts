@@ -201,9 +201,9 @@ class Playouts_Public {
         if( self::is_builder_used() ) {
 
             // TODO: change via plugin option
-            $cont_max = apply_filters( 'bwpb_container_max_with', 1100 );
+            $cont_max = apply_filters( 'pl_container_max_with', 1100 );
             // TODO: fix this
-            echo "<style>.bwpb-row-holder.bwpb-row-full_width_background > .bwpb-row, .bwpb-row-holder.bwpb-row-in_container, .bwpb-wrapper {max-width:{$cont_max}px;}</style>";
+            echo "<style>.pl-row-holder.pl-row-full_width_background > .pl-row, .pl-row-holder.pl-row-in_container, .pl-wrapper {max-width:{$cont_max}px;}</style>";
 
             $post_css = get_post_meta( get_the_ID(), '__pl_custom_css', true );
 
@@ -221,10 +221,6 @@ class Playouts_Public {
 
         if( self::is_builder_used() ) {
             $classes[] = 'pl-is-enabled';
-            // TODO: check this and insert into option
-            //if( Bwpb::$global['align_tables'] ) {
-                $classes[] = 'bwpb-align-tables';
-            //}
         }
         return $classes;
     }
@@ -247,15 +243,15 @@ class Playouts_Public {
                     $style .= 'background-size:' . esc_attr( $bg_image_size ) . ';';
                     break;
                 case 'parallax':
-                    $class  = ' bwpb-parallax';
+                    $class  = ' pl-parallax';
                     $style  = 'background-image:url(' . esc_url( $bg_image ) . ');';
                     $style .= 'background-position:' . esc_attr( $bg_image_position ) . ';';
                     $style .= 'background-size:' . esc_attr( $bg_image_size ) . ';';
                     $data_attr = ' data-parallax-speed="' . (int) $bg_parallax_speed . '"';
-                    $inner = '<div class="bwpb-background-parallax"></div>';
+                    $inner = '<div class="pl-background-parallax"></div>';
                     break;
                 case 'video':
-                    //$class = ' bwpb-parallax';
+                    //$class = ' pl-parallax';
                     //$data_attr = ' data-parallax-speed="300"';
                     if( ! empty( $bg_video_mp4 ) or ! empty( $bg_video_ogv ) or ! empty( $bg_video_webm ) ) {
                         $source = '';
@@ -269,7 +265,7 @@ class Playouts_Public {
                             $source .= '<source src="' . esc_url( $bg_video_webm ) . '" type=\'video/mp4; codecs="avc1.4D401E, mp4a.40.2"\'>';
                         }
                         $inner = '<video poster="' . esc_url( $bg_video_poster ) . '" autobuffer autoplay loop muted>' . $source .
-                        	'<p>' . esc_html__( 'Video not supported!', 'AAA' ) . '</p>'.
+                        	'<p>' . esc_html__( 'Video not supported!', 'peenapo-layouts-txd' ) . '</p>'.
                         '</video>';
                     }
                     break;
@@ -292,7 +288,7 @@ class Playouts_Public {
             # css
             wp_enqueue_style( 'pl-style', PL_ASSEST . 'css/style.css' );
             # icons
-            wp_enqueue_style( 'pl-stroke-7', PL_ASSEST . 'fonts/bwpb-7-stroke/pe-icon-7-stroke.css' );
+            wp_enqueue_style( 'pl-stroke-7', PL_ASSEST . 'fonts/pl-7-stroke/pe-icon-7-stroke.css' );
             # dynamic google fonts
             wp_enqueue_style( 'pl-google-fonts', Playouts_Public_Fonts::output_google_font(), array('pl-style') );
             wp_add_inline_style( 'pl-google-fonts', Playouts_Public_Fonts::$font_declarations );
@@ -306,7 +302,7 @@ class Playouts_Public {
     			if( class_exists('Bw') ) {
     				$google_api_key = esc_attr( get_option( Bw::$theme_prefix . '_google_api_key', '' ) );
     			}
-                wp_enqueue_script( 'bwpb-google-maps', '//maps.google.com/maps/api/js?key=' . $google_api_key );
+                wp_enqueue_script( 'pl-google-maps', '//maps.google.com/maps/api/js?key=' . $google_api_key );
             }*/
 
     		# fonts
@@ -315,26 +311,26 @@ class Playouts_Public {
     				wp_enqueue_style( 'bw-font-awesome', PL_ASSEST . 'fonts/font-awesome/font-awesome.min.css' );
     			}
     			if( Playouts_Public::check_shortcode_string( 'lineicons' ) ) {
-    				wp_enqueue_style( 'bw-font-lineicons', PL_ASSEST . 'fonts/bwpb-lineicons/lineicons.css' );
+    				wp_enqueue_style( 'bw-font-lineicons', PL_ASSEST . 'fonts/pl-lineicons/lineicons.css' );
     			}
     			if( Playouts_Public::check_shortcode_string( '7s' ) ) {
-    				wp_enqueue_style( 'bw-font-stroke-7', PL_ASSEST . 'fonts/bwpb-7-stroke/pe-icon-7-stroke.css' );
+    				wp_enqueue_style( 'bw-font-stroke-7', PL_ASSEST . 'fonts/pl-7-stroke/pe-icon-7-stroke.css' );
     			}
     		}*/
 
-            wp_enqueue_script( 'bwpb-front-plugins', PL_ASSEST . 'js/bwpb-front-plugins.js', array('jquery'), '1.0', true );
+            wp_enqueue_script( 'pl-front-plugins', PL_ASSEST . 'js/pl-front-plugins.js', array('jquery'), '1.0', true );
             # owl carousel
             /*if( Playouts_Public::check_shortcode( Bwpb::$global['load_scripts_on_shortcode']['owl_carousel'] ) ) {
-                wp_enqueue_style( 'bwpb-owl-carousel', PL_ASSEST . 'css/vendors/jquery.owl-carousel.min.css' );
-                wp_enqueue_script( 'bwpb-owl-carousel', PL_ASSEST . 'js/vendors/jquery.owl-carousel/owl.carousel.min.js', array('jquery'), '1.0', true );
+                wp_enqueue_style( 'pl-owl-carousel', PL_ASSEST . 'css/vendors/jquery.owl-carousel.min.css' );
+                wp_enqueue_script( 'pl-owl-carousel', PL_ASSEST . 'js/vendors/jquery.owl-carousel/owl.carousel.min.js', array('jquery'), '1.0', true );
             }*/
-            wp_enqueue_script( 'bwpb-front', PL_ASSEST . 'js/bwpb-front.js', array('jquery'), '1.0', true );
+            wp_enqueue_script( 'pl-front', PL_ASSEST . 'js/pl-front.js', array('jquery'), '1.0', true );
 
 
             # dynamic enqueue
             if( in_array( 'bw_google_map', self::$parsed_ids ) ) {
                 if( isset( Playouts_Public::$options['google_map_api_key'] ) and ! empty( Playouts_Public::$options['google_map_api_key'] ) ) {
-                    wp_enqueue_script( 'pl-google-map', '//maps.googleapis.com/maps/api/js?key=' . esc_attr( Playouts_Public::$options['google_map_api_key'] ) . '&callback=playouts_init_map', array( 'bwpb-front' ), '1.0', true );
+                    wp_enqueue_script( 'pl-google-map', '//maps.googleapis.com/maps/api/js?key=' . esc_attr( Playouts_Public::$options['google_map_api_key'] ) . '&callback=playouts_init_map', array( 'pl-front' ), '1.0', true );
                 }
             }
             if( in_array( 'bw_image_comparison', self::$parsed_ids ) ) {

@@ -2,7 +2,7 @@
 
 window.jQuery = window.$ = jQuery;
 
-var BwpbShortcoder = {
+var Pl_shortcoder = {
 
     /*
      * contains the shortcodes as string
@@ -63,7 +63,7 @@ var BwpbShortcoder = {
     build: function( tree_obj_item ) {
 
         var self = this;
-        var data = BwpbMapper.__mapper_data[ tree_obj_item.id ];
+        var data = Pl_mapper.__mapper_data[ tree_obj_item.id ];
         var params = '';
         var content = '';
 
@@ -96,7 +96,7 @@ var BwpbShortcoder = {
 
         }else{
 
-            Bwpb.notify( 'module_not_mapped' );
+            Pl_main.notify( 'module_not_mapped' );
 
         }
 
@@ -109,9 +109,9 @@ var BwpbShortcoder = {
     add_parameter: function( param_name, param ) {
 
         if( param.type == 'editor' ) {
-            param.value = Bwpb.wpautop( param.value );
+            param.value = Pl_main.wpautop( param.value );
         }
-        return ' ' + param_name + '="' + Bwpb.escape_param( param.value ) + '"';
+        return ' ' + param_name + '="' + Pl_main.escape_param( param.value ) + '"';
 
     },
 

@@ -41,21 +41,21 @@ for(var n=this.selectedIndex,s=1/0,o=this.options.contain&&!this.options.wrapAro
 /* custom js plugins */
 (function ($) {
 
-    var bwpb_core_display = 'desktop';
+    var pl_core_display = 'desktop';
 
     // new_parallax background
-    $.fn.bwpb_core_parallax_background = function( filter_elem ) {
+    $.fn.pl_core_parallax_background = function( filter_elem ) {
 
         var elem = $(this);
 
         elem.each(function() {
-            new bwpb_core_parallax( $(this) );
+            new pl_core_parallax( $(this) );
         });
 
         return $(this);
     }
 
-    var bwpb_core_parallax = function(t) {
+    var pl_core_parallax = function(t) {
 
 
         this.wrapper_bg = t;
@@ -66,7 +66,7 @@ for(var n=this.selectedIndex,s=1/0,o=this.options.contain&&!this.options.wrapAro
         this.init();
     };
 
-    bwpb_core_parallax.prototype = {
+    pl_core_parallax.prototype = {
 
         init: function() {
 
@@ -92,7 +92,7 @@ for(var n=this.selectedIndex,s=1/0,o=this.options.contain&&!this.options.wrapAro
             }
 
             // script for muting the vimeo/youtube player
-            if( window.bwpb_params.is_mobile ){
+            if( window.pl_params.is_mobile ){
                 t.wrapper_bg.children('[data-background-type="video"]').remove();
 
                 if( t.wrapper_bg.attr('data-video-fallback') ) {
@@ -110,21 +110,21 @@ for(var n=this.selectedIndex,s=1/0,o=this.options.contain&&!this.options.wrapAro
                         }else if( $(this).attr('data-player-type') == 'youtube' ) {
 
                             // assign the script
-                            if( $('body').children('#bwpb-core-youtube-api').length == 0 ){
-                                $('body').append('<script type="text/javascript" src="https://www.youtube.com/iframe_api" id="bwpb-core-youtube-api" ></script>');
+                            if( $('body').children('#pl-core-youtube-api').length == 0 ){
+                                $('body').append('<script type="text/javascript" src="https://www.youtube.com/iframe_api" id="pl-core-youtube-api" ></script>');
                             }
 
                             // store to global variable
-                            if( typeof(window.bwpb_core_ytb) == 'undefined' ) {
-                                window.bwpb_core_ytb = [$(this)[0]];
+                            if( typeof(window.pl_core_ytb) == 'undefined' ) {
+                                window.pl_core_ytb = [$(this)[0]];
                             }else{
-                                window.bwpb_core_ytb.push($(this)[0]);
+                                window.pl_core_ytb.push($(this)[0]);
                             }
 
                             // script loading action
                             window.onYouTubeIframeAPIReady = function() {
-                                for( var key in window.bwpb_core_ytb ){
-                                    new YT.Player(bwpb_core_ytb[key],{
+                                for( var key in window.pl_core_ytb ){
+                                    new YT.Player(pl_core_ytb[key],{
                                         events: {
                                             'onReady': function(e) {
                                                 e.target.mute();
@@ -145,7 +145,7 @@ for(var n=this.selectedIndex,s=1/0,o=this.options.contain&&!this.options.wrapAro
             var t = this;
 
             var new_height = t.wrapper.outerHeight();
-            if( bwpb_core_display == 'mobile-landscape' || bwpb_core_display == 'mobile-portrait' ) {
+            if( pl_core_display == 'mobile-landscape' || pl_core_display == 'mobile-portrait' ) {
                 t.wrapper_bg.css({'transform': ''});
             }else{
                 new_height += ( ( $(window).height() - t.wrapper.outerHeight() ) * ( t.parallax_speed ) );
@@ -157,7 +157,7 @@ for(var n=this.selectedIndex,s=1/0,o=this.options.contain&&!this.options.wrapAro
 
         set_background_position: function( t ){
 
-            if( bwpb_core_display == 'mobile-landscape' || bwpb_core_display == 'mobile-portrait' ) return;
+            if( pl_core_display == 'mobile-landscape' || pl_core_display == 'mobile-portrait' ) return;
 
             var wrapper_top = t.wrapper.offset().top;
             var scroll_pos = $(window).scrollTop();
@@ -172,13 +172,13 @@ for(var n=this.selectedIndex,s=1/0,o=this.options.contain&&!this.options.wrapAro
         }
     }; // new_parallax
 
-    $.fn.bwpb_core_video_background = function () {
+    $.fn.pl_core_video_background = function () {
 
-        var $holder = $(this).closest('.bwpb-video-holder'),
-            $video = $('.bwpb-video-bg', this),
+        var $holder = $(this).closest('.pl-video-holder'),
+            $video = $('.pl-video-bg', this),
             scale = 1280 / 720;
 
-        var unique_video_id = 'bwpb-video-wrap-' + Math.floor( Math.random() * ( ( 999999 - 111111 ) ) + 111111 );
+        var unique_video_id = 'pl-video-wrap-' + Math.floor( Math.random() * ( ( 999999 - 111111 ) ) + 111111 );
         $video.attr('id', unique_video_id);
 
         var reset_params = function () {
@@ -215,114 +215,6 @@ for(var n=this.selectedIndex,s=1/0,o=this.options.contain&&!this.options.wrapAro
         $(window).on('debouncedresize', function() {
             reset_params();
         });
-    }
-
-    // handle google map
-    $.fn.bwpbMap = function () {
-        return $(this).each(function () {
-            var $holder = $(this);
-            var $element = $holder.find('.bwpb-map-inner');
-            var content = $element.find('.contenthidden').html();
-            var options = {
-                lat: $element.data('lat'),
-                lng: $element.data('lng'),
-                zoom: $element.data('zoom'),
-                ratio: $element.data('ratio'),
-                mapAnimation: $element.data('anim'),
-                firstPin: $element.data('first-pin'),
-                newCenter: $element.data('new-center'),
-                centerLat: $element.data('center-lat'),
-                centerLng: $element.data('center-lng')
-            };
-
-            var mapresize = function () {
-                var elewidth = ( ! $element.hasClass('heading-map') ) ? $element.width() : $(window).height();
-                $element.hasClass('ls-full') ? $element.height($(window).height() - parseInt($('#container').css('padding-top'))) : $element.height(elewidth * options.ratio);
-            };
-
-            var autoCenter = function ( map, markers ) {
-                var bounds = new google.maps.LatLngBounds();
-                $.each(markers, function (index, marker) {
-                    bounds.extend(marker.position);
-                });
-                map.fitBounds(bounds);
-            }
-
-            var createmap = function () {
-
-                var eleid = $element.attr('id');
-
-                var custom_style_decoded = (typeof google_map_styles !== 'undefined') ? decodeURIComponent(escape(window.atob( google_map_styles ))) : '';
-                var custom_style_object = $.parseJSON(custom_style_decoded);
-
-                var mapCenter = ( options.newCenter === true && options.centerLat !== '' && options.centerLng !== '' )
-                    ? new google.maps.LatLng(parseFloat(options.centerLat), parseFloat(options.centerLng))
-                    : new google.maps.LatLng(parseFloat($('li:first', $holder).attr('data-lat')), parseFloat($('li:first', $holder).attr('data-lng')));
-
-                var mapOptions = {
-                    zoom:               parseInt(options.zoom, 10),
-                    center:             mapCenter,
-                    mapTypeId:          google.maps.MapTypeId.ROADMAP,
-                    styles:             custom_style_object,
-                    zoomControl:        true,
-                    streetViewControl:  false,
-                    scaleControl:       false,
-                    panControl:         false,
-                    scrollwheel:        false,
-                    mapTypeControl:     false,
-                };
-
-                var map = new google.maps.Map(document.getElementById(eleid), mapOptions);
-
-                var markers = new Array();
-
-                var infowindow = new google.maps.InfoWindow({
-                    maxWidth: 250
-                });
-
-                // Add the markers and infowindows to the map
-                if($('li', $holder).length > 0) {
-
-                    var $list = $('li', $holder), markers;
-
-                    function addMarker( $pinList, timeout, i ) {
-                        window.setTimeout(function() {
-                            var googleLocation = new google.maps.LatLng( $pinList.attr('data-lat'), $pinList.attr('data-lng') );
-                            var marker = new google.maps.Marker({
-                                position: googleLocation,
-                                map: map,
-                                icon: $pinList.attr('data-pin-img'),
-                                animation: options.mapAnimation == true ? google.maps.Animation.DROP : false
-                            });
-
-                            markers.push( marker );
-
-                        }, timeout);
-                    }
-
-                    for ( var i = 0; i < $list.length; i++ ) {
-
-                        addMarker( $list.eq( i ), ( i + 1 ) * ( options.mapAnimation == true ? 200 : 0 ), i );
-
-                    }
-
-                    // if no center, do center between all pins
-                    if( options.newCenter !== true && $('li', $holder).length > 1 ) {
-
-                        autoCenter( map, markers );
-                    }
-                }
-
-            };
-
-            $(window).bind('debouncedresize', mapresize);
-            mapresize();
-            $('body').imagesLoaded(function() {
-                createmap();
-            });
-            //google.maps.event.addDomListener(window, 'load', createmap);
-
-        });
-    };
+    }; // pl_core_video_background
 
 })(jQuery);

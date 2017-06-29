@@ -1,96 +1,96 @@
 <?php
 
 $controls_row = "
-<div class='bwpb-controls'>
-    <span class='bwpb-row-option bwpb-drag' title='" .  __( 'Move', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-move'></i></span>
-    <span class='bwpb-row-option bwpb-edit' title='" .  __( 'Edit', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-edit'></i></span>
-    <span class='bwpb-row-option bwpb-edit-columns' title='" .  __( 'Edit Columns', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-columns'></i></span>
-    <span class='bwpb-row-option bwpb-cut' title='" .  __( 'Add New Column', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-column-add'></i></span>
-    <span class='bwpb-row-option bwpb-duplicate' title='" .  __( 'Duplicate', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-duplicate'></i></span>
-    <span class='bwpb-row-option bwpb-visibility' title='" .  __( 'Visibility', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-lock'></i></span>
-    <span class='bwpb-row-option bwpb-open-prompt bwpb-button-save-custom-layout' title='" .  __( 'Save Layout', 'peenapo-layouts-txd' ) . "' data-save-layout='row' data-prompt='save-layout'><i class='pl-icon-import'></i></span>
-    <span class='bwpb-row-option bwpb-trash' title='" .  __( 'Delete', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-trash'></i></span>
+<div class='pl-controls'>
+    <span class='pl-row-option pl-drag' title='" .  __( 'Move', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-move'></i></span>
+    <span class='pl-row-option pl-edit' title='" .  __( 'Edit', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-edit'></i></span>
+    <span class='pl-row-option pl-edit-columns' title='" .  __( 'Edit Columns', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-columns'></i></span>
+    <span class='pl-row-option pl-cut' title='" .  __( 'Add New Column', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-column-add'></i></span>
+    <span class='pl-row-option pl-duplicate' title='" .  __( 'Duplicate', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-duplicate'></i></span>
+    <span class='pl-row-option pl-visibility' title='" .  __( 'Visibility', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-lock'></i></span>
+    <span class='pl-row-option pl-open-prompt pl-button-save-custom-layout' title='" .  __( 'Save Layout', 'peenapo-layouts-txd' ) . "' data-save-layout='row' data-prompt='save-layout'><i class='pl-icon-import'></i></span>
+    <span class='pl-row-option pl-trash' title='" .  __( 'Delete', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-trash'></i></span>
 </div>
 ";
 
 $block_edit_buttons = "
 <div class='just-edit'>
-    <div class='bwpb-label bwpb-no-select'></div>
-    <div class='bwpb-option-holder'>
-        <div class='bwpb-option bwpb-drag' title='" .  __( 'Move', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-move'></i></div>
-        <div class='bwpb-option bwpb-edit' title='" .  __( 'Edit', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-edit'></i></div>
-        <div class='bwpb-option bwpb-duplicate' title='" .  __( 'Duplicate', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-duplicate'></i></div>
-        <div class='bwpb-option bwpb-open-prompt bwpb-button-save-custom-layout' title='" .  __( 'Save Layout', 'peenapo-layouts-txd' ) . "' data-save-layout='element' data-prompt='save-layout'><i class='pl-icon-import'></i></div>
-        <div class='bwpb-option bwpb-trash' title='" .  __( 'Delete', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-trash'></i></div>
+    <div class='pl-label pl-no-select'></div>
+    <div class='pl-option-holder'>
+        <div class='pl-option pl-drag' title='" .  __( 'Move', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-move'></i></div>
+        <div class='pl-option pl-edit' title='" .  __( 'Edit', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-edit'></i></div>
+        <div class='pl-option pl-duplicate' title='" .  __( 'Duplicate', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-duplicate'></i></div>
+        <div class='pl-option pl-open-prompt pl-button-save-custom-layout' title='" .  __( 'Save Layout', 'peenapo-layouts-txd' ) . "' data-save-layout='element' data-prompt='save-layout'><i class='pl-icon-import'></i></div>
+        <div class='pl-option pl-trash' title='" .  __( 'Delete', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-trash'></i></div>
     </div>
-    <span class='bwpb-block-plus bwpb-open-modal' data-view='column' data-placement='manually_after'><i class='bwpb-plus'><span></span></i></span>
+    <span class='pl-block-plus pl-open-modal' data-view='column' data-placement='manually_after'><i class='pl-plus'><span></span></i></span>
 </div>";
 
 $block_drag = "
-<div class='bwpb-drag-placeholder'>
-    <div class='bwpb-drag-label'></div>
+<div class='pl-drag-placeholder'>
+    <div class='pl-drag-label'></div>
 </div>
 ";
 ?>
 
 <!-- row -->
-<script type="text/template" id="bwpb_template-row">
-    <div class="bwpb-block block-row bwpb-is-empty" data-id="" data-module="">
-        <div class="bwpb-block-container">
+<script type="text/template" id="pl_template-row">
+    <div class="pl-block block-row pl-is-empty" data-id="" data-module="">
+        <div class="pl-block-container">
             <?php echo $controls_row; ?>
-            <div class="bwpb-content"></div>
+            <div class="pl-content"></div>
         </div>
         <?php echo $block_drag; ?>
-        <div class="bwpb-col-drag-bg"></div>
-        <span class="bwpb-row-plus bwpb-open-modal" data-view="row" data-placement="after"><i class="bwpb-plus"><span></span></i></span>
+        <div class="pl-col-drag-bg"></div>
+        <span class="pl-row-plus pl-open-modal" data-view="row" data-placement="after"><i class="pl-plus"><span></span></i></span>
     </div>
 </script>
 
 <!-- column -->
-<script type="text/template" id="bwpb_template-column">
-    <div class="bwpb-block block-column bwpb-is-empty" data-id="" data-module="" data-col-width="">
-        <div class="bwpb-block-container">
-            <span class="bwpb-col-plus bwpb-open-modal" data-view="column" data-placement="insert_bottom"><i class="bwpb-plus"><span></span></i></span>
-            <div class="bwpb-content"></div>
+<script type="text/template" id="pl_template-column">
+    <div class="pl-block block-column pl-is-empty" data-id="" data-module="" data-col-width="">
+        <div class="pl-block-container">
+            <span class="pl-col-plus pl-open-modal" data-view="column" data-placement="insert_bottom"><i class="pl-plus"><span></span></i></span>
+            <div class="pl-content"></div>
         </div>
-        <span class="bwpb-column-drag"><span class="bwpb-col-drag-handle"></span></span>
-        <div class="bwpb-column-width">
-            <span class="bwpb-col-width-label"><em>50</em></span>
+        <span class="pl-column-drag"><span class="pl-col-drag-handle"></span></span>
+        <div class="pl-column-width">
+            <span class="pl-col-width-label"><em>50</em></span>
         </div>
     </div>
 </script>
 
 <!-- row inner -->
-<script type="text/template" id="bwpb_template-row_inner">
-    <div class="bwpb-block block-row block-row-inner bwpb-is-empty" data-id="" data-module="">
-        <div class="bwpb-block-container">
+<script type="text/template" id="pl_template-row_inner">
+    <div class="pl-block block-row block-row-inner pl-is-empty" data-id="" data-module="">
+        <div class="pl-block-container">
             <?php echo $controls_row; ?>
-            <div class="bwpb-content"></div>
+            <div class="pl-content"></div>
         </div>
         <?php echo $block_drag; ?>
-        <div class="bwpb-col-drag-bg"></div>
-        <span class="bwpb-row-plus bwpb-open-modal" data-view="column" data-placement="after"><i class="bwpb-plus"><span></span></i></span>
+        <div class="pl-col-drag-bg"></div>
+        <span class="pl-row-plus pl-open-modal" data-view="column" data-placement="after"><i class="pl-plus"><span></span></i></span>
     </div>
 </script>
 
 <!-- column inner -->
-<script type="text/template" id="bwpb_template-column_inner">
-    <div class="bwpb-block block-column block-column-inner bwpb-is-empty" data-id="" data-module="" data-col-width="">
-        <div class="bwpb-block-container">
-            <span class="bwpb-col-plus bwpb-open-modal" data-view="column" data-placement="insert_bottom"><i class="bwpb-plus"><span></span></i></span>
-            <div class="bwpb-content"></div>
+<script type="text/template" id="pl_template-column_inner">
+    <div class="pl-block block-column block-column-inner pl-is-empty" data-id="" data-module="" data-col-width="">
+        <div class="pl-block-container">
+            <span class="pl-col-plus pl-open-modal" data-view="column_inner" data-placement="insert_bottom"><i class="pl-plus"><span></span></i></span>
+            <div class="pl-content"></div>
         </div>
-        <span class="bwpb-column-drag"><span class="bwpb-col-drag-handle"></span></span>
-        <div class="bwpb-column-width">
-            <span class="bwpb-col-width-label"><em>50</em></span>
+        <span class="pl-column-drag"><span class="pl-col-drag-handle"></span></span>
+        <div class="pl-column-width">
+            <span class="pl-col-width-label"><em>50</em></span>
         </div>
     </div>
 </script>
 
 <!-- block element -->
-<script type="text/template" id="bwpb_template-element">
-    <div class="bwpb-block bwpb-block-draggable bwpb-is-empty" data-id="" data-module="">
-        <div class="bwpb-block-container">
+<script type="text/template" id="pl_template-element">
+    <div class="pl-block pl-block-draggable pl-is-empty" data-id="" data-module="">
+        <div class="pl-block-container">
             <?php echo $block_edit_buttons; ?>
         </div>
         <?php echo $block_drag; ?>
@@ -98,30 +98,30 @@ $block_drag = "
 </script>
 
 <!-- repeater -->
-<script type="text/template" id="bwpb_template-repeater">
-    <div class="bwpb-block bwpb-block-draggable bwpb-block-repeater bwpb-is-empty" data-id="" data-module="">
-        <div class="bwpb-block-container">
+<script type="text/template" id="pl_template-repeater">
+    <div class="pl-block pl-block-draggable pl-block-repeater pl-is-empty" data-id="" data-module="">
+        <div class="pl-block-container">
             <?php echo $block_edit_buttons; ?>
-            <div class="bwpb-content"></div>
+            <div class="pl-content"></div>
         </div>
         <?php echo $block_drag; ?>
     </div>
 </script>
 
 <!-- repeater item -->
-<script type="text/template" id="bwpb_template-repeater_item">
-    <div class="bwpb-block bwpb-block-repeater-item" data-id="" data-module=""></div>
+<script type="text/template" id="pl_template-repeater_item">
+    <div class="pl-block pl-block-repeater-item" data-id="" data-module=""></div>
 </script>
 
 <!-- panel repeater item -->
-<script type="text/html" id="bwpb_template-panel_repeater_item">
-    <div class="bwpb-item" data-id="">
-        <div class="bwpb-item-container bwpb-no-select">
-            <div class="bwpb-repeater-controls">
-                <span class="bwpb-item-drag-handle" title="<?php esc_html_e( 'Move', 'peenapo-layouts-txd' ); ?>"><i class='pl-icon-move'></i></span>
-                <span class="bwpb-item-edit" title="<?php esc_html_e( 'Edit', 'peenapo-layouts-txd' ); ?>"><i class='pl-icon-edit'></i></span>
-                <span class="bwpb-item-duplicate" title="<?php esc_html_e( 'Duplicate', 'peenapo-layouts-txd' ); ?>"><i class='pl-icon-duplicate'></i></span>
-                <span class="bwpb-item-delete" title="<?php esc_html_e( 'Delete', 'peenapo-layouts-txd' ); ?>"><i class='pl-icon-trash'></i></span>
+<script type="text/html" id="pl_template-panel_repeater_item">
+    <div class="pl-item" data-id="">
+        <div class="pl-item-container pl-no-select">
+            <div class="pl-repeater-controls">
+                <span class="pl-item-drag-handle" title="<?php esc_html_e( 'Move', 'peenapo-layouts-txd' ); ?>"><i class='pl-icon-move'></i></span>
+                <span class="pl-item-edit" title="<?php esc_html_e( 'Edit', 'peenapo-layouts-txd' ); ?>"><i class='pl-icon-edit'></i></span>
+                <span class="pl-item-duplicate" title="<?php esc_html_e( 'Duplicate', 'peenapo-layouts-txd' ); ?>"><i class='pl-icon-duplicate'></i></span>
+                <span class="pl-item-delete" title="<?php esc_html_e( 'Delete', 'peenapo-layouts-txd' ); ?>"><i class='pl-icon-trash'></i></span>
             </div>
         </div>
         <?php echo $block_drag; ?>
@@ -129,9 +129,9 @@ $block_drag = "
 </script>
 
 <!-- divider -->
-<script type="text/template" id="bwpb_template-separator">
-    <div class="bwpb-block bwpb-separator-block" data-id="" data-module="">
-        <div class="bwpb-block-container">
+<script type="text/template" id="pl_template-separator">
+    <div class="pl-block pl-separator-block" data-id="" data-module="">
+        <div class="pl-block-container">
             <?php echo $block_edit_buttons; ?>
         </div>
         <?php echo $block_drag; ?>
@@ -139,21 +139,21 @@ $block_drag = "
 </script>
 
 <!-- panel column -->
-<script type="text/template" id="bwpb_template-panel_columns">
-    <div class="bwpb-option-column" data-column-width="" data-id="">
-        <div class="bwpb-option-column-inner">
+<script type="text/template" id="pl_template-panel_columns">
+    <div class="pl-option-column" data-column-width="" data-id="">
+        <div class="pl-option-column-inner">
             <i class='pl-icon-edit'></i>
         </div>
-        <span class="bwpb-option-column-drag"><span class="bwpb-option-column-dragger"></span></span>
-        <span class="bwpb-column-label"></span>
+        <span class="pl-option-column-drag"><span class="pl-option-column-dragger"></span></span>
+        <span class="pl-column-label"></span>
     </div>
 </script>
 
 <!-- save custom layout panel - category item -->
-<script type="text/template" id="bwpb_template-save_custom_layout_category_item">
+<script type="text/template" id="pl_template-save_custom_layout_category_item">
     <li>
-        <div class="bwpb-option-checkbox">
-            <input type="checkbox" value="" id="" name="bwpb_field_layout_category_list">
+        <div class="pl-option-checkbox">
+            <input type="checkbox" value="" id="" name="pl_field_layout_category_list">
             <label for="">
                 <span></span>
             </label>

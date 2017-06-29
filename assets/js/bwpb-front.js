@@ -620,9 +620,9 @@ var Playouts = {
 
     background_video: function() {
 
-        if( $('.bwpb-video-wrap').length ) {
-            $('.bwpb-video-wrap').each(function() {
-                $(this).bwpb_core_video_background();
+        if( $('.pl-video-wrap').length ) {
+            $('.pl-video-wrap').each(function() {
+                $(this).pl_core_video_background();
             });
         }
 
@@ -744,10 +744,10 @@ var Playouts = {
     },
 
     background_parallax: function() {
-        var $parallax = $('.bwpb-parallax');
+        var $parallax = $('.pl-parallax');
         if ( $parallax.length ) {
             $parallax.each(function() {
-                $(this).bwpb_core_parallax_background();
+                $(this).pl_core_parallax_background();
             });
         }
     },

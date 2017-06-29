@@ -2,7 +2,7 @@
 
 window.jQuery = window.$ = jQuery;
 
-var BwpbInterface = {
+var Pl_interface = {
 
     /*
      * get current editor's content and send to ajax request
@@ -10,7 +10,7 @@ var BwpbInterface = {
      */
     parse: function() {
 
-        this.send_ajax( BwpbShortcoder.get_editor_content() );
+        this.send_ajax( Pl_shortcoder.get_editor_content() );
 
     },
 
@@ -19,7 +19,7 @@ var BwpbInterface = {
      *
      */
     empty_modules: function() {
-        $('#bwpb-main .bwpb-blocks').empty();
+        $('#pl-main .pl-blocks').empty();
     },
 
     /*
@@ -28,14 +28,14 @@ var BwpbInterface = {
      */
     send_ajax: function( content, append__s = false, inherit_defaults = false, is_layout = false ) {
 
-        Bwpb.loading(); // set preloader
+        Pl_main.loading(); // set preloader
 
         $.ajax({
             type: 'POST',
-            url: bwpb_admin_root.ajax,
+            url: pl_admin_root.ajax,
             data: {
                 'action'        : '__parse_shortcode',
-                'editor_content': Bwpb.wpautop( content )
+                'editor_content': Pl_main.wpautop( content )
             },
             dataType: 'json',
             success: function( response ) {
@@ -45,15 +45,15 @@ var BwpbInterface = {
                 response = response.sort().reverse();
 
                 // if we are paring a layout, then set a global
-                if( is_layout ) { BwpbLayouts.is_layout = true; }
+                if( is_layout ) { Pl_layouts.is_layout = true; }
                 // parse the response and do all stuff
-                BwpbInterface.parse_ajax_response( response, inherit_defaults );
+                Pl_interface.parse_ajax_response( response, inherit_defaults );
                 // build the tree object and appending the shortcodes
-                BwpbMapper.map_tree( append__s );
+                Pl_mapper.map_tree( append__s );
                 // last retouches
-                BwpbInterface.on_ajax_finish();
+                Pl_interface.on_ajax_finish();
                 // clear the layout parent id
-                BwpbLayouts.layout_parent_id = 0;
+                Pl_layouts.layout_parent_id = 0;
 
             }
         });
@@ -80,7 +80,7 @@ var BwpbInterface = {
      */
     parse_ajax_item: function( item, inherit_defaults = false ) {
 
-        var __all = $.extend( {}, Bwpb.all_modules, Bwpb.all_modules_repeater );
+        var __all = $.extend( {}, Pl_main.all_modules, Pl_main.all_modules_repeater );
 
         if( typeof __all[ item.module ] === 'object' ) {
 
@@ -99,7 +99,7 @@ var BwpbInterface = {
                 if( typeof __all[ item.module ].params[ option ].is_content !== 'undefined' ) {
                     is_content_param = option;
                 }
-                if( inherit_defaults || BwpbLayouts.is_layout ) { // inherit the module's default options, always inherit for layouts
+                if( inherit_defaults || Pl_layouts.is_layout ) { // inherit the module's default options, always inherit for layouts
                     if( typeof module_options[ option ].value !== 'undefined' ) {
                         empty_options[ option ] = module_options[ option ].value;
                     }
@@ -110,23 +110,23 @@ var BwpbInterface = {
 
             // is_content
             if( typeof item.is_content !== 'undefined' && typeof item.children !== 'undefined' ) {
-                empty_options[ is_content_param ] = Bwpb.wpauton( item.children );
+                empty_options[ is_content_param ] = Pl_main.wpauton( item.children );
             }
 
             // now we have the module and the options, so we can map it.
             // it will be stored to our main map object
-            BwpbMapper.map_data( uid, data, empty_options );
+            Pl_mapper.map_data( uid, data, empty_options );
 
             // update the new created module with the parsed options
             // the new module comes with the default options and we have to inherit them with the parsed options
             this.sync_new_module_options( uid, item );
 
             // if we insert a layout and we set parent id, then set the parent id for first level elements
-            if( item.parent_id == 0 && BwpbLayouts.layout_parent_id !== 0 ) {
-                item.parent_id = BwpbLayouts.layout_parent_id;
+            if( item.parent_id == 0 && Pl_layouts.layout_parent_id !== 0 ) {
+                item.parent_id = Pl_layouts.layout_parent_id;
             }
             // create the element
-            Bwpb.create_element( uid, item.module, item.parent_id, false, item.params );
+            Pl_main.create_element( uid, item.module, item.parent_id, false, item.params );
 
             // parse childrens, if any..
             if( item.children !== '' && typeof item.children == 'object') {
@@ -135,7 +135,7 @@ var BwpbInterface = {
 
         }else{
 
-            Bwpb.notify( 'module_not_found', item.module );
+            Pl_main.notify( 'module_not_found', item.module );
 
         }
 
@@ -147,11 +147,11 @@ var BwpbInterface = {
      */
     on_ajax_finish: function() {
 
-        Bwpb.loaded(); // remove the preloader
-        Bwpb.welcome.check(); // check if there is place for the welcome message
+        Pl_main.loaded(); // remove the preloader
+        Pl_main.welcome.check(); // check if there is place for the welcome message
         this.is_non_builder_content(); // check if the content is not one of ours
-        Bwpb.reload_ui_functions(); // reload ui like module sorting
-        BwpbLayouts.is_layout = false; // reset the layouts flat
+        Pl_main.reload_ui_functions(); // reload ui like module sorting
+        Pl_layouts.is_layout = false; // reset the layouts flat
 
     },
 
@@ -162,19 +162,19 @@ var BwpbInterface = {
      */
     is_non_builder_content: function() {
 
-        //console.log( BwpbShortcoder.__s );
-        //console.log( Bwpb.wpautop( BwpbShortcoder.get_editor_content() ) );
+        //console.log( Pl_shortcoder.__s );
+        //console.log( Pl_main.wpautop( Pl_shortcoder.get_editor_content() ) );
 
         // check if the content of the editor is non ours shortcodes
-        if( BwpbShortcoder.__s === '' && Bwpb.wpautop( BwpbShortcoder.get_editor_content() ) !== '' ) {
+        if( Pl_shortcoder.__s === '' && Pl_main.wpautop( Pl_shortcoder.get_editor_content() ) !== '' ) {
 
             /*// add dummy parameter to all the modules out of the custom layouts scope
             // we can't push elements without parents, but dummy will make their lock parents
             var _dummy = window.typenow == 'pl_layout' ? ' dummy="yes"' : '';*/
 
             // then push template with the current editor content
-            BwpbLayouts.push_layout( BwpbShortcoder.get_editor_content() );
-            Bwpb.reload(); // reload all
+            Pl_layouts.push_layout( Pl_shortcoder.get_editor_content() );
+            Pl_main.reload(); // reload all
 
         }
 
@@ -193,7 +193,7 @@ var BwpbInterface = {
 
             if( typeof options !== 'undefined' ) {
                 for ( var option in options ) {
-                    BwpbMapper.update_mapper_module_options( uid, option, options[ option ] );
+                    Pl_mapper.update_mapper_module_options( uid, option, options[ option ] );
                 }
             }
         }

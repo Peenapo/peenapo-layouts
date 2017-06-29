@@ -1,7 +1,7 @@
 <div class="plg-tab-content">
-    <div class="bwpb-panel-form">
+    <div class="pl-panel-form">
 
-        <h3><?php esc_html_e( 'Portability', 'AAA' ); ?></h3>
+        <h3><?php esc_html_e( 'Portability', 'peenapo-layouts-txd' ); ?></h3>
 
         11111
 

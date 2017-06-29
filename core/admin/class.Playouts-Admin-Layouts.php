@@ -24,7 +24,7 @@ class Playouts_Admin_Layout {
 
         self::$index++;
 
-        $this->category = array( 'general' => __( 'General', 'AAA' ) );
+        $this->category = array( 'general' => __( 'General', 'peenapo-layouts-txd' ) );
         $this->image = PL_ASSEST . 'admin/images/default-layout.png';
         $this->class_name = get_class( $this );
 
@@ -98,7 +98,7 @@ class Playouts_Layout_About extends Playouts_Admin_Layout {
     function init() {
 
         $this->id = 'bw_layout_about';
-        $this->name = esc_html__( 'About', 'AAA' );
+        $this->name = esc_html__( 'About', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
         $this->image = PL_ASSEST . 'admin/images/__layouts/about.png';
 
@@ -117,14 +117,14 @@ class Playouts_Layout_About_2 extends Playouts_Admin_Layout {
     function init() {
 
         $this->id = 'bw_layout_about_2';
-        $this->name = esc_html__( 'About 2', 'AAA' );
+        $this->name = esc_html__( 'About 2', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
         $this->image = PL_ASSEST . 'admin/images/__layouts/about_2.png';
 
     }
 
     static function output() {
-        return '[bw_row row_layout="full" background="image" overlay_direction="bottom right" overlay_opacity="50" enable_static_height="1" static_height="100" vertical_alignment="center"][bw_column col_width="30.0" background="image" bg_image="http://localhost/pp/demo/wp-content/uploads/2017/06/autumn-goodman-242816.jpg" bg_image_position="center center" bg_image_size="cover" overlay_enable="1" overlay_bg_color="#24e5d8" overlay_bg_second="#9528fc" overlay_direction="top right" overlay_opacity="70"][/bw_column][bw_column col_width="70.0" background="image" bg_image="http://localhost/pp/demo/wp-content/uploads/2017/06/thierry-meier-218997.jpg" overlay_enable="1" overlay_bg_color="#ffffff" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="97"][bw_row_inner text_alignment="inherit" vertical_alignment="stretch" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" animation="none" animation_speed="200" animation_delay="100" inline_css="max-width:45%;margin:0 auto;"][bw_column_inner overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_heading title="Integer elit est, porta non dui eget, elementum consequat leo" h_tag="h3" text_alignment="inherit" font_size_heading="40" font_size_content="15" font_size_top="15" bold_text="1" speed="450" delay="100"]<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis porta eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula quam. Nunc a dolor vitae enim semper auctor eu vitae neque. Cras pharetra semper ex id ornare. Integer elit est, porta non dui eget, elementum consequat leo.</p>[/bw_heading][/bw_column_inner][/bw_row_inner][bw_row_inner text_alignment="inherit" vertical_alignment="stretch" padding_top="25" padding_bottom="35" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" animation="none" animation_speed="200" animation_delay="100" inline_css="max-width:45%;margin:0 auto;"][bw_column_inner col_width="50" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_icon icon="bwpb-7s-rocket" text="Smarter, stronger, faster" font_size="42" direction="bottom right"][/bw_icon][/bw_column_inner][bw_column_inner col_width="50" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_icon icon="bwpb-7s-monitor" text="Build a website in minutes" font_size="42" direction="bottom right"][/bw_icon][/bw_column_inner][/bw_row_inner][bw_row_inner text_alignment="inherit" vertical_alignment="stretch" padding_bottom="35" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" animation="none" animation_speed="200" animation_delay="100" inline_css="max-width:45%;margin:0 auto;"][bw_column_inner col_width="50" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_icon icon="bwpb-7s-timer" text="Optimized for speed" font_size="42" direction="bottom right"][/bw_icon][/bw_column_inner][bw_column_inner col_width="50" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_icon icon="bwpb-7s-magic-wand" text="Pick any Google Font" font_size="42" direction="bottom right"][/bw_icon][/bw_column_inner][/bw_row_inner][bw_row_inner text_alignment="inherit" vertical_alignment="stretch" padding_bottom="35" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" animation="none" animation_speed="200" animation_delay="100" inline_css="max-width:45%;margin:0 auto;"][bw_column_inner col_width="50" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_icon icon="bwpb-7s-help2" text="Badass support" font_size="42" direction="bottom right"][/bw_icon][/bw_column_inner][bw_column_inner col_width="50" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_icon icon="bwpb-7s-help2" text="Badass support" font_size="42" direction="bottom right"][/bw_icon][/bw_column_inner][/bw_row_inner][bw_row_inner text_alignment="inherit" vertical_alignment="stretch" padding_top="25" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" animation="none" animation_speed="200" animation_delay="100" inline_css="max-width:45%;margin:0 auto;"][bw_column_inner overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_button label="Learn more button" link="#" style="large" border_radius="60" transform_top="1" shadow="1"][/bw_button][/bw_column_inner][/bw_row_inner][/bw_column][/bw_row]';
+        return '[bw_row row_layout="full" background="image" overlay_direction="bottom right" overlay_opacity="50" enable_static_height="1" static_height="100" vertical_alignment="center"][bw_column col_width="30.0" background="image" bg_image="http://localhost/pp/demo/wp-content/uploads/2017/06/autumn-goodman-242816.jpg" bg_image_position="center center" bg_image_size="cover" overlay_enable="1" overlay_bg_color="#24e5d8" overlay_bg_second="#9528fc" overlay_direction="top right" overlay_opacity="70"][/bw_column][bw_column col_width="70.0" background="image" bg_image="http://localhost/pp/demo/wp-content/uploads/2017/06/thierry-meier-218997.jpg" overlay_enable="1" overlay_bg_color="#ffffff" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="97"][bw_row_inner text_alignment="inherit" vertical_alignment="stretch" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" animation="none" animation_speed="200" animation_delay="100" inline_css="max-width:45%;margin:0 auto;"][bw_column_inner overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_heading title="Integer elit est, porta non dui eget, elementum consequat leo" h_tag="h3" text_alignment="inherit" font_size_heading="40" font_size_content="15" font_size_top="15" bold_text="1" speed="450" delay="100"]<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis porta eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget ligula quam. Nunc a dolor vitae enim semper auctor eu vitae neque. Cras pharetra semper ex id ornare. Integer elit est, porta non dui eget, elementum consequat leo.</p>[/bw_heading][/bw_column_inner][/bw_row_inner][bw_row_inner text_alignment="inherit" vertical_alignment="stretch" padding_top="25" padding_bottom="35" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" animation="none" animation_speed="200" animation_delay="100" inline_css="max-width:45%;margin:0 auto;"][bw_column_inner col_width="50" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_icon icon="pl-7s-rocket" text="Smarter, stronger, faster" font_size="42" direction="bottom right"][/bw_icon][/bw_column_inner][bw_column_inner col_width="50" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_icon icon="pl-7s-monitor" text="Build a website in minutes" font_size="42" direction="bottom right"][/bw_icon][/bw_column_inner][/bw_row_inner][bw_row_inner text_alignment="inherit" vertical_alignment="stretch" padding_bottom="35" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" animation="none" animation_speed="200" animation_delay="100" inline_css="max-width:45%;margin:0 auto;"][bw_column_inner col_width="50" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_icon icon="pl-7s-timer" text="Optimized for speed" font_size="42" direction="bottom right"][/bw_icon][/bw_column_inner][bw_column_inner col_width="50" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_icon icon="pl-7s-magic-wand" text="Pick any Google Font" font_size="42" direction="bottom right"][/bw_icon][/bw_column_inner][/bw_row_inner][bw_row_inner text_alignment="inherit" vertical_alignment="stretch" padding_bottom="35" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" animation="none" animation_speed="200" animation_delay="100" inline_css="max-width:45%;margin:0 auto;"][bw_column_inner col_width="50" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_icon icon="pl-7s-help2" text="Badass support" font_size="42" direction="bottom right"][/bw_icon][/bw_column_inner][bw_column_inner col_width="50" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_icon icon="pl-7s-help2" text="Badass support" font_size="42" direction="bottom right"][/bw_icon][/bw_column_inner][/bw_row_inner][bw_row_inner text_alignment="inherit" vertical_alignment="stretch" padding_top="25" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" animation="none" animation_speed="200" animation_delay="100" inline_css="max-width:45%;margin:0 auto;"][bw_column_inner overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_button label="Learn more button" link="#" style="large" border_radius="60" transform_top="1" shadow="1"][/bw_button][/bw_column_inner][/bw_row_inner][/bw_column][/bw_row]';
     }
 }
 new Playouts_Layout_About_2;
@@ -136,7 +136,7 @@ class Playouts_Layout_Heading_video extends Playouts_Admin_Layout {
     function init() {
 
         $this->id = 'bw_layout_heading_video';
-        $this->name = esc_html__( 'Heading Text with Video Modal', 'AAA' );
+        $this->name = esc_html__( 'Heading Text with Video Modal', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
         $this->image = PL_ASSEST . 'admin/images/__layouts/heading_video.png';
 
@@ -155,14 +155,14 @@ class Playouts_Layout_Split extends Playouts_Admin_Layout {
     function init() {
 
         $this->id = 'bw_layout_split';
-        $this->name = esc_html__( 'Split Page', 'AAA' );
+        $this->name = esc_html__( 'Split Page', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
         $this->image = PL_ASSEST . 'admin/images/__layouts/split.png';
 
     }
 
     static function output() {
-        return '[bw_row row_layout="full" background="color" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" enable_static_height="1" static_height="100"][bw_column col_width="50" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_row_inner text_alignment="inherit" enable_static_height="1" static_height="50" vertical_alignment="center" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" animation="none" animation_speed="200" animation_delay="100"][bw_column_inner col_width="50" text_alignment="inherit" background="image" bg_color="#e0e0e0" bg_image="http://localhost/pp/demo/wp-content/uploads/2017/06/francisco-moreno-157438.jpg" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][/bw_column_inner][bw_column_inner col_width="50" text_alignment="inherit" padding_right="10%" padding_left="10%" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][bw_icon icon="bwpb-7s-umbrella" font_size="60" direction="bottom right"][/bw_icon][bw_text inline_css="margin-top:30px;"]<p>Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed.</p>[/bw_text][bw_button label="Learn more" style="medium" border_radius="3" transform_top="1" shadow="1" margin_top="35"][/bw_button][/bw_column_inner][/bw_row_inner][bw_row_inner text_color="#ffffff" text_alignment="inherit" enable_static_height="1" static_height="50" vertical_alignment="center" background="color" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" animation="none" animation_speed="200" animation_delay="100"][bw_column_inner col_width="50" text_alignment="inherit" padding_right="10%" padding_left="10%" background="color" bg_color="#6925e8" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][bw_icon icon="bwpb-7s-science" font_size="60" direction="bottom right"][/bw_icon][bw_text inline_css="margin-top:30px;"]<p>Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed.</p>[/bw_text][bw_button label="Learn more" style="medium" border_radius="3" transform_top="1" shadow="1" margin_top="35"][/bw_button][/bw_column_inner][bw_column_inner col_width="50" text_alignment="inherit" background="image" bg_image="http://localhost/pp/demo/wp-content/uploads/2017/06/neslihan-gunaydin-3493.jpg" bg_image_position="center center" bg_image_size="cover" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][/bw_column_inner][/bw_row_inner][/bw_column][bw_column col_width="50" background="image" bg_image="http://localhost/pp/demo/wp-content/uploads/2017/06/mike-dennler-173199.jpg" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][/bw_column][/bw_row]';
+        return '[bw_row row_layout="full" background="color" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" enable_static_height="1" static_height="100"][bw_column col_width="50" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_row_inner text_alignment="inherit" enable_static_height="1" static_height="50" vertical_alignment="center" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" animation="none" animation_speed="200" animation_delay="100"][bw_column_inner col_width="50" text_alignment="inherit" background="image" bg_color="#e0e0e0" bg_image="http://localhost/pp/demo/wp-content/uploads/2017/06/francisco-moreno-157438.jpg" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][/bw_column_inner][bw_column_inner col_width="50" text_alignment="inherit" padding_right="10%" padding_left="10%" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][bw_icon icon="pl-7s-umbrella" font_size="60" direction="bottom right"][/bw_icon][bw_text inline_css="margin-top:30px;"]<p>Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed.</p>[/bw_text][bw_button label="Learn more" style="medium" border_radius="3" transform_top="1" shadow="1" margin_top="35"][/bw_button][/bw_column_inner][/bw_row_inner][bw_row_inner text_color="#ffffff" text_alignment="inherit" enable_static_height="1" static_height="50" vertical_alignment="center" background="color" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" animation="none" animation_speed="200" animation_delay="100"][bw_column_inner col_width="50" text_alignment="inherit" padding_right="10%" padding_left="10%" background="color" bg_color="#6925e8" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][bw_icon icon="pl-7s-science" font_size="60" direction="bottom right"][/bw_icon][bw_text inline_css="margin-top:30px;"]<p>Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed.</p>[/bw_text][bw_button label="Learn more" style="medium" border_radius="3" transform_top="1" shadow="1" margin_top="35"][/bw_button][/bw_column_inner][bw_column_inner col_width="50" text_alignment="inherit" background="image" bg_image="http://localhost/pp/demo/wp-content/uploads/2017/06/neslihan-gunaydin-3493.jpg" bg_image_position="center center" bg_image_size="cover" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][/bw_column_inner][/bw_row_inner][/bw_column][bw_column col_width="50" background="image" bg_image="http://localhost/pp/demo/wp-content/uploads/2017/06/mike-dennler-173199.jpg" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][/bw_column][/bw_row]';
     }
 }
 new Playouts_Layout_Split;
@@ -174,7 +174,7 @@ class Playouts_Layout_Welcome extends Playouts_Admin_Layout {
     function init() {
 
         $this->id = 'bw_layout_welcome';
-        $this->name = esc_html__( 'Full-Height Welcome Text', 'AAA' );
+        $this->name = esc_html__( 'Full-Height Welcome Text', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
         $this->image = PL_ASSEST . 'admin/images/__layouts/welcome.png';
 
@@ -193,7 +193,7 @@ class Playouts_Layout_Welcome_Auto_Type extends Playouts_Admin_Layout {
     function init() {
 
         $this->id = 'bw_layout_welcome_auto_type';
-        $this->name = esc_html__( 'Auto-Type Welcome Text', 'AAA' );
+        $this->name = esc_html__( 'Auto-Type Welcome Text', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
         $this->image = PL_ASSEST . 'admin/images/__layouts/welcome_auto_type.png';
 
@@ -212,7 +212,7 @@ class Playouts_Layout_Pricing_Table extends Playouts_Admin_Layout {
     function init() {
 
         $this->id = 'bw_layout_pricing_table';
-        $this->name = esc_html__( 'Pricing Table', 'AAA' );
+        $this->name = esc_html__( 'Pricing Table', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
         $this->image = PL_ASSEST . 'admin/images/__layouts/pricing_table.png';
 
@@ -231,7 +231,7 @@ class Playouts_Layout_Slider_Full extends Playouts_Admin_Layout {
     function init() {
 
         $this->id = 'bw_layout_slider_full';
-        $this->name = esc_html__( 'Full-Width Slider', 'AAA' );
+        $this->name = esc_html__( 'Full-Width Slider', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
         $this->image = PL_ASSEST . 'admin/images/__layouts/slider_full.png';
 
@@ -250,7 +250,7 @@ class Playouts_Layout_Text_Slider extends Playouts_Admin_Layout {
     function init() {
 
         $this->id = 'bw_layout_text_slider';
-        $this->name = esc_html__( 'Text Slider', 'AAA' );
+        $this->name = esc_html__( 'Text Slider', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
         $this->image = PL_ASSEST . 'admin/images/__layouts/text_slider.png';
 
@@ -269,7 +269,7 @@ class Playouts_Layout_Text_Gradient extends Playouts_Admin_Layout {
     function init() {
 
         $this->id = 'bw_layout_text_gradient';
-        $this->name = esc_html__( 'Text with Gradient', 'AAA' );
+        $this->name = esc_html__( 'Text with Gradient', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
         $this->image = PL_ASSEST . 'admin/images/__layouts/text_gradient.png';
 
@@ -288,14 +288,14 @@ class Playouts_Layout_Icon_Box extends Playouts_Admin_Layout {
     function init() {
 
         $this->id = 'bw_layout_icon_box';
-        $this->name = esc_html__( 'Boxed Texts with Icon', 'AAA' );
+        $this->name = esc_html__( 'Boxed Texts with Icon', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
         $this->image = PL_ASSEST . 'admin/images/__layouts/icon_box.png';
 
     }
 
     static function output() {
-        return '[bw_row row_layout="full" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" text_color="#ffffff"][bw_column overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_row_inner text_alignment="inherit" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" animation="none" animation_speed="200" animation_delay="100"][bw_column_inner col_width="25" text_alignment="inherit" padding_top="50" padding_right="50" padding_bottom="50" padding_left="50" background="color" bg_color="#a138f7" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][bw_icon icon="bwpb-7s-leaf" text="We are Eco and Bio" font_size="60" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text]Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.<p>Aenean pretium tellus diam, vel venenatis turpis accumsan ac.[/bw_text][/bw_column_inner][bw_column_inner col_width="25" text_alignment="inherit" padding_top="50" padding_right="50" padding_bottom="50" padding_left="50" background="color" bg_color="#f4388d" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][bw_icon icon="bwpb-7s-headphones" text="We can help you" font_size="60" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text]Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui. Aenean pretium tellus diam, vel venenatis turpis accumsan ac.[/bw_text][/bw_column_inner][bw_column_inner col_width="25" text_alignment="inherit" padding_top="50" padding_right="50" padding_bottom="50" padding_left="50" background="color" bg_color="#21cec8" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][bw_icon icon="bwpb-7s-umbrella" text="Umbrella effect" font_size="60" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text]<p>Aenean pretium tellus diam, vel venenatis turpis accumsan ac.</p><p>Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.</p>[/bw_text][/bw_column_inner][bw_column_inner col_width="25" text_alignment="inherit" padding_top="50" padding_right="50" padding_bottom="50" padding_left="50" background="color" bg_color="#1d48c1" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][bw_icon icon="bwpb-7s-coffee" text="You can become more productive" font_size="60" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text]Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui. Aenean pretium tellus diam, vel venenatis turpis accumsan ac.[/bw_text][/bw_column_inner][/bw_row_inner][/bw_column][/bw_row]';
+        return '[bw_row row_layout="full" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" text_color="#ffffff"][bw_column overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_row_inner text_alignment="inherit" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" animation="none" animation_speed="200" animation_delay="100"][bw_column_inner col_width="25" text_alignment="inherit" padding_top="50" padding_right="50" padding_bottom="50" padding_left="50" background="color" bg_color="#a138f7" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][bw_icon icon="pl-7s-leaf" text="We are Eco and Bio" font_size="60" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text]Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.<p>Aenean pretium tellus diam, vel venenatis turpis accumsan ac.[/bw_text][/bw_column_inner][bw_column_inner col_width="25" text_alignment="inherit" padding_top="50" padding_right="50" padding_bottom="50" padding_left="50" background="color" bg_color="#f4388d" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][bw_icon icon="pl-7s-headphones" text="We can help you" font_size="60" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text]Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui. Aenean pretium tellus diam, vel venenatis turpis accumsan ac.[/bw_text][/bw_column_inner][bw_column_inner col_width="25" text_alignment="inherit" padding_top="50" padding_right="50" padding_bottom="50" padding_left="50" background="color" bg_color="#21cec8" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][bw_icon icon="pl-7s-umbrella" text="Umbrella effect" font_size="60" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text]<p>Aenean pretium tellus diam, vel venenatis turpis accumsan ac.</p><p>Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.</p>[/bw_text][/bw_column_inner][bw_column_inner col_width="25" text_alignment="inherit" padding_top="50" padding_right="50" padding_bottom="50" padding_left="50" background="color" bg_color="#1d48c1" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50"][bw_icon icon="pl-7s-coffee" text="You can become more productive" font_size="60" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text]Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui. Aenean pretium tellus diam, vel venenatis turpis accumsan ac.[/bw_text][/bw_column_inner][/bw_row_inner][/bw_column][/bw_row]';
     }
 }
 new Playouts_Layout_Icon_Box;
@@ -307,14 +307,14 @@ class Playouts_Layout_Icon_Text extends Playouts_Admin_Layout {
     function init() {
 
         $this->id = 'bw_layout_icon_text';
-        $this->name = esc_html__( 'Gradient Icon with Text', 'AAA' );
+        $this->name = esc_html__( 'Gradient Icon with Text', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
         $this->image = PL_ASSEST . 'admin/images/__layouts/icon_text.png';
 
     }
 
     static function output() {
-        return '[bw_row row_layout="standard" background="color" bg_color="#f4f4f4" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" padding_top="100" padding_bottom="100"][bw_column col_width="33.3" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" margin_right="25"][bw_icon icon="bwpb-7s-paint" text="Customize in a minutes" font_size="60" color_main="#f9276d" color_secondary="#2539ea" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text]<p>Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.</p>[/bw_text][/bw_column][bw_column col_width="33.3" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" margin_left="25" margin_right="25"][bw_icon icon="bwpb-7s-gift" text="It is free for use" font_size="60" color_main="#f9276d" color_secondary="#2539ea" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text]<p>Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.</p>[/bw_text][/bw_column][bw_column col_width="33.3" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" margin_left="25"][bw_icon icon="bwpb-7s-plane" text="Boost your website" font_size="60" color_main="#f9276d" color_secondary="#2539ea" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text]<p>Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.</p>[/bw_text][/bw_column][/bw_row]';
+        return '[bw_row row_layout="standard" background="color" bg_color="#f4f4f4" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" padding_top="100" padding_bottom="100"][bw_column col_width="33.3" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" margin_right="25"][bw_icon icon="pl-7s-paint" text="Customize in a minutes" font_size="60" color_main="#f9276d" color_secondary="#2539ea" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text]<p>Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.</p>[/bw_text][/bw_column][bw_column col_width="33.3" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" margin_left="25" margin_right="25"][bw_icon icon="pl-7s-gift" text="It is free for use" font_size="60" color_main="#f9276d" color_secondary="#2539ea" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text]<p>Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.</p>[/bw_text][/bw_column][bw_column col_width="33.3" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" margin_left="25"][bw_icon icon="pl-7s-plane" text="Boost your website" font_size="60" color_main="#f9276d" color_secondary="#2539ea" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text]<p>Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.</p>[/bw_text][/bw_column][/bw_row]';
     }
 }
 new Playouts_Layout_Icon_Text;
@@ -326,7 +326,7 @@ class Playouts_Layout_Welcome_Text_Video extends Playouts_Admin_Layout {
     function init() {
 
         $this->id = 'bw_layout_welcome_text_video';
-        $this->name = esc_html__( 'Welcome Text with Full-Screen Video', 'AAA' );
+        $this->name = esc_html__( 'Welcome Text with Full-Screen Video', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
         $this->image = PL_ASSEST . 'admin/images/__layouts/welcome_videot.png';
 
@@ -345,7 +345,7 @@ class Playouts_Layout_Notion_Box extends Playouts_Admin_Layout {
     function init() {
 
         $this->id = 'bw_layout_notion_box';
-        $this->name = esc_html__( 'Notion Boxes', 'AAA' );
+        $this->name = esc_html__( 'Notion Boxes', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
         $this->image = PL_ASSEST . 'admin/images/__layouts/notion_boxes.png';
 
@@ -364,14 +364,14 @@ class Playouts_Layout_Numbers_Counter extends Playouts_Admin_Layout {
     function init() {
 
         $this->id = 'bw_layout_numbers_counter';
-        $this->name = esc_html__( 'Numbers Counter', 'AAA' );
+        $this->name = esc_html__( 'Numbers Counter', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
         $this->image = PL_ASSEST . 'admin/images/__layouts/numbers_counter.png';
 
     }
 
     static function output() {
-        return '[bw_row row_layout="standard" background="color" bg_color="#f1f1f1" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" vertical_alignment="center" text_alignment="center" padding_top="150" padding_bottom="150"][bw_column col_width="25" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_icon icon="bwpb-7s-medal" font_size="100" color_main="#7e74e1" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text inline_css="margin-bottom:70px;"]<p style="font-size:20px;">Awards taken</p>[/bw_text][bw_number_counter number="9" font_size="75" duration="2" color="#7e74e1"][/bw_number_counter][/bw_column][bw_column col_width="25" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_icon icon="bwpb-7s-smile" font_size="100" color_main="#7e74e1" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text inline_css="margin-bottom:70px;"]<p style="font-size: 20px;">Happy customers</p>[/bw_text][bw_number_counter number="1250" font_size="75" duration="2" color="#7e74e1"][/bw_number_counter][/bw_column][bw_column col_width="25" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_icon icon="bwpb-7s-moon" font_size="100" color_main="#7e74e1" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text inline_css="margin-bottom:70px;"]<p style="font-size: 20px;">Nights of hard work</p>[/bw_text][bw_number_counter number="765" font_size="75" duration="2" color="#7e74e1"][/bw_number_counter][/bw_column][bw_column col_width="25" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_icon icon="bwpb-7s-alarm" font_size="100" color_main="#7e74e1" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text inline_css="margin-bottom:70px;"]<p style="font-size: 20px;">Extra hours</p>[/bw_text][bw_number_counter number="7950" font_size="75" duration="2" color="#7e74e1"][/bw_number_counter][/bw_column][/bw_row]';
+        return '[bw_row row_layout="standard" background="color" bg_color="#f1f1f1" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" vertical_alignment="center" text_alignment="center" padding_top="150" padding_bottom="150"][bw_column col_width="25" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_icon icon="pl-7s-medal" font_size="100" color_main="#7e74e1" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text inline_css="margin-bottom:70px;"]<p style="font-size:20px;">Awards taken</p>[/bw_text][bw_number_counter number="9" font_size="75" duration="2" color="#7e74e1"][/bw_number_counter][/bw_column][bw_column col_width="25" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_icon icon="pl-7s-smile" font_size="100" color_main="#7e74e1" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text inline_css="margin-bottom:70px;"]<p style="font-size: 20px;">Happy customers</p>[/bw_text][bw_number_counter number="1250" font_size="75" duration="2" color="#7e74e1"][/bw_number_counter][/bw_column][bw_column col_width="25" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_icon icon="pl-7s-moon" font_size="100" color_main="#7e74e1" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text inline_css="margin-bottom:70px;"]<p style="font-size: 20px;">Nights of hard work</p>[/bw_text][bw_number_counter number="765" font_size="75" duration="2" color="#7e74e1"][/bw_number_counter][/bw_column][bw_column col_width="25" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_icon icon="pl-7s-alarm" font_size="100" color_main="#7e74e1" direction="bottom right" margin_bottom="40"][/bw_icon][bw_text inline_css="margin-bottom:70px;"]<p style="font-size: 20px;">Extra hours</p>[/bw_text][bw_number_counter number="7950" font_size="75" duration="2" color="#7e74e1"][/bw_number_counter][/bw_column][/bw_row]';
     }
 }
 new Playouts_Layout_Numbers_Counter;

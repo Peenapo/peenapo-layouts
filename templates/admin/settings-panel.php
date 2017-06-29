@@ -1,15 +1,15 @@
-<div id="bwpb-panel-settings" class="bwpb-panel">
-    <form name="bwpb-panel-form" id="bwpb-panel-form" class="bwpb-panel-form">
-        <div class="bwpb-panel-header">
-            <h4 class="bwpb-panel-title"></h4>
-            <span class="bwpb-button-close"><em><?php _e( 'Close', 'AAA' ); ?></em><i class="bwpb-plus bwpb-close"><span></span></i></span>
+<div id="pl-panel-settings" class="pl-panel">
+    <form name="pl-panel-form" id="pl-panel-form" class="pl-panel-form">
+        <div class="pl-panel-header">
+            <h4 class="pl-panel-title"></h4>
+            <span class="pl-button-close"><em><?php _e( 'Close', 'peenapo-layouts-txd' ); ?></em><i class="pl-plus pl-close"><span></span></i></span>
         </div>
-        <div class="bwpb-panel-tabs bwpb-no-select"></div>
-        <div class="bwpb-panel-content"></div>
-        <div class="bwpb-panel-footer">
-            <span class="bwpb-button-round bwpb-button-close"><?php _e( 'Close', 'AAA' ); ?></span>
-            <span class="bwpb-button-round bwpb-button-save bwpb-button-primary"><?php _e( 'Save Options', 'AAA' ); ?></span>
+        <div class="pl-panel-tabs pl-no-select"></div>
+        <div class="pl-panel-content"></div>
+        <div class="pl-panel-footer">
+            <span class="pl-button-round pl-button-close"><?php _e( 'Close', 'peenapo-layouts-txd' ); ?></span>
+            <span class="pl-button-round pl-button-save pl-button-primary"><?php _e( 'Save Options', 'peenapo-layouts-txd' ); ?></span>
         </div>
     </form>
-    <span class="bwpb-preloader"><i></i></span>
+    <span class="pl-preloader"><i></i></span>
 </div>

@@ -26,7 +26,7 @@ class Playouts_Element {
 
         self::$index++;
 
-        $this->category = array( 'general' => __( 'General', 'AAA' ) );
+        $this->category = array( 'general' => __( 'General', 'peenapo-layouts-txd' ) );
         $this->class_name = get_class( $this );
 
         $this->init();
@@ -167,7 +167,7 @@ class Playouts_Element_Row extends Playouts_Element {
     function init() {
 
         $this->module = 'bw_row';
-        $this->name = esc_html__( 'Row', 'AAA' );
+        $this->name = esc_html__( 'Row', 'peenapo-layouts-txd' );
         $this->view = 'row';
         $this->params = array(
             'dummy' => array( // do not remove
@@ -180,12 +180,12 @@ class Playouts_Element_Row extends Playouts_Element {
             ),
             'row_columns' => array( // do not remove
                 'type' => 'columns',
-                'tab' => array( 'row_columns' => esc_html__( 'Columns', 'AAA' ) ),
+                'tab' => array( 'row_columns' => esc_html__( 'Columns', 'peenapo-layouts-txd' ) ),
             ),
             'row_layout' => array(
-				'label'             => esc_html__( 'Row Layout', 'AAA' ),
+				'label'             => esc_html__( 'Row Layout', 'peenapo-layouts-txd' ),
 				'type'              => 'radio_image',
-				'description'       => esc_html__( 'Select the display version of the row.', 'AAA' ),
+				'description'       => esc_html__( 'Select the display version of the row.', 'peenapo-layouts-txd' ),
 				'options'           => array(
                     'standard' => array(
                         'label' => 'Standard', 'image' => PL_ASSEST . 'admin/images/__tmp/row_standard.png'
@@ -201,9 +201,9 @@ class Playouts_Element_Row extends Playouts_Element {
 			),
             'background' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Background', 'AAA' ),
-				'description'       => esc_html__( 'Select row background type', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'label'             => esc_html__( 'Background', 'peenapo-layouts-txd' ),
+				'description'       => esc_html__( 'Select row background type', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
 				'options'           => array(
                     '' => 'None',
                     'color' => 'Color',
@@ -214,20 +214,20 @@ class Playouts_Element_Row extends Playouts_Element {
 			),
             'bg_color' => array(
                 'type'              => 'colorpicker',
-				'label'             => esc_html__( 'Background Color', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'label'             => esc_html__( 'Background Color', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'color' ),
 			),
             'bg_image' => array(
                 'type'              => 'image',
-				'label'             => esc_html__( 'Background Image', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'label'             => esc_html__( 'Background Image', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
 			),
             'bg_image_position' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Background Position', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'label'             => esc_html__( 'Background Position', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
                 'options'           => array(
                     ''                  => 'Default',
@@ -245,8 +245,8 @@ class Playouts_Element_Row extends Playouts_Element {
 			),
             'bg_image_size' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Background Size', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'label'             => esc_html__( 'Background Size', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
                 'options'           => array(
                     ''                  => 'Default',
@@ -258,8 +258,8 @@ class Playouts_Element_Row extends Playouts_Element {
 			),
             'bg_parallax_speed' => array(
                 'type'              => 'number_slider',
-                'label'             => esc_html__( 'Parallax Speed', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Parallax Speed', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'parallax' ),
                 'min'               => 0,
                 'max'               => 300,
@@ -268,51 +268,51 @@ class Playouts_Element_Row extends Playouts_Element {
             ),
             'bg_video_mp4' => array(
                 'type'              => 'file',
-                'label'             => esc_html__( 'Video Mp4', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Video Mp4', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'video' ),
             ),
             'bg_video_ogv' => array(
                 'type'              => 'file',
-                'label'             => esc_html__( 'Video Ogv', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Video Ogv', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'video' ),
             ),
             'bg_video_webm' => array(
                 'type'              => 'file',
-                'label'             => esc_html__( 'Video Webm', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Video Webm', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'video' ),
             ),
             'bg_video_poster' => array(
                 'type'              => 'image',
-                'label'             => esc_html__( 'Video Poster', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Video Poster', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'video' ),
             ),
             'overlay_enable' => array(
                 'type'              => 'true_false',
-                'label'             => esc_html__( 'Enable Overlay', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Enable Overlay', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
             ),
             'overlay_bg_color' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Overlay Background Color', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Overlay Background Color', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
                 'width'             => 50
             ),
             'overlay_bg_second' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Overlay Second Background Color ( Optional )', 'AAA' ),
-                'description'       => esc_html__( 'For gradient background color.', 'AAA' ),
+                'label'             => esc_html__( 'Overlay Second Background Color ( Optional )', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'For gradient background color.', 'peenapo-layouts-txd' ),
                 'value'             => '#f5f5f5',
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'width'             => 50
 			),
             'overlay_direction' => array(
-                'label'             => esc_html__( 'Overlay Gradient Direction', 'AAA' ),
+                'label'             => esc_html__( 'Overlay Gradient Direction', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     'top right'         => 'Top Right',
@@ -324,22 +324,22 @@ class Playouts_Element_Row extends Playouts_Element {
                     'right'             => 'Right',
                     'left'              => 'Left',
                 ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
             ),
             'overlay_opacity' => array(
-                'label'             => esc_html__( 'Overlay Opacity', 'AAA' ),
+                'label'             => esc_html__( 'Overlay Opacity', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'min'               => 0,
                 'max'               => 100,
                 'step'              => 1,
                 'value'             => 50,
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
             ),
             'vertical_alignment' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Vertical Alignment', 'AAA' ),
+				'label'             => esc_html__( 'Vertical Alignment', 'peenapo-layouts-txd' ),
                 'options'           => array(
                     ''                      => 'None',
                     'flex-start'            => 'Top',
@@ -350,7 +350,7 @@ class Playouts_Element_Row extends Playouts_Element {
 			),
             'text_alignment' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Text Alignment', 'AAA' ),
+				'label'             => esc_html__( 'Text Alignment', 'peenapo-layouts-txd' ),
                 'options'           => array(
                     ''                  => 'Inherit',
                     'left'              => 'Left',
@@ -361,13 +361,13 @@ class Playouts_Element_Row extends Playouts_Element {
                 'width'             => 50
 			),
             'enable_static_height' => array(
-                'label'             => esc_html__( 'Set Static Row Height', 'AAA' ),
+                'label'             => esc_html__( 'Set Static Row Height', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false'
 			),
             'static_height' => array(
                 'type'              => 'number_slider',
-                'label'             => esc_html__( 'Static Height in Percentage', 'AAA' ),
-                'description'       => esc_html__( 'Row height, 100% = full window height', 'AAA' ),
+                'label'             => esc_html__( 'Static Height in Percentage', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Row height, 100% = full window height', 'peenapo-layouts-txd' ),
                 'depends'           => array( 'element' => 'enable_static_height', 'value' => '1' ),
                 'append_after'      => '%',
                 'min'               => 30,
@@ -377,11 +377,11 @@ class Playouts_Element_Row extends Playouts_Element {
             ),
             'text_color' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Text Color', 'AAA' ),
+                'label'             => esc_html__( 'Text Color', 'peenapo-layouts-txd' ),
                 'value'             => ''
             ),
             'animation' => array(
-                'label'             => esc_html__( 'Animation', 'AAA' ),
+                'label'             => esc_html__( 'Animation', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     ''          => 'None',
@@ -391,81 +391,81 @@ class Playouts_Element_Row extends Playouts_Element {
                     'left'      => 'Left',
                     'bottom'    => 'Bottom',
                 ),
-                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'peenapo-layouts-txd' ) ),
             ),
             'animation_speed' => array(
-                'label'             => esc_html__( 'Animation Speed', 'AAA' ),
-                'description'       => esc_html__( 'Item animation speed in milliseconds.', 'AAA' ),
+                'label'             => esc_html__( 'Animation Speed', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Item animation speed in milliseconds.', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'milliseconds.',
                 'min'               => 0,
                 'max'               => 1000,
                 'step'              => 50,
                 'depends'           => array( 'element' => 'animation', 'value' => array( 'scale', 'top', 'right', 'bottom', 'left' ) ),
-                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'peenapo-layouts-txd' ) ),
             ),
             'animation_delay' => array(
-                'label'             => esc_html__( 'Animation Delay', 'AAA' ),
-                'description'       => esc_html__( 'Item animation speed in milliseconds.', 'AAA' ),
+                'label'             => esc_html__( 'Animation Delay', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Item animation speed in milliseconds.', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'milliseconds.',
                 'min'               => 0,
                 'max'               => 1500,
                 'step'              => 50,
                 'depends'           => array( 'element' => 'animation', 'value' => array( 'scale', 'top', 'right', 'bottom', 'left' ) ),
-                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'peenapo-layouts-txd' ) ),
             ),
             'margin_top' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Margin Top', 'AAA' ),
-                'description'       => esc_html__( "Don't include 'px' in your string. e.g '40' - For perecent value '%' would be needed at the end e.g '10%'.", 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Margin Top', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( "Don't include 'px' in your string. e.g '40' - For perecent value '%' would be needed at the end e.g '10%'.", 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 50
             ),
             'margin_bottom' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Margin Bottom', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Margin Bottom', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 50
             ),
             'padding_top' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Padding Top', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Padding Top', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'padding_right' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Padding Right', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Padding Right', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'padding_bottom' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Padding Bottom', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Padding Bottom', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'padding_left' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Padding Left', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Padding Left', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -577,9 +577,9 @@ class Playouts_Element_Column extends Playouts_Element {
     function init() {
 
         $this->module = 'bw_column';
-        $this->name = esc_html__( 'Column', 'AAA' );
+        $this->name = esc_html__( 'Column', 'peenapo-layouts-txd' );
         $this->view = 'column';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->public = false;
         $this->params = array(
             'dummy' => array( // do not remove
@@ -592,9 +592,9 @@ class Playouts_Element_Column extends Playouts_Element {
             ),
             'background' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Background', 'AAA' ),
-				'description'       => esc_html__( 'Select row background type', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'label'             => esc_html__( 'Background', 'peenapo-layouts-txd' ),
+				'description'       => esc_html__( 'Select row background type', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
 				'options'           => array(
                     ''          => 'None',
                     'color'     => 'Color',
@@ -605,20 +605,20 @@ class Playouts_Element_Column extends Playouts_Element {
 			),
             'bg_color' => array(
                 'type'              => 'colorpicker',
-				'label'             => esc_html__( 'Background Color', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'label'             => esc_html__( 'Background Color', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'color' ),
 			),
             'bg_image' => array(
                 'type'              => 'image',
-				'label'             => esc_html__( 'Background Image', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'label'             => esc_html__( 'Background Image', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
 			),
             'bg_image_position' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Background Position', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'label'             => esc_html__( 'Background Position', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
                 'options'           => array(
                     ''                  => 'Default',
@@ -636,8 +636,8 @@ class Playouts_Element_Column extends Playouts_Element {
 			),
             'bg_image_size' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Background Size', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'label'             => esc_html__( 'Background Size', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
                 'options'           => array(
                     ''                  => 'Default',
@@ -649,8 +649,8 @@ class Playouts_Element_Column extends Playouts_Element {
 			),
             'bg_parallax_speed' => array(
                 'type'              => 'number_slider',
-                'label'             => esc_html__( 'Parallax Speed', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Parallax Speed', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'parallax' ),
                 'min'               => 0,
                 'max'               => 300,
@@ -659,51 +659,51 @@ class Playouts_Element_Column extends Playouts_Element {
             ),
             'bg_video_mp4' => array(
                 'type'              => 'file',
-                'label'             => esc_html__( 'Video Mp4', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Video Mp4', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'video' ),
             ),
             'bg_video_ogv' => array(
                 'type'              => 'file',
-                'label'             => esc_html__( 'Video Ogv', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Video Ogv', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'video' ),
             ),
             'bg_video_webm' => array(
                 'type'              => 'file',
-                'label'             => esc_html__( 'Video Webm', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Video Webm', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'video' ),
             ),
             'bg_video_poster' => array(
                 'type'              => 'image',
-                'label'             => esc_html__( 'Video Poster', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Video Poster', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'video' ),
             ),
             'overlay_enable' => array(
                 'type'              => 'true_false',
-                'label'             => esc_html__( 'Enable Overlay', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Enable Overlay', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
             ),
             'overlay_bg_color' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Overlay Background Color', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Overlay Background Color', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
                 'width'             => 50
             ),
             'overlay_bg_second' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Overlay Second Background Color ( Optional )', 'AAA' ),
-                'description'       => esc_html__( 'For gradient background color.', 'AAA' ),
+                'label'             => esc_html__( 'Overlay Second Background Color ( Optional )', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'For gradient background color.', 'peenapo-layouts-txd' ),
                 'value'             => '#f5f5f5',
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
                 'width'             => 50
 			),
             'overlay_direction' => array(
-                'label'             => esc_html__( 'Overlay Gradient Direction', 'AAA' ),
+                'label'             => esc_html__( 'Overlay Gradient Direction', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     'top right'         => 'Top Right',
@@ -715,28 +715,28 @@ class Playouts_Element_Column extends Playouts_Element {
                     'right'             => 'Right',
                     'left'              => 'Left',
                 ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
             ),
             'overlay_opacity' => array(
-                'label'             => esc_html__( 'Overlay Opacity', 'AAA' ),
+                'label'             => esc_html__( 'Overlay Opacity', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'min'               => 0,
                 'max'               => 100,
                 'step'              => 1,
                 'value'             => 50,
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
             ),
             'text_color' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Text Color', 'AAA' ),
+                'label'             => esc_html__( 'Text Color', 'peenapo-layouts-txd' ),
                 'value'             => '',
                 'width'             => 50
             ),
             'text_alignment' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Text Alignment', 'AAA' ),
+				'label'             => esc_html__( 'Text Alignment', 'peenapo-layouts-txd' ),
                 'options'           => array(
                     ''                  => 'Inherit',
                     'left'              => 'Left',
@@ -747,7 +747,7 @@ class Playouts_Element_Column extends Playouts_Element {
 			),
             'column_alignment' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Column Alignment', 'AAA' ),
+				'label'             => esc_html__( 'Column Alignment', 'peenapo-layouts-txd' ),
                 'options'           => array(
                     ''                  => 'Auto',
                     'flex-start'        => 'Top',
@@ -757,54 +757,54 @@ class Playouts_Element_Column extends Playouts_Element {
 			),
             'margin_left' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Margin Left', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Margin Left', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 50
             ),
             'margin_right' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Margin Right', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Margin Right', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 50
             ),
             'padding_top' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Padding Top', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Padding Top', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'padding_right' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Padding Right', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Padding Right', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'padding_bottom' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Padding Bottom', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Padding Bottom', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'padding_left' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Padding Left', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Padding Left', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -896,7 +896,7 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
     function init() {
 
         $this->module = 'bw_row_inner';
-        $this->name = esc_html__( 'Row Inner', 'AAA' );
+        $this->name = esc_html__( 'Row Inner', 'peenapo-layouts-txd' );
         $this->view = 'row_inner';
         $this->params = array(
             'dummy' => array( // do not remove
@@ -905,17 +905,17 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
             ),
             'row_columns' => array( // do not remove
                 'type'               => 'columns',
-                'tab'                => array( 'row_columns' => esc_html__( 'Columns', 'AAA' ) ),
+                'tab'                => array( 'row_columns' => esc_html__( 'Columns', 'peenapo-layouts-txd' ) ),
             ),
             'text_color' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Text Color', 'AAA' ),
+                'label'             => esc_html__( 'Text Color', 'peenapo-layouts-txd' ),
                 'value'             => '',
                 'width'             => 50
             ),
             'text_alignment' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Text Alignment', 'AAA' ),
+				'label'             => esc_html__( 'Text Alignment', 'peenapo-layouts-txd' ),
                 'options'           => array(
                     'inherit'           => 'Inherit',
                     'left'              => 'Left',
@@ -926,13 +926,13 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
                 'width'             => 50
 			),
             'enable_static_height' => array(
-                'label'             => esc_html__( 'Set Static Row Height', 'AAA' ),
+                'label'             => esc_html__( 'Set Static Row Height', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
 			),
             'static_height' => array(
                 'type'              => 'number_slider',
-                'label'             => esc_html__( 'Static Height in Percentage', 'AAA' ),
-                'description'       => esc_html__( 'Row height, 100% = full window height', 'AAA' ),
+                'label'             => esc_html__( 'Static Height in Percentage', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Row height, 100% = full window height', 'peenapo-layouts-txd' ),
                 'depends'           => array( 'element' => 'enable_static_height', 'value' => '1' ),
                 'append_after'      => '%',
                 'min'               => 30,
@@ -942,7 +942,7 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
             ),
             'vertical_alignment' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Vertical Alignment', 'AAA' ),
+				'label'             => esc_html__( 'Vertical Alignment', 'peenapo-layouts-txd' ),
                 'options'           => array(
                     ''                      => 'None',
                     'flex-start'            => 'Top',
@@ -952,33 +952,33 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
 			),
             'padding_top' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Padding Top', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Padding Top', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'padding_right' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Padding Right', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Padding Right', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'padding_bottom' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Padding Bottom', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Padding Bottom', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'padding_left' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Padding Left', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Padding Left', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'background' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Background', 'AAA' ),
-				'description'       => esc_html__( 'Select row background type', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'label'             => esc_html__( 'Background', 'peenapo-layouts-txd' ),
+				'description'       => esc_html__( 'Select row background type', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
 				'options'           => array(
                     '' => 'None',
                     'color' => 'Color',
@@ -989,20 +989,20 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
 			),
             'bg_color' => array(
                 'type'              => 'colorpicker',
-				'label'             => esc_html__( 'Background Color', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'label'             => esc_html__( 'Background Color', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'color' ),
 			),
             'bg_image' => array(
                 'type'              => 'image',
-				'label'             => esc_html__( 'Background Image', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'label'             => esc_html__( 'Background Image', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
 			),
             'bg_image_position' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Background Position', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'label'             => esc_html__( 'Background Position', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
                 'options'           => array(
                     ''                  => 'Default',
@@ -1020,8 +1020,8 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
 			),
             'bg_image_size' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Background Size', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'label'             => esc_html__( 'Background Size', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
                 'options'           => array(
                     ''                  => 'Default',
@@ -1033,8 +1033,8 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
 			),
             'bg_parallax_speed' => array(
                 'type'              => 'number_slider',
-                'label'             => esc_html__( 'Parallax Speed', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Parallax Speed', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'parallax' ),
                 'min'               => 0,
                 'max'               => 300,
@@ -1043,51 +1043,51 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
             ),
             'bg_video_mp4' => array(
                 'type'              => 'file',
-                'label'             => esc_html__( 'Video Mp4', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Video Mp4', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'video' ),
             ),
             'bg_video_ogv' => array(
                 'type'              => 'file',
-                'label'             => esc_html__( 'Video Ogv', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Video Ogv', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'video' ),
             ),
             'bg_video_webm' => array(
                 'type'              => 'file',
-                'label'             => esc_html__( 'Video Webm', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Video Webm', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'video' ),
             ),
             'bg_video_poster' => array(
                 'type'              => 'image',
-                'label'             => esc_html__( 'Video Poster', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Video Poster', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'video' ),
             ),
             'overlay_enable' => array(
                 'type'              => 'true_false',
-                'label'             => esc_html__( 'Enable Overlay', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Enable Overlay', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
             ),
             'overlay_bg_color' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Overlay Background Color', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Overlay Background Color', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
                 'width'             => 50
             ),
             'overlay_bg_second' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Overlay Second Background Color ( Optional )', 'AAA' ),
-                'description'       => esc_html__( 'For gradient background color.', 'AAA' ),
+                'label'             => esc_html__( 'Overlay Second Background Color ( Optional )', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'For gradient background color.', 'peenapo-layouts-txd' ),
                 'value'             => '#f5f5f5',
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
                 'width'             => 50
 			),
             'overlay_direction' => array(
-                'label'             => esc_html__( 'Overlay Gradient Direction', 'AAA' ),
+                'label'             => esc_html__( 'Overlay Gradient Direction', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     'top right'         => 'Top Right',
@@ -1099,21 +1099,21 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
                     'right'             => 'Right',
                     'left'              => 'Left',
                 ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
             ),
             'overlay_opacity' => array(
-                'label'             => esc_html__( 'Overlay Opacity', 'AAA' ),
+                'label'             => esc_html__( 'Overlay Opacity', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'min'               => 0,
                 'max'               => 100,
                 'step'              => 1,
                 'value'             => 50,
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
             ),
             'animation' => array(
-                'label'             => esc_html__( 'Animation', 'AAA' ),
+                'label'             => esc_html__( 'Animation', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     'none'      => 'None',
@@ -1124,11 +1124,11 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
                     'bottom'    => 'Bottom',
                 ),
                 'value'             => 'none',
-                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'peenapo-layouts-txd' ) ),
             ),
             'animation_speed' => array(
-                'label'             => esc_html__( 'Animation Speed', 'AAA' ),
-                'description'       => esc_html__( 'Item animation speed in milliseconds.', 'AAA' ),
+                'label'             => esc_html__( 'Animation Speed', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Item animation speed in milliseconds.', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'milliseconds.',
                 'min'               => 50,
@@ -1136,11 +1136,11 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
                 'step'              => 50,
                 'value'             => 200,
                 'depends'           => array( 'element' => 'animation', 'value' => array( 'scale', 'top', 'right', 'bottom', 'left' ) ),
-                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'peenapo-layouts-txd' ) ),
             ),
             'animation_delay' => array(
-                'label'             => esc_html__( 'Animation Delay', 'AAA' ),
-                'description'       => esc_html__( 'Item animation speed in milliseconds.', 'AAA' ),
+                'label'             => esc_html__( 'Animation Delay', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Item animation speed in milliseconds.', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'milliseconds.',
                 'min'               => 0,
@@ -1148,22 +1148,22 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
                 'step'              => 50,
                 'value'             => 100,
                 'depends'           => array( 'element' => 'animation', 'value' => array( 'scale', 'top', 'right', 'bottom', 'left' ) ),
-                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'peenapo-layouts-txd' ) ),
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -1271,9 +1271,9 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
     function init() {
 
         $this->module = 'bw_column_inner';
-        $this->name = esc_html__( 'Column Inner', 'AAA' );
+        $this->name = esc_html__( 'Column Inner', 'peenapo-layouts-txd' );
         $this->view = 'column_inner';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->public = false;
         $this->params = array(
             'dummy' => array( // do not remove
@@ -1286,13 +1286,13 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
             ),
             'text_color' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Text Color', 'AAA' ),
+                'label'             => esc_html__( 'Text Color', 'peenapo-layouts-txd' ),
                 'value'             => '',
                 'width'             => 50
             ),
             'text_alignment' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Text Alignment', 'AAA' ),
+				'label'             => esc_html__( 'Text Alignment', 'peenapo-layouts-txd' ),
                 'options'           => array(
                     'inherit'           => 'Inherit',
                     'left'              => 'Left',
@@ -1304,7 +1304,7 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
 			),
             'column_alignment' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Column Alignment', 'AAA' ),
+				'label'             => esc_html__( 'Column Alignment', 'peenapo-layouts-txd' ),
                 'options'           => array(
                     ''                  => 'Auto',
                     'flex-start'        => 'Top',
@@ -1314,57 +1314,57 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
 			),
             'padding_top' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Padding Top', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Padding Top', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'padding_right' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Padding Right', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Padding Right', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'padding_bottom' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Padding Bottom', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Padding Bottom', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'padding_left' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Padding Left', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Padding Left', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'margin_top' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Margin Top', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Margin Top', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'margin_right' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Margin Right', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Margin Right', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'margin_bottom' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Margin Bottom', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Margin Bottom', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'margin_left' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Margin Left', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Margin Left', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'background' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Background', 'AAA' ),
-				'description'       => esc_html__( 'Select row background type', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'label'             => esc_html__( 'Background', 'peenapo-layouts-txd' ),
+				'description'       => esc_html__( 'Select row background type', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
 				'options'           => array(
                     ''          => 'None',
                     'color'     => 'Color',
@@ -1375,20 +1375,20 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
 			),
             'bg_color' => array(
                 'type'              => 'colorpicker',
-				'label'             => esc_html__( 'Background Color', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'label'             => esc_html__( 'Background Color', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'color' ),
 			),
             'bg_image' => array(
                 'type'              => 'image',
-				'label'             => esc_html__( 'Background Image', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'label'             => esc_html__( 'Background Image', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
 			),
             'bg_image_position' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Background Position', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'label'             => esc_html__( 'Background Position', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
                 'options'           => array(
                     ''                  => 'Default',
@@ -1406,8 +1406,8 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
 			),
             'bg_image_size' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Background Size', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+				'label'             => esc_html__( 'Background Size', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => array( 'image', 'parallax' ) ),
                 'options'           => array(
                     ''                  => 'Default',
@@ -1419,8 +1419,8 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
 			),
             'bg_parallax_speed' => array(
                 'type'              => 'number_slider',
-                'label'             => esc_html__( 'Parallax Speed', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Parallax Speed', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'parallax' ),
                 'min'               => 0,
                 'max'               => 300,
@@ -1429,51 +1429,51 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
             ),
             'bg_video_mp4' => array(
                 'type'              => 'file',
-                'label'             => esc_html__( 'Video Mp4', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Video Mp4', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'video' ),
             ),
             'bg_video_ogv' => array(
                 'type'              => 'file',
-                'label'             => esc_html__( 'Video Ogv', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Video Ogv', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'video' ),
             ),
             'bg_video_webm' => array(
                 'type'              => 'file',
-                'label'             => esc_html__( 'Video Webm', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Video Webm', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'video' ),
             ),
             'bg_video_poster' => array(
                 'type'              => 'image',
-                'label'             => esc_html__( 'Video Poster', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Video Poster', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'background', 'value' => 'video' ),
             ),
             'overlay_enable' => array(
                 'type'              => 'true_false',
-                'label'             => esc_html__( 'Enable Overlay', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Enable Overlay', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
             ),
             'overlay_bg_color' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Overlay Background Color', 'AAA' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'label'             => esc_html__( 'Overlay Background Color', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
                 'width'             => 50
             ),
             'overlay_bg_second' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Overlay Second Background Color ( Optional )', 'AAA' ),
-                'description'       => esc_html__( 'For gradient background color.', 'AAA' ),
+                'label'             => esc_html__( 'Overlay Second Background Color ( Optional )', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'For gradient background color.', 'peenapo-layouts-txd' ),
                 'value'             => '#f5f5f5',
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
                 'width'             => 50
 			),
             'overlay_direction' => array(
-                'label'             => esc_html__( 'Overlay Gradient Direction', 'AAA' ),
+                'label'             => esc_html__( 'Overlay Gradient Direction', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     'top right'         => 'Top Right',
@@ -1485,33 +1485,33 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
                     'right'             => 'Right',
                     'left'              => 'Left',
                 ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
             ),
             'overlay_opacity' => array(
-                'label'             => esc_html__( 'Overlay Opacity', 'AAA' ),
+                'label'             => esc_html__( 'Overlay Opacity', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'min'               => 0,
                 'max'               => 100,
                 'step'              => 1,
                 'value'             => 50,
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -1606,20 +1606,20 @@ class Playouts_Element_Text extends Playouts_Element {
     function init() {
 
         $this->module = 'bw_text';
-        $this->name = esc_html__( 'Text', 'AAA' );
+        $this->name = esc_html__( 'Text', 'peenapo-layouts-txd' );
         $this->view = 'element';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#77e08a';
         $this->params = array(
             'text_color' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Text Color', 'AAA' ),
+                'label'             => esc_html__( 'Text Color', 'peenapo-layouts-txd' ),
                 'value'             => '',
                 'width'             => 50
             ),
             'text_alignment' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Text Alignment', 'AAA' ),
+				'label'             => esc_html__( 'Text Alignment', 'peenapo-layouts-txd' ),
                 'options'           => array(
                     ''                  => 'Inherit',
                     'left'              => 'Left',
@@ -1630,25 +1630,25 @@ class Playouts_Element_Text extends Playouts_Element {
                 'width'             => 50
 			),
             'content' => array(
-				'label'             => esc_html__( 'Content', 'AAA' ),
+				'label'             => esc_html__( 'Content', 'peenapo-layouts-txd' ),
 				'type'              => 'editor',
 				'is_content'        => true,
                 'value'             => '<p>Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.</p>',
 			),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -1686,38 +1686,38 @@ class Playouts_Element_Audio extends Playouts_Element {
     function init() {
 
         $this->module = 'bw_audio';
-        $this->name = esc_html__( 'Audio Player', 'AAA' );
+        $this->name = esc_html__( 'Audio Player', 'peenapo-layouts-txd' );
         $this->view = 'element';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#62cdef';
         $this->params = array(
             'audio_file' => array(
                 'type'              => 'file',
-                'label'             => esc_html__( 'Audio File', 'AAA' ),
+                'label'             => esc_html__( 'Audio File', 'peenapo-layouts-txd' ),
             ),
             'cover_top' => array(
-                'label'             => esc_html__( 'Display Full Cover', 'AAA' ),
+                'label'             => esc_html__( 'Display Full Cover', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'title' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Title', 'AAA' ),
+                'label'             => esc_html__( 'Title', 'peenapo-layouts-txd' ),
             ),
             'artist' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Artist', 'AAA' ),
+                'label'             => esc_html__( 'Artist', 'peenapo-layouts-txd' ),
             ),
             'cover_image' => array(
                 'type'              => 'image',
-                'label'             => esc_html__( 'Cover Image', 'AAA' ),
+                'label'             => esc_html__( 'Cover Image', 'peenapo-layouts-txd' ),
             ),
             'background_color' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Background Color', 'AAA' ),
+                'label'             => esc_html__( 'Background Color', 'peenapo-layouts-txd' ),
                 'width'             => 50
             ),
             'text_color' => array(
-                'label'             => esc_html__( 'Text Color', 'AAA' ),
+                'label'             => esc_html__( 'Text Color', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     '#000'  => 'Dark',
@@ -1727,18 +1727,18 @@ class Playouts_Element_Audio extends Playouts_Element {
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -1774,7 +1774,7 @@ class Playouts_Element_Audio extends Playouts_Element {
             $heading .= '<h3>' . esc_html( $title ) . '</h3>';
         }
         if( $artist ) {
-            $heading .= '<p>' . esc_html__( 'By: ', 'AAA' ) . '<strong>' . esc_html( $artist ) . '</strong></p>';
+            $heading .= '<p>' . esc_html__( 'By: ', 'peenapo-layouts-txd' ) . '<strong>' . esc_html( $artist ) . '</strong></p>';
         }
         if( $text_color ) {
             $style .= 'color:' . esc_attr( $text_color ) . ';';
@@ -1806,23 +1806,23 @@ class Playouts_Element_Accordion extends Playouts_Repeater_Element {
 
         $this->module = 'bw_accordion';
         $this->module_item = 'bw_accordion_item';
-        $this->name = esc_html__( 'Accordion', 'AAA' );
+        $this->name = esc_html__( 'Accordion', 'peenapo-layouts-txd' );
         $this->view = 'repeater';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#be6ef6';
         $this->params = array(
             'items' => array(
                 'type'               => 'repeater',
-                'label'              => esc_html__( 'Tab items', 'AAA' ),
-                'description'        => esc_html__( 'You can add as many tabs as you need, just click the plus icon.', 'AAA' ),
+                'label'              => esc_html__( 'Tab items', 'peenapo-layouts-txd' ),
+                'description'        => esc_html__( 'You can add as many tabs as you need, just click the plus icon.', 'peenapo-layouts-txd' ),
             ),
             'close_other' => array(
                 'type'              => 'true_false',
-                'label'             => esc_html__( 'Close Other Items?', 'AAA' ),
-                'description'        => esc_html__( 'Enable this option if you want to close the rest of accordion items on mouse click.', 'AAA' ),
+                'label'             => esc_html__( 'Close Other Items?', 'peenapo-layouts-txd' ),
+                'description'        => esc_html__( 'Enable this option if you want to close the rest of accordion items on mouse click.', 'peenapo-layouts-txd' ),
             ),
             'line_height' => array(
-                'label'             => esc_html__( 'Titles Height', 'AAA' ),
+                'label'             => esc_html__( 'Titles Height', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'pixels',
                 'min'               => 40,
@@ -1832,18 +1832,18 @@ class Playouts_Element_Accordion extends Playouts_Repeater_Element {
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -1880,38 +1880,38 @@ class Playouts_Element_Accordion_Item extends Playouts_Repeater_Item_Element {
 
         $this->module = 'bw_accordion_item';
         $this->module_parent = 'bw_accordion';
-        $this->name = esc_html__( 'Accordion Item', 'AAA' );
+        $this->name = esc_html__( 'Accordion Item', 'peenapo-layouts-txd' );
         $this->view = 'repeater_item';
 
         $this->params = array(
             'title' => array(
-				'label'              => esc_html__( 'Title', 'AAA' ),
+				'label'              => esc_html__( 'Title', 'peenapo-layouts-txd' ),
 				'type'               => 'textfield',
 			),
             'active' => array(
-                'label'             => esc_html__( 'Active by Default?', 'AAA' ),
+                'label'             => esc_html__( 'Active by Default?', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'content' => array(
-				'label'             => esc_html__( 'Content', 'AAA' ),
+				'label'             => esc_html__( 'Content', 'peenapo-layouts-txd' ),
 				'type'              => 'editor',
 				'is_content'        => true,
                 'value'             => 'Accordion item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.',
 			),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -1954,22 +1954,22 @@ class Playouts_Element_Tabs extends Playouts_Repeater_Element {
 
         $this->module = 'bw_tabs';
         $this->module_item = 'bw_tab_item';
-        $this->name = esc_html__( 'Tabs', 'AAA' );
+        $this->name = esc_html__( 'Tabs', 'peenapo-layouts-txd' );
         $this->view = 'repeater';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#be6ef6';
         $this->params = array(
             'items' => array(
                 'type'               => 'repeater',
-                'label'              => esc_html__( 'Tab items', 'AAA' ),
-                'description'        => esc_html__( 'You can add as many tabs as you need, just click the plus icon.', 'AAA' ),
+                'label'              => esc_html__( 'Tab items', 'peenapo-layouts-txd' ),
+                'description'        => esc_html__( 'You can add as many tabs as you need, just click the plus icon.', 'peenapo-layouts-txd' ),
             ),
             'nav_border' => array(
-                'label'             => esc_html__( 'Enable Tabs Bottom Border', 'AAA' ),
+                'label'             => esc_html__( 'Enable Tabs Bottom Border', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'line_height' => array(
-                'label'             => esc_html__( 'Tab Line Height', 'AAA' ),
+                'label'             => esc_html__( 'Tab Line Height', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'pixels',
                 'min'               => 40,
@@ -1979,18 +1979,18 @@ class Playouts_Element_Tabs extends Playouts_Repeater_Element {
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -2037,29 +2037,29 @@ class Playouts_Element_Tab_Item extends Playouts_Repeater_Item_Element {
 
         $this->module = 'bw_tab_item';
         $this->module_parent = 'bw_tabs';
-        $this->name = esc_html__( 'Tab', 'AAA' );
+        $this->name = esc_html__( 'Tab', 'peenapo-layouts-txd' );
         $this->view = 'repeater_item';
 
         $this->params = array(
             'title' => array(
-				'label'              => esc_html__( 'Title', 'AAA' ),
+				'label'              => esc_html__( 'Title', 'peenapo-layouts-txd' ),
 				'type'               => 'textfield',
 			),
             'content' => array(
-				'label'             => esc_html__( 'Content', 'AAA' ),
+				'label'             => esc_html__( 'Content', 'peenapo-layouts-txd' ),
 				'type'              => 'editor',
 				'is_content'        => true,
                 'value'             => 'Accordion item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.',
 			),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -2100,24 +2100,24 @@ class Playouts_Element_Progress_Bars extends Playouts_Repeater_Element {
 
         $this->module = 'bw_progress_bars';
         $this->module_item = 'bw_progress_bar';
-        $this->name = esc_html__( 'Progress Bars', 'AAA' );
+        $this->name = esc_html__( 'Progress Bars', 'peenapo-layouts-txd' );
         $this->view = 'repeater';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#72cdf3';
         $this->params = array(
             'items' => array(
                 'type'               => 'repeater',
-                'label'              => esc_html__( 'Tab items', 'AAA' ),
-                'description'        => esc_html__( 'You can add as many tabs as you need, just click the plus icon.', 'AAA' ),
+                'label'              => esc_html__( 'Tab items', 'peenapo-layouts-txd' ),
+                'description'        => esc_html__( 'You can add as many tabs as you need, just click the plus icon.', 'peenapo-layouts-txd' ),
             ),
             'enable_animation' => array(
                 'type'              => 'true_false',
-                'label'             => esc_html__( 'Enable Animation', 'AAA' ),
-                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+                'label'             => esc_html__( 'Enable Animation', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'peenapo-layouts-txd' ) ),
             ),
             'animation_speed' => array(
-                'label'             => esc_html__( 'Animation Speed', 'AAA' ),
-                'description'       => esc_html__( 'Item animation speed in milliseconds.', 'AAA' ),
+                'label'             => esc_html__( 'Animation Speed', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Item animation speed in milliseconds.', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'milliseconds.',
                 'min'               => 50,
@@ -2125,11 +2125,11 @@ class Playouts_Element_Progress_Bars extends Playouts_Repeater_Element {
                 'step'              => 50,
                 'value'             => 150,
                 'depends'           => array( 'element' => 'enable_animation', 'value' => '1' ),
-                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'peenapo-layouts-txd' ) ),
             ),
             'animation_delay' => array(
-                'label'             => esc_html__( 'Animation Delay', 'AAA' ),
-                'description'       => esc_html__( 'Animation delay between bars in milliseconds.', 'AAA' ),
+                'label'             => esc_html__( 'Animation Delay', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Animation delay between bars in milliseconds.', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'milliseconds.',
                 'min'               => 10,
@@ -2137,22 +2137,22 @@ class Playouts_Element_Progress_Bars extends Playouts_Repeater_Element {
                 'step'              => 10,
                 'value'             => 80,
                 'depends'           => array( 'element' => 'enable_animation', 'value' => '1' ),
-                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'peenapo-layouts-txd' ) ),
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -2202,23 +2202,23 @@ class Playouts_Element_Progress_Bars_Item extends Playouts_Repeater_Item_Element
 
         $this->module = 'bw_progress_bar';
         $this->module_parent = 'bw_progress_bars';
-        $this->name = esc_html__( 'Progress Bar', 'AAA' );
+        $this->name = esc_html__( 'Progress Bar', 'peenapo-layouts-txd' );
         $this->view = 'repeater_item';
 
         $this->params = array(
             'title' => array(
-				'label'              => esc_html__( 'Title', 'AAA' ),
+				'label'              => esc_html__( 'Title', 'peenapo-layouts-txd' ),
 				'type'               => 'textfield',
-				'value'              => esc_html__( 'Some title goes here', 'AAA' ),
+				'value'              => esc_html__( 'Some title goes here', 'peenapo-layouts-txd' ),
 			),
             'value' => array(
-				'label'              => esc_html__( 'Value ( Optional )', 'AAA' ),
+				'label'              => esc_html__( 'Value ( Optional )', 'peenapo-layouts-txd' ),
 				'type'               => 'textfield',
 			),
             'progress' => array(
-                'label'             => esc_html__( 'Progress', 'AAA' ),
+                'label'             => esc_html__( 'Progress', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
-                'description'       => esc_html__( 'Some description', 'AAA' ),
+                'description'       => esc_html__( 'Some description', 'peenapo-layouts-txd' ),
                 'append_after'      => '%',
                 'min'               => 0,
                 'max'               => 100,
@@ -2226,33 +2226,33 @@ class Playouts_Element_Progress_Bars_Item extends Playouts_Repeater_Item_Element
                 'value'             => 50,
             ),
             'bar_color' => array(
-                'label'             => esc_html__( 'Bar Color', 'AAA' ),
+                'label'             => esc_html__( 'Bar Color', 'peenapo-layouts-txd' ),
                 'type'              => 'colorpicker',
                 'width'             => 50
             ),
             'bar_color_secondary' => array(
-                'label'             => esc_html__( 'Bar Secondary Color ( Optional )', 'AAA' ),
-                'description'       => esc_html__( 'For gradient background color.', 'AAA' ),
+                'label'             => esc_html__( 'Bar Secondary Color ( Optional )', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'For gradient background color.', 'peenapo-layouts-txd' ),
                 'type'              => 'colorpicker',
                 'width'             => 50
             ),
             'bar_bg_color' => array(
-                'label'             => esc_html__( 'Bar Background Color', 'AAA' ),
+                'label'             => esc_html__( 'Bar Background Color', 'peenapo-layouts-txd' ),
                 'type'              => 'colorpicker',
                 'width'             => 50
             ),
             'text_color' => array(
-                'label'             => esc_html__( 'Text Color', 'AAA' ),
+                'label'             => esc_html__( 'Text Color', 'peenapo-layouts-txd' ),
                 'type'              => 'colorpicker',
                 'width'             => 50
             ),
             'counter_color' => array(
-                'label'             => esc_html__( 'Counter Text Color', 'AAA' ),
+                'label'             => esc_html__( 'Counter Text Color', 'peenapo-layouts-txd' ),
                 'type'              => 'colorpicker',
                 'width'             => 50
             ),
             'direction' => array(
-                'label'             => esc_html__( 'Gradient Direction', 'AAA' ),
+                'label'             => esc_html__( 'Gradient Direction', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     'top'               => 'Top',
@@ -2269,30 +2269,30 @@ class Playouts_Element_Progress_Bars_Item extends Playouts_Repeater_Item_Element
             ),
             'padding_top' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Padding Top', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Padding Top', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 50
             ),
             'padding_bottom' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Padding Bottom', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Padding Bottom', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 50
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -2351,28 +2351,28 @@ class Playouts_Element_Button extends Playouts_Element {
     function init() {
 
         $this->module = 'bw_button';
-        $this->name = esc_html__( 'Button', 'AAA' );
+        $this->name = esc_html__( 'Button', 'peenapo-layouts-txd' );
         $this->view = 'element';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#8d61f2';
 
         $this->params = array(
             'label' => array(
-				'label'              => esc_html__( 'Label', 'AAA' ),
+				'label'              => esc_html__( 'Label', 'peenapo-layouts-txd' ),
 				'type'               => 'textfield',
-				'value'              => esc_html__( 'This is a button', 'AAA' ),
+				'value'              => esc_html__( 'This is a button', 'peenapo-layouts-txd' ),
 			),
             'link' => array(
-				'label'              => esc_html__( 'Link', 'AAA' ),
+				'label'              => esc_html__( 'Link', 'peenapo-layouts-txd' ),
 				'type'               => 'textfield',
 				'placeholder'        => 'http://',
 			),
             'target' => array(
-                'label'             => esc_html__( 'Open in a New Tab?', 'AAA' ),
+                'label'             => esc_html__( 'Open in a New Tab?', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'style' => array(
-                'label'             => esc_html__( 'Style', 'AAA' ),
+                'label'             => esc_html__( 'Style', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     'extra_small'       => 'Extra Small',
@@ -2385,22 +2385,22 @@ class Playouts_Element_Button extends Playouts_Element {
                 'value'             => 'medium'
             ),
             'bold' => array(
-                'label'             => esc_html__( 'Bold Text?', 'AAA' ),
+                'label'             => esc_html__( 'Bold Text?', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'bg_color' => array(
-                'label'             => esc_html__( 'Background Color', 'AAA' ),
+                'label'             => esc_html__( 'Background Color', 'peenapo-layouts-txd' ),
                 'type'              => 'colorpicker',
                 'width'             => 50
             ),
             'bg_color_second' => array(
-                'label'             => esc_html__( 'Second Background Color ( Optional )', 'AAA' ),
-                'description'       => esc_html__( 'For gradient background color.', 'AAA' ),
+                'label'             => esc_html__( 'Second Background Color ( Optional )', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'For gradient background color.', 'peenapo-layouts-txd' ),
                 'type'              => 'colorpicker',
                 'width'             => 50
             ),
             'direction' => array(
-                'label'             => esc_html__( 'Gradient Direction', 'AAA' ),
+                'label'             => esc_html__( 'Gradient Direction', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     'top'               => 'Top',
@@ -2415,11 +2415,11 @@ class Playouts_Element_Button extends Playouts_Element {
                 'value'             => 'bottom right',
             ),
             'text_color' => array(
-                'label'             => esc_html__( 'Text Color', 'AAA' ),
+                'label'             => esc_html__( 'Text Color', 'peenapo-layouts-txd' ),
                 'type'              => 'colorpicker',
             ),
             'border_radius' => array(
-                'label'             => esc_html__( 'Border Radius', 'AAA' ),
+                'label'             => esc_html__( 'Border Radius', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'pixels',
                 'min'               => 0,
@@ -2428,65 +2428,65 @@ class Playouts_Element_Button extends Playouts_Element {
                 'value'             => 3,
             ),
             'transform_top' => array(
-                'label'             => esc_html__( 'Transform Top Position', 'AAA' ),
+                'label'             => esc_html__( 'Transform Top Position', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'value'             => '1',
-                'tab'               => array( 'hover' => esc_html__( 'Hover Styles', 'AAA' ) ),
+                'tab'               => array( 'hover' => esc_html__( 'Hover Styles', 'peenapo-layouts-txd' ) ),
             ),
             'shadow' => array(
-                'label'             => esc_html__( 'Add Shadow', 'AAA' ),
+                'label'             => esc_html__( 'Add Shadow', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'value'             => '1',
-                'tab'               => array( 'hover' => esc_html__( 'Hover Styles', 'AAA' ) ),
+                'tab'               => array( 'hover' => esc_html__( 'Hover Styles', 'peenapo-layouts-txd' ) ),
             ),
             'hover_bg_color' => array(
-                'label'             => esc_html__( 'Background Color', 'AAA' ),
+                'label'             => esc_html__( 'Background Color', 'peenapo-layouts-txd' ),
                 'type'              => 'colorpicker',
-                'tab'               => array( 'hover' => esc_html__( 'Hover Styles', 'AAA' ) ),
+                'tab'               => array( 'hover' => esc_html__( 'Hover Styles', 'peenapo-layouts-txd' ) ),
             ),
             'hover_text_color' => array(
-                'label'             => esc_html__( 'Text Color', 'AAA' ),
+                'label'             => esc_html__( 'Text Color', 'peenapo-layouts-txd' ),
                 'type'              => 'colorpicker',
-                'tab'               => array( 'hover' => esc_html__( 'Hover Styles', 'AAA' ) ),
+                'tab'               => array( 'hover' => esc_html__( 'Hover Styles', 'peenapo-layouts-txd' ) ),
             ),
             'margin_top' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Margin Top', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Margin Top', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 50
             ),
             'margin_right' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Margin Right', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Margin Right', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 50
             ),
             'margin_bottom' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Margin Bottom', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Margin Bottom', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 50
             ),
             'margin_left' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Margin Left', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Margin Left', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 50
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -2557,46 +2557,46 @@ class Playouts_Element_Code extends Playouts_Element {
     function init() {
 
         $this->module = 'bw_code';
-        $this->name = esc_html__( 'Code', 'AAA' );
+        $this->name = esc_html__( 'Code', 'peenapo-layouts-txd' );
         $this->view = 'element';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#e2de7d';
 
         $this->params = array(
             'content' => array(
-				'label'             => esc_html__( 'Code', 'AAA' ),
+				'label'             => esc_html__( 'Code', 'peenapo-layouts-txd' ),
 				'type'              => 'textarea',
 				'is_content'        => true,
                 'value'             => '&lt;div class="example"&gt;
-    ' . esc_html__( 'Some code goes here..', 'AAA' ) . '
+    ' . esc_html__( 'Some code goes here..', 'peenapo-layouts-txd' ) . '
 &lt;/div&gt;',
 			),
             'margin_top' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Margin Top', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Margin Top', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 50
             ),
             'margin_bottom' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Margin Bottom', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Margin Bottom', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 50
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -2635,30 +2635,30 @@ class Playouts_Element_Sidebar extends Playouts_Element {
     function init() {
 
         $this->module = 'bw_sidebar';
-        $this->name = esc_html__( 'Sidebar', 'AAA' );
+        $this->name = esc_html__( 'Sidebar', 'peenapo-layouts-txd' );
         $this->view = 'element';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#3d60f9';
 
         $this->params = array(
             'sidebar' => array(
                 'type'              => 'sidebars',
-                'label'             => esc_html__( 'Select Sidebar', 'AAA' ),
+                'label'             => esc_html__( 'Select Sidebar', 'peenapo-layouts-txd' ),
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -2697,9 +2697,9 @@ if( in_array( 'contact-form-7/wp-contact-form-7.php', Playouts_Bootstrap::$activ
         function init() {
 
             $this->module = 'bw_contact_form_7';
-            $this->name = esc_html__( 'Contact Form 7', 'AAA' );
+            $this->name = esc_html__( 'Contact Form 7', 'peenapo-layouts-txd' );
             $this->view = 'element';
-            $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+            $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
             $this->module_color = '#15dcc7';
 
             global $wpdb;
@@ -2716,18 +2716,18 @@ if( in_array( 'contact-form-7/wp-contact-form-7.php', Playouts_Bootstrap::$activ
 
             $form_options = array();
             if( $forms ) {
-                $form_options[0] = __( 'Select Form', 'AAA' );
+                $form_options[0] = __( 'Select Form', 'peenapo-layouts-txd' );
                 foreach ( $forms as $form ) {
                     $form_options[ (int)$form->ID ] = esc_attr( $form->post_title );
                 }
             }else{
-                $form_options[0] = __( 'No contact forms found.', 'AAA' );
+                $form_options[0] = __( 'No contact forms found.', 'peenapo-layouts-txd' );
             }
 
             $this->params = array(
                 'form_id' => array(
                     'type'              => 'select',
-                    'label'             => esc_html__( 'Select Contact Form', 'AAA' ),
+                    'label'             => esc_html__( 'Select Contact Form', 'peenapo-layouts-txd' ),
                     'options'           => $form_options,
                 ),
             );
@@ -2763,14 +2763,14 @@ class Playouts_Element_Divider extends Playouts_Element {
     function init() {
 
         $this->module = 'bw_divider';
-        $this->name = esc_html__( 'Divider', 'AAA' );
+        $this->name = esc_html__( 'Divider', 'peenapo-layouts-txd' );
         $this->view = 'element';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#1593dc';
 
         $this->params = array(
             'height' => array(
-                'label'             => esc_html__( 'Separator height', 'AAA' ),
+                'label'             => esc_html__( 'Separator height', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'pixels.',
                 'min'               => 10,
@@ -2780,18 +2780,18 @@ class Playouts_Element_Divider extends Playouts_Element {
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -2828,34 +2828,34 @@ class Playouts_Element_Image extends Playouts_Element {
     function init() {
 
         $this->module = 'bw_image';
-        $this->name = esc_html__( 'Image', 'AAA' );
+        $this->name = esc_html__( 'Image', 'peenapo-layouts-txd' );
         $this->view = 'element';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#c5e375';
 
         $this->params = array(
             'image' => array(
                 'type'              => 'image',
-				'label'             => esc_html__( 'Image', 'AAA' ),
+				'label'             => esc_html__( 'Image', 'peenapo-layouts-txd' ),
 			),
             'alt_tag' => array(
                 'type'              => 'textfield',
-				'label'             => esc_html__( 'Alt Tag ( Optional )', 'AAA' ),
+				'label'             => esc_html__( 'Alt Tag ( Optional )', 'peenapo-layouts-txd' ),
 			),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -2891,24 +2891,24 @@ class Playouts_Element_Auto_Type extends Playouts_Element {
 
         $this->module = 'bw_auto_type';
         $this->module_item = 'bw_auto_type_item';
-        $this->name = esc_html__( 'Auto Type Heading', 'AAA' );
+        $this->name = esc_html__( 'Auto Type Heading', 'peenapo-layouts-txd' );
         $this->view = 'repeater';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#75a9e3';
 
         $this->params = array(
             'items' => array(
-                'label'              => esc_html__( 'Texts', 'AAA' ),
+                'label'              => esc_html__( 'Texts', 'peenapo-layouts-txd' ),
                 'type'               => 'repeater',
-                'description'        => esc_html__( 'You can add as many texts as you need, just click the plus icon.', 'AAA' ),
+                'description'        => esc_html__( 'You can add as many texts as you need, just click the plus icon.', 'peenapo-layouts-txd' ),
             ),
             'static_heading' => array(
-                'label'              => esc_html__( 'Static Heading', 'AAA' ),
+                'label'              => esc_html__( 'Static Heading', 'peenapo-layouts-txd' ),
                 'type'               => 'textfield',
-                'value'              =>  esc_html__( 'This is the main title', 'AAA' ),
+                'value'              =>  esc_html__( 'This is the main title', 'peenapo-layouts-txd' ),
             ),
             'h_tag' => array(
-                'label'             => esc_html__( 'Select Heading Title Tag', 'AAA' ),
+                'label'             => esc_html__( 'Select Heading Title Tag', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     'h1'    => 'H1',
@@ -2921,7 +2921,7 @@ class Playouts_Element_Auto_Type extends Playouts_Element {
                 'value'             => 'h2'
             ),
             'font_size' => array(
-                'label'             => esc_html__( 'Font Size', 'AAA' ),
+                'label'             => esc_html__( 'Font Size', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'pixels',
                 'min'               => 14,
@@ -2931,31 +2931,31 @@ class Playouts_Element_Auto_Type extends Playouts_Element {
             ),
             'text_color' => array(
                 'type'              => 'colorpicker',
-				'label'             => esc_html__( 'Text Color', 'AAA' ),
+				'label'             => esc_html__( 'Text Color', 'peenapo-layouts-txd' ),
 			),
             'auto_type_color' => array(
                 'type'              => 'colorpicker',
-				'label'             => esc_html__( 'Auto Type Color', 'AAA' ),
+				'label'             => esc_html__( 'Auto Type Color', 'peenapo-layouts-txd' ),
 			),
             'bold_text' => array(
-                'label'             => esc_html__( 'Bold Text', 'AAA' ),
+                'label'             => esc_html__( 'Bold Text', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'value'             => '1',
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -3011,15 +3011,15 @@ class Playouts_Element_Auto_Type_Item extends Playouts_Element {
 
         $this->module = 'bw_auto_type_item';
         $this->module_item = 'bw_auto_type';
-        $this->name = esc_html__( 'Auto Type Text', 'AAA' );
+        $this->name = esc_html__( 'Auto Type Text', 'peenapo-layouts-txd' );
         $this->view = 'repeater_item';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
 
         $this->params = array(
             'text' => array(
-                'label'             => esc_html__( 'Text', 'AAA' ),
+                'label'             => esc_html__( 'Text', 'peenapo-layouts-txd' ),
                 'type'              => 'textfield',
-                'value'             => esc_html__( 'Auto type text here.', 'AAA' ),
+                'value'             => esc_html__( 'Auto type text here.', 'peenapo-layouts-txd' ),
             ),
         );
 
@@ -3047,18 +3047,18 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
 
         $this->module = 'bw_testimonials';
         $this->module_item = 'bw_testimonial_item';
-        $this->name = esc_html__( 'Testimonial Slider', 'AAA' );
+        $this->name = esc_html__( 'Testimonial Slider', 'peenapo-layouts-txd' );
         $this->view = 'repeater';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#70acf1';
         $this->params = array(
             'items' => array(
                 'type'               => 'repeater',
-                'label'              => esc_html__( 'Testimonials', 'AAA' ),
-                'description'        => esc_html__( 'You can add as many items as you need, just click the plus icon.', 'AAA' ),
+                'label'              => esc_html__( 'Testimonials', 'peenapo-layouts-txd' ),
+                'description'        => esc_html__( 'You can add as many items as you need, just click the plus icon.', 'peenapo-layouts-txd' ),
             ),
             'layout' => array(
-                'label'             => esc_html__( 'Layout', 'AAA' ),
+                'label'             => esc_html__( 'Layout', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     'standard'  => 'Standard',
@@ -3067,7 +3067,7 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
                 'value'             => 'some2'
             ),
             'slide_width' => array(
-                'label'             => esc_html__( 'Slides Width', 'AAA' ),
+                'label'             => esc_html__( 'Slides Width', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => '%',
                 'min'               => 20,
@@ -3076,17 +3076,17 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
                 'value'             => 35,
             ),
             'adaptive_height' => array(
-                'label'             => esc_html__( 'Enable Adaptive Height', 'AAA' ),
+                'label'             => esc_html__( 'Enable Adaptive Height', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'value'             => '1',
             ),
             'group_slides_enable' => array(
-                'label'             => esc_html__( 'Enable Slides Grouping', 'AAA' ),
-                'description'       => esc_html__( 'Groups cells together in slides', 'AAA' ),
+                'label'             => esc_html__( 'Enable Slides Grouping', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Groups cells together in slides', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'group_slides' => array(
-                'label'             => esc_html__( 'Group Slides', 'AAA' ),
+                'label'             => esc_html__( 'Group Slides', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'slides',
                 'min'               => 2,
@@ -3096,12 +3096,12 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
                 'depends'           => array( 'element' => 'group_slides_enable', 'value' => '1' ),
             ),
             'autoplay_enable' => array(
-                'label'             => esc_html__( 'Enable Auto-play', 'AAA' ),
+                'label'             => esc_html__( 'Enable Auto-play', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'autoplay' => array(
-                'label'             => esc_html__( 'Auto-play Timeout', 'AAA' ),
-                'description'       => esc_html__( 'Advance cells ever {Number} milliseconds. 1500 will advance cells every 1.5 seconds', 'AAA' ),
+                'label'             => esc_html__( 'Auto-play Timeout', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Advance cells ever {Number} milliseconds. 1500 will advance cells every 1.5 seconds', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'slides',
                 'min'               => 1000,
@@ -3111,62 +3111,62 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
                 'depends'           => array( 'element' => 'autoplay_enable', 'value' => '1' ),
             ),
             'stop_autoplay_hover' => array(
-                'label'             => esc_html__( 'Stop Auto-playing on Hover', 'AAA' ),
-                'description'       => esc_html__( 'Auto-playing will pause when the user hovers over the carousel', 'AAA' ),
+                'label'             => esc_html__( 'Stop Auto-playing on Hover', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Auto-playing will pause when the user hovers over the carousel', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'value'             => '1',
                 'depends'           => array( 'element' => 'autoplay_enable', 'value' => '1' ),
             ),
             'pagination_enable' => array(
-                'label'             => esc_html__( 'Enable Dot Pagination', 'AAA' ),
+                'label'             => esc_html__( 'Enable Dot Pagination', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'value'             => '1',
                 'width'             => 50
             ),
             'infinite' => array(
-                'label'             => esc_html__( 'Infinite Loop', 'AAA' ),
-                'description'       => esc_html__( 'At the end of cells, wrap-around to the other end for infinite scrolling.', 'AAA' ),
+                'label'             => esc_html__( 'Infinite Loop', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'At the end of cells, wrap-around to the other end for infinite scrolling.', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'value'             => '1',
                 'width'             => 50
             ),
             'has_focus' => array(
-                'label'             => esc_html__( 'Enable Focus Accent', 'AAA' ),
-                'description'       => esc_html__( 'Enable this option to add accent color to focused slides.', 'AAA' ),
+                'label'             => esc_html__( 'Enable Focus Accent', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Enable this option to add accent color to focused slides.', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'width'             => 50
             ),
             'invert_color' => array(
-                'label'             => esc_html__( 'Invret Colors', 'AAA' ),
-                'description'       => esc_html__( 'enable this options if you use a dark background.', 'AAA' ),
+                'label'             => esc_html__( 'Invret Colors', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'enable this options if you use a dark background.', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'width'             => 50
             ),
             'bg_color' => array(
-                'label'             => esc_html__( 'Background Color', 'AAA' ),
+                'label'             => esc_html__( 'Background Color', 'peenapo-layouts-txd' ),
                 'type'              => 'colorpicker',
                 'width'             => 50
             ),
             'text_color' => array(
-                'label'             => esc_html__( 'Text Color', 'AAA' ),
+                'label'             => esc_html__( 'Text Color', 'peenapo-layouts-txd' ),
                 'type'              => 'colorpicker',
                 'width'             => 50
             ),
             'animation_speed' => array(
-                'label'             => esc_html__( 'Custom Animation Speed', 'AAA' ),
-                'description'       => esc_html__( 'Set custom slider speed.', 'AAA' ),
+                'label'             => esc_html__( 'Custom Animation Speed', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Set custom slider speed.', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'width'             => 50
             ),
             'fine_text' => array(
-                'label'             => esc_html__( 'Fine Text', 'AAA' ),
-                'description'       => esc_html__( 'This will make your content text finer.', 'AAA' ),
+                'label'             => esc_html__( 'Fine Text', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'This will make your content text finer.', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'width'             => 50
             ),
             'attraction' => array(
-                'label'             => esc_html__( 'Attraction', 'AAA' ),
-                'description'       => esc_html__( 'Attracts the position of the slider to the selected cell. Higher attraction makes the slider move faster. Lower makes it move slower.', 'AAA' ),
+                'label'             => esc_html__( 'Attraction', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Attracts the position of the slider to the selected cell. Higher attraction makes the slider move faster. Lower makes it move slower.', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => '',
                 'min'               => 0.005,
@@ -3176,8 +3176,8 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
                 'depends'           => array( 'element' => 'animation_speed', 'value' => '1' ),
             ),
             'friction' => array(
-                'label'             => esc_html__( 'Friction', 'AAA' ),
-                'description'       => esc_html__( 'Slows the movement of slider. Higher friction makes the slider feel stickier and less bouncy. Lower friction makes the slider feel looser and more wobbly.', 'AAA' ),
+                'label'             => esc_html__( 'Friction', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Slows the movement of slider. Higher friction makes the slider feel stickier and less bouncy. Lower friction makes the slider feel looser and more wobbly.', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => '',
                 'min'               => 0.05,
@@ -3188,18 +3188,18 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -3275,27 +3275,27 @@ class Playouts_Element_Testimonial_Item extends Playouts_Repeater_Item_Element {
 
         $this->module = 'bw_testimonial_item';
         $this->module_parent = 'bw_testimonials';
-        $this->name = esc_html__( 'Testimonial Slide', 'AAA' );
+        $this->name = esc_html__( 'Testimonial Slide', 'peenapo-layouts-txd' );
         $this->view = 'repeater_item';
 
         $this->params = array(
             'name' => array(
-				'label'              => esc_html__( 'Name', 'AAA' ),
+				'label'              => esc_html__( 'Name', 'peenapo-layouts-txd' ),
 				'type'               => 'textfield',
-                'value'             => esc_html__( 'Testimonial name', 'AAA' ),
+                'value'             => esc_html__( 'Testimonial name', 'peenapo-layouts-txd' ),
 			),
             'title' => array(
-				'label'              => esc_html__( 'Title', 'AAA' ),
+				'label'              => esc_html__( 'Title', 'peenapo-layouts-txd' ),
 				'type'               => 'textfield',
-                'value'             => esc_html__( 'Testimonial title', 'AAA' ),
+                'value'             => esc_html__( 'Testimonial title', 'peenapo-layouts-txd' ),
 			),
             'enable_star_rating' => array(
-                'label'             => esc_html__( 'Enable Star Rating', 'AAA' ),
-                'description'       => esc_html__( 'Your can add star rating if you want', 'AAA' ),
+                'label'             => esc_html__( 'Enable Star Rating', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Your can add star rating if you want', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'star_rating' => array(
-                'label'             => esc_html__( 'Star Rating', 'AAA' ),
+                'label'             => esc_html__( 'Star Rating', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'stars',
                 'min'               => 0,
@@ -3305,29 +3305,29 @@ class Playouts_Element_Testimonial_Item extends Playouts_Repeater_Item_Element {
                 'depends'           => array( 'element' => 'enable_star_rating', 'value' => '1' ),
             ),
             'content' => array(
-				'label'             => esc_html__( 'Content', 'AAA' ),
+				'label'             => esc_html__( 'Content', 'peenapo-layouts-txd' ),
 				'type'              => 'textarea',
 				'is_content'        => true,
                 'value'             => 'Testimonial item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.',
 			),
             'thumb' => array(
                 'type'              => 'image',
-				'label'             => esc_html__( 'Thumbnail', 'AAA' ),
+				'label'             => esc_html__( 'Thumbnail', 'peenapo-layouts-txd' ),
 			),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -3426,18 +3426,18 @@ class Playouts_Element_Clients extends Playouts_Repeater_Element {
 
         $this->module = 'bw_clients';
         $this->module_item = 'bw_clients_item';
-        $this->name = esc_html__( 'Clients', 'AAA' );
+        $this->name = esc_html__( 'Clients', 'peenapo-layouts-txd' );
         $this->view = 'repeater';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#de8686';
         $this->params = array(
             'items' => array(
                 'type'               => 'repeater',
-                'label'              => esc_html__( 'Client Items', 'AAA' ),
-                'description'        => esc_html__( 'You can add as many items as you need, just click the plus icon.', 'AAA' ),
+                'label'              => esc_html__( 'Client Items', 'peenapo-layouts-txd' ),
+                'description'        => esc_html__( 'You can add as many items as you need, just click the plus icon.', 'peenapo-layouts-txd' ),
             ),
             'items_per_row' => array(
-                'label'             => esc_html__( 'Items Per Row', 'AAA' ),
+                'label'             => esc_html__( 'Items Per Row', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'clients per row',
                 'min'               => 1,
@@ -3447,12 +3447,12 @@ class Playouts_Element_Clients extends Playouts_Repeater_Element {
             ),
             'enable_animation' => array(
                 'type'              => 'true_false',
-                'label'             => esc_html__( 'Enable Animation', 'AAA' ),
-                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+                'label'             => esc_html__( 'Enable Animation', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'peenapo-layouts-txd' ) ),
             ),
             'animation_speed' => array(
-                'label'             => esc_html__( 'Animation Speed', 'AAA' ),
-                'description'       => esc_html__( 'Item animation speed in milliseconds.', 'AAA' ),
+                'label'             => esc_html__( 'Animation Speed', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Item animation speed in milliseconds.', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'milliseconds.',
                 'min'               => 100,
@@ -3460,11 +3460,11 @@ class Playouts_Element_Clients extends Playouts_Repeater_Element {
                 'step'              => 50,
                 'value'             => 400,
                 'depends'           => array( 'element' => 'enable_animation', 'value' => '1' ),
-                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'peenapo-layouts-txd' ) ),
             ),
             'animation_delay' => array(
-                'label'             => esc_html__( 'Animation Delay', 'AAA' ),
-                'description'       => esc_html__( 'The appearance delay between each item in milliseconds.', 'AAA' ),
+                'label'             => esc_html__( 'Animation Delay', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'The appearance delay between each item in milliseconds.', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'milliseconds.',
                 'min'               => 100,
@@ -3472,22 +3472,22 @@ class Playouts_Element_Clients extends Playouts_Repeater_Element {
                 'step'              => 50,
                 'value'             => 100,
                 'depends'           => array( 'element' => 'enable_animation', 'value' => '1' ),
-                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'peenapo-layouts-txd' ) ),
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -3536,48 +3536,48 @@ class Playouts_Element_Clients_Item extends Playouts_Repeater_Item_Element {
 
         $this->module = 'bw_clients_item';
         $this->module_parent = 'bw_clients';
-        $this->name = esc_html__( 'Client', 'AAA' );
+        $this->name = esc_html__( 'Client', 'peenapo-layouts-txd' );
         $this->view = 'repeater_item';
 
         $this->params = array(
             'image' => array(
                 'type'               => 'image',
-				'label'              => esc_html__( 'Client Image', 'AAA' ),
+				'label'              => esc_html__( 'Client Image', 'peenapo-layouts-txd' ),
 			),
             'enable_link' => array(
                 'type'              => 'true_false',
-                'label'             => esc_html__( 'Link?', 'AAA' ),
+                'label'             => esc_html__( 'Link?', 'peenapo-layouts-txd' ),
             ),
             'url' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Url', 'AAA' ),
+                'label'             => esc_html__( 'Url', 'peenapo-layouts-txd' ),
                 'value'             => '',
                 'placeholder'       => 'http://',
                 'depends'           => array( 'element' => 'enable_link', 'value' => '1' ),
             ),
             'new_tab' => array(
                 'type'              => 'true_false',
-                'label'             => esc_html__( 'Open in a New Tab?', 'AAA' ),
+                'label'             => esc_html__( 'Open in a New Tab?', 'peenapo-layouts-txd' ),
                 'depends'           => array( 'element' => 'enable_link', 'value' => '1' ),
             ),
             'image_alt' => array(
                 'type'               => 'textfield',
-				'label'              => esc_html__( 'Alt Tag for Image ( Optional )', 'AAA' ),
+				'label'              => esc_html__( 'Alt Tag for Image ( Optional )', 'peenapo-layouts-txd' ),
 			),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -3632,18 +3632,18 @@ class Playouts_Element_Clients_Slider extends Playouts_Repeater_Element {
 
         $this->module = 'bw_clients_slider';
         $this->module_item = 'bw_clients_slider_item';
-        $this->name = esc_html__( 'Clients Slider', 'AAA' );
+        $this->name = esc_html__( 'Clients Slider', 'peenapo-layouts-txd' );
         $this->view = 'repeater';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#de8686';
         $this->params = array(
             'items' => array(
                 'type'               => 'repeater',
-                'label'              => esc_html__( 'Client Items', 'AAA' ),
-                'description'        => esc_html__( 'You can add as many items as you need, just click the plus icon.', 'AAA' ),
+                'label'              => esc_html__( 'Client Items', 'peenapo-layouts-txd' ),
+                'description'        => esc_html__( 'You can add as many items as you need, just click the plus icon.', 'peenapo-layouts-txd' ),
             ),
             'slide_width' => array(
-                'label'             => esc_html__( 'Slides Width', 'AAA' ),
+                'label'             => esc_html__( 'Slides Width', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => '%',
                 'min'               => 20,
@@ -3652,17 +3652,17 @@ class Playouts_Element_Clients_Slider extends Playouts_Repeater_Element {
                 'value'             => 23,
             ),
             'adaptive_height' => array(
-                'label'             => esc_html__( 'Enable Adaptive Height', 'AAA' ),
+                'label'             => esc_html__( 'Enable Adaptive Height', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'value'             => '1',
             ),
             'group_slides_enable' => array(
-                'label'             => esc_html__( 'Enable Slides Grouping', 'AAA' ),
-                'description'       => esc_html__( 'Groups cells together in slides', 'AAA' ),
+                'label'             => esc_html__( 'Enable Slides Grouping', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Groups cells together in slides', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'group_slides' => array(
-                'label'             => esc_html__( 'Group Slides', 'AAA' ),
+                'label'             => esc_html__( 'Group Slides', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'slides',
                 'min'               => 2,
@@ -3672,12 +3672,12 @@ class Playouts_Element_Clients_Slider extends Playouts_Repeater_Element {
                 'depends'           => array( 'element' => 'group_slides_enable', 'value' => '1' ),
             ),
             'autoplay_enable' => array(
-                'label'             => esc_html__( 'Enable Auto-play', 'AAA' ),
+                'label'             => esc_html__( 'Enable Auto-play', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'autoplay' => array(
-                'label'             => esc_html__( 'Auto-play Timeout', 'AAA' ),
-                'description'       => esc_html__( 'Advance cells ever {Number} milliseconds. 1500 will advance cells every 1.5 seconds', 'AAA' ),
+                'label'             => esc_html__( 'Auto-play Timeout', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Advance cells ever {Number} milliseconds. 1500 will advance cells every 1.5 seconds', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'slides',
                 'min'               => 1000,
@@ -3687,40 +3687,40 @@ class Playouts_Element_Clients_Slider extends Playouts_Repeater_Element {
                 'depends'           => array( 'element' => 'autoplay_enable', 'value' => '1' ),
             ),
             'stop_autoplay_hover' => array(
-                'label'             => esc_html__( 'Stop Auto-playing on Hover', 'AAA' ),
-                'description'       => esc_html__( 'Auto-playing will pause when the user hovers over the carousel', 'AAA' ),
+                'label'             => esc_html__( 'Stop Auto-playing on Hover', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Auto-playing will pause when the user hovers over the carousel', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'value'             => '1',
                 'depends'           => array( 'element' => 'autoplay_enable', 'value' => '1' ),
             ),
             'pagination_enable' => array(
-                'label'             => esc_html__( 'Enable Dot Pagination', 'AAA' ),
+                'label'             => esc_html__( 'Enable Dot Pagination', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'value'             => '1',
                 'width'             => 50
             ),
             'infinite' => array(
-                'label'             => esc_html__( 'Infinite Loop', 'AAA' ),
-                'description'       => esc_html__( 'At the end of cells, wrap-around to the other end for infinite scrolling.', 'AAA' ),
+                'label'             => esc_html__( 'Infinite Loop', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'At the end of cells, wrap-around to the other end for infinite scrolling.', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'value'             => '1',
                 'width'             => 50
             ),
             'animation_speed' => array(
-                'label'             => esc_html__( 'Custom Animation Speed', 'AAA' ),
-                'description'       => esc_html__( 'Set custom slider speed.', 'AAA' ),
+                'label'             => esc_html__( 'Custom Animation Speed', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Set custom slider speed.', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'width'             => 50
             ),
             'invert_color' => array(
-                'label'             => esc_html__( 'Invret Colors', 'AAA' ),
-                'description'       => esc_html__( 'enable this options if you use a dark background.', 'AAA' ),
+                'label'             => esc_html__( 'Invret Colors', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'enable this options if you use a dark background.', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'width'             => 50
             ),
             'attraction' => array(
-                'label'             => esc_html__( 'Attraction', 'AAA' ),
-                'description'       => esc_html__( 'Attracts the position of the slider to the selected cell. Higher attraction makes the slider move faster. Lower makes it move slower.', 'AAA' ),
+                'label'             => esc_html__( 'Attraction', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Attracts the position of the slider to the selected cell. Higher attraction makes the slider move faster. Lower makes it move slower.', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => '',
                 'min'               => 0.005,
@@ -3730,8 +3730,8 @@ class Playouts_Element_Clients_Slider extends Playouts_Repeater_Element {
                 'depends'           => array( 'element' => 'animation_speed', 'value' => '1' ),
             ),
             'friction' => array(
-                'label'             => esc_html__( 'Friction', 'AAA' ),
-                'description'       => esc_html__( 'Slows the movement of slider. Higher friction makes the slider feel stickier and less bouncy. Lower friction makes the slider feel looser and more wobbly.', 'AAA' ),
+                'label'             => esc_html__( 'Friction', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Slows the movement of slider. Higher friction makes the slider feel stickier and less bouncy. Lower friction makes the slider feel looser and more wobbly.', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => '',
                 'min'               => 0.05,
@@ -3742,18 +3742,18 @@ class Playouts_Element_Clients_Slider extends Playouts_Repeater_Element {
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -3815,48 +3815,48 @@ class Playouts_Element_Clients_Slider_Item extends Playouts_Repeater_Item_Elemen
 
         $this->module = 'bw_clients_slider_item';
         $this->module_parent = 'bw_clients_slider';
-        $this->name = esc_html__( 'Client Slide', 'AAA' );
+        $this->name = esc_html__( 'Client Slide', 'peenapo-layouts-txd' );
         $this->view = 'repeater_item';
 
         $this->params = array(
             'image' => array(
                 'type'               => 'image',
-				'label'              => esc_html__( 'Client Image', 'AAA' ),
+				'label'              => esc_html__( 'Client Image', 'peenapo-layouts-txd' ),
 			),
             'enable_link' => array(
                 'type'              => 'true_false',
-                'label'             => esc_html__( 'Link?', 'AAA' ),
+                'label'             => esc_html__( 'Link?', 'peenapo-layouts-txd' ),
             ),
             'url' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Url', 'AAA' ),
+                'label'             => esc_html__( 'Url', 'peenapo-layouts-txd' ),
                 'value'             => '',
                 'placeholder'       => 'http://',
                 'depends'           => array( 'element' => 'enable_link', 'value' => '1' ),
             ),
             'new_tab' => array(
                 'type'              => 'true_false',
-                'label'             => esc_html__( 'Open in a New Tab?', 'AAA' ),
+                'label'             => esc_html__( 'Open in a New Tab?', 'peenapo-layouts-txd' ),
                 'depends'           => array( 'element' => 'enable_link', 'value' => '1' ),
             ),
             'image_alt' => array(
                 'type'               => 'textfield',
-				'label'              => esc_html__( 'Alt Tag for Image ( Optional )', 'AAA' ),
+				'label'              => esc_html__( 'Alt Tag for Image ( Optional )', 'peenapo-layouts-txd' ),
 			),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -3908,30 +3908,30 @@ class Playouts_Element_Image_Stack extends Playouts_Repeater_Element {
 
         $this->module = 'bw_image_stack';
         $this->module_item = 'bw_image_stack_item';
-        $this->name = esc_html__( 'Image Stack', 'AAA' );
+        $this->name = esc_html__( 'Image Stack', 'peenapo-layouts-txd' );
         $this->view = 'repeater';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#7b73a6';
         $this->params = array(
             'items' => array(
                 'type'               => 'repeater',
-                'label'              => esc_html__( 'Client Items', 'AAA' ),
-                'description'        => esc_html__( 'You can add as many items as you need, just click the plus icon.', 'AAA' ),
+                'label'              => esc_html__( 'Client Items', 'peenapo-layouts-txd' ),
+                'description'        => esc_html__( 'You can add as many items as you need, just click the plus icon.', 'peenapo-layouts-txd' ),
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -3965,18 +3965,18 @@ class Playouts_Element_Image_Stack_Item extends Playouts_Repeater_Item_Element {
 
         $this->module = 'bw_image_stack_item';
         $this->module_parent = 'bw_image_stack';
-        $this->name = esc_html__( 'Image Stack Item', 'AAA' );
+        $this->name = esc_html__( 'Image Stack Item', 'peenapo-layouts-txd' );
         $this->view = 'repeater_item';
 
         $this->params = array(
             'image' => array(
                 'type'               => 'image',
-				'label'              => esc_html__( 'Client Image', 'AAA' ),
+				'label'              => esc_html__( 'Client Image', 'peenapo-layouts-txd' ),
 			),
             'position_top' => array(
-                'label'             => esc_html__( 'Top Position', 'AAA' ),
+                'label'             => esc_html__( 'Top Position', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
-                'description'       => esc_html__( 'Set the top ( vertical ) position of the image.', 'AAA' ),
+                'description'       => esc_html__( 'Set the top ( vertical ) position of the image.', 'peenapo-layouts-txd' ),
                 'append_after'      => '%',
                 'min'               => -50,
                 'max'               => 50,
@@ -3984,9 +3984,9 @@ class Playouts_Element_Image_Stack_Item extends Playouts_Repeater_Item_Element {
                 'value'             => 0,
             ),
             'position_left' => array(
-                'label'             => esc_html__( 'Left Position', 'AAA' ),
+                'label'             => esc_html__( 'Left Position', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
-                'description'       => esc_html__( 'Set the left ( horizontal ) position of the image.', 'AAA' ),
+                'description'       => esc_html__( 'Set the left ( horizontal ) position of the image.', 'peenapo-layouts-txd' ),
                 'append_after'      => '%',
                 'min'               => -50,
                 'max'               => 50,
@@ -3995,14 +3995,14 @@ class Playouts_Element_Image_Stack_Item extends Playouts_Repeater_Item_Element {
             ),
             'shadow' => array(
                 'type'               => 'true_false',
-				'label'              => esc_html__( 'Enable Shadow', 'AAA' ),
+				'label'              => esc_html__( 'Enable Shadow', 'peenapo-layouts-txd' ),
 			),
             'image_alt' => array(
                 'type'               => 'textfield',
-				'label'              => esc_html__( 'Alt Tag for Image ( Optional )', 'AAA' ),
+				'label'              => esc_html__( 'Alt Tag for Image ( Optional )', 'peenapo-layouts-txd' ),
 			),
             'animation' => array(
-                'label'             => esc_html__( 'Animation', 'AAA' ),
+                'label'             => esc_html__( 'Animation', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     'none'      => 'None',
@@ -4013,11 +4013,11 @@ class Playouts_Element_Image_Stack_Item extends Playouts_Repeater_Item_Element {
                     'bottom'    => 'Bottom',
                 ),
                 'value'             => 'none',
-                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'peenapo-layouts-txd' ) ),
             ),
             'animation_delay' => array(
-                'label'             => esc_html__( 'Animation Delay', 'AAA' ),
-                'description'       => esc_html__( 'Appearance delay in milliseconds.', 'AAA' ),
+                'label'             => esc_html__( 'Animation Delay', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Appearance delay in milliseconds.', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'milliseconds.',
                 'min'               => 0,
@@ -4025,22 +4025,22 @@ class Playouts_Element_Image_Stack_Item extends Playouts_Repeater_Item_Element {
                 'step'              => 50,
                 'value'             => 0,
                 'depends'           => array( 'element' => 'animation', 'value' => array( 'scale', 'top', 'right', 'bottom', 'left' ) ),
-                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'peenapo-layouts-txd' ) ),
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -4096,21 +4096,21 @@ class Playouts_Element_Video_Modal extends Playouts_Element {
     function init() {
 
         $this->module = 'bw_video_modal';
-        $this->name = esc_html__( 'Video Modal', 'AAA' );
+        $this->name = esc_html__( 'Video Modal', 'peenapo-layouts-txd' );
         $this->view = 'element';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#f07373';
         $this->params = array(
             'url' => array(
-				'label'             => esc_html__( 'Video Url', 'AAA' ),
-                'description'       => esc_html__( 'Only Youtube video support', 'AAA' ),
+				'label'             => esc_html__( 'Video Url', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Only Youtube video support', 'peenapo-layouts-txd' ),
 				'type'              => 'textfield',
 				'placeholder'       => 'http://',
 				'is_content'        => true,
 			),
             'size' => array(
-                'label'             => esc_html__( 'Select Video Screen Size', 'AAA' ),
-                'description'       => esc_html__( 'Select the size of the video popup', 'AAA' ),
+                'label'             => esc_html__( 'Select Video Screen Size', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Select the size of the video popup', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     'small'     => 'Small',
@@ -4121,7 +4121,7 @@ class Playouts_Element_Video_Modal extends Playouts_Element {
                 'width'             => 50
             ),
             'size_button' => array(
-                'label'             => esc_html__( 'Select Button Size', 'AAA' ),
+                'label'             => esc_html__( 'Select Button Size', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     'small'     => 'Small',
@@ -4132,40 +4132,40 @@ class Playouts_Element_Video_Modal extends Playouts_Element {
                 'width'             => 50
             ),
             'autoplay' => array(
-                'label'             => esc_html__( 'Autoplay Video', 'AAA' ),
+                'label'             => esc_html__( 'Autoplay Video', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'color' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Color', 'AAA' ),
+                'label'             => esc_html__( 'Color', 'peenapo-layouts-txd' ),
                 'value'             => '',
                 'width'             => 50,
             ),
             'bg_color' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Background Color ( Optional )', 'AAA' ),
+                'label'             => esc_html__( 'Background Color ( Optional )', 'peenapo-layouts-txd' ),
                 'value'             => '',
                 'width'             => 50,
             ),
             'text' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Text Label', 'AAA' ),
+                'label'             => esc_html__( 'Text Label', 'peenapo-layouts-txd' ),
                 'value'             => '',
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -4231,18 +4231,18 @@ class Playouts_Element_Image_Slider extends Playouts_Repeater_Element {
 
         $this->module = 'bw_image_slider';
         $this->module_item = 'bw_image_slider_item';
-        $this->name = esc_html__( 'Image Slider', 'AAA' );
+        $this->name = esc_html__( 'Image Slider', 'peenapo-layouts-txd' );
         $this->view = 'repeater';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#9485e8';
         $this->params = array(
             'items' => array(
                 'type'               => 'repeater',
-                'label'              => esc_html__( 'Image Slides', 'AAA' ),
-                'description'        => esc_html__( 'You can add as many items as you need, just click the plus icon.', 'AAA' ),
+                'label'              => esc_html__( 'Image Slides', 'peenapo-layouts-txd' ),
+                'description'        => esc_html__( 'You can add as many items as you need, just click the plus icon.', 'peenapo-layouts-txd' ),
             ),
             'slide_width' => array(
-                'label'             => esc_html__( 'Slides Width', 'AAA' ),
+                'label'             => esc_html__( 'Slides Width', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => '%',
                 'min'               => 20,
@@ -4251,8 +4251,8 @@ class Playouts_Element_Image_Slider extends Playouts_Repeater_Element {
                 'value'             => 72,
             ),
             'spacing' => array(
-                'label'             => esc_html__( 'Slides Spacing', 'AAA' ),
-                'description'        => esc_html__( 'Set the space between the slides.', 'AAA' ),
+                'label'             => esc_html__( 'Slides Spacing', 'peenapo-layouts-txd' ),
+                'description'        => esc_html__( 'Set the space between the slides.', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'pixels',
                 'min'               => 0,
@@ -4261,32 +4261,32 @@ class Playouts_Element_Image_Slider extends Playouts_Repeater_Element {
                 'value'             => 25,
             ),
             'thumbnail_size' => array(
-                'label'             => esc_html__( 'Image Thumbnail Size', 'AAA' ),
+                'label'             => esc_html__( 'Image Thumbnail Size', 'peenapo-layouts-txd' ),
                 'type'              => 'thumbnail_sizes',
                 'value'             => 'large',
             ),
             'adaptive_height' => array(
-                'label'             => esc_html__( 'Enable Adaptive Height', 'AAA' ),
+                'label'             => esc_html__( 'Enable Adaptive Height', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'value'             => '1',
             ),
             'lazy' => array(
-                'label'             => esc_html__( 'Lazy Image Load', 'AAA' ),
-                'description'       => esc_html__( 'It will load the images only when needed.', 'AAA' ),
+                'label'             => esc_html__( 'Lazy Image Load', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'It will load the images only when needed.', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'free' => array(
-                'label'             => esc_html__( 'Free Scroll', 'AAA' ),
-                'description'       => esc_html__( 'Enables content to be freely scrolled without aligning cells to an end position.', 'AAA' ),
+                'label'             => esc_html__( 'Free Scroll', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Enables content to be freely scrolled without aligning cells to an end position.', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'group_slides_enable' => array(
-                'label'             => esc_html__( 'Enable Slides Grouping', 'AAA' ),
-                'description'       => esc_html__( 'Groups cells together in slides', 'AAA' ),
+                'label'             => esc_html__( 'Enable Slides Grouping', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Groups cells together in slides', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'group_slides' => array(
-                'label'             => esc_html__( 'Group Slides', 'AAA' ),
+                'label'             => esc_html__( 'Group Slides', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'slides',
                 'min'               => 2,
@@ -4296,12 +4296,12 @@ class Playouts_Element_Image_Slider extends Playouts_Repeater_Element {
                 'depends'           => array( 'element' => 'group_slides_enable', 'value' => '1' ),
             ),
             'autoplay_enable' => array(
-                'label'             => esc_html__( 'Enable Auto-play', 'AAA' ),
+                'label'             => esc_html__( 'Enable Auto-play', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'autoplay' => array(
-                'label'             => esc_html__( 'Auto-play Timeout', 'AAA' ),
-                'description'       => esc_html__( 'Advance cells ever {Number} milliseconds. 1500 will advance cells every 1.5 seconds', 'AAA' ),
+                'label'             => esc_html__( 'Auto-play Timeout', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Advance cells ever {Number} milliseconds. 1500 will advance cells every 1.5 seconds', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'slides',
                 'min'               => 1000,
@@ -4311,40 +4311,40 @@ class Playouts_Element_Image_Slider extends Playouts_Repeater_Element {
                 'depends'           => array( 'element' => 'autoplay_enable', 'value' => '1' ),
             ),
             'stop_autoplay_hover' => array(
-                'label'             => esc_html__( 'Stop Auto-playing on Hover', 'AAA' ),
-                'description'       => esc_html__( 'Auto-playing will pause when the user hovers over the carousel', 'AAA' ),
+                'label'             => esc_html__( 'Stop Auto-playing on Hover', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Auto-playing will pause when the user hovers over the carousel', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'value'             => '1',
                 'depends'           => array( 'element' => 'autoplay_enable', 'value' => '1' ),
             ),
             'pagination_enable' => array(
-                'label'             => esc_html__( 'Enable Dot Pagination', 'AAA' ),
+                'label'             => esc_html__( 'Enable Dot Pagination', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'value'             => '1',
                 'width'             => 50
             ),
             'infinite' => array(
-                'label'             => esc_html__( 'Infinite Loop', 'AAA' ),
-                'description'       => esc_html__( 'At the end of cells, wrap-around to the other end for infinite scrolling.', 'AAA' ),
+                'label'             => esc_html__( 'Infinite Loop', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'At the end of cells, wrap-around to the other end for infinite scrolling.', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'value'             => '1',
                 'width'             => 50
             ),
             'animation_speed' => array(
-                'label'             => esc_html__( 'Custom Animation Speed', 'AAA' ),
-                'description'       => esc_html__( 'Set custom slider speed.', 'AAA' ),
+                'label'             => esc_html__( 'Custom Animation Speed', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Set custom slider speed.', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'width'             => 50
             ),
             'invert_color' => array(
-                'label'             => esc_html__( 'Invret Colors', 'AAA' ),
-                'description'       => esc_html__( 'Enable this options if you use a dark background.', 'AAA' ),
+                'label'             => esc_html__( 'Invret Colors', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Enable this options if you use a dark background.', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'width'             => 50
             ),
             'attraction' => array(
-                'label'             => esc_html__( 'Attraction', 'AAA' ),
-                'description'       => esc_html__( 'Attracts the position of the slider to the selected cell. Higher attraction makes the slider move faster. Lower makes it move slower.', 'AAA' ),
+                'label'             => esc_html__( 'Attraction', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Attracts the position of the slider to the selected cell. Higher attraction makes the slider move faster. Lower makes it move slower.', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => '',
                 'min'               => 0.005,
@@ -4354,8 +4354,8 @@ class Playouts_Element_Image_Slider extends Playouts_Repeater_Element {
                 'depends'           => array( 'element' => 'animation_speed', 'value' => '1' ),
             ),
             'friction' => array(
-                'label'             => esc_html__( 'Friction', 'AAA' ),
-                'description'       => esc_html__( 'Slows the movement of slider. Higher friction makes the slider feel stickier and less bouncy. Lower friction makes the slider feel looser and more wobbly.', 'AAA' ),
+                'label'             => esc_html__( 'Friction', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Slows the movement of slider. Higher friction makes the slider feel stickier and less bouncy. Lower friction makes the slider feel looser and more wobbly.', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => '',
                 'min'               => 0.05,
@@ -4366,18 +4366,18 @@ class Playouts_Element_Image_Slider extends Playouts_Repeater_Element {
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -4451,32 +4451,32 @@ class Playouts_Element_Image_Slider_Item extends Playouts_Repeater_Item_Element 
 
         $this->module = 'bw_image_slider_item';
         $this->module_parent = 'bw_image_slider';
-        $this->name = esc_html__( 'Image Slide', 'AAA' );
+        $this->name = esc_html__( 'Image Slide', 'peenapo-layouts-txd' );
         $this->view = 'repeater_item';
 
         $this->params = array(
             'image' => array(
                 'type'               => 'image',
-				'label'              => esc_html__( 'Image', 'AAA' ),
+				'label'              => esc_html__( 'Image', 'peenapo-layouts-txd' ),
 			),
             'image_alt' => array(
                 'type'               => 'textfield',
-				'label'              => esc_html__( 'Alt Tag for Image ( Optional )', 'AAA' ),
+				'label'              => esc_html__( 'Alt Tag for Image ( Optional )', 'peenapo-layouts-txd' ),
 			),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -4534,18 +4534,18 @@ class Playouts_Element_Animated_Text extends Playouts_Repeater_Element {
 
         $this->module = 'bw_animated_text';
         $this->module_item = 'bw_animated_text_item';
-        $this->name = esc_html__( 'Animated Text', 'AAA' );
+        $this->name = esc_html__( 'Animated Text', 'peenapo-layouts-txd' );
         $this->view = 'repeater';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#d27ab0';
         $this->params = array(
             'items' => array(
                 'type'               => 'repeater',
-                'label'              => esc_html__( 'Text Lines', 'AAA' ),
-                'description'        => esc_html__( 'You can add as many text lines as you need, just click the plus icon.', 'AAA' ),
+                'label'              => esc_html__( 'Text Lines', 'peenapo-layouts-txd' ),
+                'description'        => esc_html__( 'You can add as many text lines as you need, just click the plus icon.', 'peenapo-layouts-txd' ),
             ),
             'h_tag' => array(
-                'label'             => esc_html__( 'Select Title Tag', 'AAA' ),
+                'label'             => esc_html__( 'Select Title Tag', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     'h1'    => 'H1',
@@ -4559,7 +4559,7 @@ class Playouts_Element_Animated_Text extends Playouts_Repeater_Element {
             ),
             'text_alignment' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Text Alignment', 'AAA' ),
+				'label'             => esc_html__( 'Text Alignment', 'peenapo-layouts-txd' ),
                 'options'           => array(
                     'inherit'           => 'Inherit',
                     'left'              => 'Left',
@@ -4569,7 +4569,7 @@ class Playouts_Element_Animated_Text extends Playouts_Repeater_Element {
                 'value'             => '',
 			),
             'font_size' => array(
-                'label'             => esc_html__( 'Font Size', 'AAA' ),
+                'label'             => esc_html__( 'Font Size', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'pixels',
                 'min'               => 14,
@@ -4578,7 +4578,7 @@ class Playouts_Element_Animated_Text extends Playouts_Repeater_Element {
                 'value'             => 40,
             ),
             'line_height' => array(
-                'label'             => esc_html__( 'Line Height', 'AAA' ),
+                'label'             => esc_html__( 'Line Height', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => '%',
                 'min'               => 100,
@@ -4588,16 +4588,16 @@ class Playouts_Element_Animated_Text extends Playouts_Repeater_Element {
             ),
             'text_color' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Text Color', 'AAA' ),
+                'label'             => esc_html__( 'Text Color', 'peenapo-layouts-txd' ),
                 'value'             => '',
             ),
             'bold_text' => array(
-                'label'             => esc_html__( 'Bold Text', 'AAA' ),
+                'label'             => esc_html__( 'Bold Text', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'value'             => '1',
             ),
             'speed' => array(
-                'label'             => esc_html__( 'Animation Speed', 'AAA' ),
+                'label'             => esc_html__( 'Animation Speed', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'milliseconds',
                 'min'               => 200,
@@ -4606,7 +4606,7 @@ class Playouts_Element_Animated_Text extends Playouts_Repeater_Element {
                 'value'             => 450,
             ),
             'delay' => array(
-                'label'             => esc_html__( 'Animation Delay Between Text Lines', 'AAA' ),
+                'label'             => esc_html__( 'Animation Delay Between Text Lines', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'milliseconds',
                 'min'               => 50,
@@ -4616,18 +4616,18 @@ class Playouts_Element_Animated_Text extends Playouts_Repeater_Element {
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -4683,29 +4683,29 @@ class Playouts_Element_Animated_Text_Item extends Playouts_Repeater_Item_Element
 
         $this->module = 'bw_animated_text_item';
         $this->module_parent = 'bw_animated_text';
-        $this->name = esc_html__( 'Animated Text Line', 'AAA' );
+        $this->name = esc_html__( 'Animated Text Line', 'peenapo-layouts-txd' );
         $this->view = 'repeater_item';
 
         $this->params = array(
             'text' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Text', 'AAA' ),
-                'value'             => esc_html__( 'Text line goes here', 'AAA' ),
+                'label'             => esc_html__( 'Text', 'peenapo-layouts-txd' ),
+                'value'             => esc_html__( 'Text line goes here', 'peenapo-layouts-txd' ),
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -4744,27 +4744,27 @@ class Playouts_Element_Heading extends Playouts_Element {
     function init() {
 
         $this->module = 'bw_heading';
-        $this->name = esc_html__( 'Heading Title', 'AAA' );
+        $this->name = esc_html__( 'Heading Title', 'peenapo-layouts-txd' );
         $this->view = 'element';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#e6cf4d';
         $this->params = array(
             'title' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Title', 'AAA' ),
-                'value'             => esc_html__( 'This is a title', 'AAA' ),
+                'label'             => esc_html__( 'Title', 'peenapo-layouts-txd' ),
+                'value'             => esc_html__( 'This is a title', 'peenapo-layouts-txd' ),
             ),
             'content' => array(
-				'label'             => esc_html__( 'Content', 'AAA' ),
+				'label'             => esc_html__( 'Content', 'peenapo-layouts-txd' ),
 				'type'              => 'editor',
 				'is_content'        => true,
 			),
             'top' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Top Title', 'AAA' ),
+                'label'             => esc_html__( 'Top Title', 'peenapo-layouts-txd' ),
             ),
             'h_tag' => array(
-                'label'             => esc_html__( 'Select Heading Title Tag', 'AAA' ),
+                'label'             => esc_html__( 'Select Heading Title Tag', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     'h1'    => 'H1',
@@ -4778,13 +4778,13 @@ class Playouts_Element_Heading extends Playouts_Element {
             ),
             'text_color' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Text Color', 'AAA' ),
+                'label'             => esc_html__( 'Text Color', 'peenapo-layouts-txd' ),
                 'value'             => '',
                 'width'             => 50
             ),
             'text_alignment' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Text Alignment', 'AAA' ),
+				'label'             => esc_html__( 'Text Alignment', 'peenapo-layouts-txd' ),
                 'options'           => array(
                     'inherit'           => 'Inherit',
                     'left'              => 'Left',
@@ -4795,7 +4795,7 @@ class Playouts_Element_Heading extends Playouts_Element {
                 'width'             => 50
 			),
             'font_size_heading' => array(
-                'label'             => esc_html__( 'Heading Font Size', 'AAA' ),
+                'label'             => esc_html__( 'Heading Font Size', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'pixels',
                 'min'               => 14,
@@ -4804,7 +4804,7 @@ class Playouts_Element_Heading extends Playouts_Element {
                 'value'             => 40,
             ),
             'font_size_content' => array(
-                'label'             => esc_html__( 'Content Font Size', 'AAA' ),
+                'label'             => esc_html__( 'Content Font Size', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'pixels',
                 'min'               => 13,
@@ -4813,7 +4813,7 @@ class Playouts_Element_Heading extends Playouts_Element {
                 'value'             => 15,
             ),
             'font_size_top' => array(
-                'label'             => esc_html__( 'Top Font Size', 'AAA' ),
+                'label'             => esc_html__( 'Top Font Size', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'pixels',
                 'min'               => 13,
@@ -4822,50 +4822,50 @@ class Playouts_Element_Heading extends Playouts_Element {
                 'value'             => 15,
             ),
             'bold_text' => array(
-                'label'             => esc_html__( 'Bold Text', 'AAA' ),
+                'label'             => esc_html__( 'Bold Text', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'enable_animation' => array(
-                'label'             => esc_html__( 'Enable Animation', 'AAA' ),
+                'label'             => esc_html__( 'Enable Animation', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
-                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'peenapo-layouts-txd' ) ),
             ),
             'speed' => array(
-                'label'             => esc_html__( 'Animation Speed', 'AAA' ),
+                'label'             => esc_html__( 'Animation Speed', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'milliseconds',
                 'min'               => 200,
                 'max'               => 2000,
                 'step'              => 50,
                 'value'             => 450,
-                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'enable_animation', 'value' => '1' ),
             ),
             'delay' => array(
-                'label'             => esc_html__( 'Animation Delay Between Text Lines', 'AAA' ),
+                'label'             => esc_html__( 'Animation Delay Between Text Lines', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'milliseconds',
                 'min'               => 50,
                 'max'               => 500,
                 'step'              => 25,
                 'value'             => 100,
-                'tab'               => array( 'animation' => esc_html__( 'Animation', 'AAA' ) ),
+                'tab'               => array( 'animation' => esc_html__( 'Animation', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'enable_animation', 'value' => '1' ),
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -4927,18 +4927,18 @@ class Playouts_Element_Gradient_Text extends Playouts_Element {
     function init() {
 
         $this->module = 'bw_gradient_text';
-        $this->name = esc_html__( 'Gradient Text', 'AAA' );
+        $this->name = esc_html__( 'Gradient Text', 'peenapo-layouts-txd' );
         $this->view = 'element';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#4dd2e6';
         $this->params = array(
             'text' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Text', 'AAA' ),
-                'value'             => esc_html__( 'This is a text with gradient', 'AAA' ),
+                'label'             => esc_html__( 'Text', 'peenapo-layouts-txd' ),
+                'value'             => esc_html__( 'This is a text with gradient', 'peenapo-layouts-txd' ),
             ),
             'h_tag' => array(
-                'label'             => esc_html__( 'Select Heading Title Tag', 'AAA' ),
+                'label'             => esc_html__( 'Select Heading Title Tag', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     'h1'    => 'H1',
@@ -4952,19 +4952,19 @@ class Playouts_Element_Gradient_Text extends Playouts_Element {
             ),
             'text_color_from' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Text Color From', 'AAA' ),
+                'label'             => esc_html__( 'Text Color From', 'peenapo-layouts-txd' ),
                 'value'             => '#555070',
                 'width'             => 50
             ),
             'text_color_to' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Text Color To', 'AAA' ),
+                'label'             => esc_html__( 'Text Color To', 'peenapo-layouts-txd' ),
                 'value'             => '#f43e66',
                 'width'             => 50
             ),
             'text_alignment' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Text Alignment', 'AAA' ),
+				'label'             => esc_html__( 'Text Alignment', 'peenapo-layouts-txd' ),
                 'options'           => array(
                     'inherit'           => 'Inherit',
                     'left'              => 'Left',
@@ -4975,7 +4975,7 @@ class Playouts_Element_Gradient_Text extends Playouts_Element {
                 'width'             => 50
 			),
             'direction' => array(
-                'label'             => esc_html__( 'Gradient Direction', 'AAA' ),
+                'label'             => esc_html__( 'Gradient Direction', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     'top'               => 'Top',
@@ -4991,7 +4991,7 @@ class Playouts_Element_Gradient_Text extends Playouts_Element {
                 'width'             => 50
             ),
             'font_size' => array(
-                'label'             => esc_html__( 'Font Size', 'AAA' ),
+                'label'             => esc_html__( 'Font Size', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'pixels',
                 'min'               => 14,
@@ -5000,23 +5000,23 @@ class Playouts_Element_Gradient_Text extends Playouts_Element {
                 'value'             => 40,
             ),
             'bold_text' => array(
-                'label'             => esc_html__( 'Bold Text', 'AAA' ),
+                'label'             => esc_html__( 'Bold Text', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -5067,26 +5067,26 @@ class Playouts_Element_Notion_Box extends Playouts_Element {
     function init() {
 
         $this->module = 'bw_notion_box';
-        $this->name = esc_html__( 'Notion Box', 'AAA' );
+        $this->name = esc_html__( 'Notion Box', 'peenapo-layouts-txd' );
         $this->view = 'element';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#db899b';
         $this->params = array(
             'top_text' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Top Text ( Optional )', 'AAA' ),
+                'label'             => esc_html__( 'Top Text ( Optional )', 'peenapo-layouts-txd' ),
             ),
             'text' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Text', 'AAA' ),
-                'value'             => esc_html__( 'This is a notion box', 'AAA' ),
+                'label'             => esc_html__( 'Text', 'peenapo-layouts-txd' ),
+                'value'             => esc_html__( 'This is a notion box', 'peenapo-layouts-txd' ),
             ),
             'sub_text' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Sub Text ( Optional )', 'AAA' ),
+                'label'             => esc_html__( 'Sub Text ( Optional )', 'peenapo-layouts-txd' ),
             ),
             'h_tag' => array(
-                'label'             => esc_html__( 'Select Heading Title Tag', 'AAA' ),
+                'label'             => esc_html__( 'Select Heading Title Tag', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     'h1'    => 'H1',
@@ -5100,7 +5100,7 @@ class Playouts_Element_Notion_Box extends Playouts_Element {
             ),
             'text_alignment' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Text Alignment', 'AAA' ),
+				'label'             => esc_html__( 'Text Alignment', 'peenapo-layouts-txd' ),
                 'options'           => array(
                     'inherit'           => 'Inherit',
                     'left'              => 'Left',
@@ -5110,7 +5110,7 @@ class Playouts_Element_Notion_Box extends Playouts_Element {
                 'value'             => '',
 			),
             'font_size' => array(
-                'label'             => esc_html__( 'Font Size', 'AAA' ),
+                'label'             => esc_html__( 'Font Size', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'pixels',
                 'min'               => 14,
@@ -5119,72 +5119,72 @@ class Playouts_Element_Notion_Box extends Playouts_Element {
                 'value'             => 32,
             ),
             'bold_title' => array(
-                'label'             => esc_html__( 'Bold Title Text', 'AAA' ),
+                'label'             => esc_html__( 'Bold Title Text', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'text_color' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Text Color', 'AAA' ),
+                'label'             => esc_html__( 'Text Color', 'peenapo-layouts-txd' ),
             ),
             'enable_link' => array(
-                'label'             => esc_html__( 'Point to Link?', 'AAA' ),
+                'label'             => esc_html__( 'Point to Link?', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'link' => array(
-				'label'              => esc_html__( 'Link', 'AAA' ),
+				'label'              => esc_html__( 'Link', 'peenapo-layouts-txd' ),
 				'type'               => 'textfield',
 				'placeholder'        => 'http://',
                 'depends'           => array( 'element' => 'enable_link', 'value' => '1' ),
 			),
             'target' => array(
-                'label'             => esc_html__( 'Open in a New Tab?', 'AAA' ),
+                'label'             => esc_html__( 'Open in a New Tab?', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'depends'           => array( 'element' => 'enable_link', 'value' => '1' ),
             ),
             'bg_color' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Background Color', 'AAA' ),
+                'label'             => esc_html__( 'Background Color', 'peenapo-layouts-txd' ),
                 'value'             => '#f5f5f5',
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
 			),
             'image' => array(
-				'label'              => esc_html__( 'Background Image', 'AAA' ),
+				'label'              => esc_html__( 'Background Image', 'peenapo-layouts-txd' ),
 				'type'               => 'image',
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
 			),
             'scale' => array(
-                'label'             => esc_html__( 'Scale Image on Hover?', 'AAA' ),
+                'label'             => esc_html__( 'Scale Image on Hover?', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'width'             => 50
             ),
             'overlay' => array(
-                'label'             => esc_html__( 'Enable Overlay?', 'AAA' ),
+                'label'             => esc_html__( 'Enable Overlay?', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'width'             => 50
             ),
             'overlay_bg' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Overlay Background Color', 'AAA' ),
+                'label'             => esc_html__( 'Overlay Background Color', 'peenapo-layouts-txd' ),
                 'value'             => '#f5f5f5',
                 'depends'           => array( 'element' => 'overlay', 'value' => '1' ),
-                'tab'               => array( 'background' => esc_html__( 'Background', 'AAA' ) ),
+                'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
 			),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -5256,25 +5256,25 @@ class Playouts_Element_Image_Comparison extends Playouts_Element {
     function init() {
 
         $this->module = 'bw_image_comparison';
-        $this->name = esc_html__( 'Image Comparison', 'AAA' );
+        $this->name = esc_html__( 'Image Comparison', 'peenapo-layouts-txd' );
         $this->view = 'element';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#2d49c6';
         $this->params = array(
             'image_left' => array(
-                'label'              => esc_html__( 'Left Image', 'AAA' ),
+                'label'              => esc_html__( 'Left Image', 'peenapo-layouts-txd' ),
                 'type'               => 'image',
             ),
             'image_right' => array(
-                'label'              => esc_html__( 'Right Image', 'AAA' ),
+                'label'              => esc_html__( 'Right Image', 'peenapo-layouts-txd' ),
                 'type'               => 'image',
             ),
             'color' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Color', 'AAA' ),
+                'label'             => esc_html__( 'Color', 'peenapo-layouts-txd' ),
 			),
             'direction' => array(
-                'label'             => esc_html__( 'Direction', 'AAA' ),
+                'label'             => esc_html__( 'Direction', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     'vorizontal'  => 'Horizontal',
@@ -5283,9 +5283,9 @@ class Playouts_Element_Image_Comparison extends Playouts_Element {
                 'value'             => 'vorizontal'
             ),
             'offset' => array(
-                'label'             => esc_html__( 'Offset Position', 'AAA' ),
+                'label'             => esc_html__( 'Offset Position', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
-                'description'       => esc_html__( 'How much of the before image is visible when the page loads', 'AAA' ),
+                'description'       => esc_html__( 'How much of the before image is visible when the page loads', 'peenapo-layouts-txd' ),
                 'append_after'      => '%',
                 'min'               => 0,
                 'max'               => 100,
@@ -5294,18 +5294,18 @@ class Playouts_Element_Image_Comparison extends Playouts_Element {
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -5353,50 +5353,50 @@ class Playouts_Element_Image_Hotspots extends Playouts_Repeater_Element {
 
         $this->module = 'bw_image_hotspots';
         $this->module_item = 'bw_image_hotspots_item';
-        $this->name = esc_html__( 'Image Hotspots', 'AAA' );
+        $this->name = esc_html__( 'Image Hotspots', 'peenapo-layouts-txd' );
         $this->view = 'repeater';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#75b677';
         $this->params = array(
             'items' => array(
                 'type'               => 'repeater',
-                'label'              => esc_html__( 'Image Hotspots', 'AAA' ),
-                'description'        => esc_html__( 'You can add as many items as you need, just click the plus icon.', 'AAA' ),
+                'label'              => esc_html__( 'Image Hotspots', 'peenapo-layouts-txd' ),
+                'description'        => esc_html__( 'You can add as many items as you need, just click the plus icon.', 'peenapo-layouts-txd' ),
             ),
             'image' => array(
-				'label'              => esc_html__( 'Background Image', 'AAA' ),
+				'label'              => esc_html__( 'Background Image', 'peenapo-layouts-txd' ),
 				'type'               => 'image',
 			),
             'color' => array(
-                'label'             => esc_html__( 'Hotspot Background Color', 'AAA' ),
+                'label'             => esc_html__( 'Hotspot Background Color', 'peenapo-layouts-txd' ),
                 'type'              => 'colorpicker',
             ),
             'box_bg_color' => array(
-                'label'             => esc_html__( 'Box Background Color', 'AAA' ),
+                'label'             => esc_html__( 'Box Background Color', 'peenapo-layouts-txd' ),
                 'type'              => 'colorpicker',
             ),
             'box_text_color' => array(
-                'label'             => esc_html__( 'Box Text Color', 'AAA' ),
+                'label'             => esc_html__( 'Box Text Color', 'peenapo-layouts-txd' ),
                 'type'              => 'colorpicker',
             ),
             'enable_animation' => array(
-                'label'             => esc_html__( 'Enable Pulse Animation', 'AAA' ),
+                'label'             => esc_html__( 'Enable Pulse Animation', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -5452,22 +5452,22 @@ class Playouts_Element_Image_Hotspots_Item extends Playouts_Repeater_Item_Elemen
 
         $this->module = 'bw_image_hotspots_item';
         $this->module_parent = 'bw_image_hotspots';
-        $this->name = esc_html__( 'Image Hotspot', 'AAA' );
+        $this->name = esc_html__( 'Image Hotspot', 'peenapo-layouts-txd' );
         $this->view = 'repeater_item';
 
         $this->params = array(
             'title' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Title', 'AAA' ),
-                'value'             => esc_html__( 'Title goes here', 'AAA' ),
+                'label'             => esc_html__( 'Title', 'peenapo-layouts-txd' ),
+                'value'             => esc_html__( 'Title goes here', 'peenapo-layouts-txd' ),
             ),
             'text' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Text', 'AAA' ),
-                'value'             => esc_html__( 'Text goes here', 'AAA' ),
+                'label'             => esc_html__( 'Text', 'peenapo-layouts-txd' ),
+                'value'             => esc_html__( 'Text goes here', 'peenapo-layouts-txd' ),
             ),
             'position_top' => array(
-                'label'             => esc_html__( 'Left Position', 'AAA' ),
+                'label'             => esc_html__( 'Left Position', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => '%',
                 'min'               => 0,
@@ -5476,7 +5476,7 @@ class Playouts_Element_Image_Hotspots_Item extends Playouts_Repeater_Item_Elemen
                 'value'             => 50,
             ),
             'position_left' => array(
-                'label'             => esc_html__( 'Right Position', 'AAA' ),
+                'label'             => esc_html__( 'Right Position', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => '%',
                 'min'               => 0,
@@ -5486,18 +5486,18 @@ class Playouts_Element_Image_Hotspots_Item extends Playouts_Repeater_Item_Elemen
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -5550,19 +5550,19 @@ class Playouts_Element_Pricing_Tables extends Playouts_Repeater_Element {
 
         $this->module = 'bw_pricing_tables';
         $this->module_item = 'bw_pricing_column';
-        $this->name = esc_html__( 'Pricing Tables', 'AAA' );
+        $this->name = esc_html__( 'Pricing Tables', 'peenapo-layouts-txd' );
         $this->view = 'repeater';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#68d0b9';
         $this->params = array(
             'items' => array(
                 'type'               => 'repeater',
-                'label'              => esc_html__( 'Pricing Columns', 'AAA' ),
-                'description'        => esc_html__( 'You can add as many columns as you need, just click the plus icon.', 'AAA' ),
+                'label'              => esc_html__( 'Pricing Columns', 'peenapo-layouts-txd' ),
+                'description'        => esc_html__( 'You can add as many columns as you need, just click the plus icon.', 'peenapo-layouts-txd' ),
             ),
             'vertical_alignment' => array(
                 'type'              => 'select',
-				'label'             => esc_html__( 'Table Vertical Alignment', 'AAA' ),
+				'label'             => esc_html__( 'Table Vertical Alignment', 'peenapo-layouts-txd' ),
                 'options'           => array(
                     'stretch'               => 'Stretch',
                     'flex-start'            => 'Top',
@@ -5572,18 +5572,18 @@ class Playouts_Element_Pricing_Tables extends Playouts_Repeater_Element {
 			),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -5630,36 +5630,36 @@ class Playouts_Element_Pricing_Tables_Item extends Playouts_Repeater_Item_Elemen
 
         $this->module = 'bw_pricing_column';
         $this->module_parent = 'bw_pricing_tables';
-        $this->name = esc_html__( 'Pricing Column', 'AAA' );
+        $this->name = esc_html__( 'Pricing Column', 'peenapo-layouts-txd' );
         $this->view = 'repeater_item';
 
         $this->params = array(
             'top_title' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Top Title ( Optional )', 'AAA' ),
-                'value'             => esc_html__( 'Top title goes here', 'AAA' ),
+                'label'             => esc_html__( 'Top Title ( Optional )', 'peenapo-layouts-txd' ),
+                'value'             => esc_html__( 'Top title goes here', 'peenapo-layouts-txd' ),
             ),
             'second_top_title' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Second Top Title ( Optional )', 'AAA' ),
+                'label'             => esc_html__( 'Second Top Title ( Optional )', 'peenapo-layouts-txd' ),
             ),
             'price' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Price', 'AAA' ),
-                'value'             => esc_html__( '$10', 'AAA' ),
+                'label'             => esc_html__( 'Price', 'peenapo-layouts-txd' ),
+                'value'             => esc_html__( '$10', 'peenapo-layouts-txd' ),
             ),
             'bottom_title' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Bottom Title ( Optional )', 'AAA' ),
-                'value'             => esc_html__( 'Bottom title goes here', 'AAA' ),
+                'label'             => esc_html__( 'Bottom Title ( Optional )', 'peenapo-layouts-txd' ),
+                'value'             => esc_html__( 'Bottom title goes here', 'peenapo-layouts-txd' ),
             ),
             'content' => array(
-                'label'             => esc_html__( 'Content', 'AAA' ),
+                'label'             => esc_html__( 'Content', 'peenapo-layouts-txd' ),
                 'type'              => 'editor',
                 'value'             => '<ul>
-    <li>' . esc_html__( 'First row goes here', 'AAA' ) . '</li>
-    <li>' . esc_html__( 'Another row mate', 'AAA' ) . '</li>
-    <li>' . esc_html__( 'Last one', 'AAA' ) . '</li>
+    <li>' . esc_html__( 'First row goes here', 'peenapo-layouts-txd' ) . '</li>
+    <li>' . esc_html__( 'Another row mate', 'peenapo-layouts-txd' ) . '</li>
+    <li>' . esc_html__( 'Last one', 'peenapo-layouts-txd' ) . '</li>
     <li>-</li>
     <li>-</li>
 </ul>',
@@ -5667,31 +5667,31 @@ class Playouts_Element_Pricing_Tables_Item extends Playouts_Repeater_Item_Elemen
             ),
             'button_label' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Button Label', 'AAA' ),
-                'value'             => esc_html__( 'Button', 'AAA' ),
+                'label'             => esc_html__( 'Button Label', 'peenapo-layouts-txd' ),
+                'value'             => esc_html__( 'Button', 'peenapo-layouts-txd' ),
             ),
             'button_link' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Button Link', 'AAA' ),
+                'label'             => esc_html__( 'Button Link', 'peenapo-layouts-txd' ),
                 'placeholder'       => 'http://',
             ),
             'button_target' => array(
                 'type'              => 'true_false',
-                'label'             => esc_html__( 'Button New Tab?', 'AAA' ),
-                'description'       => esc_html__( 'Opens the button link in a new tab of your browser.', 'AAA' ),
+                'label'             => esc_html__( 'Button New Tab?', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Opens the button link in a new tab of your browser.', 'peenapo-layouts-txd' ),
             ),
             'main_color' => array(
-                'label'             => esc_html__( 'Main Color', 'AAA' ),
+                'label'             => esc_html__( 'Main Color', 'peenapo-layouts-txd' ),
                 'type'              => 'colorpicker',
                 'width'             => 50
             ),
             'secondary_color' => array(
-                'label'             => esc_html__( 'Secondary Color', 'AAA' ),
+                'label'             => esc_html__( 'Secondary Color', 'peenapo-layouts-txd' ),
                 'type'              => 'colorpicker',
                 'width'             => 50
             ),
             'direction' => array(
-                'label'             => esc_html__( 'Gradient Direction', 'AAA' ),
+                'label'             => esc_html__( 'Gradient Direction', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     'top'               => 'Top',
@@ -5707,28 +5707,28 @@ class Playouts_Element_Pricing_Tables_Item extends Playouts_Repeater_Item_Elemen
             ),
             'focus' => array(
                 'type'              => 'true_false',
-                'label'             => esc_html__( 'Focus This Column?', 'AAA' ),
-                'description'       => esc_html__( 'Make this column more visible.', 'AAA' ),
+                'label'             => esc_html__( 'Focus This Column?', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Make this column more visible.', 'peenapo-layouts-txd' ),
             ),
             'focus_color' => array(
-                'label'             => esc_html__( 'Focus Color', 'AAA' ),
+                'label'             => esc_html__( 'Focus Color', 'peenapo-layouts-txd' ),
                 'type'              => 'colorpicker',
                 'depends'           => array( 'element' => 'focus', 'value' => '1' ),
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -5794,17 +5794,17 @@ class Playouts_Element_Number_Counter extends Playouts_Element {
     function init() {
 
         $this->module = 'bw_number_counter';
-        $this->name = esc_html__( 'Number Counter', 'AAA' );
+        $this->name = esc_html__( 'Number Counter', 'peenapo-layouts-txd' );
         $this->view = 'element';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#14abf4';
         $this->params = array(
             'number' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Number', 'AAA' ),
+                'label'             => esc_html__( 'Number', 'peenapo-layouts-txd' ),
             ),
             'font_size' => array(
-                'label'             => esc_html__( 'Font Size', 'AAA' ),
+                'label'             => esc_html__( 'Font Size', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'pixels',
                 'min'               => 14,
@@ -5813,13 +5813,13 @@ class Playouts_Element_Number_Counter extends Playouts_Element {
                 'value'             => 85,
             ),
             'bold' => array(
-                'label'             => esc_html__( 'Bold Text?', 'AAA' ),
+                'label'             => esc_html__( 'Bold Text?', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'duration' => array(
-                'label'             => esc_html__( 'Duration', 'AAA' ),
+                'label'             => esc_html__( 'Duration', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
-                'description'       => esc_html__( 'Animation duration in seconds.', 'AAA' ),
+                'description'       => esc_html__( 'Animation duration in seconds.', 'peenapo-layouts-txd' ),
                 'append_after'      => 'seconds',
                 'min'               => 1,
                 'max'               => 6,
@@ -5828,23 +5828,23 @@ class Playouts_Element_Number_Counter extends Playouts_Element {
             ),
             'color' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Color', 'AAA' ),
+                'label'             => esc_html__( 'Color', 'peenapo-layouts-txd' ),
                 'value'             => '',
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -5889,22 +5889,22 @@ class Playouts_Element_Icon extends Playouts_Element {
     function init() {
 
         $this->module = 'bw_icon';
-        $this->name = esc_html__( 'Icon', 'AAA' );
+        $this->name = esc_html__( 'Icon', 'peenapo-layouts-txd' );
         $this->view = 'element';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#8064af';
         $this->params = array(
             'icon' => array(
-                'label'             => esc_html__( 'Icon', 'AAA' ),
+                'label'             => esc_html__( 'Icon', 'peenapo-layouts-txd' ),
                 'type'              => 'icon',
-                'value'             => 'bwpb-7s-album',
+                'value'             => 'pl-7s-album',
             ),
             'text' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Text ( Optional )', 'AAA' ),
+                'label'             => esc_html__( 'Text ( Optional )', 'peenapo-layouts-txd' ),
             ),
             'font_size' => array(
-                'label'             => esc_html__( 'Font Size', 'AAA' ),
+                'label'             => esc_html__( 'Font Size', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'pixels',
                 'min'               => 15,
@@ -5913,23 +5913,23 @@ class Playouts_Element_Icon extends Playouts_Element {
                 'value'             => 60,
             ),
             'bold' => array(
-                'label'             => esc_html__( 'Bold Icon?', 'AAA' ),
+                'label'             => esc_html__( 'Bold Icon?', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'color_main' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Main Color', 'AAA' ),
+                'label'             => esc_html__( 'Main Color', 'peenapo-layouts-txd' ),
                 'value'             => '',
                 'width'             => 50
             ),
             'color_secondary' => array(
                 'type'              => 'colorpicker',
-                'label'             => esc_html__( 'Secondary Color ( Optional )', 'AAA' ),
+                'label'             => esc_html__( 'Secondary Color ( Optional )', 'peenapo-layouts-txd' ),
                 'value'             => '',
                 'width'             => 50
             ),
             'direction' => array(
-                'label'             => esc_html__( 'Gradient Direction', 'AAA' ),
+                'label'             => esc_html__( 'Gradient Direction', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
                 'options'           => array(
                     'top'               => 'Top',
@@ -5945,42 +5945,42 @@ class Playouts_Element_Icon extends Playouts_Element {
             ),
             'margin_top' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Margin Top', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Margin Top', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'margin_right' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Margin Right', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Margin Right', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'margin_bottom' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Margin Bottom', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Margin Bottom', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'margin_left' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Margin Left', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Margin Left', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
                 'width'             => 25
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -6042,19 +6042,19 @@ class Playouts_Element_Google_Map extends Playouts_Repeater_Element {
 
         $this->module = 'bw_google_map';
         $this->module_item = 'bw_google_map_pin';
-        $this->name = esc_html__( 'Google Map', 'AAA' );
+        $this->name = esc_html__( 'Google Map', 'peenapo-layouts-txd' );
         $this->view = 'repeater';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#fbae70';
         $this->params = array(
             'items' => array(
                 'type'               => 'repeater',
-                'label'              => esc_html__( 'Map Pins', 'AAA' ),
-                'description'        => esc_html__( 'You can add as many map pins as you need, just click the plus icon.', 'AAA' ),
+                'label'              => esc_html__( 'Map Pins', 'peenapo-layouts-txd' ),
+                'description'        => esc_html__( 'You can add as many map pins as you need, just click the plus icon.', 'peenapo-layouts-txd' ),
             ),
             'zoom' => array(
-                'label'             => esc_html__( 'Map Zoom', 'AAA' ),
-                'description'             => esc_html__( 'This scale represents the zoom of the map.', 'AAA' ),
+                'label'             => esc_html__( 'Map Zoom', 'peenapo-layouts-txd' ),
+                'description'             => esc_html__( 'This scale represents the zoom of the map.', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'min'               => 1,
                 'max'               => 21,
@@ -6062,7 +6062,7 @@ class Playouts_Element_Google_Map extends Playouts_Repeater_Element {
                 'value'             => 17,
             ),
             'height' => array(
-                'label'             => esc_html__( 'Map Height', 'AAA' ),
+                'label'             => esc_html__( 'Map Height', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => '%',
                 'min'               => 15,
@@ -6071,49 +6071,49 @@ class Playouts_Element_Google_Map extends Playouts_Repeater_Element {
                 'value'             => 50,
             ),
             'enable_controls_zoom' => array(
-                'label'             => esc_html__( 'Enable Map Zoom Controls', 'AAA' ),
+                'label'             => esc_html__( 'Enable Map Zoom Controls', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'custom_center' => array(
-                'label'             => esc_html__( 'Set Custom Map Center', 'AAA' ),
+                'label'             => esc_html__( 'Set Custom Map Center', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
             'custom_center_lat' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Latitude', 'AAA' ),
+                'label'             => esc_html__( 'Latitude', 'peenapo-layouts-txd' ),
                 'depends'           => array( 'element' => 'custom_center', 'value' => '1' ),
                 'width'             => 50
             ),
             'custom_center_lng' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Longitude', 'AAA' ),
+                'label'             => esc_html__( 'Longitude', 'peenapo-layouts-txd' ),
                 'depends'           => array( 'element' => 'custom_center', 'value' => '1' ),
                 'width'             => 50
             ),
             /*'bounds' => array(
-                'label'             => esc_html__( 'Center Map Between Pins', 'AAA' ),
-                'description'       => esc_html__( "Center the map between all the available pins automatically. If enable, it will ignore the 'Custom Map Center' option.", 'AAA' ),
+                'label'             => esc_html__( 'Center Map Between Pins', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( "Center the map between all the available pins automatically. If enable, it will ignore the 'Custom Map Center' option.", 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),*/
             'styles' => array(
                 'type'              => 'base64',
-                'label'             => esc_html__( 'Map Styles ( Advanced )', 'AAA' ),
-                'description'       => esc_html__( "Customize colors, roads, labels, and more. Use Javascript array only. Here you can find pre-defined map styles: <a href='https://snazzymaps.com' target='_blank' rel='nofollow'>https://snazzymaps.com</a>", 'AAA' ),
+                'label'             => esc_html__( 'Map Styles ( Advanced )', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( "Customize colors, roads, labels, and more. Use Javascript array only. Here you can find pre-defined map styles: <a href='https://snazzymaps.com' target='_blank' rel='nofollow'>https://snazzymaps.com</a>", 'peenapo-layouts-txd' ),
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'CSS Classes', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_id' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Element ID', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Element ID', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
             'inline_css' => array(
                 'type'              => 'textarea',
-                'label'             => esc_html__( 'Inline CSS', 'AAA' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'AAA' ) ),
+                'label'             => esc_html__( 'Inline CSS', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
             ),
         );
 
@@ -6186,27 +6186,27 @@ class Playouts_Element_Google_Map_Item extends Playouts_Repeater_Item_Element {
 
         $this->module = 'bw_google_map_pin';
         $this->module_parent = 'bw_google_map';
-        $this->name = esc_html__( 'Google Pin', 'AAA' );
+        $this->name = esc_html__( 'Google Pin', 'peenapo-layouts-txd' );
         $this->view = 'repeater_item';
 
         $this->params = array(
             'title' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Title', 'AAA' ),
-                'value'             => esc_html__( 'Out Location', 'AAA' ),
+                'label'             => esc_html__( 'Title', 'peenapo-layouts-txd' ),
+                'value'             => esc_html__( 'Out Location', 'peenapo-layouts-txd' ),
             ),
             'lat' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Latitude', 'AAA' ),
+                'label'             => esc_html__( 'Latitude', 'peenapo-layouts-txd' ),
                 'width'             => 50
             ),
             'lng' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Longitude', 'AAA' ),
+                'label'             => esc_html__( 'Longitude', 'peenapo-layouts-txd' ),
                 'width'             => 50
             ),
             'image' => array(
-				'label'              => esc_html__( 'Pin Image ( Optional )', 'AAA' ),
+				'label'              => esc_html__( 'Pin Image ( Optional )', 'peenapo-layouts-txd' ),
 				'type'               => 'image',
 			),
         );
@@ -6239,31 +6239,31 @@ new Playouts_Element_Google_Map_Item;
 
         $this->module = 'bw_tabs';
         $this->module_item = 'bw_tab_item';
-        $this->name = esc_html__( 'Tabs', 'AAA' );
+        $this->name = esc_html__( 'Tabs', 'peenapo-layouts-txd' );
         $this->view = 'repeater';
-        $this->category = array( 'content' => __( 'Content', 'AAA' ) );
+        $this->category = array( 'content' => __( 'Content', 'peenapo-layouts-txd' ) );
         $this->module_color = '#be6ef6';
         $this->params = array(
             'tabs' => array(
-                'label'              => esc_html__( 'Tab items', 'AAA' ),
+                'label'              => esc_html__( 'Tab items', 'peenapo-layouts-txd' ),
                 'type'               => 'repeater',
-                'description'        => esc_html__( 'You can add as many tabs as you need, just click the plus icon.', 'AAA' ),
+                'description'        => esc_html__( 'You can add as many tabs as you need, just click the plus icon.', 'peenapo-layouts-txd' ),
             ),
             'title' => array(
-				'label'              => esc_html__( 'Tab title', 'AAA' ),
+				'label'              => esc_html__( 'Tab title', 'peenapo-layouts-txd' ),
 				'type'               => 'textfield',
-				'description'        => esc_html__( 'Here you can add some title', 'AAA' ),
+				'description'        => esc_html__( 'Here you can add some title', 'peenapo-layouts-txd' ),
 			),
             'title2' => array(
-				'label'              => esc_html__( 'Tab title 2', 'AAA' ),
+				'label'              => esc_html__( 'Tab title 2', 'peenapo-layouts-txd' ),
 				'type'               => 'textfield',
-                'tab'                => array( 'new' => esc_html__( 'New Tab Man', 'AAA' ) ),
-				'description'        => esc_html__( 'Here you can add some title', 'AAA' ),
+                'tab'                => array( 'new' => esc_html__( 'New Tab Man', 'peenapo-layouts-txd' ) ),
+				'description'        => esc_html__( 'Here you can add some title', 'peenapo-layouts-txd' ),
 			),
             'image' => array(
-				'label'              => esc_html__( 'Tab title 2', 'AAA' ),
+				'label'              => esc_html__( 'Tab title 2', 'peenapo-layouts-txd' ),
 				'type'               => 'image',
-				'description'        => esc_html__( 'Here you can add some image', 'AAA' ),
+				'description'        => esc_html__( 'Here you can add some image', 'peenapo-layouts-txd' ),
 			)
         );
 
@@ -6283,19 +6283,19 @@ class Playouts_Element_Tab_Item extends Playouts_Repeater_Item_Element {
 
         $this->module = 'bw_tab_item';
         $this->module_parent = 'bw_tabs';
-        $this->name = esc_html__( 'Tab Item', 'AAA' );
+        $this->name = esc_html__( 'Tab Item', 'peenapo-layouts-txd' );
         $this->view = 'repeater_item';
 
         $this->params = array(
             'title2' => array(
-				'label'              => esc_html__( 'Tab item title', 'AAA' ),
+				'label'              => esc_html__( 'Tab item title', 'peenapo-layouts-txd' ),
 				'type'               => 'textfield',
-				'description'        => esc_html__( 'Here you can add some title 2', 'AAA' ),
+				'description'        => esc_html__( 'Here you can add some title 2', 'peenapo-layouts-txd' ),
 			),
             'image' => array(
-				'label'              => esc_html__( 'Tab title 2', 'AAA' ),
+				'label'              => esc_html__( 'Tab title 2', 'peenapo-layouts-txd' ),
 				'type'               => 'image',
-				'description'        => esc_html__( 'Here you can add some image', 'AAA' ),
+				'description'        => esc_html__( 'Here you can add some image', 'peenapo-layouts-txd' ),
 			)
         );
 
@@ -6310,70 +6310,70 @@ class Playouts_Element_Tab_Item extends Playouts_Repeater_Item_Element {
 new Playouts_Element_Tab_Item;*/
 
 /*'title' => array(
-    'label'             => esc_html__( 'Title', 'AAA' ),
+    'label'             => esc_html__( 'Title', 'peenapo-layouts-txd' ),
     'type'              => 'textfield',
     'value'             => 'Helloooo!',
 ),
 'title2' => array(
-    'label'             => esc_html__( 'Title', 'AAA' ),
+    'label'             => esc_html__( 'Title', 'peenapo-layouts-txd' ),
     'type'              => 'textfield',
     'value'             => 'Helloooo!',
     'width'             => 50
 ),
 'title3' => array(
-    'label'             => esc_html__( 'Title', 'AAA' ),
+    'label'             => esc_html__( 'Title', 'peenapo-layouts-txd' ),
     'type'              => 'textfield',
     'value'             => 'Helloooo!',
     'width'             => 50
 ),
 'title4' => array(
-    'label'             => esc_html__( 'Title', 'AAA' ),
+    'label'             => esc_html__( 'Title', 'peenapo-layouts-txd' ),
     'type'              => 'textfield',
     'value'             => 'Helloooo!',
 ),
 'title7' => array(
-    'label'             => esc_html__( 'Title', 'AAA' ),
+    'label'             => esc_html__( 'Title', 'peenapo-layouts-txd' ),
     'type'              => 'textfield',
     'value'             => 'Helloooo!',
 ),
 'title8' => array(
-    'label'             => esc_html__( 'Title', 'AAA' ),
+    'label'             => esc_html__( 'Title', 'peenapo-layouts-txd' ),
     'type'              => 'textfield',
     'value'             => 'Helloooo!',
 ),
 'title5' => array(
-    'label'             => esc_html__( 'Title 2', 'AAA' ),
-    'tab'               => array( 'new' => esc_html__( 'New Tab Man', 'AAA' ) ),
+    'label'             => esc_html__( 'Title 2', 'peenapo-layouts-txd' ),
+    'tab'               => array( 'new' => esc_html__( 'New Tab Man', 'peenapo-layouts-txd' ) ),
     'type'              => 'textfield',
     'value'             => 'Helloooo!',
 ),
 'title6' => array(
-    'label'             => esc_html__( 'Title 3', 'AAA' ),
-    'tab'               => array( 'new' => esc_html__( 'New Tab Man', 'AAA' ) ),
+    'label'             => esc_html__( 'Title 3', 'peenapo-layouts-txd' ),
+    'tab'               => array( 'new' => esc_html__( 'New Tab Man', 'peenapo-layouts-txd' ) ),
     'type'              => 'textfield',
     'value'             => 'Helloooo!',
 ),
 'content' => array(
-    'label'             => esc_html__( 'Content', 'AAA' ),
+    'label'             => esc_html__( 'Content', 'peenapo-layouts-txd' ),
     'type'              => 'editor',
     'value'             => 'Helloooo! <strong>man</strong>! How are you?',
     'is_content'        => true,
 ),*/
 /*'select5' => array(
-    'label'             => esc_html__( 'Select 5 Post Type', 'AAA' ),
+    'label'             => esc_html__( 'Select 5 Post Type', 'peenapo-layouts-txd' ),
     'type'              => 'taxonomy',
     'multiple'          => true,
     'post_type'         => 'category',
 ),
 'select1' => array(
-    'label'             => esc_html__( 'Select', 'AAA' ),
+    'label'             => esc_html__( 'Select', 'peenapo-layouts-txd' ),
     'type'              => 'sidebars',
-    'description'       => esc_html__( 'Some description', 'AAA' ),
+    'description'       => esc_html__( 'Some description', 'peenapo-layouts-txd' ),
 ),
 'number_slider1' => array(
-    'label'             => esc_html__( 'Number Slider', 'AAA' ),
+    'label'             => esc_html__( 'Number Slider', 'peenapo-layouts-txd' ),
     'type'              => 'number_slider',
-    'description'       => esc_html__( 'Some description', 'AAA' ),
+    'description'       => esc_html__( 'Some description', 'peenapo-layouts-txd' ),
     //'append_before'     => 'before..',
     'append_after'      => 'pixels',
     'min'               => 10,
@@ -6382,9 +6382,9 @@ new Playouts_Element_Tab_Item;*/
     'value'             => 55,
 ),
 'number_slider2' => array(
-    'label'             => esc_html__( 'Number Slider 2', 'AAA' ),
+    'label'             => esc_html__( 'Number Slider 2', 'peenapo-layouts-txd' ),
     'type'              => 'number_slider',
-    'description'       => esc_html__( 'Some description', 'AAA' ),
+    'description'       => esc_html__( 'Some description', 'peenapo-layouts-txd' ),
     'append_before'     => 'before..',
     'append_after'      => 'after..',
     'min'               => 0,
@@ -6393,21 +6393,21 @@ new Playouts_Element_Tab_Item;*/
     'value'             => 0,
 ),*/
 /*'checkbox121' => array(
-    'label'             => esc_html__( 'Checkbox', 'AAA' ),
+    'label'             => esc_html__( 'Checkbox', 'peenapo-layouts-txd' ),
     'type'              => 'true_false',
 ),
 'icon1' => array(
-    'label'             => esc_html__( 'Checkbox', 'AAA' ),
+    'label'             => esc_html__( 'Checkbox', 'peenapo-layouts-txd' ),
     'type'              => 'icon',
 ),
 'icon2' => array(
-    'label'             => esc_html__( 'Checkbox 2', 'AAA' ),
+    'label'             => esc_html__( 'Checkbox 2', 'peenapo-layouts-txd' ),
     'type'              => 'icon',
 ),
 'select1' => array(
-    'label'             => esc_html__( 'Select', 'AAA' ),
+    'label'             => esc_html__( 'Select', 'peenapo-layouts-txd' ),
     'type'              => 'select',
-    'description'       => esc_html__( 'Some description', 'AAA' ),
+    'description'       => esc_html__( 'Some description', 'peenapo-layouts-txd' ),
     'options'           => array(
         'some1' => 'Some 1',
         'some2' => 'Some 2',
@@ -6416,9 +6416,9 @@ new Playouts_Element_Tab_Item;*/
     'value'             => 'some2'
 ),*/
 /*'row_layout' => array(
-    'label'             => esc_html__( 'Row Layout', 'AAA' ),
+    'label'             => esc_html__( 'Row Layout', 'peenapo-layouts-txd' ),
     'type'              => 'radio_image',
-    'description'       => esc_html__( 'Select the display version of the row.', 'AAA' ),
+    'description'       => esc_html__( 'Select the display version of the row.', 'peenapo-layouts-txd' ),
     'options'           => array(
         'standard' => array(
             'label' => 'Standard', 'image' => PL_ASSEST . 'admin/images/__tmp/row_standard.png'
@@ -6433,61 +6433,61 @@ new Playouts_Element_Tab_Item;*/
     'value'             => 'standard'
 ),
 'file1' => array(
-    'label'             => esc_html__( 'File 1', 'AAA' ),
+    'label'             => esc_html__( 'File 1', 'peenapo-layouts-txd' ),
     'type'              => 'image',
 ),
 'image1' => array(
-    'label'             => esc_html__( 'Image 1', 'AAA' ),
+    'label'             => esc_html__( 'Image 1', 'peenapo-layouts-txd' ),
     'type'              => 'image',
     'value'             => '',
 ),
 'image2' => array(
-    'label'             => esc_html__( 'Image 2', 'AAA' ),
+    'label'             => esc_html__( 'Image 2', 'peenapo-layouts-txd' ),
     'type'              => 'image',
     'value'             => '',
 ),*/
 /*'checkbox11' => array(
-    'label'             => esc_html__( 'Checkbox', 'AAA' ),
+    'label'             => esc_html__( 'Checkbox', 'peenapo-layouts-txd' ),
     'type'              => 'true_false',
 ),
 'image3' => array(
-    'label'             => esc_html__( 'Image Depends', 'AAA' ),
+    'label'             => esc_html__( 'Image Depends', 'peenapo-layouts-txd' ),
     'type'              => 'image',
     'value'             => '',
     'depends'           => array( 'element' => 'checkbox11', 'value' => '1' ),
 ),
 'title3' => array(
-    'label'             => esc_html__( 'Title 3 depends', 'AAA' ),
+    'label'             => esc_html__( 'Title 3 depends', 'peenapo-layouts-txd' ),
     'type'              => 'textfield',
     'value'             => 'Helloooo!',
     'depends'        => array( 'element' => 'checkbox11', 'value' => '1' ),
 ),
 'editor1' => array(
-    'label'             => esc_html__( 'Editor1', 'AAA' ),
+    'label'             => esc_html__( 'Editor1', 'peenapo-layouts-txd' ),
     'type'              => 'editor',
     'value'             => 'Helloooo! <strong>man</strong>! How are you?',
     'is_content'        => true,
 ),
 'title2' => array(
-    'label'             => esc_html__( 'Title 2', 'AAA' ),
+    'label'             => esc_html__( 'Title 2', 'peenapo-layouts-txd' ),
     'type'              => 'textfield',
     'value'             => 'Helloooo!',
     'width'             => 50
 ),
 'checkbox11' => array(
-    'label'             => esc_html__( 'Checkbox', 'AAA' ),
+    'label'             => esc_html__( 'Checkbox', 'peenapo-layouts-txd' ),
     'type'              => 'true_false',
 ),
 'bg_color22' => array(
-    'label'             => esc_html__( 'Background Color', 'AAA' ),
+    'label'             => esc_html__( 'Background Color', 'peenapo-layouts-txd' ),
     'type'              => 'colorpicker',
-    'description'       => esc_html__( 'Some description', 'AAA' ),
+    'description'       => esc_html__( 'Some description', 'peenapo-layouts-txd' ),
     'width'             => 50
 ),
 'radio11' => array(
-    'label'             => esc_html__( 'Some Radio Button', 'AAA' ),
+    'label'             => esc_html__( 'Some Radio Button', 'peenapo-layouts-txd' ),
     'type'              => 'radio',
-    'description'       => esc_html__( 'Some description', 'AAA' ),
+    'description'       => esc_html__( 'Some description', 'peenapo-layouts-txd' ),
     'options'           => array(
         'some1' => 'Some 1',
         'some2' => 'Some 2',
@@ -6496,25 +6496,25 @@ new Playouts_Element_Tab_Item;*/
     'value'             => 'some1'
 ),
 'title4' => array(
-    'label'             => esc_html__( 'Title 4 depends', 'AAA' ),
+    'label'             => esc_html__( 'Title 4 depends', 'peenapo-layouts-txd' ),
     'type'              => 'textfield',
     'value'             => 'Helloooo!',
     'depends'        => array( 'element' => 'radio11', 'value' => 'some2' ),
 ),
 'heading' => array(
-    'label'             => esc_html__( 'Heading', 'AAA' ),
+    'label'             => esc_html__( 'Heading', 'peenapo-layouts-txd' ),
     'type'              => 'heading',
-    'description'       => esc_html__( 'Some description', 'AAA' ),
+    'description'       => esc_html__( 'Some description', 'peenapo-layouts-txd' ),
 ),
 'textarea' => array(
-    'label'             => esc_html__( 'Textarea', 'AAA' ),
+    'label'             => esc_html__( 'Textarea', 'peenapo-layouts-txd' ),
     'type'              => 'textarea',
-    'value'             => esc_html__( 'Some textarea value here...', 'AAA' ),
-    'description'       => esc_html__( 'Some description', 'AAA' ),
+    'value'             => esc_html__( 'Some textarea value here...', 'peenapo-layouts-txd' ),
+    'description'       => esc_html__( 'Some description', 'peenapo-layouts-txd' ),
 ),
 'base64' => array(
-    'label'             => esc_html__( 'Base 64', 'AAA' ),
+    'label'             => esc_html__( 'Base 64', 'peenapo-layouts-txd' ),
     'type'              => 'base64',
     'value'             => Playouts_Functions::base64_to_param_encode( 'dfgdfgdf dfg dfgwer456' ),
-    'description'       => esc_html__( 'Some description', 'AAA' ),
+    'description'       => esc_html__( 'Some description', 'peenapo-layouts-txd' ),
 ),*/
