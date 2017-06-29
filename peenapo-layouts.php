@@ -47,16 +47,29 @@ class Playouts_Bootstrap {
 	static $active_plugins = array();
 
 	/*
+	 * the slug of the plugin
+	 *
+	 */
+	static $plugin_slug;
+
+	/*
 	 * initiates the plugin
 	 *
 	 */
 	static function init() {
+
+		self::$plugin_slug = plugin_basename( __FILE__ );
 
 		# after active plugins and pluggable functions are loaded
         add_action( 'plugins_loaded', array( 'Playouts_Bootstrap', 'components' ) );
 
 		# make the plguin translatable
         add_action( 'init', array( 'Playouts_Bootstrap', 'translatable' ) );
+
+		if( is_admin() ) {
+        	# trigger on plugin activation
+        	register_activation_hook( self::$plugin_slug, array( 'Playouts_Bootstrap', 'on_plugin_activation' ) );
+		}
 
     }
 
@@ -115,5 +128,30 @@ class Playouts_Bootstrap {
 		load_plugin_textdomain( 'peenapo-layouts-txd', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/');
 
 	}
+
+
+
+    static function on_plugin_activation() {
+
+        #delete_option( 'pl_layouts_activation' );
+        #delete_option( 'pl_layouts_options' );return;
+
+        if( ! get_option( 'pl_layouts_activation' ) ) {
+
+            self::inport_default_options();
+
+            update_option( 'pl_layouts_activation', true );
+
+        }
+
+    }
+
+    static function inport_default_options() {
+
+        $default_options = include PL_DIR . 'inc/default_options.php';
+        update_option( 'pl_layouts_options', $default_options );
+
+    }
+
 }
 Playouts_Bootstrap::init();

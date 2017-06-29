@@ -54,6 +54,9 @@ class Playouts_Admin {
         # on custom post type pl_layout save / update
         add_action( 'save_post', array( 'Playouts_Admin', 'on_custom_layout_save' ) );
 
+        # add settings link next to the plugin details
+        add_filter( 'plugin_action_links_' . Playouts_Bootstrap::$plugin_slug, array( 'Playouts_Admin', 'add_settings_link' ) );
+
     }
 
     /*
@@ -548,7 +551,14 @@ class Playouts_Admin {
         }
     }
 
+    static function add_settings_link( $links ) {
+        $settings_link = '<a href="' . get_admin_url() . 'admin.php?page=playouts_options">' . esc_html__( 'Settings', 'peenapo-layouts-txd' ) . '</a>';
+        array_push( $links, $settings_link );
+        return $links;
+    }
+
 }
+
 Playouts_Admin::init()
 
 ?>
