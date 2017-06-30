@@ -76,7 +76,7 @@ class Playouts_Public {
                 if( isset( $post->post_content ) and ! empty( $post->post_content ) ) {
 
                     // lets use our own shortcode parser
-                    include_once PL_DIR . 'inc/shortcode_parser.php';
+                    include_once PLAYOUTS_DIR . 'inc/shortcode_parser.php';
 
                     self::parse_content( $post->post_content, true );
 
@@ -84,7 +84,7 @@ class Playouts_Public {
             }
         }
 
-        self::$options = get_option( 'pl_layouts_options' );
+        self::$options = get_option( 'playouts_layouts_options' );
 
     }
 
@@ -98,16 +98,16 @@ class Playouts_Public {
             return $content;
         }
 
-        $outer_class = apply_filters( 'pl_content_wrap_class', array( 'pl-outer' ) );
+        $outer_class = apply_filters( 'playouts_content_wrap_class', array( 'pl-outer' ) );
         $outer_classes = implode( ' ', $outer_class );
 
-        $outer_id = apply_filters( 'pl_content_id', 'pl-outer' );
+        $outer_id = apply_filters( 'playouts_content_id', 'pl-outer' );
 
-        $inner_class = apply_filters( 'pl_content_inner_class', array( 'pl-inner' ) );
+        $inner_class = apply_filters( 'playouts_content_inner_class', array( 'pl-inner' ) );
         $inner_classes = implode( ' ', $inner_class );
 
         // lets use our own shortcode parser
-        include_once PL_DIR . 'inc/shortcode_parser.php';
+        include_once PLAYOUTS_DIR . 'inc/shortcode_parser.php';
 
 		return $content = sprintf(
 			'<div class="%2$s" id="%4$s">
@@ -124,7 +124,7 @@ class Playouts_Public {
 
     static function is_builder_used( $post_id = false ) {
         if( ! $post_id ) { $post_id = get_the_ID(); }
-        return get_post_meta( $post_id, '__pl_status', true ) == '1';
+        return get_post_meta( $post_id, '__playouts_status', true ) == '1';
     }
 
     /*
@@ -135,7 +135,7 @@ class Playouts_Public {
     static function parse_content( $content, $get_ids = false ) {
 
         $shortcodes_arr = array();
-        $shortcodes_arr = pl_do_shortcodes( $shortcodes_arr, $content );
+        $shortcodes_arr = playouts_do_shortcodes( $shortcodes_arr, $content );
 
         $rendered = self::loop_shortcodes_and_render( $shortcodes_arr, $get_ids );
 
@@ -201,11 +201,11 @@ class Playouts_Public {
         if( self::is_builder_used() ) {
 
             // TODO: change via plugin option
-            $cont_max = apply_filters( 'pl_container_max_with', 1100 );
+            $cont_max = apply_filters( 'playouts_container_max_with', 1100 );
             // TODO: fix this
             echo "<style>.pl-row-holder.pl-row-full_width_background > .pl-row, .pl-row-holder.pl-row-in_container, .pl-wrapper {max-width:{$cont_max}px;}</style>";
 
-            $post_css = get_post_meta( get_the_ID(), '__pl_custom_css', true );
+            $post_css = get_post_meta( get_the_ID(), '__playouts_custom_css', true );
 
             echo "<style>" . strip_tags( $post_css ) . "</style>";
 
@@ -286,57 +286,29 @@ class Playouts_Public {
         if( self::is_builder_used() ) {
 
             # css
-            wp_enqueue_style( 'pl-style', PL_ASSEST . 'css/style.css' );
+            wp_enqueue_style( 'playouts-style', PLAYOUTS_ASSEST . 'css/style.css' );
             # icons
-            wp_enqueue_style( 'pl-stroke-7', PL_ASSEST . 'fonts/pl-7-stroke/pe-icon-7-stroke.css' );
+            wp_enqueue_style( 'playouts-stroke-7', PLAYOUTS_ASSEST . 'fonts/playouts-7-stroke/pe-icon-7-stroke.css' );
             # dynamic google fonts
-            wp_enqueue_style( 'pl-google-fonts', Playouts_Public_Fonts::output_google_font(), array('pl-style') );
-            wp_add_inline_style( 'pl-google-fonts', Playouts_Public_Fonts::$font_declarations );
+            wp_enqueue_style( 'playouts-google-fonts', Playouts_Public_Fonts::output_google_font(), array('playouts-style') );
+            wp_add_inline_style( 'playouts-google-fonts', Playouts_Public_Fonts::$font_declarations );
 
             # js
             wp_enqueue_script( 'jquery' );
 
-    		# google maps
-            /*if( Playouts_Public::check_shortcode( Bwpb::$global['load_scripts_on_shortcode']['google_api'] ) ) {
-    			$google_api_key = '';
-    			if( class_exists('Bw') ) {
-    				$google_api_key = esc_attr( get_option( Bw::$theme_prefix . '_google_api_key', '' ) );
-    			}
-                wp_enqueue_script( 'pl-google-maps', '//maps.google.com/maps/api/js?key=' . $google_api_key );
-            }*/
-
-    		# fonts
-    		/*if( Playouts_Public::check_shortcode( Bwpb::$global['load_scripts_on_shortcode']['fonts'] ) ) {
-    			if( Playouts_Public::check_shortcode_string( 'font-awesome' ) ) {
-    				wp_enqueue_style( 'bw-font-awesome', PL_ASSEST . 'fonts/font-awesome/font-awesome.min.css' );
-    			}
-    			if( Playouts_Public::check_shortcode_string( 'lineicons' ) ) {
-    				wp_enqueue_style( 'bw-font-lineicons', PL_ASSEST . 'fonts/pl-lineicons/lineicons.css' );
-    			}
-    			if( Playouts_Public::check_shortcode_string( '7s' ) ) {
-    				wp_enqueue_style( 'bw-font-stroke-7', PL_ASSEST . 'fonts/pl-7-stroke/pe-icon-7-stroke.css' );
-    			}
-    		}*/
-
-            wp_enqueue_script( 'pl-front-plugins', PL_ASSEST . 'js/pl-front-plugins.js', array('jquery'), '1.0', true );
-            # owl carousel
-            /*if( Playouts_Public::check_shortcode( Bwpb::$global['load_scripts_on_shortcode']['owl_carousel'] ) ) {
-                wp_enqueue_style( 'pl-owl-carousel', PL_ASSEST . 'css/vendors/jquery.owl-carousel.min.css' );
-                wp_enqueue_script( 'pl-owl-carousel', PL_ASSEST . 'js/vendors/jquery.owl-carousel/owl.carousel.min.js', array('jquery'), '1.0', true );
-            }*/
-            wp_enqueue_script( 'pl-front', PL_ASSEST . 'js/pl-front.js', array('jquery'), '1.0', true );
-
+            wp_enqueue_script( 'playouts-front-plugins', PLAYOUTS_ASSEST . 'js/playouts-front-plugins.js', array('jquery'), '1.0', true );
+            wp_enqueue_script( 'pplayoutsl-front', PLAYOUTS_ASSEST . 'js/playouts-front.js', array('jquery'), '1.0', true );
 
             # dynamic enqueue
             if( in_array( 'bw_google_map', self::$parsed_ids ) ) {
                 if( isset( Playouts_Public::$options['google_map_api_key'] ) and ! empty( Playouts_Public::$options['google_map_api_key'] ) ) {
-                    wp_enqueue_script( 'pl-google-map', '//maps.googleapis.com/maps/api/js?key=' . esc_attr( Playouts_Public::$options['google_map_api_key'] ) . '&callback=playouts_init_map', array( 'pl-front' ), '1.0', true );
+                    wp_enqueue_script( 'playouts-google-map', '//maps.googleapis.com/maps/api/js?key=' . esc_attr( Playouts_Public::$options['google_map_api_key'] ) . '&callback=playouts_init_map', array( 'playouts-front' ), '1.0', true );
                 }
             }
             if( in_array( 'bw_image_comparison', self::$parsed_ids ) ) {
-                wp_enqueue_style( 'pl-twentytwenty-css', PL_ASSEST . 'css/vendor/twentytwenty.css' );
-                wp_enqueue_script( 'pl-event-move', PL_ASSEST . 'js/vendor/jquery.event.move.js', array('jquery') );
-                wp_enqueue_script( 'pl-twentytwenty-js', PL_ASSEST . 'js/vendor/jquery.twentytwenty.js', array('jquery') );
+                wp_enqueue_style( 'playouts-twentytwenty-css', PLAYOUTS_ASSEST . 'css/vendor/twentytwenty.css' );
+                wp_enqueue_script( 'playouts-event-move', PLAYOUTS_ASSEST . 'js/vendor/jquery.event.move.js', array('jquery') );
+                wp_enqueue_script( 'playouts-twentytwenty-js', PLAYOUTS_ASSEST . 'js/vendor/jquery.twentytwenty.js', array('jquery') );
             }
 
 
@@ -345,13 +317,13 @@ class Playouts_Public {
 
     static function templates() {
 
-        do_action( 'pl_get_public_templates' );
+        do_action( 'playouts_get_public_templates' );
 
     }
 
 }
 
-function pl_init_plugin() {
+function playouts_init_plugin() {
 	Playouts_Public::init();
 }
-add_action( 'init', 'pl_init_plugin' );
+add_action( 'init', 'playouts_init_plugin' );

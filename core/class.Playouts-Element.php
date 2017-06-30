@@ -188,13 +188,13 @@ class Playouts_Element_Row extends Playouts_Element {
 				'description'       => esc_html__( 'Select the display version of the row.', 'peenapo-layouts-txd' ),
 				'options'           => array(
                     'standard' => array(
-                        'label' => 'Standard', 'image' => PL_ASSEST . 'admin/images/__tmp/row_standard.png'
+                        'label' => 'Standard', 'image' => PLAYOUTS_ASSEST . 'admin/images/__tmp/row_standard.png'
                     ),
                     'full' => array(
-                        'label' => 'Full-Width', 'image' => PL_ASSEST . 'admin/images/__tmp/row_full_width.png'
+                        'label' => 'Full-Width', 'image' => PLAYOUTS_ASSEST . 'admin/images/__tmp/row_full_width.png'
                     ),
                     'boxed' => array(
-                        'label' => 'Boxed', 'image' => PL_ASSEST . 'admin/images/__tmp/row_boxed.png'
+                        'label' => 'Boxed', 'image' => PLAYOUTS_ASSEST . 'admin/images/__tmp/row_boxed.png'
                     ),
                 ),
                 'value' => 'standard'
@@ -4511,7 +4511,7 @@ class Playouts_Element_Image_Slider_Item extends Playouts_Repeater_Item_Element 
         if( ! Playouts_Element_Image_Slider::$lazy ) {
             $_image = '<img src="' . esc_url( $image_sized[0] ) . '" alt="' . esc_html( $image_alt ) . '">';
         }else{
-            $_image = '<img src="' . PL_ASSEST . 'images/pixel.png" data-flickity-lazyload="' . esc_url( $image_sized[0] ) . '" alt="' . esc_html( $image_alt ) . '">';
+            $_image = '<img src="' . PLAYOUTS_ASSEST . 'images/pixel.png" data-flickity-lazyload="' . esc_url( $image_sized[0] ) . '" alt="' . esc_html( $image_alt ) . '">';
         }
 
         if( isset( $image_sized[0] ) ) {
@@ -6421,13 +6421,13 @@ new Playouts_Element_Tab_Item;*/
     'description'       => esc_html__( 'Select the display version of the row.', 'peenapo-layouts-txd' ),
     'options'           => array(
         'standard' => array(
-            'label' => 'Standard', 'image' => PL_ASSEST . 'admin/images/__tmp/row_standard.png'
+            'label' => 'Standard', 'image' => PLAYOUTS_ASSEST . 'admin/images/__tmp/row_standard.png'
         ),
         'full' => array(
-            'label' => 'Full-Width', 'image' => PL_ASSEST . 'admin/images/__tmp/row_full_width.png'
+            'label' => 'Full-Width', 'image' => PLAYOUTS_ASSEST . 'admin/images/__tmp/row_full_width.png'
         ),
         'boxed' => array(
-            'label' => 'Boxed', 'image' => PL_ASSEST . 'admin/images/__tmp/row_boxed.png'
+            'label' => 'Boxed', 'image' => PLAYOUTS_ASSEST . 'admin/images/__tmp/row_boxed.png'
         ),
     ),
     'value'             => 'standard'

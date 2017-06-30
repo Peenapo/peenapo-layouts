@@ -11,7 +11,7 @@
             <div class="pl-panel-row">
                 <div class="pl-panel-row-inner">
                     <h5><?php esc_html_e( 'Layout Name', 'peenapo-layouts-txd' ); ?></h5>
-                    <input type="text" id="pl-field-layout-name" name="pl_field_layout_name">
+                    <input type="text" id="pl-field-layout-name" name="playouts_field_layout_name">
                 </div>
             </div>
             <div class="pl-panel-row">
@@ -24,7 +24,7 @@
                         <p><?php esc_html_e( 'Select a category ( optional ) for this template so you can find it easier.', 'peenapo-layouts-txd' ); ?></p>
                     </div>
                     <ul class="bw-save-layout-cats"></ul>
-                    <input type="text" id="pl-field-layout-category" name="pl_field_layout_category" placeholder="<?php esc_html_e( 'Add new category', 'peenapo-layouts-txd' ); ?>">
+                    <input type="text" id="pl-field-layout-category" name="playouts_field_layout_category" placeholder="<?php esc_html_e( 'Add new category', 'peenapo-layouts-txd' ); ?>">
                 </div>
             </div>
         </form>

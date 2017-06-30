@@ -13,25 +13,13 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 if ( ! defined( 'ABSPATH' ) ) { exit; } // exit if accessed directly
 
 /*
- * prints human-readable information
- *
- */
-if( ! function_exists( 'd' ) ) {
-	function d( $what ) {
-		print '<pre>';
-		print_r( $what );
-		print '</pre>';
-	}
-}
-
-/*
  * set content directories
  *
  */
-if( ! defined( 'PL_DIR' ) ) { define( 'PL_DIR', plugin_dir_path( __FILE__ ) ); }
-if( ! defined( 'PL_URL' ) ) { define( 'PL_URL', plugin_dir_url( __FILE__ ) ); }
-if( ! defined( 'PL_CORE' ) ) { define( 'PL_CORE', PL_DIR . 'core/' ); }
-if( ! defined( 'PL_ASSEST' ) ) { define( 'PL_ASSEST', PL_URL . 'assets/' ); }
+if( ! defined( 'PLAYOUTS_DIR' ) ) { define( 'PLAYOUTS_DIR', plugin_dir_path( __FILE__ ) ); }
+if( ! defined( 'PLAYOUTS_URL' ) ) { define( 'PLAYOUTS_URL', plugin_dir_url( __FILE__ ) ); }
+if( ! defined( 'PLAYOUTS_CORE' ) ) { define( 'PLAYOUTS_CORE', PLAYOUTS_DIR . 'core/' ); }
+if( ! defined( 'PLAYOUTS_ASSEST' ) ) { define( 'PLAYOUTS_ASSEST', PLAYOUTS_URL . 'assets/' ); }
 
 /*
  * lets boot this scrap
@@ -81,27 +69,27 @@ class Playouts_Bootstrap {
 
 		self::set_globals();
 
-        include PL_CORE . 'class.Playouts-Functions.php';
-        include PL_CORE . 'class.Playouts-Option-Type.php';
-        include PL_CORE . 'class.Playouts-Shortcode-Parser.php';
+        include PLAYOUTS_CORE . 'class.Playouts-Functions.php';
+        include PLAYOUTS_CORE . 'class.Playouts-Option-Type.php';
+        include PLAYOUTS_CORE . 'class.Playouts-Shortcode-Parser.php';
 
         if( is_admin() ) {
 
-            include PL_CORE . 'admin/class.Playouts-Admin.php';
-            include PL_CORE . 'admin/class.Playouts-Admin-Settings.php';
-			include PL_CORE . 'admin/class.Playouts-Admin-Map.php';
-			include PL_CORE . 'admin/class.Playouts-Admin-Modal.php';
-            include PL_CORE . 'admin/class.Playouts-Admin-Ajax.php';
-            include PL_CORE . 'admin/class.Playouts-Admin-Template-Hooks.php';
-            include PL_CORE . 'admin/class.Playouts-Admin-Template-Functions.php';
+            include PLAYOUTS_CORE . 'admin/class.Playouts-Admin.php';
+            include PLAYOUTS_CORE . 'admin/class.Playouts-Admin-Settings.php';
+			include PLAYOUTS_CORE . 'admin/class.Playouts-Admin-Map.php';
+			include PLAYOUTS_CORE . 'admin/class.Playouts-Admin-Modal.php';
+            include PLAYOUTS_CORE . 'admin/class.Playouts-Admin-Ajax.php';
+            include PLAYOUTS_CORE . 'admin/class.Playouts-Admin-Template-Hooks.php';
+            include PLAYOUTS_CORE . 'admin/class.Playouts-Admin-Template-Functions.php';
 
         }else{
 
-			include PL_CORE . 'class.Playouts-Public.php';
-			include PL_CORE . 'class.Playouts-Public-Fonts.php';
-		    include PL_CORE . 'class.Playouts-Public-Map.php';
-            include PL_CORE . 'class.Playouts-Template-Hooks.php';
-            include PL_CORE . 'class.Playouts-Template-Functions.php';
+			include PLAYOUTS_CORE . 'class.Playouts-Public.php';
+			include PLAYOUTS_CORE . 'class.Playouts-Public-Fonts.php';
+		    include PLAYOUTS_CORE . 'class.Playouts-Public-Map.php';
+            include PLAYOUTS_CORE . 'class.Playouts-Template-Hooks.php';
+            include PLAYOUTS_CORE . 'class.Playouts-Template-Functions.php';
 
         }
 
@@ -119,7 +107,6 @@ class Playouts_Bootstrap {
 
 	/*
 	 * make the plguin translatable
-	 * loading the plugin translations should be done in the init action
 	 *
 	 */
     static function translatable() {
@@ -132,14 +119,14 @@ class Playouts_Bootstrap {
 
     static function on_plugin_activation() {
 
-        #delete_option( 'pl_layouts_activation' );
-        #delete_option( 'pl_layouts_options' );return;
+		#delete_option( 'playouts_layouts_activation' );
+		#delete_option( 'playouts_layouts_options' );return;
 
-        if( ! get_option( 'pl_layouts_activation' ) ) {
+        if( ! get_option( 'playouts_layouts_activation' ) ) {
 
             self::inport_default_options();
 
-            update_option( 'pl_layouts_activation', true );
+            update_option( 'playouts_layouts_activation', true );
 
         }
 
@@ -147,8 +134,8 @@ class Playouts_Bootstrap {
 
     static function inport_default_options() {
 
-        $default_options = include PL_DIR . 'inc/default_options.php';
-        update_option( 'pl_layouts_options', $default_options );
+        $default_options = include PLAYOUTS_DIR . 'inc/default_options.php';
+        update_option( 'playouts_layouts_options', $default_options );
 
     }
 

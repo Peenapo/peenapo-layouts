@@ -43,15 +43,15 @@ class Playouts_Admin {
         add_action( 'init', array( 'Playouts_Admin', 'actions' ) );
 
         # main container classes
-        add_action( 'pl_main_class', array( 'Playouts_Admin', 'main_class' ) );
+        add_action( 'playouts_main_class', array( 'Playouts_Admin', 'main_class' ) );
 
         # switch button classes
-        add_action( 'pl_switch_class', array( 'Playouts_Admin', 'switch_class' ) );
+        add_action( 'playouts_switch_class', array( 'Playouts_Admin', 'switch_class' ) );
 
         # enqueue scripts
         add_action( 'admin_enqueue_scripts', array( 'Playouts_Admin', 'enqueue_scripts' ) );
 
-        # on custom post type pl_layout save / update
+        # on custom post type playouts_layout save / update
         add_action( 'save_post', array( 'Playouts_Admin', 'on_custom_layout_save' ) );
 
         # add settings link next to the plugin details
@@ -64,9 +64,6 @@ class Playouts_Admin {
      *
      */
     static function main_class( $classes ) {
-
-        // TODO: add this into an option
-        //$classes[] = 'pl-editor-hidden';
 
         if( Playouts_Admin::$status ) {
             if( ! ( isset( Playouts_Admin::$options['show_editor'] ) and Playouts_Admin::$options['show_editor'] ) ) {
@@ -145,7 +142,7 @@ class Playouts_Admin {
     		'query_var'             => true,
     		'rewrite'               => array( 'slug' => 'layout_category' ),
     	);
-    	register_taxonomy( 'pl_layout_category', 'pl_layout', $taxonomy_args );
+    	register_taxonomy( 'playouts_layout_category', 'playouts_layout', $taxonomy_args );
 
         # tagonomies as params
         $labels = array(
@@ -159,7 +156,7 @@ class Playouts_Admin {
             'query_var'             => true,
             'show_in_nav_menus'     => false,
         );
-        register_taxonomy( 'layout_view', 'pl_layout', $args );
+        register_taxonomy( 'layout_view', 'playouts_layout', $args );
 
         # register the post type
         $post_type_labels = array(
@@ -181,7 +178,7 @@ class Playouts_Admin {
     	$post_type_args = array(
             'labels'                => $post_type_labels,
             'description'           => __( 'Layouts', 'peenapo-layouts-txd' ),
-            'taxonomies'            => array( 'pl_layout_category' ),
+            'taxonomies'            => array( 'playouts_layout_category' ),
             'public'                => false,
             'publicly_queryable'    => false,
             'show_ui'               => true,
@@ -194,7 +191,7 @@ class Playouts_Admin {
             'menu_position'         => null,
             'supports'              => array( 'title', 'editor', 'revisions' ),
     	);
-    	register_post_type( 'pl_layout', $post_type_args );
+    	register_post_type( 'playouts_layout', $post_type_args );
 
     }
 
@@ -204,7 +201,7 @@ class Playouts_Admin {
          * get switch button template
          *
          *
-        do_action( 'pl_get_template_switch_button' );
+        do_action( 'playouts_get_template_switch_button' );
 
     }*/
 
@@ -217,8 +214,9 @@ class Playouts_Admin {
 
         if( ! $post_id ) { return; }
 
-        $pl_status = get_post_meta( $post_id, '__pl_status', true );
-        self::$status = $pl_status;
+        $playouts_status = get_post_meta( $post_id, '__playouts_status', true );
+        d($playouts_status);
+        self::$status = $playouts_status;
 
     }
 
@@ -226,7 +224,7 @@ class Playouts_Admin {
 
         if( ! $post_id ) { return; }
 
-        $enabled_post_types = isset( self::$options['post_types'] ) ? self::$options['post_types'] : array( 'post', 'page', 'pl_layout' );
+        $enabled_post_types = isset( self::$options['post_types'] ) ? self::$options['post_types'] : array( 'post', 'page', 'playouts_layout' );
         if( array_key_exists( get_post_type( $post_id ), self::$post_types ) ) {
 
             self::$status_post_type = true;
@@ -238,8 +236,8 @@ class Playouts_Admin {
     static function on_load_post() {
 
         # get the plugin options
-        self::$options = get_option( 'pl_layouts_options' );
-        self::$post_types = isset( self::$options['post_types'] ) ? array_merge( array( 'pl_layout' => 1 ), self::$options['post_types'] ) : array( 'post', 'page', 'pl_layout' );
+        self::$options = get_option( 'playouts_layouts_options' );
+        self::$post_types = isset( self::$options['post_types'] ) ? array_merge( array( 'playouts_layout' => 1 ), self::$options['post_types'] ) : array( 'post', 'page', 'playouts_layout' );
 
         # get current post type
         $screen = get_current_screen();
@@ -352,11 +350,11 @@ class Playouts_Admin {
 
     static function get_custom_css() {
 
-        $pl_custom_css = get_post_meta( get_the_ID(), '__pl_custom_css', true );
-        if ( ! isset( $pl_custom_css ) or $pl_custom_css == '' ) {
-            $pl_custom_css = '';
+        $playouts_custom_css = get_post_meta( get_the_ID(), '__playouts_custom_css', true );
+        if ( ! isset( $playouts_custom_css ) or $playouts_custom_css == '' ) {
+            $playouts_custom_css = '';
         }
-        return $pl_custom_css;
+        return $playouts_custom_css;
 
     }
 
@@ -366,7 +364,7 @@ class Playouts_Admin {
          * get main template
          *
          */
-        do_action( 'pl_get_template_main' );
+        do_action( 'playouts_get_template_main' );
 
     }
 
@@ -376,7 +374,7 @@ class Playouts_Admin {
          * get template for switch section
          *
          */
-        do_action( 'pl_get_template_switch' );
+        do_action( 'playouts_get_template_switch' );
 
     }
 
@@ -388,18 +386,18 @@ class Playouts_Admin {
          * get template for editor not supported
          *
          */
-        do_action( 'pl_get_template_editor_not_supported' );
+        do_action( 'playouts_get_template_editor_not_supported' );
 
     }
 
     static function get_free_id() {
 
-        $last_id = get_option( 'pl_last_block_id', 0 );
+        $last_id = get_option( 'playouts_last_block_id', 0 );
 
         if ( $last_id <= 2 ) { $last_id = 2; }
         $last_id++;
 
-        update_option( 'pl_last_block_id', $last_id );
+        update_option( 'playouts_last_block_id', $last_id );
 
         return $last_id;
 
@@ -428,25 +426,25 @@ class Playouts_Admin {
          * generate all the element's templates
          *
          */
-        do_action( 'pl_get_template_elements' );
+        do_action( 'playouts_get_template_elements' );
 
         /*
          * other partials
          *
          */
-        do_action( 'pl_get_template_partials' );
+        do_action( 'playouts_get_template_partials' );
 
         /*
          * get template for settings panel
          *
          */
-        do_action( 'pl_get_template_settings_panel' );
+        do_action( 'playouts_get_template_settings_panel' );
 
         /*
          * generate a template for our icons
          *
          */
-        do_action( 'pl_get_template_icons' );
+        do_action( 'playouts_get_template_icons' );
 
     }
 
@@ -456,36 +454,39 @@ class Playouts_Admin {
 
         if ( ! current_user_can( 'edit_post', $post_id ) ) { return; }
 
-        $status = self::get_post_param( 'pl_status' );
+        $status = self::get_post_param( 'playouts_status' );
         $custom_css = isset( $_POST['bw_custom_css'] ) ? strip_tags( $_POST['bw_custom_css'] ) : '';
+
+        #d( $status );exit;
 
         // TODO: fix this
         if ( $status !== false ) {
-            // Add status
-            if ( get_post_meta( $post_id, '__pl_status' ) == '' ) {
-                add_post_meta( $post_id, '__pl_status', $status, true );
+            // add status
+            if ( get_post_meta( $post_id, '__playouts_status' ) == '' ) {
+                add_post_meta( $post_id, '__playouts_status', $status, true );
             }
-            // Update status
-            elseif ( $status !== get_post_meta( $post_id, '__pl_status', true ) ) {
-                update_post_meta( $post_id, '__pl_status', $status );
+            // update status
+            elseif ( $status !== get_post_meta( $post_id, '__playouts_status', true ) ) {
+                update_post_meta( $post_id, '__playouts_status', $status );
             }
-            // Delete status
+            // delete status
             elseif ( $status == '' ) {
-                delete_post_meta( $post_id, '__pl_status', get_post_meta( $post_id, '__pl_status', true ) );
+                delete_post_meta( $post_id, '__playouts_status', get_post_meta( $post_id, '__playouts_status', true ) );
             }
         }
+
         if ( $custom_css !== false ) {
             // add custom css
-            if ( get_post_meta( $post_id, '__pl_custom_css' ) == '' ) {
-                add_post_meta( $post_id, '__pl_custom_css', $custom_css, true );
+            if ( get_post_meta( $post_id, '__playouts_custom_css' ) == '' ) {
+                add_post_meta( $post_id, '__playouts_custom_css', $custom_css, true );
             }
             // update custom css
-            elseif ( $custom_css != get_post_meta( $post_id, '__pl_custom_css', true ) ) {
-                update_post_meta( $post_id, '__pl_custom_css', $custom_css );
+            elseif ( $custom_css != get_post_meta( $post_id, '__playouts_custom_css', true ) ) {
+                update_post_meta( $post_id, '__playouts_custom_css', $custom_css );
             }
             // delete custom css
             elseif ( $custom_css == '' ) {
-                delete_post_meta( $post_id, '__pl_custom_css', get_post_meta( $post_id, '__pl_custom_css', true ) );
+                delete_post_meta( $post_id, '__playouts_custom_css', get_post_meta( $post_id, '__playouts_custom_css', true ) );
             }
         }
     }
@@ -498,7 +499,7 @@ class Playouts_Admin {
 
         if ( wp_is_post_revision( $layout_id ) ) { return; } // do nothing, if this is just a revision
 
-        if( get_post_type( $layout_id ) == 'pl_layout' ) {
+        if( get_post_type( $layout_id ) == 'playouts_layout' ) {
 
             // extract the first module of the layout
             $first_module = Playouts_Admin_Layout_Custom::extract_first_module( get_post_field( 'post_content', $layout_id ) );
@@ -520,33 +521,33 @@ class Playouts_Admin {
             //TODO: fix this mess
             # css
             wp_enqueue_style( 'wp-color-picker' );
-    		wp_enqueue_style( 'pl', PL_ASSEST . 'admin/css/style.css' );
-    		wp_enqueue_style( 'pl-jquery-ui', PL_ASSEST . 'admin/css/vendors/jquery-ui.css' );
+    		wp_enqueue_style( 'playouts', PLAYOUTS_ASSEST . 'admin/css/style.css' );
+    		wp_enqueue_style( 'playouts-jquery-ui', PLAYOUTS_ASSEST . 'admin/css/vendors/jquery-ui.css' );
 
             # google fonts
             $query_args = array(
                 'family' => 'Palanquin+Dark:400,600|Oxygen:400',
                 'subset' => 'latin',
             );
-            wp_enqueue_style( 'pl-google-fonts', add_query_arg( $query_args, "//fonts.googleapis.com/css" ), array(), null );
+            wp_enqueue_style( 'playouts-google-fonts', add_query_arg( $query_args, "//fonts.googleapis.com/css" ), array(), null );
 
     		# js
             if( isset( $_GET['page'] ) and $_GET['page'] == 'playouts_options' ) {
                 wp_enqueue_media();
             }
     		wp_enqueue_script( array( "jquery", "jquery-ui-core", "jquery-ui-dialog", "jquery-ui-sortable", "wp-color-picker", "jquery-ui-slider" ) );
-            wp_register_script( 'pl', PL_ASSEST . 'admin/js/main.js', array('jquery-ui-sortable'), '1.0', true );
-    		wp_localize_script( 'pl', 'pl_admin_root', array( 'ajax' => admin_url( 'admin-ajax.php' ) ) );
-            wp_enqueue_script( 'pl-smart-resize', PL_ASSEST . 'admin/js/vendors/jquery-smartresize-master/jquery.debouncedresize.js', array(), '1.0', true );
-            wp_enqueue_script( 'pl-vendors', PL_ASSEST . 'admin/js/vendors.js', array(), '1.0', true );
-            wp_enqueue_script( 'pl-php-default', PL_ASSEST . 'admin/js/vendors/php.default/php.default.min.js', array(), '1.0', true );
-            wp_enqueue_script( 'pl-colorpicker', PL_ASSEST . 'admin/js/vendors/wpcolorpicker/wp-colorpicker.min.js', array(), '1.0', true );
-            wp_enqueue_script( 'pl-blocker', PL_ASSEST . 'admin/js/pl.blocker.js', array(), '1.0', true );
-            wp_enqueue_script( 'pl-shortcoder', PL_ASSEST . 'admin/js/pl.shortcoder.js', array(), '1.0', true );
-            wp_enqueue_script( 'pl-layouts', PL_ASSEST . 'admin/js/pl.layouts.js', array(), '1.0', true );
-            wp_enqueue_script( 'pl-mapper', PL_ASSEST . 'admin/js/pl.mapper.js', array(), '1.0', true );
+            wp_register_script( 'playouts', PLAYOUTS_ASSEST . 'admin/js/main.js', array('jquery-ui-sortable'), '1.0', true );
+    		wp_localize_script( 'playouts', 'playouts_admin_root', array( 'ajax' => admin_url( 'admin-ajax.php' ) ) );
+            wp_enqueue_script( 'playouts-smart-resize', PLAYOUTS_ASSEST . 'admin/js/vendors/jquery-smartresize-master/jquery.debouncedresize.js', array(), '1.0', true );
+            wp_enqueue_script( 'playouts-vendors', PLAYOUTS_ASSEST . 'admin/js/vendors.js', array(), '1.0', true );
+            wp_enqueue_script( 'playouts-php-default', PLAYOUTS_ASSEST . 'admin/js/vendors/php.default/php.default.min.js', array(), '1.0', true );
+            wp_enqueue_script( 'playouts-colorpicker', PLAYOUTS_ASSEST . 'admin/js/vendors/wpcolorpicker/wp-colorpicker.min.js', array(), '1.0', true );
+            wp_enqueue_script( 'playouts-blocker', PLAYOUTS_ASSEST . 'admin/js/playouts.blocker.js', array(), '1.0', true );
+            wp_enqueue_script( 'playouts-shortcoder', PLAYOUTS_ASSEST . 'admin/js/playouts.shortcoder.js', array(), '1.0', true );
+            wp_enqueue_script( 'playouts-layouts', PLAYOUTS_ASSEST . 'admin/js/playouts.layouts.js', array(), '1.0', true );
+            wp_enqueue_script( 'playouts-mapper', PLAYOUTS_ASSEST . 'admin/js/playouts.mapper.js', array(), '1.0', true );
 
-    		wp_enqueue_script( 'pl' );
+    		wp_enqueue_script( 'playouts' );
 
         }
     }

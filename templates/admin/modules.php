@@ -34,7 +34,7 @@ $block_drag = "
 ?>
 
 <!-- row -->
-<script type="text/template" id="pl_template-row">
+<script type="text/template" id="playouts_template-row">
     <div class="pl-block block-row pl-is-empty" data-id="" data-module="">
         <div class="pl-block-container">
             <?php echo $controls_row; ?>
@@ -47,7 +47,7 @@ $block_drag = "
 </script>
 
 <!-- column -->
-<script type="text/template" id="pl_template-column">
+<script type="text/template" id="playouts_template-column">
     <div class="pl-block block-column pl-is-empty" data-id="" data-module="" data-col-width="">
         <div class="pl-block-container">
             <span class="pl-col-plus pl-open-modal" data-view="column" data-placement="insert_bottom"><i class="pl-plus"><span></span></i></span>
@@ -61,7 +61,7 @@ $block_drag = "
 </script>
 
 <!-- row inner -->
-<script type="text/template" id="pl_template-row_inner">
+<script type="text/template" id="playouts_template-row_inner">
     <div class="pl-block block-row block-row-inner pl-is-empty" data-id="" data-module="">
         <div class="pl-block-container">
             <?php echo $controls_row; ?>
@@ -74,7 +74,7 @@ $block_drag = "
 </script>
 
 <!-- column inner -->
-<script type="text/template" id="pl_template-column_inner">
+<script type="text/template" id="playouts_template-column_inner">
     <div class="pl-block block-column block-column-inner pl-is-empty" data-id="" data-module="" data-col-width="">
         <div class="pl-block-container">
             <span class="pl-col-plus pl-open-modal" data-view="column_inner" data-placement="insert_bottom"><i class="pl-plus"><span></span></i></span>
@@ -88,7 +88,7 @@ $block_drag = "
 </script>
 
 <!-- block element -->
-<script type="text/template" id="pl_template-element">
+<script type="text/template" id="playouts_template-element">
     <div class="pl-block pl-block-draggable pl-is-empty" data-id="" data-module="">
         <div class="pl-block-container">
             <?php echo $block_edit_buttons; ?>
@@ -98,7 +98,7 @@ $block_drag = "
 </script>
 
 <!-- repeater -->
-<script type="text/template" id="pl_template-repeater">
+<script type="text/template" id="playouts_template-repeater">
     <div class="pl-block pl-block-draggable pl-block-repeater pl-is-empty" data-id="" data-module="">
         <div class="pl-block-container">
             <?php echo $block_edit_buttons; ?>
@@ -109,12 +109,12 @@ $block_drag = "
 </script>
 
 <!-- repeater item -->
-<script type="text/template" id="pl_template-repeater_item">
+<script type="text/template" id="playouts_template-repeater_item">
     <div class="pl-block pl-block-repeater-item" data-id="" data-module=""></div>
 </script>
 
 <!-- panel repeater item -->
-<script type="text/html" id="pl_template-panel_repeater_item">
+<script type="text/html" id="playouts_template-panel_repeater_item">
     <div class="pl-item" data-id="">
         <div class="pl-item-container pl-no-select">
             <div class="pl-repeater-controls">
@@ -129,7 +129,7 @@ $block_drag = "
 </script>
 
 <!-- divider -->
-<script type="text/template" id="pl_template-separator">
+<script type="text/template" id="playouts_template-separator">
     <div class="pl-block pl-separator-block" data-id="" data-module="">
         <div class="pl-block-container">
             <?php echo $block_edit_buttons; ?>
@@ -139,7 +139,7 @@ $block_drag = "
 </script>
 
 <!-- panel column -->
-<script type="text/template" id="pl_template-panel_columns">
+<script type="text/template" id="playouts_template-panel_columns">
     <div class="pl-option-column" data-column-width="" data-id="">
         <div class="pl-option-column-inner">
             <i class='pl-icon-edit'></i>
@@ -150,10 +150,10 @@ $block_drag = "
 </script>
 
 <!-- save custom layout panel - category item -->
-<script type="text/template" id="pl_template-save_custom_layout_category_item">
+<script type="text/template" id="playouts_template-save_custom_layout_category_item">
     <li>
         <div class="pl-option-checkbox">
-            <input type="checkbox" value="" id="" name="pl_field_layout_category_list">
+            <input type="checkbox" value="" id="" name="playouts_field_layout_category_list">
             <label for="">
                 <span></span>
             </label>

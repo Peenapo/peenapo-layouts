@@ -1,6 +1,6 @@
 <?php
 
-$pl_options = array(
+$playouts_options = array(
 
     'google_map_api_key' => array(
         'type'              => 'textfield',
@@ -26,11 +26,11 @@ foreach( get_post_types( array( 'public'   => true ), 'objects' ) as $post_type 
 
     if( $post_type->name == 'attachment' ) { continue; }
 
-    $pl_options['post_types'][ $post_type->name ] = array(
+    $playouts_options['post_types'][ $post_type->name ] = array(
         'type'              => 'true_false',
         'label'             => $post_type->label,
     );
 
 }
 
-return $pl_options;
+return $playouts_options;

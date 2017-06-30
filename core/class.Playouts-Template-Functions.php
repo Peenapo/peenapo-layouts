@@ -11,7 +11,7 @@ class Playouts_Template_Functions {
 
     static function get_templates() {
 
-        do_action( 'pl_get_template_video_modal' );
+        do_action( 'playouts_get_template_video_modal' );
 
     }
 
@@ -20,7 +20,7 @@ class Playouts_Template_Functions {
     }
 
     static function get_template( $template ) {
-        include PL_DIR . 'templates/' . $template . '.php';
+        include PLAYOUTS_DIR . 'templates/' . $template . '.php';
     }
 
 }

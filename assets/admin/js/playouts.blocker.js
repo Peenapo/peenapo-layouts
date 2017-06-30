@@ -32,7 +32,7 @@ var Pl_interface = {
 
         $.ajax({
             type: 'POST',
-            url: pl_admin_root.ajax,
+            url: playouts_admin_root.ajax,
             data: {
                 'action'        : '__parse_shortcode',
                 'editor_content': Pl_main.wpautop( content )

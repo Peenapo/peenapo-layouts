@@ -7,15 +7,15 @@
 
             <?php
 
-                $layouts_options_arr = require PL_DIR . 'inc/options_fonts.php';
-                $layouts_options = apply_filters( 'pl_layouts_options', $layouts_options_arr );
+                $layouts_options_arr = require PLAYOUTS_DIR . 'inc/options_fonts.php';
+                $layouts_options = apply_filters( 'playouts_layouts_options', $layouts_options_arr );
 
                 $layouts_options_new = array();
 
                 foreach( $layouts_options as $option_name => $attr ) {
 
                     $otypes = Playouts_Option_Type::get_otypes();
-                    $values = get_option('pl_layouts_options');
+                    $values = get_option('playouts_layouts_options');
 
                     $attr['name'] = 'playouts_options[' . $option_name . ']';
                     $attr['value'] = isset( $values[ $option_name ] ) ? $values[ $option_name ] : '';

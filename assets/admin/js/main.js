@@ -428,11 +428,11 @@ var Pl_settings_panel = {
 
             // hide tabs and add back button
             var $tabs = $('.pl-panel-tabs ul li'),
-                $back = $('<span class="pl-tabs-back">' + window.pl_data.i18n.back_to_parent + '</span>');
+                $back = $('<span class="pl-tabs-back">' + window.playouts_data.i18n.back_to_parent + '</span>');
 
             $('.pl-panel-tabs').append( $back );
 
-            $('#pl-panel-settings .pl-panel-title').html( Pl_mapper.__mapper_data[ Pl_settings_panel.panel_edit_id ].name + ' ' + window.pl_data.i18n.option );
+            $('#pl-panel-settings .pl-panel-title').html( Pl_mapper.__mapper_data[ Pl_settings_panel.panel_edit_id ].name + ' ' + window.playouts_data.i18n.option );
 
         },
 
@@ -473,7 +473,7 @@ var Pl_settings_panel = {
     },
 
     set_title: function( title ) {
-        $('.pl-panel-title', Pl_settings_panel.$panel).html( title + ' ' + window.pl_data.i18n.options );
+        $('.pl-panel-title', Pl_settings_panel.$panel).html( title + ' ' + window.playouts_data.i18n.options );
     },
 
     after_open: function() {
@@ -512,17 +512,17 @@ var Pl_settings_panel = {
         var settings_html = '';
         var $panel_content = $( '.pl-panel-content', Pl_settings_panel.$panel );
         var option_type_callbacks = {}; // holds the option type callbacks, we will call them after at the end when all options were loaded.
-        var panel_tabs = { 'general' : pl_data.panel_general_tab };
+        var panel_tabs = { 'general' : playouts_data.panel_general_tab };
 
         $panel_content.empty();
         Pl_settings_panel.$panel.removeClass('pl-done').addClass('pl-ajaxing');
 
         $.ajax({
             type: 'POST',
-            url: pl_admin_root.ajax,
+            url: playouts_admin_root.ajax,
             data: {
                 'action'        : '__panel_get_options',
-                'security'      : window.pl_data.security.panel_get_options,
+                'security'      : window.playouts_data.security.panel_get_options,
                 'options'       : JSON.stringify( data.params )
             },
             success: function( response ) {
@@ -1361,7 +1361,7 @@ var Pl_columns = {
             col_width = col_obj[col]['col_data']['params']['col_width']['value'];
             if( ! col_width ) { col_width = 100; }
 
-            $col_template = $( $('#pl_template-panel_columns').html() );
+            $col_template = $( $('#playouts_template-panel_columns').html() );
             $col_template.css( 'width', col_width + '%' );
 
             $col_template.attr( 'data-column-width', col_width ).attr( 'data-id', col_obj[col].id );
@@ -1425,7 +1425,7 @@ var Pl_columns = {
 
         if( typeof cols !== 'undefined' ) {
 
-            var $cols = $('.pl-option-columns'), template = $('#pl_template-panel_columns').html();
+            var $cols = $('.pl-option-columns'), template = $('#playouts_template-panel_columns').html();
 
             $('.pl-option-columns').empty();
 
@@ -1811,7 +1811,7 @@ var Pl_repeater = {
 
         var uid;
 
-        var template = $('#pl_template-panel_repeater_item').html();
+        var template = $('#playouts_template-panel_repeater_item').html();
         var $item = $( template );
 
         if( id ) { // if module exists and we have its id
@@ -2026,11 +2026,11 @@ var Pl_modal = {
 
             $.ajax({
                 type: 'POST',
-                url: pl_admin_root.ajax,
+                url: playouts_admin_root.ajax,
                 dataType: 'json',
                 data: {
                     action        : '__save_favorites',
-                    security      : window.pl_data.security.save_favorites,
+                    security      : window.playouts_data.security.save_favorites,
                     favorites     : data
                 },
                 beforeSend: function () {
@@ -2116,10 +2116,10 @@ var Pl_modal = {
      */
     reload_custom_layout_categories: function() {
 
-        var _list = '<li data-category="*">' + window.pl_data.i18n.all + '</li>';
+        var _list = '<li data-category="*">' + window.playouts_data.i18n.all + '</li>';
 
-        for ( var id in window.pl_data.map_custom_layout_categories ) {
-            _list += '<li data-category="' + id + '">' + window.pl_data.map_custom_layout_categories[ id ] + '</li>';
+        for ( var id in window.playouts_data.map_custom_layout_categories ) {
+            _list += '<li data-category="' + id + '">' + window.playouts_data.map_custom_layout_categories[ id ] + '</li>';
         }
 
         $('.pl-tab-content-custom_layouts .pl-modal-categories').html( _list ).find('li:first').trigger('click');
@@ -2130,16 +2130,16 @@ var Pl_modal = {
 
         var _list = '';
 
-        for ( var id in window.pl_data.map_custom_layouts ) {
+        for ( var id in window.playouts_data.map_custom_layouts ) {
             _list = '<li data-layout-id="' + id + '"' +
-                'data-view="' + window.pl_data.map_custom_layouts[id].view + '"' +
-                'data-category="' + window.pl_data.map_custom_layouts[id].category + '"' +
+                'data-view="' + window.playouts_data.map_custom_layouts[id].view + '"' +
+                'data-category="' + window.playouts_data.map_custom_layouts[id].category + '"' +
                 'data-id="custom-layout-' + id + '">' +
                     '<div class="pl-element">' +
                         '<div class="pl-element-image">' +
-                            '<img src="' + window.pl_data.path_assets + 'admin/images/default-layout.png" alt="">' +
+                            '<img src="' + window.playouts_data.path_assets + 'admin/images/default-layout.png" alt="">' +
                         '</div>' +
-                        '<span>' + window.pl_data.map_custom_layouts[id].name + '</span>' +
+                        '<span>' + window.playouts_data.map_custom_layouts[id].name + '</span>' +
                     '</div>' +
             '</li>' + _list;
         }
@@ -2158,7 +2158,7 @@ var Pl_modal = {
         if( typeof self.attr('data-view') == 'undefined' ) { return; }
 
         var view_request = self.attr('data-view');
-        var visible_views = window.pl_data.module_dependencies[ view_request ];
+        var visible_views = window.playouts_data.module_dependencies[ view_request ];
 
         var $modules = $('#pl-modal .pl-modal-modules');
 
@@ -2191,7 +2191,7 @@ var Pl_modal = {
         if( typeof self.attr('data-view') == 'undefined' ) { return; }
 
         var view_request = self.attr('data-view');
-        var visible_views = window.pl_data.module_dependencies[ view_request ];
+        var visible_views = window.playouts_data.module_dependencies[ view_request ];
         var $layouts = $('#pl-modal .pl-modal-layouts');
 
         if( view_request == 'row' ) { view_request = '__solo'; }
@@ -2319,12 +2319,12 @@ var Pl_modal = {
 
         // built-in layouts
         if( typeof layout !== 'undefined' ) {
-            Pl_layouts.push_layout( window.pl_data.map_layouts[ layout ], Pl_modal.module_parent_id );
+            Pl_layouts.push_layout( window.playouts_data.map_layouts[ layout ], Pl_modal.module_parent_id );
         }
         // custom layouts
         else{
             var custom_layout_id = self.attr('data-layout-id');
-            Pl_layouts.push_layout( window.pl_data.map_custom_layouts[ custom_layout_id ].content, Pl_modal.module_parent_id, self.attr('data-view') );
+            Pl_layouts.push_layout( window.playouts_data.map_custom_layouts[ custom_layout_id ].content, Pl_modal.module_parent_id, self.attr('data-view') );
         }
 
     },
@@ -2565,7 +2565,7 @@ var Pl_guide = {
 
         });
 
-        //var layouts_options_arr = $.parseJSON( window.pl_data.layouts_options ), param;
+        //var layouts_options_arr = $.parseJSON( window.playouts_data.layouts_options ), param;
         /*var option_type_callbacks = {}; // holds the option type callbacks, we will call them after at the end when all options were loaded.
 
         for( param in layouts_options_arr ) {
@@ -2621,11 +2621,11 @@ var Pl_guide = {
 
         data += $form.serialize();
         data += '&action=__save_layout_options';
-        data += '&security=' + pl_data.security.save_layout_options;
+        data += '&security=' + playouts_data.security.save_layout_options;
 
         $.ajax({
             type: 'POST',
-            url: pl_admin_root.ajax,
+            url: playouts_admin_root.ajax,
             dataType: 'json',
             data: data,
             beforeSend: function () {
@@ -2681,19 +2681,19 @@ var Pl_main = {
      *
      *
      */
-    all_modules: $.parseJSON( window.pl_data.map ),
+    all_modules: $.parseJSON( window.playouts_data.map ),
 
     /*
      *
      *
      */
-    all_modules_repeater: $.parseJSON( window.pl_data.map_repeater ),
+    all_modules_repeater: $.parseJSON( window.playouts_data.map_repeater ),
 
     /*
      *
      *
      */
-    all_modules_repeater_item: $.parseJSON( window.pl_data.map_repeater_item ),
+    all_modules_repeater_item: $.parseJSON( window.playouts_data.map_repeater_item ),
 
     /*
      * the id of the last module added
@@ -2729,7 +2729,7 @@ var Pl_main = {
         this.bind();
 
         // fire on edit screen only
-        if( window.pl_data.screen_edit ) {
+        if( window.playouts_data.screen_edit ) {
             this.status_check();
         }
 
@@ -2750,7 +2750,7 @@ var Pl_main = {
         }
         // standard post type edit screen
         else{
-            pl_data.status ? this.status_enable() : this.status_disable();
+            playouts_data.status ? this.status_enable() : this.status_disable();
         }
     },
 
@@ -2774,7 +2774,7 @@ var Pl_main = {
         $('#peenapo_layouts_section_ui').css('display', 'block');
 
         // set the hidden field value to true, so we can save it on post update
-        $('#pl_status').val(1);
+        $('#playouts_status').val(1);
 
         Pl_main.reload_module_ui();
 
@@ -2798,7 +2798,7 @@ var Pl_main = {
         $('#peenapo_layouts_section_ui').css('display', 'none');
 
         // set the hidden field value to none, so we can save it on post update
-        $('#pl_status').val('');
+        $('#playouts_status').val('');
     },
 
     /*
@@ -3035,8 +3035,8 @@ var Pl_main = {
     on_click_empty_all_content: function() {
 
         Pl_main.confirm({
-            title: window.pl_data.i18n.confirm_empty_title,
-            description: window.pl_data.i18n.confirm_empty_description,
+            title: window.playouts_data.i18n.confirm_empty_title,
+            description: window.playouts_data.i18n.confirm_empty_description,
             callback: Pl_main.empty_ui
         });
 
@@ -3171,8 +3171,8 @@ var Pl_main = {
     remove_module: function( self, wide = false ) {
 
         Pl_main.confirm({
-            title: window.pl_data.i18n.confirm_delete_title,
-            description: window.pl_data.i18n.confirm_delete_description,
+            title: window.playouts_data.i18n.confirm_delete_title,
+            description: window.playouts_data.i18n.confirm_delete_description,
             callback: function() {
                 Pl_main.remove_module_callback( self );
             },
@@ -3272,7 +3272,7 @@ var Pl_main = {
         _module = data.module;
 
         // if template does not exists
-        if( ! $( '#pl_template-' + view ).length ) {
+        if( ! $( '#playouts_template-' + view ).length ) {
             Pl_main.notify( 'template_not_found', view );
             return;
         }
@@ -3285,7 +3285,7 @@ var Pl_main = {
         Pl_main.set_latest_ids( uid, view ); // set the latest ids
 
         // get module template and convert to jquery obj
-        var __module = $( $( '#pl_template-' + view ).html() );
+        var __module = $( $( '#playouts_template-' + view ).html() );
 
         // add params, classes, set labels
         __module.attr( 'data-id', uid ).find('.just-edit .pl-label').html( data.name );
@@ -3401,9 +3401,9 @@ var Pl_main = {
      */
     element_colors: function( __module, data ) {
 
-        if( $('.pl-label', __module).length && typeof window.pl_data.module_colors[ data.module ] !== 'undefined' ) {
-            var rgb_color = Pl_main.hex_to_rgb( window.pl_data.module_colors[ data.module ], .25 );
-            $('.pl-label, .pl-option-holder, .pl-plus', __module).css( 'background-color', window.pl_data.module_colors[ data.module ] );
+        if( $('.pl-label', __module).length && typeof window.playouts_data.module_colors[ data.module ] !== 'undefined' ) {
+            var rgb_color = Pl_main.hex_to_rgb( window.playouts_data.module_colors[ data.module ], .25 );
+            $('.pl-label, .pl-option-holder, .pl-plus', __module).css( 'background-color', window.playouts_data.module_colors[ data.module ] );
             $('.pl-label, .pl-option-holder, .pl-plus', __module).css( 'box-shadow', '0px 3px 30px 0px ' + rgb_color );
         }
 
@@ -3549,7 +3549,7 @@ var Pl_main = {
     notify: function( type, value ) {
 
         var output = '';
-        var i18n_errors_strings = window.pl_data.i18n.notifications;
+        var i18n_errors_strings = window.playouts_data.i18n.notifications;
 
         if( typeof i18n_errors_strings[ type ] !== 'undefined' ) {
             console.log( i18n_errors_strings[ type ].replace( '{{value}}', value ) );

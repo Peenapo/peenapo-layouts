@@ -1,6 +1,6 @@
 <div id="pl-guide" class="pl-guide">
 
-    <?php do_action( 'pl_get_template_settings_header' ); ?>
+    <?php do_action( 'playouts_get_template_settings_header' ); ?>
 
     <div class="plg-content">
 
@@ -19,7 +19,7 @@
                 <?php $class_active = true; ?>
                 <?php foreach( Playouts_Admin_Settings::$support_layouts_settings as $support => $attr ): ?>
                     <li <?php echo $class_active ? 'class="plg-active"' : ''; $class_active = false; ?>>
-                        <?php do_action( "pl_support_{$support}" ); ?>
+                        <?php do_action( "playouts_support_{$support}" ); ?>
                     </li>
                 <?php endforeach; ?>
             </ul>

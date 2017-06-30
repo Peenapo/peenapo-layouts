@@ -157,7 +157,7 @@ class Playouts_Option_Type {
         if( isset( $atts['type'] ) and ! empty( $atts['type'] ) ) {
 
             $otypes = self::get_otypes();
-            $values = get_option('pl_layouts_options');
+            $values = get_option('playouts_layouts_options');
 
             $atts['name'] = 'playouts_options' . ( $parent ? '[' . $parent . ']' : '' ) . '[' . $option_name . ']';
 
@@ -284,24 +284,24 @@ class Playouts_Option_Type_Editor extends Playouts_Option_Type {
 
         $__out = self::get_option_heading( $label, $description );
 
-        $__out .= "<div class='pl-tinymce-container tmce-active' data-editor-id='pl_tinymce_{$name}'>";
-        $__out .= "<div id='wp-pl_tinymce_{$name}-editor-tools' class='wp-editor-tools hide-if-no-js'>";
+        $__out .= "<div class='pl-tinymce-container tmce-active' data-editor-id='playouts_tinymce_{$name}'>";
+        $__out .= "<div id='wp-playouts_tinymce_{$name}-editor-tools' class='wp-editor-tools hide-if-no-js'>";
 
         $media = '';
         if ( current_user_can( 'upload_files' ) ) {
             ob_start();
-            do_action( 'media_buttons', "pl_tinymce_{$name}" );
+            do_action( 'media_buttons', "playouts_tinymce_{$name}" );
             $media = ob_get_clean();
         }
 
-        $__out .= "<div id='wp-pl_tinymce_{$name}-media-buttons' class='wp-media-buttons'>{$media}</div>";
+        $__out .= "<div id='wp-playouts_tinymce_{$name}-media-buttons' class='wp-media-buttons'>{$media}</div>";
 
         $__out .= "<div class='wp-editor-tabs'>
                     <button type='button' data-switch='tmce' class='wp-switch-editor switch-tmce' onclick='Playouts_Option_Type.option_types.editor.switch_editor(this);'>" . __( 'Visual', 'peenapo-layouts-txd' ) . "</button>
                     <button type='button' data-switch='html' class='wp-switch-editor switch-html' onclick='Playouts_Option_Type.option_types.editor.switch_editor(this);'>" . __( 'Text', 'peenapo-layouts-txd' ) . "</button>
                 </div>
             </div>
-            <textarea id='pl_tinymce_{$name}' class='pl-tinymce-textarea' name= '{$name}'>{$value}</textarea>
+            <textarea id='playouts_tinymce_{$name}' class='pl-tinymce-textarea' name= '{$name}'>{$value}</textarea>
         </div>";
 
         return $__out;
@@ -373,8 +373,8 @@ class Playouts_Option_Type_True_False extends Playouts_Option_Type {
         $__active = $value ? ' pl-active' : '';
         $__checked = $value ? ' checked="checked"' : '';
 
-        $__out .= "<label class='pl-true-false{$__active}' for='pl_true_false_{$name}'>".
-            "<input type='checkbox' name='{$name}' id='pl_true_false_{$name}' value='1'{$__checked}>".
+        $__out .= "<label class='pl-true-false{$__active}' for='playouts_true_false_{$name}'>".
+            "<input type='checkbox' name='{$name}' id='playouts_true_false_{$name}' value='1'{$__checked}>".
         "</label>";
 
         return $__out;
@@ -401,8 +401,8 @@ class Playouts_Option_Type_Radio extends Playouts_Option_Type {
         $key = 0;
         foreach( $options as $__value => $__label ) {
             $__checked = $value == $__value ? ' checked="checked"' : '';
-            $__out .= "<label class='pl-option-radio' for='pl_radio_{$name}_{$key}'>
-                <input id='pl_radio_{$name}_{$key}' type='radio' name='{$name}' value='{$__value}'{$__checked}>{$__label}
+            $__out .= "<label class='pl-option-radio' for='playouts_radio_{$name}_{$key}'>
+                <input id='playouts_radio_{$name}_{$key}' type='radio' name='{$name}' value='{$__value}'{$__checked}>{$__label}
             </label>";
             $key++;
         }
@@ -432,12 +432,12 @@ class Playouts_Option_Type_Radio_Image extends Playouts_Option_Type {
         foreach( $options as $__value => $__option ) {
             $__option = (object) $__option;
             $__checked = $value == $__value ? ' checked="checked"' : '';
-            $__out .= "<label class='pl-option-radio-image' for='pl_radio_{$name}_{$__key}'>
+            $__out .= "<label class='pl-option-radio-image' for='playouts_radio_{$name}_{$__key}'>
                 <div class='pl-radio-image pl-no-select'>
                     <img src='{$__option->image}' alt=''>
                     <span>{$__option->label}</span>
                 </div>
-                <input id='pl_radio_{$name}_{$__key}' type='radio' name='{$name}' value='{$__value}'{$__checked}>
+                <input id='playouts_radio_{$name}_{$__key}' type='radio' name='{$name}' value='{$__value}'{$__checked}>
             </label>";
             $__key++;
         }
@@ -776,7 +776,7 @@ class Playouts_Option_Type_Google_Font extends Playouts_Option_Type {
         $this->id = 'google_font';
         $this->name = esc_html__( 'Google Font', 'peenapo-layouts-txd' );
 
-		self::$google_fonts = require PL_DIR . 'inc/google_fonts.php';
+		self::$google_fonts = require PLAYOUTS_DIR . 'inc/google_fonts.php';
 
     }
 

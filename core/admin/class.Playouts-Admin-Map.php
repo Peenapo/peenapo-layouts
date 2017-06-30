@@ -19,9 +19,9 @@ class Playouts_Admin_Map {
 
         self::set_strings();
 
-        include PL_DIR . 'core/class.Playouts-Element.php';
-        include PL_DIR . 'core/admin/class.Playouts-Admin-Layouts.php';
-        include PL_DIR . 'core/admin/class.Playouts-Admin-Layouts-Custom.php';
+        include PLAYOUTS_DIR . 'core/class.Playouts-Element.php';
+        include PLAYOUTS_DIR . 'core/admin/class.Playouts-Admin-Layouts.php';
+        include PLAYOUTS_DIR . 'core/admin/class.Playouts-Admin-Layouts-Custom.php';
 
         add_action( 'admin_footer', array( 'Playouts_Admin_Map', 'map_data_object' ) );
 
@@ -56,7 +56,7 @@ class Playouts_Admin_Map {
                 //$screen_layouts_options = $screen->parent_base == 'playouts_options';
             }
 
-            $pl_data = array(
+            $playouts_data = array(
 
                 'map'                           => json_encode( $map_modules ),
                 'map_repeater'                  => json_encode( $map_modules_repeater ),
@@ -69,30 +69,30 @@ class Playouts_Admin_Map {
                 'status'                        => Playouts_Admin::$status,
                 'post_id'                       => get_the_ID(),
                 'screen_edit'                   => $screen_edit,
-                'path_assets'                   => PL_ASSEST,
+                'path_assets'                   => PLAYOUTS_ASSEST,
 
                 'i18n'                          => Playouts_Admin_Map::$strings,
 
                 'security' => array(
-                    'panel_get_options'         => wp_create_nonce( 'pl-nonce-get-options' ),
-                    'panel_get_taxonomies'      => wp_create_nonce( 'pl-nonce-get-taxonomies' ),
-                    'save_layout'               => wp_create_nonce( 'pl-nonce-save-layout' ),
-                    'save_layout_options'       => wp_create_nonce( 'pl-nonce-save-layout-options' ),
-                    'save_favorites'            => wp_create_nonce( 'pl-nonce-save-favorites' ),
+                    'panel_get_options'         => wp_create_nonce( 'playouts-nonce-get-options' ),
+                    'panel_get_taxonomies'      => wp_create_nonce( 'playouts-nonce-get-taxonomies' ),
+                    'save_layout'               => wp_create_nonce( 'playouts-nonce-save-layout' ),
+                    'save_layout_options'       => wp_create_nonce( 'playouts-nonce-save-layout-options' ),
+                    'save_favorites'            => wp_create_nonce( 'playouts-nonce-save-favorites' ),
                 ),
 
                 'module_dependencies'           => Playouts_Admin_Modal::get_dependencies_inverted(),
-                'panel_general_tab'             => apply_filters( 'pl_panel_general_tab', __( 'General', 'peenapo-layouts-txd' ) ),
+                'panel_general_tab'             => apply_filters( 'playouts_panel_general_tab', __( 'General', 'peenapo-layouts-txd' ) ),
                 'modules'                       => implode( '|', Playouts_Element::get_modules_raw() ),
                 'module_colors'                 => Playouts_Element::get_modules_color(),
 
             );
 
             //if( $screen_layouts_options ) {
-                //$pl_data['layouts_options'] = Playouts_Admin_Settings::get_layouts_options();
+                //$playouts_data['layouts_options'] = Playouts_Admin_Settings::get_layouts_options();
             //}
 
-            wp_localize_script( 'pl-mapper', 'pl_data', $pl_data );
+            wp_localize_script( 'playouts-mapper', 'playouts_data', $playouts_data );
         }
 
     }

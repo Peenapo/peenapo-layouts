@@ -6,7 +6,7 @@
     <div class="pl-panel-tabs"></div>
     <div class="pl-panel-content">
         <div class="pl-panel-row">
-            <img src="<?php echo PL_ASSEST; ?>/admin/images/caution.png" alt="">
+            <img src="<?php echo PLAYOUTS_ASSEST; ?>/admin/images/caution.png" alt="">
             <div class="pl-panel-row-inner">
 
             </div>

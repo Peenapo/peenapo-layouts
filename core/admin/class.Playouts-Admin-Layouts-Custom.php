@@ -23,7 +23,7 @@ class Playouts_Admin_Layout_Custom {
     static function get_layouts_output() {
 
         $query = new WP_Query( array(
-            'post_type'         => 'pl_layout',
+            'post_type'         => 'playouts_layout',
             'posts_per_page'    => -1,
             'post_status'       => 'publish'
         ));
@@ -59,7 +59,7 @@ class Playouts_Admin_Layout_Custom {
 
     static function get_categories() {
 
-        $layout_categories = get_terms( 'pl_layout_category', array(
+        $layout_categories = get_terms( 'playouts_layout_category', array(
             'hide_empty' => false,
         ));
 
@@ -74,7 +74,7 @@ class Playouts_Admin_Layout_Custom {
 
     static function get_categories_by_id( $layout_id ) {
 
-        $categories = wp_get_post_terms( $layout_id, 'pl_layout_category' );
+        $categories = wp_get_post_terms( $layout_id, 'playouts_layout_category' );
         $output = array();
         foreach( $categories as $category ) {
             $output[] = $category->term_id;

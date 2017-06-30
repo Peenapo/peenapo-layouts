@@ -42,7 +42,7 @@ class Playouts_Admin_Settings {
             'manage_options',                                   # capability
             'playouts_options',                                 # menu slug
             array( 'Playouts_Admin_Settings', 'page_settings' ), # callback function
-            PL_ASSEST . 'admin/images/peenapo-dash-icon.png'   # icon
+            PLAYOUTS_ASSEST . 'admin/images/peenapo-dash-icon.png'   # icon
         );
 
         // create the settings submenu
@@ -54,16 +54,16 @@ class Playouts_Admin_Settings {
             'playouts_options'                                  # menu slug
         );
 
-        // create submenu that points to view pl_layout post type
+        // create submenu that points to view playouts_layout post type
         add_submenu_page(
             'playouts_options',
             __( 'Custom Layouts', 'peenapo-layouts-txd' ),
             __( 'Custom Layouts', 'peenapo-layouts-txd' ),
             'manage_options',
-            'edit.php?post_type=pl_layout'
+            'edit.php?post_type=playouts_layout'
         );
 
-        // display additional management buttons for pl_layout post type
+        // display additional management buttons for playouts_layout post type
         add_action( 'load-edit.php', array( 'Playouts_Admin_Settings', 'panel_categories_section' ) );
 
         // theme options submenu
@@ -72,7 +72,7 @@ class Playouts_Admin_Settings {
             __( 'Theme Options', 'peenapo-layouts-txd' ),
             __( 'Theme Options', 'peenapo-layouts-txd' ),
             'manage_options',
-            'pl_theme_options',
+            'playouts_theme_options',
             array( 'Playouts_Admin_Settings', 'guide_theme_options' )
         );*/
 
@@ -80,13 +80,13 @@ class Playouts_Admin_Settings {
 
     /*
      * the callback of our options panel page
-     * get "pl_get_template_settings" template
+     * get "playouts_get_template_settings" template
      *
      */
     static function page_settings() {
 
         # set the options
-        Playouts_Admin::$options = get_option( 'pl_layouts_options' );
+        Playouts_Admin::$options = get_option( 'playouts_layouts_options' );
 
         self::set_support();
 
@@ -94,7 +94,7 @@ class Playouts_Admin_Settings {
 
         self::actions();
 
-        do_action( 'pl_get_template_settings' );
+        do_action( 'playouts_get_template_settings' );
 
         # load footer templates
         add_action( 'admin_footer', array( 'Playouts_Admin', 'footer_templates' ) );
@@ -127,9 +127,9 @@ class Playouts_Admin_Settings {
 
     static function actions() {
 
-        add_action( 'pl_support_options', array( 'Playouts_Admin_Settings', 'support_options' ) );
-        add_action( 'pl_support_fonts', array( 'Playouts_Admin_Settings', 'support_fonts' ) );
-        add_action( 'pl_support_portability', array( 'Playouts_Admin_Settings', 'support_portability' ) );
+        add_action( 'playouts_support_options', array( 'Playouts_Admin_Settings', 'support_options' ) );
+        add_action( 'playouts_support_fonts', array( 'Playouts_Admin_Settings', 'support_fonts' ) );
+        add_action( 'playouts_support_portability', array( 'Playouts_Admin_Settings', 'support_portability' ) );
 
     }
 
@@ -140,9 +140,9 @@ class Playouts_Admin_Settings {
      */
     /*static function get_layouts_options() {
 
-        $layouts_options_arr = require PL_DIR . 'inc/options.php';
-        $layouts_options_filter = apply_filters( 'pl_layouts_options', $layouts_options_arr );
-        $layouts_options_values = get_option( 'pl_layouts_options' );
+        $layouts_options_arr = require PLAYOUTS_DIR . 'inc/options.php';
+        $layouts_options_filter = apply_filters( 'playouts_layouts_options', $layouts_options_arr );
+        $layouts_options_values = get_option( 'playouts_layouts_options' );
 
         $layouts_options_new = array();
         foreach( $layouts_options_filter as $name => $layouts_option ) {
@@ -163,20 +163,26 @@ class Playouts_Admin_Settings {
      *
      */
     /*static function guide_theme_options() {
-        do_action( 'pl_get_template_settings_theme_options' );
+        do_action( 'playouts_get_template_settings_theme_options' );
     }*/
 
     static function panel_categories_section() {
         $current_screen = get_current_screen();
-    	if ( 'edit-pl_layout' === $current_screen->id ) {
+    	if ( 'edit-playouts_layout' === $current_screen->id ) {
     		add_action( 'all_admin_notices', array( 'Playouts_Admin_Settings', 'get_categories_section' ) );
     	}
     }
 
     static function get_categories_section() {
-        ?><a href="<?php echo admin_url( 'edit-tags.php?taxonomy=pl_layout_category' ); ?>" class="bw-manage-layout-categories">
+        ?><a href="<?php echo admin_url( 'edit-tags.php?taxonomy=playouts_layout_category' ); ?>" class="bw-manage-layout-categories">
             <?php _e( 'Manage Layout Categories', 'peenapo-layouts-txd' ); ?>
-        </a><?php
+        </a>
+        <style type="text/css">
+            /* panel categories section */
+            .bw-manage-layout-categories, .bw-manage-layout-categories:focus {position:relative;top:-3px;display:inline-block;padding:5px 8px;margin-top:20px;background-color:#f93d66;color:#fff;font-size:13px;font-weight:600;text-decoration:none;border:none;border-radius:3px;text-shadow:none;box-shadow:none;}
+            .bw-manage-layout-categories:hover {background-color:#e82d55;color:#fff;}
+        </style>
+        <?php
     }
 
     static function support_options() {

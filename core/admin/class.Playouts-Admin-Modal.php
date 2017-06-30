@@ -33,11 +33,11 @@ class Playouts_Admin_Modal {
         add_action( 'init', array( 'Playouts_Admin_Modal', 'set_globals' ) );
 
         # actions to render tabs html
-        add_action( 'pl_modal_tabs', array( 'Playouts_Admin_Modal', 'get_tabs_html' ) );
-        add_action( 'pl_modal_tabs_content', array( 'Playouts_Admin_Modal', 'get_tabs_content_html' ) );
+        add_action( 'playouts_modal_tabs', array( 'Playouts_Admin_Modal', 'get_tabs_html' ) );
+        add_action( 'playouts_modal_tabs_content', array( 'Playouts_Admin_Modal', 'get_tabs_content_html' ) );
 
         # module dependencies
-        add_filter( 'pl_module_dependencies', array( 'Playouts_Admin_Modal', 'get_dependencies' ) );
+        add_filter( 'playouts_module_dependencies', array( 'Playouts_Admin_Modal', 'get_dependencies' ) );
 
     }
 
@@ -113,7 +113,7 @@ class Playouts_Admin_Modal {
 
     static function get_dependencies_inverted() {
 
-        $deps = apply_filters( 'pl_module_dependencies', 'all' );
+        $deps = apply_filters( 'playouts_module_dependencies', 'all' );
         $deps_invert = array();
 
         foreach( $deps as $view => $can_views ) {
@@ -129,7 +129,7 @@ class Playouts_Admin_Modal {
     static function get_favorites_arr() {
 
         $output = array();
-        $favorites = json_decode( html_entity_decode( get_option( 'pl_favorites' ) ) );
+        $favorites = json_decode( html_entity_decode( get_option( 'playouts_favorites' ) ) );
 
         if( is_array( $favorites ) ) {
             foreach( $favorites as $favorite ) {
@@ -144,7 +144,7 @@ class Playouts_Admin_Modal {
     static function get_favorites_list() {
 
         $output = '';
-        $favorites = json_decode( html_entity_decode( get_option( 'pl_favorites' ) ) );
+        $favorites = json_decode( html_entity_decode( get_option( 'playouts_favorites' ) ) );
 
         if( is_array( $favorites ) ) {
             foreach( $favorites as $favorite ) {
@@ -350,7 +350,7 @@ class Playouts_Admin_Modal_Tab_Custom_Layouts extends Playouts_Admin_Modal_Tab {
                         <?php if( in_array( 'custom-layout-' . $custom_layout_id, Playouts_Admin_Modal::$favorites ) ) { echo 'class="pl-is-favorite"'; } ?>>
                             <div class="pl-element">
                                 <div class="pl-element-image">
-                                    <img src="<?php echo PL_ASSEST; ?>admin/images/default-layout.png" alt="">
+                                    <img src="<?php echo PLAYOUTS_ASSEST; ?>admin/images/default-layout.png" alt="">
                                 </div>
                                 <span><?php echo esc_html( $custom_layout['name'] ); ?></span>
                             </div>

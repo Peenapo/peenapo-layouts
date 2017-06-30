@@ -1,30 +1,30 @@
-<div id="pl-main" class="<?php echo join( ' ', apply_filters( 'pl_main_class', array( 'pl-main', 'pl-ajaxing' ) ) ); ?>">
+<div id="pl-main" class="<?php echo join( ' ', apply_filters( 'playouts_main_class', array( 'pl-main', 'pl-ajaxing' ) ) ); ?>">
 
     <?php
     /*
      * get header template
      *
      */
-    do_action( 'pl_get_template_header' );
+    do_action( 'playouts_get_template_header' );
 
     /*
      * get welcome template
      *
      */
-    do_action( 'pl_get_template_welcome' );
+    do_action( 'playouts_get_template_welcome' );
 
     /*
      * get mosaic template
      * the ui of the modules
      *
      */
-    do_action( 'pl_get_template_mosaic' );
+    do_action( 'playouts_get_template_mosaic' );
 
     /*
      * get footer template
      *
      */
-    do_action( 'pl_get_template_footer' );
+    do_action( 'playouts_get_template_footer' );
     ?>
 
 </div>
@@ -35,18 +35,18 @@
  * to add new elements and templates
  *
  */
-do_action( 'pl_get_template_modal' );
+do_action( 'playouts_get_template_modal' );
 
 /*
  * custom css panel
  *
  */
-do_action( 'pl_get_template_custom_css_panel' );
+do_action( 'playouts_get_template_custom_css_panel' );
 
 /*
  * get overlay
  *
  */
-do_action( 'pl_get_template_overlay' );
+do_action( 'playouts_get_template_overlay' );
 
 ?>

@@ -48,7 +48,7 @@ class Playouts_Public_Fonts {
 
         $font_url = $family_variants = '';
         $subsets_final = array();
-        $options = get_option( 'pl_layouts_options' );
+        $options = get_option( 'playouts_layouts_options' );
 
         foreach( self::$default_google_fonts as $font_key => $opts ) {
 

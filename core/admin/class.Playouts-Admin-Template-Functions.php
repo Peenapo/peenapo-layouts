@@ -94,7 +94,7 @@ class Playouts_Admin_Template_Functions {
     }
 
     static function get_template( $template ) {
-        include PL_DIR . 'templates/' . $template . '.php';
+        include PLAYOUTS_DIR . 'templates/' . $template . '.php';
     }
 
 }

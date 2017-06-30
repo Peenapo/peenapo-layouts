@@ -15,7 +15,7 @@ class Playouts_Public_Map {
 
         self::set_strings();
 
-        include PL_DIR . 'core/class.Playouts-Element.php';
+        include PLAYOUTS_DIR . 'core/class.Playouts-Element.php';
 
         add_action( 'wp_footer', array( 'Playouts_Public_Map', 'front_params' ) );
 
@@ -23,7 +23,7 @@ class Playouts_Public_Map {
 
     static function front_params() {
 
-        wp_localize_script( 'pl-front', 'pl_params', array(
+        wp_localize_script( 'playouts-front', 'playouts_params', array(
 
             'is_mobile' => wp_is_mobile(),
             'i18n' => Playouts_Public_Map::$strings,

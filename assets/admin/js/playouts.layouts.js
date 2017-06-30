@@ -143,11 +143,11 @@ console.log(111);
         var $categories = $('.bw-save-layout-cats'),
             $template;
 
-        for ( var category in window.pl_data.map_custom_layout_categories ) {
-            $template = $( $('#pl_template-save_custom_layout_category_item').html() );
+        for ( var category in window.playouts_data.map_custom_layout_categories ) {
+            $template = $( $('#playouts_template-save_custom_layout_category_item').html() );
             $template.find('input').attr('value', category).attr('id', 'layout-checkbox-' + category );
             $template.find('label').attr('for', 'layout-checkbox-' + category );
-            $template.find('span').html( window.pl_data.map_custom_layout_categories[ category ] );
+            $template.find('span').html( window.playouts_data.map_custom_layout_categories[ category ] );
             $template.appendTo( $('.bw-save-layout-cats') );
         }
 
@@ -235,7 +235,7 @@ var Pl_layouts = {
     start: function() {
 
         // set screen
-        this.screen_edit_layout = window.pl_data.screen_edit && window.typenow == 'pl_layout';
+        this.screen_edit_layout = window.playouts_data.screen_edit && window.typenow == 'pl_layout';
 
         this.bind();
 
@@ -292,10 +292,10 @@ var Pl_layouts = {
 
         $.ajax({
             type: 'POST',
-            url: pl_admin_root.ajax,
+            url: playouts_admin_root.ajax,
             data: {
                 action              : '__save_layout',
-                nonce               : pl_data.security.save_layout,
+                nonce               : playouts_data.security.save_layout,
                 layout_name         : layout_name,
                 layout_content      : layout_content,
                 layout_categories   : layout_categories,
@@ -307,8 +307,8 @@ var Pl_layouts = {
                 Pl_prompt.ajaxing_end(); // remove ajaxing class
                 Pl_prompt.on_layout_saving_end(); // callback for prompt layout save
 
-                window.pl_data.map_custom_layouts = response.custom_layouts; // refresh layouts
-                window.pl_data.map_custom_layout_categories = response.custom_layout_categories; // refresh layout categories
+                window.playouts_data.map_custom_layouts = response.custom_layouts; // refresh layouts
+                window.playouts_data.map_custom_layout_categories = response.custom_layout_categories; // refresh layout categories
 
                 Pl_modal.reload_custom_layouts();
                 Pl_modal.reload_custom_layout_categories();

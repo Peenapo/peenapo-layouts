@@ -77,7 +77,7 @@ class Playouts_Admin_Ajax {
 	 */
 	static function __panel_get_options() {
 
-		if ( ! wp_verify_nonce( $_POST['security'] , 'pl-nonce-get-options' ) ) { return; }
+		if ( ! wp_verify_nonce( $_POST['security'] , 'playouts-nonce-get-options' ) ) { return; }
 
 		if ( ! current_user_can( 'edit_posts' ) ) { return; }
 
@@ -103,7 +103,7 @@ class Playouts_Admin_Ajax {
 	 */
 	static function __save_layout() {
 
-		if ( ! wp_verify_nonce( $_POST['nonce'], 'pl-nonce-save-layout' ) ) { return; }
+		if ( ! wp_verify_nonce( $_POST['nonce'], 'playouts-nonce-save-layout' ) ) { return; }
 
 		if ( ! current_user_can( 'edit_posts' ) ) { return; }
 
@@ -142,7 +142,7 @@ class Playouts_Admin_Ajax {
 			'post_title'   => sanitize_text_field( $layout_name ),
 			'post_content' => $layout_content,
 			'post_status'  => 'publish',
-			'post_type'    => 'pl_layout',
+			'post_type'    => 'playouts_layout',
 		);
 
 		// insert the layout
@@ -150,13 +150,13 @@ class Playouts_Admin_Ajax {
 
 		// insert new category
 		if ( ! empty( $layout_new_category ) ) {
-			$new_category = wp_insert_term( $layout_new_category, 'pl_layout_category' );
+			$new_category = wp_insert_term( $layout_new_category, 'playouts_layout_category' );
 			$layout_categories[] = (int) $new_category['term_id'];
 		}
 
 		// set layout categories
 		if ( ! empty( $layout_categories ) ) {
-			wp_set_post_terms( $layout_post_id, $layout_categories, 'pl_layout_category' );
+			wp_set_post_terms( $layout_post_id, $layout_categories, 'playouts_layout_category' );
 		}
 
 		return $layout_post_id;
@@ -165,7 +165,7 @@ class Playouts_Admin_Ajax {
 
 	static function __save_layout_options() {
 
-		if ( ! wp_verify_nonce( $_POST['security'] , 'pl-nonce-save-layout-options' ) ) { return; }
+		if ( ! wp_verify_nonce( $_POST['security'] , 'playouts-nonce-save-layout-options' ) ) { return; }
 
 		if ( ! current_user_can( 'manage_options' ) ) { return; }
 
@@ -180,7 +180,7 @@ class Playouts_Admin_Ajax {
 			}
 		}
 
-		update_option( 'pl_layouts_options', $options_new );
+		update_option( 'playouts_layouts_options', $options_new );
 
 		wp_send_json_success();
 
@@ -188,7 +188,7 @@ class Playouts_Admin_Ajax {
 
 	static function __save_favorites() {
 
-		if ( ! wp_verify_nonce( $_POST['security'] , 'pl-nonce-save-favorites' ) ) { return; }
+		if ( ! wp_verify_nonce( $_POST['security'] , 'playouts-nonce-save-favorites' ) ) { return; }
 
 		if ( ! current_user_can( 'manage_options' ) ) { return; }
 
@@ -199,7 +199,7 @@ class Playouts_Admin_Ajax {
 			$options = esc_js( json_encode( $options ) );
 		}
 
-		update_option( 'pl_favorites', $options );
+		update_option( 'playouts_favorites', $options );
 
 		wp_send_json_success();
 

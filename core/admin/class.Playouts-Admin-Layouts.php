@@ -25,7 +25,7 @@ class Playouts_Admin_Layout {
         self::$index++;
 
         $this->category = array( 'general' => __( 'General', 'peenapo-layouts-txd' ) );
-        $this->image = PL_ASSEST . 'admin/images/default-layout.png';
+        $this->image = PLAYOUTS_ASSEST . 'admin/images/default-layout.png';
         $this->class_name = get_class( $this );
 
         $this->init();
@@ -100,7 +100,7 @@ class Playouts_Layout_About extends Playouts_Admin_Layout {
         $this->id = 'bw_layout_about';
         $this->name = esc_html__( 'About', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
-        $this->image = PL_ASSEST . 'admin/images/__layouts/about.png';
+        $this->image = PLAYOUTS_ASSEST . 'admin/images/__layouts/about.png';
 
     }
 
@@ -119,7 +119,7 @@ class Playouts_Layout_About_2 extends Playouts_Admin_Layout {
         $this->id = 'bw_layout_about_2';
         $this->name = esc_html__( 'About 2', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
-        $this->image = PL_ASSEST . 'admin/images/__layouts/about_2.png';
+        $this->image = PLAYOUTS_ASSEST . 'admin/images/__layouts/about_2.png';
 
     }
 
@@ -138,7 +138,7 @@ class Playouts_Layout_Heading_video extends Playouts_Admin_Layout {
         $this->id = 'bw_layout_heading_video';
         $this->name = esc_html__( 'Heading Text with Video Modal', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
-        $this->image = PL_ASSEST . 'admin/images/__layouts/heading_video.png';
+        $this->image = PLAYOUTS_ASSEST . 'admin/images/__layouts/heading_video.png';
 
     }
 
@@ -157,7 +157,7 @@ class Playouts_Layout_Split extends Playouts_Admin_Layout {
         $this->id = 'bw_layout_split';
         $this->name = esc_html__( 'Split Page', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
-        $this->image = PL_ASSEST . 'admin/images/__layouts/split.png';
+        $this->image = PLAYOUTS_ASSEST . 'admin/images/__layouts/split.png';
 
     }
 
@@ -176,7 +176,7 @@ class Playouts_Layout_Welcome extends Playouts_Admin_Layout {
         $this->id = 'bw_layout_welcome';
         $this->name = esc_html__( 'Full-Height Welcome Text', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
-        $this->image = PL_ASSEST . 'admin/images/__layouts/welcome.png';
+        $this->image = PLAYOUTS_ASSEST . 'admin/images/__layouts/welcome.png';
 
     }
 
@@ -195,7 +195,7 @@ class Playouts_Layout_Welcome_Auto_Type extends Playouts_Admin_Layout {
         $this->id = 'bw_layout_welcome_auto_type';
         $this->name = esc_html__( 'Auto-Type Welcome Text', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
-        $this->image = PL_ASSEST . 'admin/images/__layouts/welcome_auto_type.png';
+        $this->image = PLAYOUTS_ASSEST . 'admin/images/__layouts/welcome_auto_type.png';
 
     }
 
@@ -214,7 +214,7 @@ class Playouts_Layout_Pricing_Table extends Playouts_Admin_Layout {
         $this->id = 'bw_layout_pricing_table';
         $this->name = esc_html__( 'Pricing Table', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
-        $this->image = PL_ASSEST . 'admin/images/__layouts/pricing_table.png';
+        $this->image = PLAYOUTS_ASSEST . 'admin/images/__layouts/pricing_table.png';
 
     }
 
@@ -233,7 +233,7 @@ class Playouts_Layout_Slider_Full extends Playouts_Admin_Layout {
         $this->id = 'bw_layout_slider_full';
         $this->name = esc_html__( 'Full-Width Slider', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
-        $this->image = PL_ASSEST . 'admin/images/__layouts/slider_full.png';
+        $this->image = PLAYOUTS_ASSEST . 'admin/images/__layouts/slider_full.png';
 
     }
 
@@ -252,7 +252,7 @@ class Playouts_Layout_Text_Slider extends Playouts_Admin_Layout {
         $this->id = 'bw_layout_text_slider';
         $this->name = esc_html__( 'Text Slider', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
-        $this->image = PL_ASSEST . 'admin/images/__layouts/text_slider.png';
+        $this->image = PLAYOUTS_ASSEST . 'admin/images/__layouts/text_slider.png';
 
     }
 
@@ -271,7 +271,7 @@ class Playouts_Layout_Text_Gradient extends Playouts_Admin_Layout {
         $this->id = 'bw_layout_text_gradient';
         $this->name = esc_html__( 'Text with Gradient', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
-        $this->image = PL_ASSEST . 'admin/images/__layouts/text_gradient.png';
+        $this->image = PLAYOUTS_ASSEST . 'admin/images/__layouts/text_gradient.png';
 
     }
 
@@ -290,7 +290,7 @@ class Playouts_Layout_Icon_Box extends Playouts_Admin_Layout {
         $this->id = 'bw_layout_icon_box';
         $this->name = esc_html__( 'Boxed Texts with Icon', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
-        $this->image = PL_ASSEST . 'admin/images/__layouts/icon_box.png';
+        $this->image = PLAYOUTS_ASSEST . 'admin/images/__layouts/icon_box.png';
 
     }
 
@@ -309,7 +309,7 @@ class Playouts_Layout_Icon_Text extends Playouts_Admin_Layout {
         $this->id = 'bw_layout_icon_text';
         $this->name = esc_html__( 'Gradient Icon with Text', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
-        $this->image = PL_ASSEST . 'admin/images/__layouts/icon_text.png';
+        $this->image = PLAYOUTS_ASSEST . 'admin/images/__layouts/icon_text.png';
 
     }
 
@@ -328,7 +328,7 @@ class Playouts_Layout_Welcome_Text_Video extends Playouts_Admin_Layout {
         $this->id = 'bw_layout_welcome_text_video';
         $this->name = esc_html__( 'Welcome Text with Full-Screen Video', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
-        $this->image = PL_ASSEST . 'admin/images/__layouts/welcome_videot.png';
+        $this->image = PLAYOUTS_ASSEST . 'admin/images/__layouts/welcome_videot.png';
 
     }
 
@@ -347,7 +347,7 @@ class Playouts_Layout_Notion_Box extends Playouts_Admin_Layout {
         $this->id = 'bw_layout_notion_box';
         $this->name = esc_html__( 'Notion Boxes', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
-        $this->image = PL_ASSEST . 'admin/images/__layouts/notion_boxes.png';
+        $this->image = PLAYOUTS_ASSEST . 'admin/images/__layouts/notion_boxes.png';
 
     }
 
@@ -366,7 +366,7 @@ class Playouts_Layout_Numbers_Counter extends Playouts_Admin_Layout {
         $this->id = 'bw_layout_numbers_counter';
         $this->name = esc_html__( 'Numbers Counter', 'peenapo-layouts-txd' );
         $this->layout_view = 'row';
-        $this->image = PL_ASSEST . 'admin/images/__layouts/numbers_counter.png';
+        $this->image = PLAYOUTS_ASSEST . 'admin/images/__layouts/numbers_counter.png';
 
     }
 
