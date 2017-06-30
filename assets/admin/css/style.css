@@ -324,7 +324,7 @@
 .block-row-inner > .pl-block-container > .pl-controls {z-index:16;}
 .block-row-inner > .pl-block-container > .pl-content {}
 .block-row-inner .pl-placeholder-block:after {}
-.block-row-inner .pl-plus, .block-row-inner > .pl-block-container > .pl-controls {background-color:#60d68c;box-shadow:rgba(119, 224, 138, 0.25) 0px 3px 30px 0px;}
+.block-row-inner > .pl-plus, .block-row-inner > .pl-block-container > .pl-controls {background-color:#60d68c;box-shadow:rgba(119, 224, 138, 0.25) 0px 3px 30px 0px;}
 
 
 /* column inner */
