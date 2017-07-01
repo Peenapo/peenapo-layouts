@@ -215,7 +215,6 @@ class Playouts_Admin {
         if( ! $post_id ) { return; }
 
         $playouts_status = get_post_meta( $post_id, '__playouts_status', true );
-        d($playouts_status);
         self::$status = $playouts_status;
 
     }
@@ -417,7 +416,9 @@ class Playouts_Admin {
     }
 
     static function post_param( $param, $default = null ) {
-        return isset( $_POST[$param] ) ? $_POST[$param] : $default;
+
+        return isset( $_POST[ $param ] ) ? sanitize_text_field( $_POST[ $param ] ) : $default;
+
     }
 
     static function footer_templates() {
@@ -455,7 +456,7 @@ class Playouts_Admin {
         if ( ! current_user_can( 'edit_post', $post_id ) ) { return; }
 
         $status = self::get_post_param( 'playouts_status' );
-        $custom_css = isset( $_POST['bw_custom_css'] ) ? strip_tags( $_POST['bw_custom_css'] ) : '';
+        $custom_css = isset( $_POST['bw_custom_css'] ) ? sanitize_text_field( $_POST['bw_custom_css'] ) : '';
 
         #d( $status );exit;
 
@@ -492,7 +493,9 @@ class Playouts_Admin {
     }
 
     static function get_post_param( $param, $default = null ) {
-        return isset( $_POST[ $param ] ) ? $_POST[ $param ] : $default;
+
+        return isset( $_POST[ $param ] ) ? sanitize_text_field( $_POST[ $param ] ) : $default;
+
     }
 
     static function on_custom_layout_save( $layout_id ) {

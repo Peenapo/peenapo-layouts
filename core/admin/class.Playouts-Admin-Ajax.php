@@ -116,7 +116,7 @@ class Playouts_Admin_Ajax {
 		}
 
 		$args = array(
-			'layout_content' => isset( $_POST['layout_content'] ) ? $_POST['layout_content'] : '',
+			'layout_content' => isset( $_POST['layout_content'] ) ? sanitize_text_field( $_POST['layout_content'] ) : '',
 			'layout_name' => isset( $_POST['layout_name'] ) ? sanitize_text_field( $_POST['layout_name'] ) : '',
 			'layout_categories' => $layout_categories,
 			'layout_new_category' => isset( $_POST['layout_new_category'] ) ? sanitize_text_field( $_POST['layout_new_category'] ) : '',

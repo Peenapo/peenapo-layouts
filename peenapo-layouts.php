@@ -140,4 +140,5 @@ class Playouts_Bootstrap {
     }
 
 }
+
 Playouts_Bootstrap::init();
