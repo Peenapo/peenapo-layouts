@@ -200,10 +200,13 @@ class Playouts_Public {
 
         if( self::is_builder_used() ) {
 
-            // TODO: change via plugin option
-            $cont_max = apply_filters( 'playouts_container_max_with', 1100 );
+            $container_width = self::$options['container_width'];
+            if( (int) $container_width == 0 ) { $container_width = 1100; }
+
             // TODO: fix this
-            echo "<style>.pl-row-holder.pl-row-full_width_background > .pl-row, .pl-row-holder.pl-row-in_container, .pl-wrapper {max-width:{$cont_max}px;}</style>";
+            echo '<style>'.
+                '.pl-row-layout-standard > .pl-row, .pl-row-layout-boxed > .pl-row {max-width:' . (int) $container_width . 'px;}'.
+            '</style>';
 
             $post_css = get_post_meta( get_the_ID(), '__playouts_custom_css', true );
 

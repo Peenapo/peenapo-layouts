@@ -3,6 +3,7 @@
 return array(
 
     'google_map_api_key' => '',
+    'container_width' => 1100,
     'post_types' => array(
         'post' => '1', 'page' => '1'
     ),

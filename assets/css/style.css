@@ -86,9 +86,9 @@
 .pl-row-outer {position:relative;}
 /* row layouts */
 .pl-row {display:flex;justify-content:center;width:100%;position:relative;text-align:inherit;align-items:stretch;z-index:1;}
-.pl-row-layout-standard .pl-row {max-width:1000px;margin-left:auto;margin-right:auto;}
+.pl-row-layout-standard .pl-row {margin-left:auto;margin-right:auto;max-width:1100px;/* this value will be overridden by the plugin's options */}
 .pl-row-layout-full .pl-row {}
-.pl-row-layout-boxed {max-width:1000px;margin-left:auto;margin-right:auto;}
+.pl-row-layout-boxed {max-width:1100px;margin-left:auto;margin-right:auto;}
 
 
 /* backgrounds */

@@ -14,6 +14,17 @@ $playouts_options = array(
         'description'       => esc_html__( 'Show the WordPress Content Editor while Peenapo Layouts is active', 'peenapo-layouts-txd' ),
     )
 
+    ,'container_width' => array(
+        'label'             => esc_html__( 'Container Width', 'peenapo-layouts-txd' ),
+        'description'       => esc_html__( 'The maximum width of the row container.', 'peenapo-layouts-txd' ),
+        'type'              => 'number_slider',
+        'append_after'      => 'pixels.',
+        'min'               => 500,
+        'max'               => 1600,
+        'step'              => 1,
+        'value'             => 1100,
+    )
+
     ,'post_types_heading' => array(
         'type'              => 'heading',
         'label'             => esc_html__( 'Select Post Types', 'peenapo-layouts-txd' ),

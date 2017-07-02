@@ -559,7 +559,7 @@ class Playouts_Option_Type_Number_Slider extends Playouts_Option_Type {
 
         $__out = self::get_option_heading( $label, $description );
         $__out .= "<div class='pl-option-number-slider'>
-            <span class='pl-nslider-heading'>{$append_before} <i>{$value}</i> {$append_after}</span>
+            <span class='pl-nslider-heading'>" . ( isset( $append_before ) ? $append_before . ' ' : '' ) . "<i>{$value}</i>" . ( isset( $append_after ) ? ' ' . $append_after : '' ) . "</span>
             <div class='pl-number-slider' data-min='{$min}' data-max='{$max}' data-step='{$step}' data-value='{$value}'>
                 <input type='hidden' name='{$name}' value='{$value}'>
             </div>

@@ -1996,6 +1996,12 @@ class Playouts_Element_Tabs extends Playouts_Repeater_Element {
 
     }
 
+    static function construct( $atts = array(), $content = null ) {
+
+        Playouts_Element_Tab_Item::$tabs = array();
+
+    }
+
     static function output( $atts = array(), $content = null ) {
 
         extract( $assigned_atts = shortcode_atts( array(
@@ -2042,12 +2048,13 @@ class Playouts_Element_Tab_Item extends Playouts_Repeater_Item_Element {
 
         $this->params = array(
             'title' => array(
+                'type'               => 'textfield',
 				'label'              => esc_html__( 'Title', 'peenapo-layouts-txd' ),
-				'type'               => 'textfield',
+				'value'              => esc_html__( 'Tab title', 'peenapo-layouts-txd' ),
 			),
             'content' => array(
+                'type'              => 'editor',
 				'label'             => esc_html__( 'Content', 'peenapo-layouts-txd' ),
-				'type'              => 'editor',
 				'is_content'        => true,
                 'value'             => 'Accordion item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.',
 			),

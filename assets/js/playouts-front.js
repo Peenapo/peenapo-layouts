@@ -493,6 +493,7 @@ var Playouts = {
             start: function() {
 
                 $('.pl-tabs').on('click', '.pl-tab-nav li', Playouts.elements.tab.on_click_tabs);
+
                 $('.pl-tabs').each(function() {
 
                     var self = $(this),
@@ -535,7 +536,7 @@ var Playouts = {
                 var left = self.position().left,
                     width =  parseInt( self.outerWidth(), 10 );
 
-                TweenLite.to( $('.pl-nav-border'), .4, { x: left, scaleX: width, ease: Power4.easeOut } );
+                TweenLite.to( $('.pl-nav-border', self.closest('.pl-tabs') ), .4, { x: left, scaleX: width, ease: Power4.easeOut } );
 
             }
         }
