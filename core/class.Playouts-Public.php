@@ -300,7 +300,7 @@ class Playouts_Public {
             wp_enqueue_script( 'jquery' );
 
             wp_enqueue_script( 'playouts-front-plugins', PLAYOUTS_ASSEST . 'js/playouts-front-plugins.js', array('jquery'), '1.0', true );
-            wp_enqueue_script( 'pplayoutsl-front', PLAYOUTS_ASSEST . 'js/playouts-front.js', array('jquery'), '1.0', true );
+            wp_enqueue_script( 'playouts-front', PLAYOUTS_ASSEST . 'js/playouts-front.js', array('jquery'), '1.0', true );
 
             # dynamic enqueue
             if( in_array( 'bw_google_map', self::$parsed_ids ) ) {

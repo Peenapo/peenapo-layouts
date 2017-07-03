@@ -34,3 +34,10 @@ Do you have questions or issues with Peenapo Layouts? Use these support channels
 1. [Docs](https://www.peenapo.com/docs/)
 2. [FAQ](https://www.peenapo.com/faq/)
 3. [Support](https://www.peenapo.com/support/)
+
+== Screenshots ==
+1. Peenapo Layouts page builder interface.
+
+== Changelog ==
+= 1.0 - 2017-06-03 =
+* Initial release.

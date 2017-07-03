@@ -322,6 +322,9 @@ var Pl_layouts = {
 
     push_layout: function( layout, parent_id = 0, layout_view = false ) {
 
+        layout = layout.replace( /%PLAYOUTS_PATH_ASSETS%/g, window.playouts_data.path_assets );
+        console.log( layout );
+
         if( layout_view ) {
             layout = Pl_layouts.remove_dummy_modules( layout, layout_view );
         }
