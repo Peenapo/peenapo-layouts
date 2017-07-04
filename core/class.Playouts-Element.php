@@ -755,17 +755,29 @@ class Playouts_Element_Column extends Playouts_Element {
                     'flex-end'          => 'Bottom',
                 ),
 			),
-            'margin_left' => array(
+            'margin_top' => array(
                 'type'              => 'textfield',
-                'label'             => esc_html__( 'Margin Left', 'peenapo-layouts-txd' ),
+                'label'             => esc_html__( 'Margin Top', 'peenapo-layouts-txd' ),
                 'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
-                'width'             => 50
+                'width'             => 25
             ),
             'margin_right' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'Margin Right', 'peenapo-layouts-txd' ),
                 'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
-                'width'             => 50
+                'width'             => 25
+            ),
+            'margin_bottom' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Margin Bottom', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 25
+            ),
+            'margin_left' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Margin Left', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 25
             ),
             'padding_top' => array(
                 'type'              => 'textfield',
@@ -834,8 +846,10 @@ class Playouts_Element_Column extends Playouts_Element {
             'text_color'        => '',
             'text_alignment'    => '',
             'column_alignment'  => '',
-            'margin_left'       => '',
+            'margin_top'        => '',
             'margin_right'      => '',
+            'margin_bottom'     => '',
+            'margin_left'       => '',
             'padding_top'       => '',
             'padding_right'     => '',
             'padding_bottom'    => '',
@@ -857,9 +871,12 @@ class Playouts_Element_Column extends Playouts_Element {
         if( Playouts_Element_Row::$vertical_alignment ) { $style .= 'justify-content:' . esc_attr( Playouts_Element_Row::$vertical_alignment ) . ';'; }
         if( $column_alignment ) { $style_inside .= 'align-self:' . esc_attr( $column_alignment ) . ';'; }
 
-        if( $padding_top ) { $style .= 'padding-top:' . esc_attr( $padding_top ) . ( is_numeric( $padding_top ) ? 'px' : '' ) . ';'; }
-        if( $margin_left ) { $style .= 'margin-left:' . esc_attr( $margin_left ) . ( is_numeric( $margin_left ) ? 'px' : '' ) . ';'; }
+        if( $margin_top ) { $style .= 'margin-top:' . esc_attr( $margin_top ) . ( is_numeric( $margin_top ) ? 'px' : '' ) . ';'; }
         if( $margin_right ) { $style .= 'margin-right:' . esc_attr( $margin_right ) . ( is_numeric( $margin_right ) ? 'px' : '' ) . ';'; }
+        if( $margin_bottom ) { $style .= 'margin-bottom:' . esc_attr( $margin_bottom ) . ( is_numeric( $margin_bottom ) ? 'px' : '' ) . ';'; }
+        if( $margin_left ) { $style .= 'margin-left:' . esc_attr( $margin_left ) . ( is_numeric( $margin_left ) ? 'px' : '' ) . ';'; }
+
+        if( $padding_top ) { $style .= 'padding-top:' . esc_attr( $padding_top ) . ( is_numeric( $padding_top ) ? 'px' : '' ) . ';'; }
         if( $padding_right ) { $style .= 'padding-right:' . esc_attr( $padding_right ) . ( is_numeric( $padding_right ) ? 'px' : '' ) . ';'; }
         if( $padding_bottom ) { $style .= 'padding-bottom:' . esc_attr( $padding_bottom ) . ( is_numeric( $padding_bottom ) ? 'px' : '' ) . ';'; }
         if( $padding_left ) { $style .= 'padding-left:' . esc_attr( $padding_left ) . ( is_numeric( $padding_left ) ? 'px' : '' ) . ';'; }
