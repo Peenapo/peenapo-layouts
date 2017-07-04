@@ -249,8 +249,8 @@
 .pl-main *:focus, .pl-modal:focus {box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;}
 
 .pl-blocks-holder {margin-top:20px;background-color:#fff;border-radius:3px;overflow:hidden;}
-.pl-blocks {float:left;width:100%;padding:0 19px;}
-.pl-blocks .pl-block {float:left;width:100%;position:relative;}
+.pl-blocks {display:inline-block;width:100%;padding:0 19px;}
+.pl-blocks .pl-block {display:inline-block;width:100%;position:relative;}
 .pl-blocks .pl-block.block-column > .pl-block-container > .pl-content > .pl-block {margin:7px 0;}
 .pl-blocks .block-column {margin-bottom:10px;}
 .pl-blocks .pl-block-container {display:table;width:100%;/*height:100%;*/}
@@ -364,16 +364,16 @@
 
 
 /* controls */
-.pl-controls {float:left;width:auto;position:relative;left:50%;top:14px;padding:0 13px 0 10px;margin:10px 0 0 0;border-radius:0 0 3px 0;
+.pl-controls {display:inline-block;width:auto;position:relative;left:50%;top:14px;padding:0 13px 0 10px;margin:10px 0 0 0;border-radius:0 0 3px 0;
     transition:all .15s;-webkit-transition:all .15s;
     transform:translateX(-50%) translateY(-50%);-webkit-transform:translateX(-50%) translateY(-50%);
 }
-.pl-controls .pl-ctrl-left {float:left;padding:7px 6px;background-color:#585858;}
+.pl-controls .pl-ctrl-left {display:inline-block;padding:7px 6px;background-color:#585858;}
 .block-row-inner .pl-controls .pl-ctrl-left {background-color:#898989;}
-.pl-controls .pl-ctrl-right {float:left;background-color:#6f6f6f;
+.pl-controls .pl-ctrl-right {display:inline-block;background-color:#6f6f6f;
     color:#fff;font-family:'Montserrat';font-size:12px;padding:5px 10px 0 10px;line-height:160%;height:29px;}
     .block-row-inner .pl-controls .pl-ctrl-right {background-color:#999999;}
-.pl-controls .pl-option {float:left;width:27px;height:29px;padding:5px 0;position:relative;color:#fff;font-size:13px;text-align:center;cursor:pointer;
+.pl-controls .pl-option {display:inline-block;width:27px;height:29px;padding:5px 0;position:relative;color:#fff;font-size:13px;text-align:center;cursor:pointer;
     -webkit-touch-callout:none;
     -webkit-user-select:none;
     -khtml-user-select:none;
@@ -388,7 +388,7 @@
 .pl-controls .pl-ctrl-right .pl-option {float:right;margin:0;margin-left:1px;}
 
 /* row controls */
-.pl-row-option {float:left;color:#fff;text-align:center;cursor:pointer;}
+.pl-row-option {display:inline-block;color:#fff;text-align:center;cursor:pointer;}
 .pl-row-option:hover {}
 .pl-drag .pl-row-option {width:32px;cursor:move;color:#afb0b4!important;}
 .pl-row-option i {display:block;padding:0 5px;margin-bottom:3px;font-size:17px;line-height:39px;}
@@ -409,7 +409,7 @@
 .pl-row-hidden > .pl-block-container > .pl-content > .block-column > .pl-column-drag:after {border-color:#fd9595!important;}
 
 /* bottom/top controls */
-.pl-bottom-ctrl, .pl-top-ctrl {float:left;width:100%;height:20px;padding-left:9px!important;text-align:left;position:relative;top:-2px;}
+.pl-bottom-ctrl, .pl-top-ctrl {display:inline-block;width:100%;height:20px;padding-left:9px!important;text-align:left;position:relative;top:-2px;}
 .pl-bottom-ctrl {height:20px;}
 .pl-bottom-ctrl .pl-option, .pl-top-ctrl .pl-option, .pl-ctrl-left .pl-option {display:inline-block;font-size:11px;
     padding:4px;text-align:bottom;cursor:pointer;width:15px;height:15px;color:#afb0b4;
@@ -419,14 +419,14 @@
 .pl-bottom-ctrl .pl-option.pl-open-modal, .pl-top-ctrl .pl-option.pl-open-modal {display:none;}
 .pl-block.pl-isnt-empty > .pl-block-container > .pl-bottom-ctrl > .pl-option.pl-open-modal {display:inline-block;}
 
-.pl-top-ctrl {float:left;width:50%;text-align:right;}
+.pl-top-ctrl {display:inline-block;width:50%;text-align:right;}
 .pl-top-ctrl .pl-option {padding:0;text-align:center;}
 
 
 
 /* placeholder row */
 .pl-placeholder-row {
-    float:left;
+    display:inline-block;
 	height:80px;
     width:100%;
     margin:19px 0;
@@ -473,7 +473,7 @@
 
 
 /* block holder & title */
-.pl-holder {float:left;width:100%;padding:7px 10px;}
+.pl-holder {display:inline-block;width:100%;padding:7px 10px;}
 .pl-listing-item .pl-holder {padding-left:54px;}
 .pl-holder h4 {margin:0;font-size:13px;color:#222;font-weight:400;}
 .pl-holder span {display:block;color:#999;font-size:11px;}
@@ -584,9 +584,9 @@
 .pl-modal-categories li:hover {color:#000;}
 .pl-modal-categories li.pl-category-active {color:#f93d66;}
 
-.pl-modal .modal-content {float:left;width:100%;padding:20px;}
+.pl-modal .modal-content {display:inline-block;width:100%;padding:20px;}
 .pl-modal p {margin:0;}
-.pl-modal .row {float:left;width:100%;border-bottom:2px solid #eaeaea;padding-bottom:20px;margin-bottom:20px;}
+.pl-modal .row {display:inline-block;width:100%;border-bottom:2px solid #eaeaea;padding-bottom:20px;margin-bottom:20px;}
 .pl-modal .row:last-child {border:0;padding:0;margin:0;}
 .pl-modal .btn-done {position:relative;float:right;padding:6px 12px 6px 40px;border:2px solid #eee;background-color:#fff;color:#6e6f72;cursor:pointer;}
 .pl-modal .btn-done .fa {font-size:18px;position:absolute;top:7px;left:14px;color:#04b592;}
@@ -690,7 +690,7 @@
 /* panel form */
 .pl-panel-content {position:relative;opacity:1;min-height:50px;height:calc(100% - 255px);overflow:hidden;overflow-y:auto;transition:opacity .3s;-webkit-transition:opacity .3s;}
 .pl-ajaxing .pl-panel-content {opacity:0;}
-.pl-panel-content .pl-panel-row {float:left;position:relative;width:100%;vertical-align:top;overflow:hidden;border-bottom:1px solid #eee;}
+.pl-panel-content .pl-panel-row {display:inline-block;position:relative;width:100%;vertical-align:top;overflow:hidden;border-bottom:1px solid #eee;}
 .pl-panel-content .pl-panel-row:before,
 .pl-panel-content .pl-panel-row:after {content:'';position:absolute;top:0;left:0;bottom:0;width:1px;background-color:#f6f6f6;}
 .pl-panel-content .pl-panel-row:after {left:auto;right:0;}
@@ -815,7 +815,7 @@
 .pl-option-checkbox span {}
 
 /* radio image */
-/*.pl-panel-form .pl-radio-image-row {float:left;position:relative;margin-right:13px;padding-bottom:22px;}
+/*.pl-panel-form .pl-radio-image-row {display:inline-block;position:relative;margin-right:13px;padding-bottom:22px;}
 .pl-panel-form .pl-radio-image-row .pl-radio-img-holder {padding:5px;border:3px solid #f6f6f6;position:relative;}
 .pl-panel-form .pl-radio-image-row:hover .pl-radio-img-holder {border:3px solid #9abf7f;}
 .pl-panel-form .pl-radio-image-row.checked .pl-radio-img-holder {padding:5px;border:3px solid #9abf7f;position:relative;}

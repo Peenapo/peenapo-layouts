@@ -2812,14 +2812,18 @@ var Pl_main = {
             Pl_mapper.__mapper_tree.length === 0 ? Pl_main.welcome.show() : Pl_main.welcome.hide();
         },
 
-        // display the welcome message
+        // show the welcome message
+        // and hide the blocks
         show: function() {
             $('#pl-welcome').css('display', 'block');
+            $('#pl-blocks-holder').css('display', 'none');
         },
 
         // hide the welcome message
+        // and show the blocks
         hide: function() {
             $('#pl-welcome').css('display', 'none');
+            $('#pl-blocks-holder').css('display', 'block');
         }
 
     },
@@ -3219,19 +3223,20 @@ var Pl_main = {
     /*
      * add new module
      *
-     * module: module id
-     * parent_id: add parent id to place the new module inside another
-     * auto_place_modules:
-     * merge_data: pass parameters to inherit
-     *
      */
-    add_module: function( module, parent_id, auto_place_modules, merge_data, id = false ) {
+    add_module: function(
+        module,                 // module id
+        regarding_id,           // the regarding element
+        auto_place_modules,     // automatically place parent holding modules
+        merge_data,             // pass parameters to inherit
+        id = false              // set the unique id
+    ) {
 
         if( Pl_main.module_exists( module ) ) { // check if the module exists
             var uid = id ? id : Pl_main.get_unique_id(); // the of the module id
             var data = $.extend( true, {}, Pl_main.all_modules[ module ] );
             Pl_mapper.map_data( uid, data, merge_data ); // add the new object to the map
-            Pl_main.create_element( uid, module, parent_id, auto_place_modules, merge_data ); // create the element
+            Pl_main.create_element( uid, module, regarding_id, auto_place_modules, merge_data ); // create the element
 
             return uid;
 
@@ -3242,68 +3247,56 @@ var Pl_main = {
     /*
      * creates element
      *
-     * uid: unique id
-     * module: module id
-     * parent_id: the id of the parent module
-     * auto_place_modules: in same cases a module can't go solo, like the columns,
-     * if auto_place_modules is set to true, it will automatically add the parent module before
-     * merge_data: parameters to inherit
-     *
      */
-    create_element: function( uid, module_id, parent_id, auto_place_modules, merge_data ) {
+    create_element: function(
+        uid,                    // unique id
+        module_id,              // module id
+        regarding_id,           // the id of the regarding element
+        auto_place_modules,     // in same cases a module can't go solo, like the columns, if auto_place_modules is set to true, it will automatically add the parent module before
+        merge_data              // parameters to inherit
+    ) {
 
         Pl_main.before_create_element(); // do something before creating the element
 
-        var data, view, _module;
+        var _data, _view, _module;
 
-        // if repeater
-        /*if( typeof Pl_repeater.all_repeaters[ module_id ] !== 'undefined' ) {
-            data = $.extend( true, {}, Pl_repeater.all_repeaters[ module_id ] );
-            view = 'repeater_item';
-            _module = data.repeater_module;
-        }else{ // not repeater
-            data = $.extend( true, {}, Pl_main.all_modules[ module_id ] ); // clone module data
-            view = ( typeof data.view !== 'undefined' ) ? data.view : 'element'; // the view of the current module
-            _module = data.module;
-        }*/
-
-        data = $.extend( true, {}, Pl_main.all_modules[ module_id ] ); // clone module data
-        view = ( typeof data.view !== 'undefined' ) ? data.view : 'element'; // the view of the current module
-        _module = data.module;
+        _data = $.extend( true, {}, Pl_main.all_modules[ module_id ] ); // clone module data
+        _view = ( typeof _data.view !== 'undefined' ) ? _data.view : 'element'; // the view of the current module
+        _module = _data.module;
 
         // if template does not exists
-        if( ! $( '#playouts_template-' + view ).length ) {
-            Pl_main.notify( 'template_not_found', view );
+        if( ! $( '#playouts_template-' + _view ).length ) {
+            Pl_main.notify( 'template_not_found', _view );
             return;
         }
 
         // merge the extra parameters
         if( merge_data ) {
-            Pl_mapper.sync_object_data( data, merge_data );
+            Pl_mapper.sync_object_data( _data, merge_data );
         }
 
-        Pl_main.set_latest_ids( uid, view ); // set the latest ids
+        Pl_main.set_latest_ids( uid, _view ); // set the latest ids
 
         // get module template and convert to jquery obj
-        var __module = $( $( '#playouts_template-' + view ).html() );
+        var __module = $( $( '#playouts_template-' + _view ).html() );
 
         // add params, classes, set labels
-        __module.attr( 'data-id', uid ).find('.just-edit .pl-label').html( data.name );
+        __module.attr( 'data-id', uid ).find('.just-edit .pl-label').html( _data.name );
         __module.attr( 'data-module', _module );
         __module.addClass('pl-module-' + _module);
 
         /*
-         * do stuff based on module_id or view
+         * do stuff
          *
          */
-        if( view == 'row' || view == 'row_inner' ) {
+        if( _view == 'row' || _view == 'row_inner' ) {
             if( typeof merge_data.is_hidden !== 'undefined' && Boolean( merge_data.is_hidden ) == true ) {
                 __module.addClass('pl-row-hidden');
             }
         }
-        if( view == 'column' || view == 'column_inner' ) {
+        if( _view == 'column' || _view == 'column_inner' ) {
 
-            var col_width_value = data.params.col_width.value;
+            var col_width_value = _data.params.col_width.value;
 
             __module.css( 'width', col_width_value + '%' );
             __module.attr( 'data-col-width', col_width_value );
@@ -3312,21 +3305,39 @@ var Pl_main = {
             $('> .pl-column-width em', __module).html( col_width_value );
         }
 
+        /*
+        case 'top': // on top of all elements
+        case 'bottom': // on bottom of all elements
+        case 'before':
+        case 'after':
+        case 'manually_after': // same as after, but this won't auto insert row and column
+        case 'insert_top':
+        case 'insert_bottom': // default
+        */
+
         // TODO: this looks messy
         if( ( Pl_modal.placement == 'before' || Pl_modal.placement == 'after' ) && module_id !== 'bw_row' ) { // content elements without parent
-            if( module_id == 'bw_row_inner' && parent_id && ! ( Pl_modal.placement !== 'before' || Pl_modal.placement !== 'after' ) ) {
+            if( module_id == 'bw_row_inner' && regarding_id && ! ( Pl_modal.placement !== 'before' || Pl_modal.placement !== 'after' ) ) {
                 // do nothing
             }else if( ! this.added_manually ) { // manually added
-                parent_id = this.latest_element_id;
+                regarding_id = this.latest_element_id;
             }else{ // not manually added element without row
-                var auto_id = Pl_main.get_unique_id();
-                this.add_module( 'bw_row', parent_id, auto_place_modules, false, auto_id );
-                parent_id = this.latest_col_id;
+                this.add_module( 'bw_row', regarding_id, auto_place_modules, false, Pl_main.get_unique_id() );
+                regarding_id = this.latest_col_id;
             }
         }
 
-        // place the element in the ui
-        Pl_main.place_element( module_id, __module, parent_id );
+        // place the element
+        var _placed = Pl_main.place_element( module_id, __module, regarding_id );
+
+        console.log(
+            'placement: ' + Pl_modal.placement +
+            ', _placed: ' + _placed +
+            ', module_id: ' + module_id +
+            //', uid: ' + uid +
+            //', regarding_id: ' + regarding_id +
+            ', regarding_module: ' + ( typeof Pl_mapper.__mapper_data[ regarding_id ] !== 'undefined' ? Pl_mapper.__mapper_data[ regarding_id ].module : '--' )
+        );
 
         // if row, call some column inside, except when auto_place_modules
         // is not requested ( the col will be pushed after )
@@ -3341,7 +3352,7 @@ var Pl_main = {
         }
 
         // modules coloring
-        Pl_main.element_colors( __module, data );
+        Pl_main.element_colors( __module, _data );
 
     },
 
@@ -3413,11 +3424,18 @@ var Pl_main = {
      * place the element on top or bottom
      *
      */
-    place_element: function( module_id, __module, parent_id ) {
+    place_element: function( module_id, __module, regarding_id ) {
 
-        //console.log( 'module: ' + module_id + ', place: ' + Pl_modal.placement + ', parent_id: ' + parent_id );
+        /*
+        console.log(
+            'module: ' + module_id +
+            ', place: ' + Pl_modal.placement +
+            ', regarding_id: ' + regarding_id
+        );
+        */
 
-        if( ! parent_id && Pl_modal.placement !== 'bottom' ) { Pl_modal.placement = 'top'; }
+        // trigger when the main "add module" button was clicked
+        if( ! regarding_id && Pl_modal.placement !== 'bottom' ) { Pl_modal.placement = 'top'; }
 
         switch( Pl_modal.placement ) {
 
@@ -3430,44 +3448,46 @@ var Pl_main = {
                 break;
 
             case 'before':
-                $('#pl-main .pl-block[data-id="' + parent_id + '"]').before( __module );
+                $('#pl-main .pl-block[data-id="' + regarding_id + '"]').before( __module );
                 break;
 
             case 'after':
-                $('#pl-main .pl-block[data-id="' + parent_id + '"]').after( __module );
+                $('#pl-main .pl-block[data-id="' + regarding_id + '"]').after( __module );
                 break;
 
             case 'manually_after': // same as after, but this won't auto insert row and column
-                $('#pl-main .pl-block[data-id="' + parent_id + '"]').after( __module );
+                $('#pl-main .pl-block[data-id="' + regarding_id + '"]').after( __module );
                 break;
 
             case 'insert_top':
-                $('#pl-main .pl-block[data-id="' + parent_id + '"] .pl-content:first').prepend( __module );
+                $('#pl-main .pl-block[data-id="' + regarding_id + '"] .pl-content:first').prepend( __module );
                 break;
 
             case 'insert_bottom': // default
-                $('#pl-main .pl-block[data-id="' + parent_id + '"] .pl-content:first').append( __module );
+                $('#pl-main .pl-block[data-id="' + regarding_id + '"] .pl-content:first').append( __module );
                 break;
 
         }
 
         if( module_id !== 'bw_column' ) {
-            $('#pl-main .pl-block[data-id="' + parent_id + '"]').closest('.pl-block').removeClass('pl-is-empty').addClass('pl-isnt-empty');
+            $('#pl-main .pl-block[data-id="' + regarding_id + '"]').closest('.pl-block').removeClass('pl-is-empty').addClass('pl-isnt-empty');
         }
+
+        var _placed = Pl_modal.placement;
 
         Pl_modal.placement = 'insert_bottom'; // reset to default element placement
 
-        return;
+        return _placed;
 
-        if( parent_id ) { // has parent
+        /*if( regarding_id ) { // has parent
 
-            $destination = $('#pl-main .pl-block[data-id="' + parent_id + '"] .pl-content:first');
+            $destination = $('#pl-main .pl-block[data-id="' + regarding_id + '"] .pl-content:first');
 
             Pl_modal.placement ? $destination.prepend( __module ) : $destination.append( __module );
             //$destination.append( __module ); // TODO: fix this, column cropping not working if removed
 
             if( module_id !== 'bw_column' ) {
-                $('#pl-main .pl-block[data-id="' + parent_id + '"]').closest('.pl-block').removeClass('pl-is-empty').addClass('pl-isnt-empty');
+                $('#pl-main .pl-block[data-id="' + regarding_id + '"]').closest('.pl-block').removeClass('pl-is-empty').addClass('pl-isnt-empty');
             }
 
         }else{ // has no parent
@@ -3476,7 +3496,7 @@ var Pl_main = {
 
             Pl_modal.placement ? $main_blocks.prepend( __module ) : $main_blocks.append( __module );
 
-        }
+        }*/
 
     },
 
