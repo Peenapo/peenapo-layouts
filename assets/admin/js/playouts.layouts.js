@@ -106,11 +106,10 @@ var Pl_prompt = {
 
         // the prompt container
         var $prompt = $('.pl-prompt').removeClass('pl-prompted');
-console.log(111);
+
         // wait for the animation to stop and remove the template
         setTimeout(function() {
             $prompt.remove();
-            console.log(222);
         }, 220 );
 
         $('.pl-prompt-confirm').off('click.pl_prompt_confirm');
@@ -322,9 +321,10 @@ var Pl_layouts = {
 
     push_layout: function( layout, parent_id = 0, layout_view = false ) {
 
+        // replace placeholder image path to assets
         layout = layout.replace( /%PLAYOUTS_PATH_ASSETS%/g, window.playouts_data.path_assets );
-        console.log( layout );
 
+        // dummy modules are not needed here
         if( layout_view ) {
             layout = Pl_layouts.remove_dummy_modules( layout, layout_view );
         }
