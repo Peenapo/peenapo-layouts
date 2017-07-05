@@ -359,29 +359,6 @@
 .pl-column-width .pl-col-width-label em {font-size:13px;font-style:normal;color:#fff;}
 
 
-/*
- * hide rows and columns based on the resolution
- *
- */
-
-/* desktop */
-@media ( min-width:1200px ) {
-    .pl-res-hide-ds {display:none!important;}
-}
-/* tablet */
-@media ( min-width:992px ) and ( max-width:1199px ) {
-    .pl-res-hide-tb {display:none!important;}
-}
-/* mobile horizontal */
-@media ( min-width:768px ) and ( max-width:991px ) {
-    .pl-res-hide-ml {display:none!important;}
-}
-/* mobile */
-@media ( max-width:767px ) {
-    .pl-res-hide-mh {display:none!important;}
-}
-
-
 /* controls */
 .pl-controls {display:inline-block;width:auto;position:relative;left:50%;top:14px;padding:0 13px 0 10px;margin:10px 0 0 0;border-radius:0 0 3px 0;
     transition:all .15s;-webkit-transition:all .15s;

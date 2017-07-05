@@ -415,6 +415,36 @@ class Playouts_Element_Row extends Playouts_Element {
                 'depends'           => array( 'element' => 'animation', 'value' => array( 'scale', 'top', 'right', 'bottom', 'left' ) ),
                 'tab'               => array( 'animation' => esc_html__( 'Animation', 'peenapo-layouts-txd' ) ),
             ),
+
+            'res_hide_desktop' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Hide on Desktop', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Hide this element for resolution larger than <strong>1200px</strong>.', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 25
+            ),
+            'res_hide_tablet' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Hide on Tablet', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Hide this element for resolution between <strong>992px and 1199px</strong>.', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 25
+            ),
+            'res_hide_mobile_landscape' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Hide on Mobile landscape', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Hide this element for resolution between <strong>768px and 991px</strong>.', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 25
+            ),
+            'res_hide_mobile' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Hide on Mobile', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Hide this element for resolution smaller than <strong>767px</strong>.', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 25
+            ),
+
             'margin_top' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'Margin Top', 'peenapo-layouts-txd' ),
@@ -504,6 +534,12 @@ class Playouts_Element_Row extends Playouts_Element {
             'enable_static_height' => false,
             'static_height'     => '30',
             'vertical_alignment' => '',
+
+            'res_hide_desktop'  => '',
+            'res_hide_tablet'   => '',
+            'res_hide_mobile_landscape' => '',
+            'res_hide_mobile'   => '',
+
             'margin_top'        => '',
             'margin_bottom'     => '',
             'padding_top'       => '',
@@ -534,6 +570,11 @@ class Playouts_Element_Row extends Playouts_Element {
         if( $padding_right ) { $style .= 'padding-right:' . esc_attr( $padding_right ) . ( is_numeric( $padding_right ) ? 'px' : '' ) . ';'; }
         if( $padding_bottom ) { $style .= 'padding-bottom:' . esc_attr( $padding_bottom ) . ( is_numeric( $padding_bottom ) ? 'px' : '' ) . ';'; }
         if( $padding_left ) { $style .= 'padding-left:' . esc_attr( $padding_left ) . ( is_numeric( $padding_left ) ? 'px' : '' ) . ';'; }
+
+        if( $res_hide_desktop ) { $class .= ' pl-res-hide-d'; }
+        if( $res_hide_tablet ) { $class .= ' pl-res-hide-t'; }
+        if( $res_hide_mobile_landscape ) { $class .= ' pl-res-hide-ml'; }
+        if( $res_hide_mobile ) { $class .= ' pl-res-hide-m'; }
 
         $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';

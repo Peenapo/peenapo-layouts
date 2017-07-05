@@ -846,31 +846,3 @@ class Playouts_Option_Type_Google_Font extends Playouts_Option_Type {
     }
 }
 new Playouts_Option_Type_Google_Font;
-
-class Playouts_Option_Type_Resolution_Visibility extends Playouts_Option_Type {
-
-    function init() {
-
-        $this->id = 'resolution_visibility';
-        $this->name = esc_html__( 'Resolution Visibility', 'peenapo-layouts-txd' );
-
-    }
-
-    static function template( $values ) {
-
-        extract( (array) $values );
-
-        $__out = self::get_option_heading( $label, $description );
-
-        $__active = $value ? ' pl-active' : '';
-        $__checked = $value ? ' checked="checked"' : '';
-
-        $__out .= "<label class='pl-true-false{$__active}' for='playouts_true_false_{$name}'>".
-            "<input type='checkbox' name='{$name}' id='playouts_true_false_{$name}' value='1'{$__checked}>".
-        "</label>";
-
-        return $__out;
-
-    }
-}
-new Playouts_Option_Type_Resolution_Visibility;
