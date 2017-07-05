@@ -13,6 +13,18 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 if ( ! defined( 'ABSPATH' ) ) { exit; } // exit if accessed directly
 
 /*
+ * prints human-readable information about a variable
+ *
+ */
+if( ! function_exists( 'd' ) ) {
+    function d( $what ) {
+        print '<pre>';
+        print_r( $what );
+        print '</pre>';
+    }
+}
+
+/*
  * set content directories
  *
  */

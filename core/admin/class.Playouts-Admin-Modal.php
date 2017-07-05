@@ -357,6 +357,10 @@ class Playouts_Admin_Modal_Tab_Custom_Layouts extends Playouts_Admin_Modal_Tab {
                     </li>
                 <?php endforeach; ?>
             </ul>
+        <?php else: ?>
+            <ul class="pl-modal-elements pl-modal-layouts pl-modal-custom-layouts pl-no-select">
+                <li class="pl-empty"><?php esc_html_e( 'There are no custom layouts!', 'peenapo-layouts-txd' ); ?></li>
+            </ul>
         <?php endif;
 
         return ob_get_clean();

@@ -357,13 +357,15 @@
 
 /* heading */
 .pl-heading {}
+.pl-heading .pl-heading-inner {display:inline-block;width:100%;max-width:600px;}
 .pl-heading .pl-heading-top {display:block;line-height:170%;}
-.pl-heading .pl-heading-title {max-width:600px;margin:0 auto .7em auto;line-height:150%;}
-.pl-heading .pl-heading-content {max-width:600px;margin:0 auto;line-height:170%;}
+.pl-heading .pl-heading-title {margin:0 0 .7em 0;line-height:150%;}
+.pl-heading .pl-heading-content {margin:0;line-height:170%;}
 .pl-heading .pl-heading-content p:last-child {}
     .pl-is-animated {}
     .pl-anim-wrap {overflow:hidden;}
     .pl-anim-wrap > * {visibility:hidden;}
+
 
 
 /* gradient */

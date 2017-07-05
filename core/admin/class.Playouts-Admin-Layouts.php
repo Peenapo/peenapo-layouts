@@ -375,3 +375,22 @@ class Playouts_Layout_Numbers_Counter extends Playouts_Admin_Layout {
     }
 }
 new Playouts_Layout_Numbers_Counter;
+
+
+
+class Playouts_Layout_Welcome_Frame_Bg extends Playouts_Admin_Layout {
+
+    function init() {
+
+        $this->id = 'bw_layout_welcome_frame_bg';
+        $this->name = esc_html__( 'Full-Width Framed Welcome Text with Background Image', 'peenapo-layouts-txd' );
+        $this->layout_view = 'row';
+        $this->image = PLAYOUTS_ASSEST . 'admin/images/__layouts/welcome_frame_bg.png';
+
+    }
+
+    static function output() {
+        return '[bw_row row_layout="full" background="color" bg_color="#5752ff" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" vertical_alignment="center" enable_static_height="1" static_height="100"][bw_column col_width="100" background="image" bg_color="#ffffff" bg_image="%PLAYOUTS_PATH_ASSETS%images/placeholder-1920_1080-white.png" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" margin_top="20" margin_right="20" margin_bottom="20" margin_left="20"][bw_row_inner text_alignment="inherit" static_height="30" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" animation="none" animation_speed="200" animation_delay="100"][bw_column_inner col_width="50" overlay_bg_second="#f5f5f5" overlay_opacity="50"][/bw_column_inner][bw_column_inner col_width="50" overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_text]This could be a category[/bw_text][bw_heading title="Aenean velit enim, malesuada facilisis pulvinar nec" h_tag="h3" text_alignment="inherit" font_size_heading="60" font_size_content="15" font_size_top="15" bold_text="1" speed="450" delay="100" inline_css="margin-top:15px;"][/bw_heading][bw_button label="This is a button" link="#" style="medium" direction="bottom right" border_radius="3" transform_top="1" shadow="1" margin_bottom="30"][/bw_button][/bw_column_inner][/bw_row_inner][/bw_column][/bw_row]';
+    }
+}
+new Playouts_Layout_Welcome_Frame_Bg;

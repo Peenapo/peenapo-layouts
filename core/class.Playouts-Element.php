@@ -4522,7 +4522,6 @@ class Playouts_Element_Image_Slider_Item extends Playouts_Repeater_Item_Element 
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
 
-
         $spacing = Playouts_Element_Image_Slider::$spacing;
         if( (int) $spacing > 0 ) {
             $style .= 'margin:0 ' . (int) $spacing . 'px!important;';
@@ -4530,7 +4529,12 @@ class Playouts_Element_Image_Slider_Item extends Playouts_Repeater_Item_Element 
 
         $thumbnail_size = Playouts_Element_Image_Slider::$thumbnail_size;
 
+        if( empty( $image ) ) { return ''; }
+
         $image_sized = wp_get_attachment_image_src( Playouts_Functions::get_image_id_from_url( $image ), $thumbnail_size );
+        if( ! isset( $image_sized[0] ) ) {
+            $image_sized[0] = $image;
+        }
 
         if( ! Playouts_Element_Image_Slider::$lazy ) {
             $_image = '<img src="' . esc_url( $image_sized[0] ) . '" alt="' . esc_html( $image_alt ) . '">';
@@ -4538,13 +4542,11 @@ class Playouts_Element_Image_Slider_Item extends Playouts_Repeater_Item_Element 
             $_image = '<img src="' . PLAYOUTS_ASSEST . 'images/pixel.png" data-flickity-lazyload="' . esc_url( $image_sized[0] ) . '" alt="' . esc_html( $image_alt ) . '">';
         }
 
-        if( isset( $image_sized[0] ) ) {
-            return '<div class="pl-image-slide' . $class . '" style="' . $style . '"' . $id . '>'.
-                '<div class="pl-image-slide-inner">'.
-                    $_image.
-                '</div>'.
-            '</div>';
-        }
+        return '<div class="pl-image-slide' . $class . '" style="' . $style . '"' . $id . '>'.
+            '<div class="pl-image-slide-inner">'.
+                $_image.
+            '</div>'.
+        '</div>';
 
     }
 }
@@ -4849,6 +4851,20 @@ class Playouts_Element_Heading extends Playouts_Element {
                 'label'             => esc_html__( 'Bold Text', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
             ),
+            'enable_max_width' => array(
+                'label'             => esc_html__( 'Enable Maximum Width?', 'peenapo-layouts-txd' ),
+                'type'              => 'true_false',
+            ),
+            'max_width' => array(
+                'label'             => esc_html__( 'Animation Speed', 'peenapo-layouts-txd' ),
+                'type'              => 'number_slider',
+                'append_after'      => 'milliseconds',
+                'min'               => 300,
+                'max'               => 900,
+                'step'              => 10,
+                'value'             => 600,
+                'depends'           => array( 'element' => 'enable_max_width', 'value' => '1' ),
+            ),
             'enable_animation' => array(
                 'label'             => esc_html__( 'Enable Animation', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
@@ -4907,6 +4923,8 @@ class Playouts_Element_Heading extends Playouts_Element {
             'font_size_content' => 15,
             'font_size_top'     => 15,
             'bold_text'         => false,
+            'enable_max_width'  => false,
+            'max_width'         => 600,
             'enable_animation'  => false,
             'speed'             => 0,
             'delay'             => 0,
@@ -4923,6 +4941,7 @@ class Playouts_Element_Heading extends Playouts_Element {
 
         $style .= ! empty( $text_color ) ? 'color:' . esc_attr( $text_color ) . ';' : '';
         $style .= ! empty( $text_alignment ) ? 'text-align:' . esc_attr( $text_alignment ) . ';' : '';
+        $class .= ! empty( $text_alignment ) ? ' pl-heading-align-' . esc_attr( $text_alignment ) : '';
 
         $anim_wrap_start = $anim_wrap_end = '';
         if( $enable_animation ) {
@@ -4937,9 +4956,11 @@ class Playouts_Element_Heading extends Playouts_Element {
         $_top = ! empty( $top ) ? '<span class="pl-heading-top" style="font-size:' . (int) $font_size_top . 'px;">' . esc_attr( $top ) . '</span>' : '';
 
         return '<div class="pl-heading' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
+            ( $enable_max_width ? '<div class="pl-heading-inner" style="max-width:' . (int) $max_width . 'px;">' : '' ) .
             $anim_wrap_start . $_top . $anim_wrap_end .
             $anim_wrap_start . "<$_tag class='pl-heading-title' style='font-weight:" . ( $bold_text ? '800' : '400' ) . ";font-size:" . (int) $font_size_heading . "px;'>" . esc_attr( $title ) . "</$_tag>" . $anim_wrap_end .
             $anim_wrap_start . '<div class="pl-heading-content" style="font-size:' . (int) $font_size_content . 'px;">' . do_shortcode( $content ) . '</div>' . $anim_wrap_end .
+            ( $enable_max_width ? '</div>' : '' ) .
         '</div>';
 
     }
