@@ -39,11 +39,11 @@
 /* fonts */
 @font-face {
     font-family:'peenapo-layouts-icons';
-    src:url('../fonts/peenapo-layouts-front-icons/peenapo-layouts-icons.eot?ohp6ae');
-    src:url('../fonts/peenapo-layouts-front-icons/peenapo-layouts-icons.eot?ohp6ae#iefix') format('embedded-opentype'),
-        url('../fonts/peenapo-layouts-front-icons/peenapo-layouts-icons.ttf?ohp6ae') format('truetype'),
-        url('../fonts/peenapo-layouts-front-icons/peenapo-layouts-icons.woff?ohp6ae') format('woff'),
-        url('../fonts/peenapo-layouts-front-icons/peenapo-layouts-icons.svg?ohp6ae#peenapo-layouts-icons') format('svg');
+    src:url('../fonts/playouts-front-icons/peenapo-layouts-icons.eot?ohp6ae');
+    src:url('../fonts/playouts-front-icons/peenapo-layouts-icons.eot?ohp6ae#iefix') format('embedded-opentype'),
+        url('../fonts/playouts-front-icons/peenapo-layouts-icons.ttf?ohp6ae') format('truetype'),
+        url('../fonts/playouts-front-icons/peenapo-layouts-icons.woff?ohp6ae') format('woff'),
+        url('../fonts/playouts-front-icons/peenapo-layouts-icons.svg?ohp6ae#peenapo-layouts-icons') format('svg');
     font-weight:normal;
     font-style:normal;
 }

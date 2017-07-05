@@ -1074,7 +1074,7 @@ Playouts_Option_Type.option_types.icon = {
         var $expand = self.find('.pl-icon-expand');
 
         // get the icon template and append it into the icon container
-        $container.html( $('#pl_icons').html() );
+        $container.html( $('#playouts_icons').html() );
 
         // binds
         $expand.on('click', Playouts_Option_Type.option_types.icon.expand);
@@ -1117,7 +1117,7 @@ Playouts_Option_Type.option_types.editor = {
         // tinymce
         if( window.tinyMCEPreInit && window.tinyMCEPreInit.mceInit[ wpActiveEditor ] ) {
 
-            var editor_id = 'pl_tinymce_' + options.name;
+            var editor_id = 'playouts_tinymce_' + options.name;
 
             window.tinyMCEPreInit.mceInit[ editor_id ] = _.extend({}, window.tinyMCEPreInit.mceInit[ wpActiveEditor ], {
                 id: editor_id,
@@ -3318,26 +3318,44 @@ var Pl_main = {
         // TODO: this looks messy
         if( ( Pl_modal.placement == 'before' || Pl_modal.placement == 'after' ) && module_id !== 'bw_row' ) { // content elements without parent
             if( module_id == 'bw_row_inner' && regarding_id && ! ( Pl_modal.placement !== 'before' || Pl_modal.placement !== 'after' ) ) {
-                // do nothing
-            }else if( ! this.added_manually ) { // manually added
+                // do nothing ..
+            }
+            // manually added
+            else if( ! this.added_manually ) {
+
                 regarding_id = this.latest_element_id;
-            }else{ // not manually added element without row
-                this.add_module( 'bw_row', regarding_id, auto_place_modules, false, Pl_main.get_unique_id() );
-                regarding_id = this.latest_col_id;
+
+            }
+            // not manually added element without row
+            else{
+
+                if( Pl_mapper.__mapper_data[ regarding_id ].module == 'bw_row' ) {
+                    this.add_module( 'bw_row', regarding_id, auto_place_modules, false, Pl_main.get_unique_id() );
+                    regarding_id = this.latest_col_id;
+                }
+
             }
         }
 
         // place the element
         var _placed = Pl_main.place_element( module_id, __module, regarding_id );
 
-        console.log(
+        // set the view of the plus button on elements
+        if( _view == 'element' || _view == 'repeater' ) {
+            $plus = __module.find(' > .pl-block-container > .just-edit > .pl-block-plus');
+            if( $plus.attr('data-view') == 'column_or_column_inner' ) {
+                $plus.attr('data-view', __module.closest('.block-column').hasClass('block-column-inner') ? 'column_inner' : 'column' );
+            }
+        }
+
+        /*console.log(
             'placement: ' + Pl_modal.placement +
             ', _placed: ' + _placed +
             ', module_id: ' + module_id +
             //', uid: ' + uid +
             //', regarding_id: ' + regarding_id +
             ', regarding_module: ' + ( typeof Pl_mapper.__mapper_data[ regarding_id ] !== 'undefined' ? Pl_mapper.__mapper_data[ regarding_id ].module : '--' )
-        );
+        );*/
 
         // if row, call some column inside, except when auto_place_modules
         // is not requested ( the col will be pushed after )
@@ -3359,64 +3377,6 @@ var Pl_main = {
     before_create_element: function() {
 
         Pl_main.welcome.hide();
-
-    },
-
-    /*
-     * set last added ids for elements, rows, columns
-     *
-     */
-    set_latest_ids: function( uid, view ) {
-
-        this.latest_element_id = uid;
-
-        if( view == 'row' ) {
-            this.latest_row_id = uid;
-        }
-
-        if( view == 'column' ) {
-            this.latest_col_id = uid;
-        }
-
-    },
-
-    hex_to_rgb: function( hex, opacity = 1 ) {
-
-        var c;
-
-        if( hex == null ) { return; }
-
-        if( /^#([A-Fa-f0-9]{3}){1,2}$/.test( hex ) ) {
-
-            c = hex.substring(1).split('');
-
-            if( c.length == 3 ) {
-                c = [ c[0], c[0], c[1], c[1], c[2], c[2] ];
-            }
-
-            c = '0x' + c.join('');
-
-            return 'rgba( ' + [ ( c >> 16 )&255, ( c >> 8 )&255, c&255 ].join(',') + ', ' + opacity + ' )';
-
-        }else{
-
-            Pl_main.notify( 'bad_hex', hex );
-
-        }
-
-    },
-
-    /*
-     * add some styling, colors
-     *
-     */
-    element_colors: function( __module, data ) {
-
-        if( $('.pl-label', __module).length && typeof window.playouts_data.module_colors[ data.module ] !== 'undefined' ) {
-            var rgb_color = Pl_main.hex_to_rgb( window.playouts_data.module_colors[ data.module ], .25 );
-            $('.pl-label, .pl-option-holder, .pl-plus', __module).css( 'background-color', window.playouts_data.module_colors[ data.module ] );
-            $('.pl-label, .pl-option-holder, .pl-plus', __module).css( 'box-shadow', '0px 3px 30px 0px ' + rgb_color );
-        }
 
     },
 
@@ -3497,6 +3457,64 @@ var Pl_main = {
             Pl_modal.placement ? $main_blocks.prepend( __module ) : $main_blocks.append( __module );
 
         }*/
+
+    },
+
+    /*
+     * set last added ids for elements, rows, columns
+     *
+     */
+    set_latest_ids: function( uid, view ) {
+
+        this.latest_element_id = uid;
+
+        if( view == 'row' ) {
+            this.latest_row_id = uid;
+        }
+
+        if( view == 'column' ) {
+            this.latest_col_id = uid;
+        }
+
+    },
+
+    hex_to_rgb: function( hex, opacity = 1 ) {
+
+        var c;
+
+        if( hex == null ) { return; }
+
+        if( /^#([A-Fa-f0-9]{3}){1,2}$/.test( hex ) ) {
+
+            c = hex.substring(1).split('');
+
+            if( c.length == 3 ) {
+                c = [ c[0], c[0], c[1], c[1], c[2], c[2] ];
+            }
+
+            c = '0x' + c.join('');
+
+            return 'rgba( ' + [ ( c >> 16 )&255, ( c >> 8 )&255, c&255 ].join(',') + ', ' + opacity + ' )';
+
+        }else{
+
+            Pl_main.notify( 'bad_hex', hex );
+
+        }
+
+    },
+
+    /*
+     * add some styling, colors
+     *
+     */
+    element_colors: function( __module, data ) {
+
+        if( $('.pl-label', __module).length && typeof window.playouts_data.module_colors[ data.module ] !== 'undefined' ) {
+            var rgb_color = Pl_main.hex_to_rgb( window.playouts_data.module_colors[ data.module ], .25 );
+            $('.pl-label, .pl-option-holder, .pl-plus', __module).css( 'background-color', window.playouts_data.module_colors[ data.module ] );
+            $('.pl-label, .pl-option-holder, .pl-plus', __module).css( 'box-shadow', '0px 3px 30px 0px ' + rgb_color );
+        }
 
     },
 

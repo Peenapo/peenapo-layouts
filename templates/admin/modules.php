@@ -23,7 +23,7 @@ $block_edit_buttons = "
         <div class='pl-option pl-open-prompt pl-button-save-custom-layout' title='" .  __( 'Save Layout', 'peenapo-layouts-txd' ) . "' data-save-layout='element' data-prompt='save-layout'><i class='pl-icon-import'></i></div>
         <div class='pl-option pl-trash' title='" .  __( 'Delete', 'peenapo-layouts-txd' ) . "'><i class='pl-icon-trash'></i></div>
     </div>
-    <span class='pl-block-plus pl-open-modal' data-view='column' data-placement='manually_after'><i class='pl-plus'><span></span></i></span>
+    <span class='pl-block-plus pl-open-modal' data-view='column_or_column_inner' data-placement='manually_after'><i class='pl-plus'><span></span></i></span>
 </div>";
 
 $block_drag = "
