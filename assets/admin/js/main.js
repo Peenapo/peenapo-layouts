@@ -3329,11 +3329,12 @@ var Pl_main = {
             // not manually added element without row
             else{
 
-                if( Pl_mapper.__mapper_data[ regarding_id ].module == 'bw_row' ) {
+                if( typeof Pl_mapper.__mapper_data[ regarding_id ] == 'undefined' || Pl_mapper.__mapper_data[ regarding_id ].module == 'bw_row' ) {
+
                     this.add_module( 'bw_row', regarding_id, auto_place_modules, false, Pl_main.get_unique_id() );
                     regarding_id = this.latest_col_id;
-                }
 
+                }
             }
         }
 
