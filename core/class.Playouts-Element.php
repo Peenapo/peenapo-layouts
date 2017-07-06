@@ -421,28 +421,21 @@ class Playouts_Element_Row extends Playouts_Element {
                 'label'             => esc_html__( 'Hide on Desktop', 'peenapo-layouts-txd' ),
                 'description'       => esc_html__( 'Hide this element for resolution larger than <strong>1200px</strong>.', 'peenapo-layouts-txd' ),
                 'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
-                'width'             => 25
+                'width'             => 33
             ),
             'res_hide_tablet' => array(
                 'type'              => 'true_false',
                 'label'             => esc_html__( 'Hide on Tablet', 'peenapo-layouts-txd' ),
-                'description'       => esc_html__( 'Hide this element for resolution between <strong>992px and 1199px</strong>.', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Hide this element for resolution between <strong>768px and 1199px</strong>.', 'peenapo-layouts-txd' ),
                 'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
-                'width'             => 25
+                'width'             => 33
             ),
-            'res_hide_mobile_landscape' => array(
+            'res_hide_phone' => array(
                 'type'              => 'true_false',
-                'label'             => esc_html__( 'Hide on Mobile landscape', 'peenapo-layouts-txd' ),
-                'description'       => esc_html__( 'Hide this element for resolution between <strong>768px and 991px</strong>.', 'peenapo-layouts-txd' ),
-                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
-                'width'             => 25
-            ),
-            'res_hide_mobile' => array(
-                'type'              => 'true_false',
-                'label'             => esc_html__( 'Hide on Mobile', 'peenapo-layouts-txd' ),
+                'label'             => esc_html__( 'Hide on Phone', 'peenapo-layouts-txd' ),
                 'description'       => esc_html__( 'Hide this element for resolution smaller than <strong>767px</strong>.', 'peenapo-layouts-txd' ),
                 'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
-                'width'             => 25
+                'width'             => 34
             ),
 
             'margin_top' => array(
@@ -537,8 +530,7 @@ class Playouts_Element_Row extends Playouts_Element {
 
             'res_hide_desktop'  => '',
             'res_hide_tablet'   => '',
-            'res_hide_mobile_landscape' => '',
-            'res_hide_mobile'   => '',
+            'res_hide_phone'    => '',
 
             'margin_top'        => '',
             'margin_bottom'     => '',
@@ -560,10 +552,9 @@ class Playouts_Element_Row extends Playouts_Element {
 
         $style = $class = $id = $overlay = $_gradient = '';
 
-        if( $enable_static_height ) { $style .= 'height:' . (int) $static_height . 'vh;'; }
+        if( $enable_static_height ) { $style .= 'min-height:' . (int) $static_height . 'vh;'; }
         if( $text_color ) { $style .= 'color:' . esc_attr( $text_color ) . ';'; }
         if( $text_alignment ) { $style .= 'text-align:' . esc_attr( $text_alignment ) . ';'; }
-        //if( $vertical_alignment ) { $style .= 'align-items:' . esc_attr( $vertical_alignment ) . ';'; }
         if( $margin_top ) { $style .= 'margin-top:' . esc_attr( $margin_top ) . ( is_numeric( $margin_top ) ? 'px' : '' ) . ';'; }
         if( $margin_bottom ) { $style .= 'margin-bottom:' . esc_attr( $margin_bottom ) . ( is_numeric( $margin_bottom ) ? 'px' : '' ) . ';'; }
         if( $padding_top ) { $style .= 'padding-top:' . esc_attr( $padding_top ) . ( is_numeric( $padding_top ) ? 'px' : '' ) . ';'; }
@@ -573,8 +564,7 @@ class Playouts_Element_Row extends Playouts_Element {
 
         if( $res_hide_desktop ) { $class .= ' pl-res-hide-d'; }
         if( $res_hide_tablet ) { $class .= ' pl-res-hide-t'; }
-        if( $res_hide_mobile_landscape ) { $class .= ' pl-res-hide-ml'; }
-        if( $res_hide_mobile ) { $class .= ' pl-res-hide-m'; }
+        if( $res_hide_phone ) { $class .= ' pl-res-hide-p'; }
 
         $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
@@ -796,6 +786,29 @@ class Playouts_Element_Column extends Playouts_Element {
                     'flex-end'          => 'Bottom',
                 ),
 			),
+
+            'res_hide_desktop' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Hide on Desktop', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Hide this element for resolution larger than <strong>1200px</strong>.', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 33
+            ),
+            'res_hide_tablet' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Hide on Tablet', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Hide this element for resolution between <strong>768px and 1199px</strong>.', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 33
+            ),
+            'res_hide_phone' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Hide on Phone', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Hide this element for resolution smaller than <strong>767px</strong>.', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 34
+            ),
+
             'margin_top' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'Margin Top', 'peenapo-layouts-txd' ),
@@ -887,6 +900,11 @@ class Playouts_Element_Column extends Playouts_Element {
             'text_color'        => '',
             'text_alignment'    => '',
             'column_alignment'  => '',
+
+            'res_hide_desktop'  => '',
+            'res_hide_tablet'   => '',
+            'res_hide_phone'    => '',
+
             'margin_top'        => '',
             'margin_right'      => '',
             'margin_bottom'     => '',
@@ -903,12 +921,11 @@ class Playouts_Element_Column extends Playouts_Element {
 
         $style = $style_inside = $class = $id = $overlay = $attr = $_gradient = '';
 
-        if( $col_width ) { $style .= 'width:' . (int) $col_width . '%;'; }
+        if( $col_width ) { $style .= 'flex:' . Playouts_Functions::set_column_width( $col_width, $margin_left, $margin_right ) . ';'; }
 
         if( $text_color ) { $style .= 'color:' . esc_attr( $text_color ) . ';'; }
         if( $text_alignment ) { $style .= 'text-align:' . esc_attr( $text_alignment ) . ';'; }
 
-        //if( $content_alignment ) { $style .= 'justify-content:' . esc_attr( $content_alignment ) . ';'; }
         if( Playouts_Element_Row::$vertical_alignment ) { $style .= 'justify-content:' . esc_attr( Playouts_Element_Row::$vertical_alignment ) . ';'; }
         if( $column_alignment ) { $style_inside .= 'align-self:' . esc_attr( $column_alignment ) . ';'; }
 
@@ -922,6 +939,10 @@ class Playouts_Element_Column extends Playouts_Element {
         if( $padding_bottom ) { $style .= 'padding-bottom:' . esc_attr( $padding_bottom ) . ( is_numeric( $padding_bottom ) ? 'px' : '' ) . ';'; }
         if( $padding_left ) { $style .= 'padding-left:' . esc_attr( $padding_left ) . ( is_numeric( $padding_left ) ? 'px' : '' ) . ';'; }
 
+        if( $res_hide_desktop ) { $class .= ' pl-res-hide-d'; }
+        if( $res_hide_tablet ) { $class .= ' pl-res-hide-t'; }
+        if( $res_hide_phone ) { $class .= ' pl-res-hide-p'; }
+
         $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
@@ -934,6 +955,8 @@ class Playouts_Element_Column extends Playouts_Element {
             }
             $overlay = '<span class="pl-overlay" style="' . $_gradient . '"></span>';
         }
+
+        $class .= Playouts_Functions::set_column_class( $col_width );
 
         return '<div class="pl-column-outer' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
             Playouts_Public::set_background( $background, $assigned_atts ).
@@ -1208,6 +1231,29 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
                 'depends'           => array( 'element' => 'animation', 'value' => array( 'scale', 'top', 'right', 'bottom', 'left' ) ),
                 'tab'               => array( 'animation' => esc_html__( 'Animation', 'peenapo-layouts-txd' ) ),
             ),
+
+            'res_hide_desktop' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Hide on Desktop', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Hide this element for resolution larger than <strong>1200px</strong>.', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 33
+            ),
+            'res_hide_tablet' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Hide on Tablet', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Hide this element for resolution between <strong>768px and 1199px</strong>.', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 33
+            ),
+            'res_hide_phone' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Hide on Phone', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Hide this element for resolution smaller than <strong>767px</strong>.', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 34
+            ),
+
             'inline_class' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
@@ -1269,6 +1315,10 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
             'animation_speed'   => 200,
             'animation_delay'   => 0,
 
+            'res_hide_desktop'  => '',
+            'res_hide_tablet'   => '',
+            'res_hide_phone'    => '',
+
             'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
@@ -1276,16 +1326,19 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
 
         $style = $class = $id = $_gradient = '';
 
-        if( $enable_static_height ) { $style .= 'height:' . (int) $static_height . 'vh;'; }
+        if( $enable_static_height ) { $style .= 'min-height:' . (int) $static_height . 'vh;'; }
         if( $text_color ) { $style .= 'color:' . esc_attr( $text_color ) . ';'; }
         if( $text_alignment ) { $style .= 'text-align:' . esc_attr( $text_alignment ) . ';'; }
-        //if( $vertical_alignment ) { $style .= 'align-items:' . esc_attr( $vertical_alignment ) . ';'; }
         if( $margin_top ) { $style .= 'margin-top:' . esc_attr( $margin_top ) . ( is_numeric( $margin_top ) ? 'px' : '' ) . ';'; }
         if( $margin_bottom ) { $style .= 'margin-bottom:' . esc_attr( $margin_bottom ) . ( is_numeric( $margin_bottom ) ? 'px' : '' ) . ';'; }
         if( $padding_top ) { $style .= 'padding-top:' . esc_attr( $padding_top ) . ( is_numeric( $padding_top ) ? 'px' : '' ) . ';'; }
         if( $padding_right ) { $style .= 'padding-right:' . esc_attr( $padding_right ) . ( is_numeric( $padding_right ) ? 'px' : '' ) . ';'; }
         if( $padding_bottom ) { $style .= 'padding-bottom:' . esc_attr( $padding_bottom ) . ( is_numeric( $padding_bottom ) ? 'px' : '' ) . ';'; }
         if( $padding_left ) { $style .= 'padding-left:' . esc_attr( $padding_left ) . ( is_numeric( $padding_left ) ? 'px' : '' ) . ';'; }
+
+        if( $res_hide_desktop ) { $class .= ' pl-res-hide-d'; }
+        if( $res_hide_tablet ) { $class .= ' pl-res-hide-t'; }
+        if( $res_hide_phone ) { $class .= ' pl-res-hide-p'; }
 
         $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
@@ -1556,6 +1609,29 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
                 'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
             ),
+
+            'res_hide_desktop' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Hide on Desktop', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Hide this element for resolution larger than <strong>1200px</strong>.', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 33
+            ),
+            'res_hide_tablet' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Hide on Tablet', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Hide this element for resolution between <strong>768px and 1199px</strong>.', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 33
+            ),
+            'res_hide_phone' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Hide on Phone', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Hide this element for resolution smaller than <strong>767px</strong>.', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 34
+            ),
+
             'inline_class' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
@@ -1608,6 +1684,10 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
             'overlay_direction' => 'top right',
             'overlay_opacity'   => 0,
 
+            'res_hide_desktop'  => '',
+            'res_hide_tablet'   => '',
+            'res_hide_phone'    => '',
+
             'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
@@ -1615,12 +1695,11 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
 
         $style = $class = $id = $overlay = $_gradient = $style_inside = '';
 
-        if( $col_width ) { $style .= 'width:' . (int) $col_width . '%;'; }
+        if( $col_width ) { $style .= 'flex:' . Playouts_Functions::set_column_width( $col_width, $margin_left, $margin_right ) . ';'; }
 
         if( $text_color ) { $style .= 'color:' . esc_attr( $text_color ) . ';'; }
         if( $text_alignment ) { $style .= 'text-align:' . esc_attr( $text_alignment ) . ';'; }
 
-        //if( $vertical_alignment ) { $style .= 'vertical-align:' . esc_attr( $vertical_alignment ) . ';'; }
         if( Playouts_Element_Row_Inner::$vertical_alignment ) { $style .= 'justify-content:' . esc_attr( Playouts_Element_Row_Inner::$vertical_alignment ) . ';'; }
         if( $column_alignment ) { $style_inside .= 'align-self:' . esc_attr( $column_alignment ) . ';'; }
 
@@ -1634,6 +1713,10 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
         if( $margin_bottom ) { $style .= 'margin-bottom:' . esc_attr( $margin_bottom ) . ( is_numeric( $margin_bottom ) ? 'px' : '' ) . ';'; }
         if( $margin_left ) { $style .= 'margin-left:' . esc_attr( $margin_left ) . ( is_numeric( $margin_left ) ? 'px' : '' ) . ';'; }
 
+        if( $res_hide_desktop ) { $class .= ' pl-res-hide-d'; }
+        if( $res_hide_tablet ) { $class .= ' pl-res-hide-t'; }
+        if( $res_hide_phone ) { $class .= ' pl-res-hide-p'; }
+
         $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
@@ -1646,6 +1729,8 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
             }
             $overlay = '<span class="pl-overlay" style="' . $_gradient . '"></span>';
         }
+
+        $class .= Playouts_Functions::set_column_class( $col_width );
 
         return '<div class="pl-column-inner-outer' . $class . '" style="' . $style . '"' . $id . '>'.
             Playouts_Public::set_background( $background, $assigned_atts ).
@@ -4999,7 +5084,7 @@ class Playouts_Element_Heading extends Playouts_Element {
         return '<div class="pl-heading' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
             ( $enable_max_width ? '<div class="pl-heading-inner" style="max-width:' . (int) $max_width . 'px;">' : '' ) .
             $anim_wrap_start . $_top . $anim_wrap_end .
-            $anim_wrap_start . "<$_tag class='pl-heading-title' style='font-weight:" . ( $bold_text ? '800' : '400' ) . ";font-size:" . (int) $font_size_heading . "px;'>" . esc_attr( $title ) . "</$_tag>" . $anim_wrap_end .
+            $anim_wrap_start . "<$_tag class='pl-heading-title' style='font-weight:" . ( $bold_text ? '800' : '400' ) . ";font-size:" . (int) $font_size_heading . "px;'>" . Playouts_Functions::kses( $title ) . "</$_tag>" . $anim_wrap_end .
             $anim_wrap_start . '<div class="pl-heading-content" style="font-size:' . (int) $font_size_content . 'px;">' . do_shortcode( $content ) . '</div>' . $anim_wrap_end .
             ( $enable_max_width ? '</div>' : '' ) .
         '</div>';
@@ -5701,8 +5786,10 @@ class Playouts_Element_Pricing_Tables extends Playouts_Repeater_Element {
         $style .= 'align-items:' . esc_attr( $vertical_alignment );
 
         if( ! empty( $content ) ) {
-            return '<div class="pl-pricing-tables' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
-                $content.
+            return '<div class="pl-pricing-tables-outer">'.
+                '<div class="pl-pricing-tables' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
+                    $content.
+                '</div>'.
             '</div>';
         }
 
@@ -6243,7 +6330,7 @@ class Playouts_Element_Google_Map extends Playouts_Repeater_Element {
             return '<p class="pl-warning">' . esc_html__( 'Please add a Google Map Api Key to display your map correctly. You can do this by the plugin\'s settings panel.', '' ) . '</p>';
         }
 
-        $style .= ! empty( $height ) ? 'height:' . (int) $height . 'vh;' : '';
+        $style .= ! empty( $height ) ? 'min-height:' . (int) $height . 'vh;' : '';
 
         $attr .= ' data-zoom="true"';
         $attr .= ' data-zoom-level="' . (int) $zoom . '"';

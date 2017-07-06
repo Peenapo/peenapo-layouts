@@ -92,7 +92,7 @@ for(var n=this.selectedIndex,s=1/0,o=this.options.contain&&!this.options.wrapAro
             }
 
             // script for muting the vimeo/youtube player
-            if( window.pl_params.is_mobile ){
+            if( window.playouts_params.is_mobile ) {
                 t.wrapper_bg.children('[data-background-type="video"]').remove();
 
                 if( t.wrapper_bg.attr('data-video-fallback') ) {

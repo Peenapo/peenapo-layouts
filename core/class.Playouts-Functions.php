@@ -88,4 +88,78 @@ class Playouts_Functions {
 		return base64_decode( str_replace( '=', '_', $string ) );
 	}
 
+    /*
+     * set a class for a column
+     * depending on the width
+     *
+     */
+    static function set_column_class( $width ) {
+
+        $width = (int) $width;
+
+        switch( true ) {
+            case ( $width >= 75 and $width < 100 ) :
+                $column_class = 'pl-col-range-75-100'; break;
+            case ( $width >= 50 and $width < 75 ) :
+                $column_class = 'pl-col-range-50-75'; break;
+            case ( $width >= 26 and $width < 50 ) :
+                $column_class = 'pl-col-range-25-50'; break;
+            case ( $width > 0 and $width < 26 ) :
+                $column_class = 'pl-col-range-0-25'; break;
+            default:
+                $column_class = 'pl-col-range-100';
+        }
+
+        return ' ' . $column_class;
+
+    }
+
+    /*
+    * set a flex width for a column
+    * depending on the margins
+     *
+     */
+    static function set_column_width( $width, $margin_left, $margin_right ) {
+
+        $width = (int) $width;
+
+        $_width = '1';
+
+        if( ! empty( $margin_left ) or ! empty( $margin_right ) ) {
+            $_margins = '';
+            if( ! empty( $margin_left ) ) {
+                $_margins .= ' - ' . $margin_left . ( is_numeric( $margin_left ) ? 'px' : '' );
+            }
+            if( ! empty( $margin_right ) ) {
+                $_margins .= ' - ' . $margin_right . ( is_numeric( $margin_right ) ? 'px' : '' );
+            }
+            $_width = '1 calc(' . $width . '%' . $_margins . ')';
+        }else{
+            $_width = '1 ' . $width . '%';
+        }
+
+        return $_width;
+
+    }
+
+    /*
+     * escape using wp_kses
+     *
+     */
+    static function kses( $text ) {
+
+        return wp_kses( $text, array(
+            'a' => array(
+                'href' => array(),
+                'title' => array(),
+                'class' => array(),
+                'target' => array()
+            ),
+            'br' => array(),
+            'em' => array(),
+            'strong' => array(),
+        ));
+
+    }
+
 }
