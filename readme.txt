@@ -1,6 +1,6 @@
 === Peenapo Layouts ===
 Contributors: peenapo
-Tags: page builder, layouts, visual composer, drag and drop, template library, layout builder
+Tags: page builder, layouts, visual composer, drag and drop, template library, layout builder, editor, responsive, landing page, peenapo
 Requires at least: 4.7
 Tested up to: 4.8
 Stable tag: 1.1
