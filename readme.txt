@@ -79,5 +79,12 @@ For basic usage, you can also have a look at the [plugin web site](https://www.p
 6. Page Builder options panel.
 
 == Changelog ==
+= 1.1 =
+* Improved responsiveness for layouts.
+* Fixed column alignment in the back-nd.
+* Fixed JavaScript error in the font-end.
+* Fixed WordPress Editor not working
+* Fixed icons not working
+
 = 1.0 - 2017-06-03 =
 * Initial release.
