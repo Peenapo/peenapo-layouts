@@ -39,6 +39,11 @@ class Playouts_Admin_Ajax {
 		 *
 		 */
 		'__save_favorites',
+		/*
+		 * save favorites
+		 *
+		 */
+		'__send_feedback',
 	);
 
 	/*
@@ -200,6 +205,26 @@ class Playouts_Admin_Ajax {
 		}
 
 		update_option( 'playouts_favorites', $options );
+
+		wp_send_json_success();
+
+	}
+
+	static function __send_feedback() {
+
+		if ( ! isset( $_POST['security'] ) || ! wp_verify_nonce( $_POST['security'], 'playouts-nonce-deactivate-feedback' ) ) {
+			wp_send_json_error();
+		}
+
+		$reason_text = $reason_key = '';
+
+		if ( ! empty( $_POST['reason_key'] ) )
+			$reason_key = $_POST['reason_key'];
+
+		if ( ! empty( $_POST[ "reason_{$reason_key}" ] ) )
+			$reason_text = $_POST[ "reason_{$reason_key}" ];
+
+		Playouts_Api::send_feedback( $reason_key, $reason_text );
 
 		wp_send_json_success();
 

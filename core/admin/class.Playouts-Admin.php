@@ -553,13 +553,90 @@ class Playouts_Admin {
     		wp_enqueue_script( 'playouts' );
 
         }
+
+        $screen = get_current_screen();
+
+        if ( in_array( $screen->id, array( 'plugins', 'plugins-network' ) ) ) {
+
+            add_action( 'admin_footer', array( 'Playouts_Admin', 'print_deactivate_feedback_dialog' ) );
+
+			self::enqueue_feedback_dialog_scripts();
+		}
+
     }
+
+    static function enqueue_feedback_dialog_scripts() {
+
+		wp_enqueue_script( 'playouts-admin-feedback', PLAYOUTS_ASSEST . 'admin/js/playouts.feedback.js', array( 'jquery' ), '1.0', true );
+
+		wp_localize_script( 'playouts-admin-feedback', 'playouts_admin_feedback',
+			array(
+                'ajax' => admin_url( 'admin-ajax.php' ),
+				'i18n' => array(
+					'submit_n_deactivate' => __( 'Submit & Deactivate', 'peenapo-layouts-txd' ),
+					'skip_n_deactivate' => __( 'Skip & Deactivate', 'peenapo-layouts-txd' ),
+				),
+			)
+		);
+	}
 
     static function add_settings_link( $links ) {
         $settings_link = '<a href="' . get_admin_url() . 'admin.php?page=playouts_options">' . esc_html__( 'Settings', 'peenapo-layouts-txd' ) . '</a>';
         array_push( $links, $settings_link );
         return $links;
     }
+
+    static function print_deactivate_feedback_dialog() {
+		$deactivate_reasons = [
+			'no_longer_needed' => [
+				'title' => __( 'I no longer need the plugin', 'peenapo-layouts-txd' ),
+				'input_placeholder' => '',
+			],
+			'found_a_better_plugin' => [
+				'title' => __( 'I found a better plugin', 'peenapo-layouts-txd' ),
+				'input_placeholder' => __( 'Please share which plugin', 'peenapo-layouts-txd' ),
+			],
+			'couldnt_get_the_plugin_to_work' => [
+				'title' => __( 'I couldn\'t get the plugin to work', 'peenapo-layouts-txd' ),
+				'input_placeholder' => '',
+			],
+			'temporary_deactivation' => [
+				'title' => __( 'It\'s a temporary deactivation', 'peenapo-layouts-txd' ),
+				'input_placeholder' => '',
+			],
+			'other' => [
+				'title' => __( 'Other', 'peenapo-layouts-txd' ),
+				'input_placeholder' => __( 'Please share the reason', 'peenapo-layouts-txd' ),
+			],
+		];
+
+		?>
+		<div id="pl-deactivate-feedback-dialog-wrapper">
+			<div id="pl-deactivate-feedback-dialog-header">
+				<i class="eicon-pl-square"></i>
+				<span id="pl-deactivate-feedback-dialog-header-title"><?php _e( 'Quick Feedback', 'peenapo-layouts-txd' ); ?></span>
+			</div>
+			<form id="pl-deactivate-feedback-dialog-form" method="post">
+
+                <?php wp_nonce_field( 'playouts-nonce-deactivate-feedback', 'security' ); ?>
+				<input type="hidden" name="action" value="playouts_deactivate_feedback" />
+
+				<div id="pl-deactivate-feedback-dialog-form-caption"><?php _e( 'If you have a moment, please share why you are deactivating Peenapo Layouts:', 'peenapo-layouts-txd' ); ?></div>
+				<div id="pl-deactivate-feedback-dialog-form-body">
+					<?php foreach ( $deactivate_reasons as $reason_key => $reason ) : ?>
+						<div class="pl-deactivate-feedback-dialog-input-wrapper">
+							<input id="pl-deactivate-feedback-<?php echo esc_attr( $reason_key ); ?>" class="pl-deactivate-feedback-dialog-input" type="radio" name="reason_key" value="<?php echo esc_attr( $reason_key ); ?>" />
+							<label for="pl-deactivate-feedback-<?php echo esc_attr( $reason_key ); ?>" class="pl-deactivate-feedback-dialog-label"><?php echo $reason['title']; ?></label>
+							<?php if ( ! empty( $reason['input_placeholder'] ) ) : ?>
+								<input class="pl-feedback-text" type="text" name="reason_<?php echo esc_attr( $reason_key ); ?>" placeholder="<?php echo esc_attr( $reason['input_placeholder'] ); ?>" />
+							<?php endif; ?>
+						</div>
+					<?php endforeach; ?>
+				</div>
+			</form>
+		</div>
+		<?php
+	}
 
 }
 
