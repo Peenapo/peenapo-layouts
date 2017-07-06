@@ -3,7 +3,7 @@
 Plugin Name: Peenapo Layouts
 Plugin URI: https://www.peenapo.com
 Description: Peenapo Layouts is a drag &amp; drop back-end, shortcode based layout builder for WordPress.
-Version: 1.0
+Version: 1.1
 Author: Peenapo
 Text Domain: peenapo-layouts-txd
 License: GNU General Public License v3+

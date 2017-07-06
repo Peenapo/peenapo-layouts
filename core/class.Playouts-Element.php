@@ -3155,7 +3155,7 @@ class Playouts_Element_Auto_Type extends Playouts_Element {
 }
 new Playouts_Element_Auto_Type;
 
-class Playouts_Element_Auto_Type_Item extends Playouts_Element {
+class Playouts_Element_Auto_Type_Item extends Playouts_Repeater_Item_Element {
 
     function init() {
 
