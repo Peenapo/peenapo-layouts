@@ -538,47 +538,45 @@ class Playouts_Admin {
             if( isset( $_GET['page'] ) and $_GET['page'] == 'playouts_options' ) {
                 wp_enqueue_media();
             }
-    		wp_enqueue_script( array( "jquery", "jquery-ui-core", "jquery-ui-dialog", "jquery-ui-sortable", "wp-color-picker", "jquery-ui-slider" ) );
-            wp_register_script( 'playouts', PLAYOUTS_ASSEST . 'admin/js/main.js', array('jquery-ui-sortable'), '1.0', true );
-    		wp_localize_script( 'playouts', 'playouts_admin_root', array( 'ajax' => admin_url( 'admin-ajax.php' ) ) );
-            wp_enqueue_script( 'playouts-smart-resize', PLAYOUTS_ASSEST . 'admin/js/vendors/jquery-smartresize-master/jquery.debouncedresize.js', array(), '1.0', true );
-            wp_enqueue_script( 'playouts-vendors', PLAYOUTS_ASSEST . 'admin/js/vendors.js', array(), '1.0', true );
-            wp_enqueue_script( 'playouts-php-default', PLAYOUTS_ASSEST . 'admin/js/vendors/php.default/php.default.min.js', array(), '1.0', true );
-            wp_enqueue_script( 'playouts-colorpicker', PLAYOUTS_ASSEST . 'admin/js/vendors/wpcolorpicker/wp-colorpicker.min.js', array(), '1.0', true );
+
+            wp_enqueue_script( array( 'jquery', 'jquery-ui-core', 'jquery-ui-dialog', 'jquery-ui-sortable', 'wp-color-picker', 'jquery-ui-slider' ) );
+
             wp_enqueue_script( 'playouts-blocker', PLAYOUTS_ASSEST . 'admin/js/playouts.blocker.js', array(), '1.0', true );
             wp_enqueue_script( 'playouts-shortcoder', PLAYOUTS_ASSEST . 'admin/js/playouts.shortcoder.js', array(), '1.0', true );
             wp_enqueue_script( 'playouts-layouts', PLAYOUTS_ASSEST . 'admin/js/playouts.layouts.js', array(), '1.0', true );
+            wp_enqueue_script( 'playouts-prompt', PLAYOUTS_ASSEST . 'admin/js/playouts.prompt.js', array(), '1.0', true );
             wp_enqueue_script( 'playouts-mapper', PLAYOUTS_ASSEST . 'admin/js/playouts.mapper.js', array(), '1.0', true );
 
+            wp_register_script( 'playouts', PLAYOUTS_ASSEST . 'admin/js/main.js', array('jquery-ui-sortable'), '1.0', true );
+    		wp_localize_script( 'playouts', 'playouts_admin_root', array( 'ajax' => admin_url( 'admin-ajax.php' ) ) );
     		wp_enqueue_script( 'playouts' );
 
         }
 
         $screen = get_current_screen();
 
-        if ( in_array( $screen->id, array( 'plugins', 'plugins-network' ) ) ) {
+        /*if ( in_array( $screen->id, array( 'plugins', 'plugins-network' ) ) ) {
 
             add_action( 'admin_footer', array( 'Playouts_Admin', 'print_deactivate_feedback_dialog' ) );
 
-			self::enqueue_feedback_dialog_scripts();
-		}
+            wp_enqueue_style( 'playouts', PLAYOUTS_ASSEST . 'admin/css/style.css' );
+
+            wp_enqueue_script( 'playouts-prompt', PLAYOUTS_ASSEST . 'admin/js/playouts.prompt.js', array(), '1.0', true );
+            wp_enqueue_script( 'playouts-admin-feedback', PLAYOUTS_ASSEST . 'admin/js/playouts.feedback.js', array( 'jquery' ), '1.0', true );
+
+            wp_localize_script( 'playouts-admin-feedback', 'playouts_admin_feedback',
+    			array(
+                    'ajax' => admin_url( 'admin-ajax.php' ),
+    				'i18n' => array(
+    					'submit_n_deactivate' => __( 'Submit & Deactivate', 'peenapo-layouts-txd' ),
+    					'skip_n_deactivate' => __( 'Skip & Deactivate', 'peenapo-layouts-txd' ),
+    				),
+    			)
+    		);
+
+		}*/
 
     }
-
-    static function enqueue_feedback_dialog_scripts() {
-
-		wp_enqueue_script( 'playouts-admin-feedback', PLAYOUTS_ASSEST . 'admin/js/playouts.feedback.js', array( 'jquery' ), '1.0', true );
-
-		wp_localize_script( 'playouts-admin-feedback', 'playouts_admin_feedback',
-			array(
-                'ajax' => admin_url( 'admin-ajax.php' ),
-				'i18n' => array(
-					'submit_n_deactivate' => __( 'Submit & Deactivate', 'peenapo-layouts-txd' ),
-					'skip_n_deactivate' => __( 'Skip & Deactivate', 'peenapo-layouts-txd' ),
-				),
-			)
-		);
-	}
 
     static function add_settings_link( $links ) {
         $settings_link = '<a href="' . get_admin_url() . 'admin.php?page=playouts_options">' . esc_html__( 'Settings', 'peenapo-layouts-txd' ) . '</a>';
@@ -586,7 +584,7 @@ class Playouts_Admin {
         return $links;
     }
 
-    static function print_deactivate_feedback_dialog() {
+    /*static function print_deactivate_feedback_dialog() {
 		$deactivate_reasons = [
 			'no_longer_needed' => [
 				'title' => __( 'I no longer need the plugin', 'peenapo-layouts-txd' ),
@@ -616,10 +614,10 @@ class Playouts_Admin {
 				<i class="eicon-pl-square"></i>
 				<span id="pl-deactivate-feedback-dialog-header-title"><?php _e( 'Quick Feedback', 'peenapo-layouts-txd' ); ?></span>
 			</div>
-			<form id="pl-deactivate-feedback-dialog-form" method="post">
+			<form id="pl-feedback-form" method="post">
 
                 <?php wp_nonce_field( 'playouts-nonce-deactivate-feedback', 'security' ); ?>
-				<input type="hidden" name="action" value="playouts_deactivate_feedback" />
+				<input type="hidden" name="action" value="__save_layout" />
 
 				<div id="pl-deactivate-feedback-dialog-form-caption"><?php _e( 'If you have a moment, please share why you are deactivating Peenapo Layouts:', 'peenapo-layouts-txd' ); ?></div>
 				<div id="pl-deactivate-feedback-dialog-form-body">
@@ -636,7 +634,7 @@ class Playouts_Admin {
 			</form>
 		</div>
 		<?php
-	}
+	}*/
 
 }
 

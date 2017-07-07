@@ -56,7 +56,7 @@ Peenapo Layouts is a shortcode based layout system for WordPress that works on t
 * **Pricing Tables.** Simple and clean pricing tables to display your website plans.
 * **Number Counter.** Animated numeric counter.
 * **Icon.** Simple icon picker.
-* **Google Map.** Add any google map with custom styling and multiple tins. You can also select the image you want for you pins.
+* **Google Map.** Add any google map with custom styling and multiple pins. You can also select the image you want for you pins.
 
 **Made with love by Peenapo**
 

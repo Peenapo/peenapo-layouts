@@ -43,7 +43,7 @@ class Playouts_Admin_Ajax {
 		 * save favorites
 		 *
 		 */
-		'__send_feedback',
+		//'__send_feedback',
 	);
 
 	/*
@@ -210,7 +210,7 @@ class Playouts_Admin_Ajax {
 
 	}
 
-	static function __send_feedback() {
+	/*static function __send_feedback() {
 
 		if ( ! isset( $_POST['security'] ) || ! wp_verify_nonce( $_POST['security'], 'playouts-nonce-deactivate-feedback' ) ) {
 			wp_send_json_error();
@@ -228,7 +228,7 @@ class Playouts_Admin_Ajax {
 
 		wp_send_json_success();
 
-	}
+	}*/
 
 }
 

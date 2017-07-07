@@ -53,7 +53,6 @@ class Playouts_Admin_Map {
             if( function_exists( 'get_current_screen' ) ) {
                 $screen = get_current_screen();
                 $screen_edit = $screen->parent_base == 'edit';
-                //$screen_layouts_options = $screen->parent_base == 'playouts_options';
             }
 
             $playouts_data = array(
@@ -87,10 +86,6 @@ class Playouts_Admin_Map {
                 'module_colors'                 => Playouts_Element::get_modules_color(),
 
             );
-
-            //if( $screen_layouts_options ) {
-                //$playouts_data['layouts_options'] = Playouts_Admin_Settings::get_layouts_options();
-            //}
 
             wp_localize_script( 'playouts-mapper', 'playouts_data', $playouts_data );
         }
