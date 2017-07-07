@@ -521,13 +521,14 @@ class Playouts_Admin {
 
         if( self::$status_post_type or ( isset( $_GET['page'] ) and $_GET['page'] == 'playouts_options' ) ) {
 
-            //TODO: fix this mess
+            // TODO: fix this mess
             # css
             wp_enqueue_style( 'wp-color-picker' );
     		wp_enqueue_style( 'playouts', PLAYOUTS_ASSEST . 'admin/css/style.css' );
     		wp_enqueue_style( 'playouts-jquery-ui', PLAYOUTS_ASSEST . 'admin/css/vendors/jquery-ui.css' );
 
             # google fonts
+            // TODO: fix the fonts
             $query_args = array(
                 'family' => 'Palanquin+Dark:400,600|Oxygen:400',
                 'subset' => 'latin',
@@ -541,6 +542,8 @@ class Playouts_Admin {
 
             wp_enqueue_script( array( 'jquery', 'jquery-ui-core', 'jquery-ui-dialog', 'jquery-ui-sortable', 'wp-color-picker', 'jquery-ui-slider' ) );
 
+            wp_enqueue_script( 'playouts-vendors', PLAYOUTS_ASSEST . 'admin/js/vendors.js', array(), '1.0', true );
+            wp_enqueue_script( 'playouts-colorpicker', PLAYOUTS_ASSEST . 'admin/js/vendors/wpcolorpicker/wp-colorpicker.min.js', array(), '1.0', true );
             wp_enqueue_script( 'playouts-blocker', PLAYOUTS_ASSEST . 'admin/js/playouts.blocker.js', array(), '1.0', true );
             wp_enqueue_script( 'playouts-shortcoder', PLAYOUTS_ASSEST . 'admin/js/playouts.shortcoder.js', array(), '1.0', true );
             wp_enqueue_script( 'playouts-layouts', PLAYOUTS_ASSEST . 'admin/js/playouts.layouts.js', array(), '1.0', true );
