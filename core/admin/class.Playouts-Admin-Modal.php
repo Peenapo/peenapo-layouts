@@ -276,7 +276,9 @@ class Playouts_Admin_Modal_Tab_Layouts extends Playouts_Admin_Modal_Tab {
                 <?php foreach( Playouts_Admin_Layout::get_layout_categories() as $id => $label ): ?>
                     <li data-category="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $label ); ?></li>
                 <?php endforeach; ?>
-                <li data-category="premium"><?php esc_html_e( 'Premium', 'peenapo-layouts-txd' ); ?></li>
+                <?php if( ! class_exists('Ppremium_Bootstrap') ): ?>
+                    <li data-category="premium"><?php esc_html_e( 'Premium', 'peenapo-layouts-txd' ); ?></li>
+                <?php endif; ?>
             </ul>
 
         </div>
