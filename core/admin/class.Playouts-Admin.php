@@ -242,10 +242,11 @@ class Playouts_Admin {
         $screen = get_current_screen();
         $current_post_type = $screen->post_type;
 
-        # if the post type supports wordpress editor
-        if( post_type_supports( $current_post_type, 'editor' ) ) {
-            # if plugin supports current post type
-            if( array_key_exists( $current_post_type, self::$post_types ) ) {
+        # if plugin supports current post type
+        if( array_key_exists( $current_post_type, self::$post_types ) ) {
+            
+            # if the post type supports wordpress editor
+            if( post_type_supports( $current_post_type, 'editor' ) ) {
 
                 # get the post id
                 $post_id = isset( $_GET['post'] ) ? (int)$_GET['post'] : false;
@@ -264,11 +265,11 @@ class Playouts_Admin {
                 # on save/edit post
                 add_action( 'save_post', array( 'Playouts_Admin', 'save' ) );
 
+            }else{
+
+                add_action( 'add_meta_boxes', array( 'Playouts_Admin', 'editor_not_supported' ) );
+
             }
-        }else{
-
-            add_action( 'add_meta_boxes', array( 'Playouts_Admin', 'editor_not_supported' ) );
-
         }
     }
 

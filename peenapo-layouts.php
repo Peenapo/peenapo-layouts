@@ -127,8 +127,6 @@ class Playouts_Bootstrap {
 
 	}
 
-
-
     static function on_plugin_activation() {
 
 		#delete_option( 'playouts_layouts_activation' );

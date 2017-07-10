@@ -633,6 +633,12 @@
 .pl-modal-elements.pl-modal-custom-layouts li .pl-element-image {border:0;}
 .pl-modal-elements.pl-modal-custom-layouts li span {display:inline-block;padding-top:12px;}
 
+/* dummy premium layout elements */
+.pl-modal-elements li.pl-element-dummy {cursor:default;}
+.pl-modal-elements li.pl-element-dummy:hover .pl-element-image {border-color:inherit;}
+.pl-element-premium {}
+.pl-element-premium a {display:inline-block;padding:0 9px;margin:10px 0 0 0;line-height:28px;border-radius:3px;font-size:14px;background-color:#f93d66;color:#fff;text-decoration:none;}
+
 /* preloader */
 .pl-preloader {opacity:0;visibility:hidden;width:40px;height:40px;position:absolute;top:50%;left:50%;margin:-20px 0 0 -20px;z-index:1000;
     transition:all .3s;-webkit-transition:all .3s;

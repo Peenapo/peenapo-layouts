@@ -3,7 +3,7 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; } # exit if accessed directly
 
 /*
- * class for build-in layouts
+ * class for layouts
  *
  *
  */
@@ -394,3 +394,22 @@ class Playouts_Layout_Welcome_Frame_Bg extends Playouts_Admin_Layout {
     }
 }
 new Playouts_Layout_Welcome_Frame_Bg;
+
+
+
+class Playouts_Layout_Dark_Slider extends Playouts_Admin_Layout {
+
+    function init() {
+
+        $this->id = 'bw_layout_dark_slider';
+        $this->name = esc_html__( 'Slider with Dark Background Color', 'peenapo-layouts-txd' );
+        $this->layout_view = 'row';
+        $this->image = PLAYOUTS_ASSEST . 'admin/images/__layouts/dark_slider.png';
+
+    }
+
+    static function output() {
+        return '[bw_row row_layout="full" background="color" bg_color="#111111" overlay_bg_second="#f5f5f5" overlay_direction="top right" overlay_opacity="50" vertical_alignment="center" enable_static_height="1" static_height="100"][bw_column overlay_bg_second="#f5f5f5" overlay_opacity="50"][bw_image_slider slide_width="50" spacing="25" thumbnail_size="large" adaptive_height="1" free="1" group_slides="2" autoplay="4000" stop_autoplay_hover="1" pagination_enable="1" infinite="1" invert_color="1" attraction="0.025" friction="0.28"][bw_image_slider_item image="%PLAYOUTS_PATH_ASSETS%images/placeholder-1920_1080-white.png"][/bw_image_slider_item][bw_image_slider_item image="%PLAYOUTS_PATH_ASSETS%images/placeholder-1920_1080-white.png"][/bw_image_slider_item][bw_image_slider_item image="%PLAYOUTS_PATH_ASSETS%images/placeholder-1920_1080-white.png"][/bw_image_slider_item][/bw_image_slider][/bw_column][/bw_row]';
+    }
+}
+new Playouts_Layout_Dark_Slider;

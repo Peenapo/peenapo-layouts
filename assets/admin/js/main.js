@@ -2310,7 +2310,7 @@ var Pl_modal = {
 
         var self = $(this);
 
-        if( self.hasClass('pl-layout-hidden') ) { return; }
+        if( self.hasClass('pl-layout-hidden') || self.hasClass('pl-element-dummy') ) { return; }
 
         // close modal
         Pl_modal.close();

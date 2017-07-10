@@ -37,21 +37,21 @@ class Playouts_Admin_Settings {
 
         // add our admin menu
         add_menu_page(
-            __( 'Peenapo Panel', 'peenapo-layouts-txd' ),                       # page title
-            __( 'Peenapo Layouts', 'peenapo-layouts-txd' ),                            # menu title
-            'manage_options',                                   # capability
-            'playouts_options',                                 # menu slug
-            array( 'Playouts_Admin_Settings', 'page_settings' ), # callback function
-            PLAYOUTS_ASSEST . 'admin/images/peenapo-dash-icon.png'   # icon
+            __( 'Peenapo Panel', 'peenapo-layouts-txd' ),           # page title
+            __( 'Peenapo Layouts', 'peenapo-layouts-txd' ),         # menu title
+            'manage_options',                                       # capability
+            'playouts_options',                                     # menu slug
+            array( 'Playouts_Admin_Settings', 'page_settings' ),    # callback function
+            PLAYOUTS_ASSEST . 'admin/images/peenapo-dash-icon.png'  # icon
         );
 
         // create the settings submenu
         add_submenu_page(
-            'playouts_options',                                 # parent slug name
-            __( 'Peenapo Layouts Settings Panel', 'peenapo-layouts-txd' ),      # page title
-            __( 'Settings', 'peenapo-layouts-txd' ),                    # menu title
-            'manage_options',                                   # capability
-            'playouts_options'                                  # menu slug
+            'playouts_options',                                     # parent slug name
+            __( 'Peenapo Layouts Settings Panel', 'peenapo-layouts-txd' ), # page title
+            __( 'Settings', 'peenapo-layouts-txd' ),                # menu title
+            'manage_options',                                       # capability
+            'playouts_options'                                      # menu slug
         );
 
         // create submenu that points to view playouts_layout post type
@@ -65,16 +65,6 @@ class Playouts_Admin_Settings {
 
         // display additional management buttons for playouts_layout post type
         add_action( 'load-edit.php', array( 'Playouts_Admin_Settings', 'panel_categories_section' ) );
-
-        // theme options submenu
-        /*add_submenu_page(
-            'playouts_options',
-            __( 'Theme Options', 'peenapo-layouts-txd' ),
-            __( 'Theme Options', 'peenapo-layouts-txd' ),
-            'manage_options',
-            'playouts_theme_options',
-            array( 'Playouts_Admin_Settings', 'guide_theme_options' )
-        );*/
 
     }
 
@@ -132,39 +122,6 @@ class Playouts_Admin_Settings {
         add_action( 'playouts_support_portability', array( 'Playouts_Admin_Settings', 'support_portability' ) );
 
     }
-
-    /*
-     * get layouts options array
-     * and merge values from database get_option values
-     *
-     */
-    /*static function get_layouts_options() {
-
-        $layouts_options_arr = require PLAYOUTS_DIR . 'inc/options.php';
-        $layouts_options_filter = apply_filters( 'playouts_layouts_options', $layouts_options_arr );
-        $layouts_options_values = get_option( 'playouts_layouts_options' );
-
-        $layouts_options_new = array();
-        foreach( $layouts_options_filter as $name => $layouts_option ) {
-            # group all fields under "playouts_options"
-            $layouts_options_new['playouts_options[' . $name . ']'] = $layouts_option;
-            # set the value from database
-            if( isset( Playouts_Admin::$options[ $name ] ) ) {
-                $layouts_options_new['playouts_options[' . $name . ']']['value'] = Playouts_Admin::$options[ $name ];
-            }
-        }
-
-        return json_encode( $layouts_options_new );
-
-    }*/
-
-    /*
-     * the callback of our theme options panel
-     *
-     */
-    /*static function guide_theme_options() {
-        do_action( 'playouts_get_template_settings_theme_options' );
-    }*/
 
     static function panel_categories_section() {
         $current_screen = get_current_screen();

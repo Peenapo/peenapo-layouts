@@ -276,6 +276,7 @@ class Playouts_Admin_Modal_Tab_Layouts extends Playouts_Admin_Modal_Tab {
                 <?php foreach( Playouts_Admin_Layout::get_layout_categories() as $id => $label ): ?>
                     <li data-category="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $label ); ?></li>
                 <?php endforeach; ?>
+                <li data-category="premium"><?php esc_html_e( 'Premium', 'peenapo-layouts-txd' ); ?></li>
             </ul>
 
         </div>
@@ -297,6 +298,22 @@ class Playouts_Admin_Modal_Tab_Layouts extends Playouts_Admin_Modal_Tab {
                     </li>
                 <?php endif; ?>
             <?php endforeach; ?>
+            <?php if( ! class_exists('Ppremium_Bootstrap') ): ?>
+                <?php $dummy_premium_layouts = include PLAYOUTS_DIR . 'inc/dummy_premium_layouts.php'; ?>
+                <?php foreach( $dummy_premium_layouts as $premium_layout ): ?>
+                    <li data-view="row" data-category="premium" class="pl-element-dummy">
+                        <div class="pl-element">
+                            <div class="pl-element-image">
+                                <img src="<?php echo esc_url( $premium_layout['image'] ); ?>" alt="">
+                            </div>
+                            <span><?php echo esc_html( $premium_layout['name'] ); ?></span>
+                            <div class="pl-element-premium">
+                                <a href="https://www.peenapo.com/addon/peenapo-premium/" target="_blank"><?php esc_html_e( 'Requires Peenapo Premium', 'peenapo-layouts-txd' ); ?></a>
+                            </div>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </ul><?php
 
         return ob_get_clean();
