@@ -157,7 +157,7 @@ class Playouts_Option_Type {
         if( isset( $atts['type'] ) and ! empty( $atts['type'] ) ) {
 
             $otypes = self::get_otypes();
-            $values = get_option('playouts_layouts_options');
+            $values = get_option('playouts_options');
 
             $atts['name'] = 'playouts_options' . ( $parent ? '[' . $parent . ']' : '' ) . '[' . $option_name . ']';
 

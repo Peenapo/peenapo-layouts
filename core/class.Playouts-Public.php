@@ -84,7 +84,7 @@ class Playouts_Public {
             }
         }
 
-        self::$options = get_option( 'playouts_layouts_options' );
+        self::$options = get_option( 'playouts_options' );
 
     }
 

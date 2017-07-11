@@ -130,7 +130,7 @@ class Playouts_Bootstrap {
     static function on_plugin_activation() {
 
 		#delete_option( 'playouts_layouts_activation' );
-		#delete_option( 'playouts_layouts_options' );return;
+		#delete_option( 'playouts_options' );return;
 
         if( ! get_option( 'playouts_layouts_activation' ) ) {
 
@@ -145,7 +145,7 @@ class Playouts_Bootstrap {
     static function inport_default_options() {
 
         $default_options = apply_filters( 'playouts_default_options', include PLAYOUTS_DIR . 'inc/default_options.php' );
-        update_option( 'playouts_layouts_options', $default_options );
+        update_option( 'playouts_options', $default_options );
 
     }
 

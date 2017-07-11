@@ -235,7 +235,7 @@ class Playouts_Admin {
     static function on_load_post() {
 
         # get the plugin options
-        self::$options = get_option( 'playouts_layouts_options' );
+        self::$options = get_option( 'playouts_options' );
         self::$post_types = isset( self::$options['post_types'] ) ? array_merge( array( 'playouts_layout' => 1 ), self::$options['post_types'] ) : array( 'post', 'page', 'playouts_layout' );
 
         # get current post type

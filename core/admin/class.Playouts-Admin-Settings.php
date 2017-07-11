@@ -76,7 +76,7 @@ class Playouts_Admin_Settings {
     static function page_settings() {
 
         # set the options
-        Playouts_Admin::$options = get_option( 'playouts_layouts_options' );
+        Playouts_Admin::$options = get_option( 'playouts_options' );
 
         self::set_support();
 

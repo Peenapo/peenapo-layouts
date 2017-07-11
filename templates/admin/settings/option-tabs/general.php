@@ -8,7 +8,7 @@
             <?php
 
                 $layouts_options_arr = require PLAYOUTS_DIR . 'inc/options_general.php';
-                $layouts_options = apply_filters( 'playouts_layouts_options', $layouts_options_arr );
+                $layouts_options = apply_filters( 'playouts_options', $layouts_options_arr );
 
                 $layouts_options_new = array();
 

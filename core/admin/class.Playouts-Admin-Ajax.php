@@ -185,7 +185,7 @@ class Playouts_Admin_Ajax {
 			}
 		}
 
-		update_option( 'playouts_layouts_options', $options_new );
+		update_option( 'playouts_options', $options_new );
 
 		wp_send_json_success();
 

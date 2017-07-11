@@ -479,8 +479,8 @@
 
 /* button */
 .pl-button {display:inline-block;padding:0 14px;min-width:45px;margin:0 14px 0 0;background-color:#e7e7e7;color:#888;font-size:14px;
-    height:45px;line-height:45px;font-family:'Montserrat';text-align:center;text-decoration:none;cursor:pointer;border-radius:3px;
-    transition:background-color .3s;-moz-transition:background-color .3s;-webkit-transition:background-color .3s;
+    height:45px;line-height:45px;text-align:center;text-decoration:none;cursor:pointer;border-radius:3px;
+    transition:background-color .3s;-webkit-transition:background-color .3s;
     -webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;
 }
 .pl-button:hover {background-color:#dedede;}
