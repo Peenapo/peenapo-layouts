@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; } // exit if accessed directly
  *
  */
 if( ! function_exists( 'd' ) ) {
-    function d( $what ) {
+    function d( $what = '' ) {
         print '<pre>';
         print_r( $what );
         print '</pre>';
