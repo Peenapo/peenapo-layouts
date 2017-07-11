@@ -304,14 +304,14 @@ class Playouts_Public {
 
             # dynamic enqueue
             if( in_array( 'bw_google_map', self::$parsed_ids ) ) {
-                if( isset( Playouts_Public::$options['google_map_api_key'] ) and ! empty( Playouts_Public::$options['google_map_api_key'] ) ) {
-                    wp_enqueue_script( 'playouts-google-map', '//maps.googleapis.com/maps/api/js?key=' . esc_attr( Playouts_Public::$options['google_map_api_key'] ) . '&callback=playouts_init_map', array( 'playouts-front' ), '1.0', true );
+                if( isset( self::$options['google_map_api_key'] ) and ! empty( self::$options['google_map_api_key'] ) ) {
+                    wp_enqueue_script( 'playouts-google-map', '//maps.googleapis.com/maps/api/js?key=' . esc_attr( self::$options['google_map_api_key'] ) . '&callback=playouts_init_map', array( 'playouts-front' ), '1.0', true );
                 }
             }
             if( in_array( 'bw_image_comparison', self::$parsed_ids ) ) {
                 wp_enqueue_style( 'playouts-twentytwenty-css', PLAYOUTS_ASSEST . 'css/vendor/twentytwenty.css' );
-                wp_enqueue_script( 'playouts-event-move', PLAYOUTS_ASSEST . 'js/vendor/jquery.event.move.js', array('jquery') );
-                wp_enqueue_script( 'playouts-twentytwenty-js', PLAYOUTS_ASSEST . 'js/vendor/jquery.twentytwenty.js', array('jquery') );
+                wp_enqueue_script( 'playouts-event-move', PLAYOUTS_ASSEST . 'js/vendor/jquery.event.move.js', array('jquery'), '1.0', true );
+                wp_enqueue_script( 'playouts-twentytwenty-js', PLAYOUTS_ASSEST . 'js/vendor/jquery.twentytwenty.js', array('jquery'), '1.0', true );
             }
 
 

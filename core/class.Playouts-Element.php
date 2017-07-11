@@ -6536,7 +6536,7 @@ new Playouts_Element_Tab_Item;*/
     'label'             => esc_html__( 'Select 5 Post Type', 'peenapo-layouts-txd' ),
     'type'              => 'taxonomy',
     'multiple'          => true,
-    'post_type'         => 'category',
+    'taxonomy'         => 'category',
 ),
 'select1' => array(
     'label'             => esc_html__( 'Select', 'peenapo-layouts-txd' ),
