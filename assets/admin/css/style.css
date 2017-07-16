@@ -702,7 +702,7 @@
 .pl-panel-content .pl-panel-row-inner {width:100%;padding:25px;}
 .pl-prompt-confirm.pl-prompt-confirm--remove-repeater {z-index:10001;}
 .pl-prompt-confirm.pl-prompt-confirm--remove-repeater .pl-panel-row {padding-top:20%;border:0;}
-.pl-panel-content .pl-panel-no-option {display:inline-block;padding:5px 11px;background-color:#fff0f3;color:#f93d66;border-radius:3px;}
+.pl-label-alert {display:inline-block;padding:5px 11px;background-color:#fff0f3;color:#f93d66;border-radius:3px;}
 .pl-panel-row.pl-tab-hidden {display:none;}
 .pl-panel-content h5 {display:block;width:100%;margin:0 0 12px 0;font-size:18px;font-weight:300;line-height:32px;}
 .pl-icon-info {display:inline-block;width:23px;height:23px;border:3px solid #b7b7d5;position:relative;top:5px;left:12px;border-radius:50%;cursor:pointer;transition:all .3s;-webkit-transition:all .3s;}

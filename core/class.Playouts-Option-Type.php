@@ -139,7 +139,7 @@ class Playouts_Option_Type {
         }else{
 
             $output .= '<div class="pl-panel-row' . ( isset( $values->tab ) ? ' pl-row-tab-' . array_shift( array_keys( (array) $values->tab ) ) : ' pl-row-tab-general' ) . '"><div class="pl-panel-row-inner">';
-            $output .= '<div class="pl-panel-no-option">' . sprintf( esc_html__( 'Option type "%1$s" doesn\'t exists.', 'peenapo-portfolio-txd' ), $values->type ) . '</div>';
+            $output .= '<div class="pl-label-alert">' . sprintf( esc_html__( 'Option type "%1$s" doesn\'t exists.', 'peenapo-portfolio-txd' ), $values->type ) . '</div>';
             $output .= '</div></div>';
 
         }
@@ -679,7 +679,7 @@ class Playouts_Option_Type_Taxonomy extends Playouts_Option_Type {
 
 		}else{
 
-            $__out = '<div class="pl-panel-no-option">' . esc_html__( 'Invalid taxonomy ', '' ) . '"' . $taxonomy . '".' . '</div>';
+            $__out = '<div class="pl-label-alert">' . esc_html__( 'Invalid taxonomy ', '' ) . '"' . $taxonomy . '".' . '</div>';
 
         }
 

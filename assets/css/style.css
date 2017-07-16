@@ -73,6 +73,8 @@
 
 .pl-outer img {width:100%;max-width:100%;height:auto;min-width:0;min-height:0;}
 
+.pl-label-alert {display:inline-block;padding:5px 11px;background-color:#fff0f3;color:#f93d66;border-radius:3px;}
+
 
 /* containers */
 .pl-outer {box-sizing:border-box;font-family:'Open Sans';font-size:15px;line-height:1.65em;} /* TODO:enqueue the font automatically, set font globally by the plugin settings panel */
@@ -469,7 +471,7 @@
 .pl-pricing-footer .pl-button {padding:0 26px;margin-top:30px;line-height:46px;border-radius:3px;}
 
 .pl-is-focus {-webkit-box-shadow:0px 0px 80px 0px rgba(0,0,0,0.05);border-radius:0 0 6px 6px;z-index:1;}
-.pl-is-focus .pl-before {position:absolute;top:-2px;left:0;right:0;height:3px;background-color:#6bbb36;}
+.pl-is-focus .pl-before {position:absolute;top:-4px;left:-4px;right:-4px;height:4px;background-color:#6bbb36;}
 
 
 /* number counter */
