@@ -3,7 +3,7 @@ Contributors: peenapo
 Tags: page builder, layouts, visual composer, drag and drop, template library, layout builder, editor, responsive, landing page, peenapo
 Requires at least: 4.7
 Tested up to: 4.8
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -79,6 +79,9 @@ Check the [online documentation](https://www.peenapo.com/docs/).
 6. Page Builder options panel.
 
 == Changelog ==
+= 1.1.2 =
+* Fixed javascript source not loading playouts.prompt
+
 = 1.1.1 =
 * Fixed issue with icon font
 * Added compatibility with Peenapo Premium
