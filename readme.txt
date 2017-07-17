@@ -3,7 +3,7 @@ Contributors: peenapo
 Tags: page builder, layouts, visual composer, drag and drop, template library, layout builder, editor, responsive, landing page, peenapo
 Requires at least: 4.7
 Tested up to: 4.8
-Stable tag: 1.1
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -68,7 +68,7 @@ Peenapo Layouts is a shortcode based layout system for WordPress that works on t
 4. Click the button `Enable Peenapo Layouts` or the top right side of the page.
 4. Enjoy.
 
-For basic usage, you can also have a look at the [plugin web site](https://www.peenapo.com/).
+Check the [online documentation](https://www.peenapo.com/docs/).
 
 == Screenshots ==
 1. Peenapo Layouts page builder interface.
@@ -79,6 +79,11 @@ For basic usage, you can also have a look at the [plugin web site](https://www.p
 6. Page Builder options panel.
 
 == Changelog ==
+= 1.1.1 =
+* Fixed issue with icon font
+* Added compatibility with Peenapo Premium
+* Added compatibility with Peenapo Portfolio
+
 = 1.1 =
 * Improved responsiveness for layouts.
 * Fixed column alignment in the back-nd.
