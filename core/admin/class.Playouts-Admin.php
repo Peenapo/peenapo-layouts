@@ -221,12 +221,23 @@ class Playouts_Admin {
 
     static function check_post_type( $post_id = false ) {
 
-        if( ! $post_id ) { return; }
-
         $enabled_post_types = isset( self::$options['post_types'] ) ? self::$options['post_types'] : array( 'post', 'page', 'playouts_layout' );
-        if( array_key_exists( get_post_type( $post_id ), self::$post_types ) ) {
 
-            self::$status_post_type = true;
+        if( $post_id ) {
+
+            if( array_key_exists( get_post_type( $post_id ), self::$post_types ) ) {
+
+                self::$status_post_type = true;
+
+            }
+
+        }elseif( isset( $_GET['post_type'] ) ) {
+
+            if( array_key_exists( esc_attr( $_GET['post_type'] ), self::$post_types ) ) {
+
+                self::$status_post_type = true;
+
+            }
 
         }
 
@@ -244,7 +255,7 @@ class Playouts_Admin {
 
         # if plugin supports current post type
         if( array_key_exists( $current_post_type, self::$post_types ) ) {
-            
+
             # if the post type supports wordpress editor
             if( post_type_supports( $current_post_type, 'editor' ) ) {
 
