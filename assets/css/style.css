@@ -201,7 +201,7 @@
 
 /* auto type */
 .pl-auto-type-holder {color:#111;}
-.pl-auto-type-holder h2 {font-size:inherit;color:inherit;font-weight:inherit!important;}
+.pl-auto-type-holder h2 {margin:0;font-size:inherit;color:inherit;font-weight:inherit!important;}
 .pl-auto-type-holder em {display:block;font-style:normal;font-size:inherit;color:inherit;font-weight:inherit;}
 .pl-auto-type-holder .pl-auto-type {font-weight:inherit;}
 .pl-auto-type-texts {display:none;}

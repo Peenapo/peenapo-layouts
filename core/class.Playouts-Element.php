@@ -4982,9 +4982,9 @@ class Playouts_Element_Heading extends Playouts_Element {
                 'type'              => 'true_false',
             ),
             'max_width' => array(
-                'label'             => esc_html__( 'Animation Speed', 'peenapo-layouts-txd' ),
+                'label'             => esc_html__( 'Maximum Width', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
-                'append_after'      => 'milliseconds',
+                'append_after'      => 'pixels',
                 'min'               => 300,
                 'max'               => 900,
                 'step'              => 10,

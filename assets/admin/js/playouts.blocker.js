@@ -34,7 +34,7 @@ var Pl_interface = {
             type: 'POST',
             url: playouts_admin_root.ajax,
             data: {
-                'action'        : '__parse_shortcode',
+                'action'        : '__playouts_parse_shortcode',
                 'editor_content': Pl_main.wpautop( content )
             },
             dataType: 'json',

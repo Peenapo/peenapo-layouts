@@ -300,17 +300,19 @@ class Playouts_Admin_Modal_Tab_Layouts extends Playouts_Admin_Modal_Tab {
                     </li>
                 <?php endif; ?>
             <?php endforeach; ?>
-            <?php if( ! class_exists('Ppremium_Bootstrap') ): ?>
-                <?php $dummy_premium_layouts = include PLAYOUTS_DIR . 'inc/dummy_premium_layouts.php'; ?>
-                <?php foreach( $dummy_premium_layouts as $premium_layout ): ?>
+            <?php if( ! class_exists('Pportfolio_Bootstrap') ): echo 222; ?>
+                <?php $dummy_layouts = include PLAYOUTS_DIR . 'inc/dummy_layouts.php'; ?>
+                <?php foreach( $dummy_layouts as $dummy_layout ): ?>
                     <li data-view="row" data-category="premium" class="pl-element-dummy">
                         <div class="pl-element">
                             <div class="pl-element-image">
-                                <img src="<?php echo esc_url( $premium_layout['image'] ); ?>" alt="">
+                                <img src="<?php echo esc_url( $dummy_layout['image'] ); ?>" alt="">
                             </div>
-                            <span><?php echo esc_html( $premium_layout['name'] ); ?></span>
-                            <div class="pl-element-premium">
-                                <a href="https://www.peenapo.com/addon/peenapo-premium/" target="_blank"><?php esc_html_e( 'Requires Peenapo Premium', 'peenapo-layouts-txd' ); ?></a>
+                            <span><?php echo esc_html( $dummy_layout['name'] ); ?></span>
+                            <div class="pl-element-addons">
+                                <?php foreach( $dummy_layout['requires'] as $required ): ?>
+                                    <p><a href="<?php echo $required['addon_url']; ?>" target="_blank"><?php echo $required['addon_name']; ?></a></p>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </li>

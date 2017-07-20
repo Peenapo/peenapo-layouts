@@ -18,7 +18,7 @@ class Playouts_Admin_Ajax {
 		 * load and parse the shortcodes from the post editor on post edit
 		 *
 		 */
-		'__parse_shortcode',
+		'__playouts_parse_shortcode',
 		/*
 		 * get the options on edit panel settings
 		 *
@@ -64,7 +64,7 @@ class Playouts_Admin_Ajax {
 	 * load and parse the shortcodes from the post editor on post edit
 	 *
 	 */
-	static function __parse_shortcode() {
+	static function __playouts_parse_shortcode() {
 
         if( ! isset( $_POST['editor_content'] ) ) { return; }
         $c = stripslashes( $_POST['editor_content'] );
