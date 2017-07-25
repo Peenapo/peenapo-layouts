@@ -306,7 +306,7 @@ class Playouts_Element_Row extends Playouts_Element {
                 'type'              => 'colorpicker',
                 'label'             => esc_html__( 'Overlay Second Background Color ( Optional )', 'peenapo-layouts-txd' ),
                 'description'       => esc_html__( 'For gradient background color.', 'peenapo-layouts-txd' ),
-                'value'             => '#f5f5f5',
+                'value'             => '',
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
                 'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'width'             => 50
@@ -728,7 +728,7 @@ class Playouts_Element_Column extends Playouts_Element {
                 'type'              => 'colorpicker',
                 'label'             => esc_html__( 'Overlay Second Background Color ( Optional )', 'peenapo-layouts-txd' ),
                 'description'       => esc_html__( 'For gradient background color.', 'peenapo-layouts-txd' ),
-                'value'             => '#f5f5f5',
+                'value'             => '',
                 'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
                 'width'             => 50
@@ -786,6 +786,11 @@ class Playouts_Element_Column extends Playouts_Element {
                     'flex-end'          => 'Bottom',
                 ),
 			),
+            'full_height' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Full Height', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Enable this options if you want the column height to full-fill the parent.', 'peenapo-layouts-txd' ),
+            ),
 
             'res_hide_desktop' => array(
                 'type'              => 'true_false',
@@ -900,6 +905,7 @@ class Playouts_Element_Column extends Playouts_Element {
             'text_color'        => '',
             'text_alignment'    => '',
             'column_alignment'  => '',
+            'full_height'       => false,
 
             'res_hide_desktop'  => '',
             'res_hide_tablet'   => '',
@@ -928,6 +934,7 @@ class Playouts_Element_Column extends Playouts_Element {
 
         if( Playouts_Element_Row::$vertical_alignment ) { $style .= 'justify-content:' . esc_attr( Playouts_Element_Row::$vertical_alignment ) . ';'; }
         if( $column_alignment ) { $style_inside .= 'align-self:' . esc_attr( $column_alignment ) . ';'; }
+        if( $full_height ) { $style_inside .= 'height:100%;'; }
 
         if( $margin_top ) { $style .= 'margin-top:' . esc_attr( $margin_top ) . ( is_numeric( $margin_top ) ? 'px' : '' ) . ';'; }
         if( $margin_right ) { $style .= 'margin-right:' . esc_attr( $margin_right ) . ( is_numeric( $margin_right ) ? 'px' : '' ) . ';'; }
@@ -1162,7 +1169,7 @@ class Playouts_Element_Row_Inner extends Playouts_Element {
                 'type'              => 'colorpicker',
                 'label'             => esc_html__( 'Overlay Second Background Color ( Optional )', 'peenapo-layouts-txd' ),
                 'description'       => esc_html__( 'For gradient background color.', 'peenapo-layouts-txd' ),
-                'value'             => '#f5f5f5',
+                'value'             => '',
                 'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
                 'width'             => 50
@@ -1423,6 +1430,12 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
                     'flex-end'          => 'Bottom',
                 ),
 			),
+            'full_height' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Full Height', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Enable this options if you want the column height to full-fill the parent.', 'peenapo-layouts-txd' ),
+            ),
+
             'padding_top' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'Padding Top', 'peenapo-layouts-txd' ),
@@ -1578,7 +1591,7 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
                 'type'              => 'colorpicker',
                 'label'             => esc_html__( 'Overlay Second Background Color ( Optional )', 'peenapo-layouts-txd' ),
                 'description'       => esc_html__( 'For gradient background color.', 'peenapo-layouts-txd' ),
-                'value'             => '#f5f5f5',
+                'value'             => '',
                 'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
                 'width'             => 50
@@ -1657,16 +1670,17 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
             'col_width'         => '',
             'text_color'        => '',
             'text_alignment'    => '',
-            'column_alignment' => '',
+            'column_alignment'  => '',
+            'full_height'       => false,
+
             'padding_top'       => '',
             'padding_right'     => '',
             'padding_bottom'    => '',
             'padding_left'      => '',
-            'column_alignment' => '',
-            'margin_top'       => '',
-            'margin_right'     => '',
-            'margin_bottom'    => '',
-            'margin_left'      => '',
+            'margin_top'        => '',
+            'margin_right'      => '',
+            'margin_bottom'     => '',
+            'margin_left'       => '',
 
             'background'        => '',
             'bg_color'          => '',
@@ -1702,6 +1716,7 @@ class Playouts_Element_Column_Inner extends Playouts_Element {
 
         if( Playouts_Element_Row_Inner::$vertical_alignment ) { $style .= 'justify-content:' . esc_attr( Playouts_Element_Row_Inner::$vertical_alignment ) . ';'; }
         if( $column_alignment ) { $style_inside .= 'align-self:' . esc_attr( $column_alignment ) . ';'; }
+        if( $full_height ) { $style_inside .= 'height:100%;'; }
 
         if( $padding_top ) { $style .= 'padding-top:' . esc_attr( $padding_top ) . ( is_numeric( $padding_top ) ? 'px' : '' ) . ';'; }
         if( $padding_right ) { $style .= 'padding-right:' . esc_attr( $padding_right ) . ( is_numeric( $padding_right ) ? 'px' : '' ) . ';'; }
@@ -1778,6 +1793,18 @@ class Playouts_Element_Text extends Playouts_Element {
 				'is_content'        => true,
                 'value'             => '<p>Text element. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.</p>',
 			),
+            'margin_top' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Margin Top', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 50
+            ),
+            'margin_bottom' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Margin Bottom', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 50
+            ),
             'inline_class' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
@@ -1802,6 +1829,8 @@ class Playouts_Element_Text extends Playouts_Element {
         extract( $assigned_atts = shortcode_atts( array(
             'text_color'        => '',
             'text_alignment'    => 'inherit',
+            'margin_top'        => '',
+            'margin_bottom'     => '',
             'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
@@ -1815,6 +1844,9 @@ class Playouts_Element_Text extends Playouts_Element {
 
         $style .= ! empty( $text_color ) ? 'color:' . esc_attr( $text_color ) . ';' : '';
         $style .= ! empty( $text_alignment ) ? 'text-align:' . esc_attr( $text_alignment ) . ';' : '';
+
+        if( $margin_top ) { $style .= 'margin-top:' . esc_attr( $margin_top ) . ( is_numeric( $margin_top ) ? 'px' : '' ) . ';'; }
+        if( $margin_bottom ) { $style .= 'margin-bottom:' . esc_attr( $margin_bottom ) . ( is_numeric( $margin_bottom ) ? 'px' : '' ) . ';'; }
 
         return '<div class="pl-text' . $class . '" style="' . $style . '"' . $id . '>'.
             do_shortcode( $content ) .
@@ -4946,6 +4978,11 @@ class Playouts_Element_Heading extends Playouts_Element {
                 'value'             => '',
                 'width'             => 50
 			),
+            'sub_title_color' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Top Title Color', 'peenapo-layouts-txd' ),
+                'value'             => '',
+            ),
             'font_size_heading' => array(
                 'label'             => esc_html__( 'Heading Font Size', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
@@ -5045,6 +5082,7 @@ class Playouts_Element_Heading extends Playouts_Element {
             'h_tag'             => 'h3',
             'text_color'        => '',
             'text_alignment'    => '',
+            'sub_title_color'   => '',
             'font_size_heading' => 40,
             'font_size_content' => 15,
             'font_size_top'     => 15,
@@ -5079,13 +5117,13 @@ class Playouts_Element_Heading extends Playouts_Element {
         }
 
         $_tag = esc_attr( $h_tag );
-        $_top = ! empty( $top ) ? '<span class="pl-heading-top" style="font-size:' . (int) $font_size_top . 'px;">' . esc_attr( $top ) . '</span>' : '';
+        $_top = ! empty( $top ) ? '<span class="pl-heading-top" style="font-size:' . (int) $font_size_top . 'px;' . ( $sub_title_color ? 'color:' . esc_attr( $sub_title_color ) : '' ) . '">' . esc_attr( $top ) . '</span>' : '';
 
         return '<div class="pl-heading' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
             ( $enable_max_width ? '<div class="pl-heading-inner" style="max-width:' . (int) $max_width . 'px;">' : '' ) .
             $anim_wrap_start . $_top . $anim_wrap_end .
             $anim_wrap_start . "<$_tag class='pl-heading-title' style='font-weight:" . ( $bold_text ? '800' : '400' ) . ";font-size:" . (int) $font_size_heading . "px;'>" . Playouts_Functions::kses( $title ) . "</$_tag>" . $anim_wrap_end .
-            $anim_wrap_start . '<div class="pl-heading-content" style="font-size:' . (int) $font_size_content . 'px;">' . do_shortcode( $content ) . '</div>' . $anim_wrap_end .
+            ( ! empty( $content ) ? ( $anim_wrap_start . '<div class="pl-heading-content" style="font-size:' . (int) $font_size_content . 'px;">' . do_shortcode( $content ) . '</div>' . $anim_wrap_end ) : '' ) .
             ( $enable_max_width ? '</div>' : '' ) .
         '</div>';
 
@@ -5256,6 +5294,16 @@ class Playouts_Element_Notion_Box extends Playouts_Element {
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'Sub Text ( Optional )', 'peenapo-layouts-txd' ),
             ),
+            'height' => array(
+                'label'             => esc_html__( 'Height', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'The height of the box in percentage. 100% will form a square.', 'peenapo-layouts-txd' ),
+                'type'              => 'number_slider',
+                'append_after'      => '%',
+                'min'               => 40,
+                'max'               => 160,
+                'step'              => 5,
+                'value'             => 120,
+            ),
             'h_tag' => array(
                 'label'             => esc_html__( 'Select Heading Title Tag', 'peenapo-layouts-txd' ),
                 'type'              => 'select',
@@ -5367,6 +5415,7 @@ class Playouts_Element_Notion_Box extends Playouts_Element {
             'top_text'          => '',
             'text'              => '',
             'sub_text'          => '',
+            'height'            => 140,
             'h_tag'             => 'h3',
             'text_alignment'    => '',
             'font_size'         => 32,
@@ -5395,6 +5444,7 @@ class Playouts_Element_Notion_Box extends Playouts_Element {
 
         $style .= ! empty( $text_color ) ? 'color:' . esc_attr( $text_color ) . ';' : '';
         $style .= ! empty( $text_alignment ) ? 'text-align:' . esc_attr( $text_alignment ) . ';' : '';
+        $style .= $height ? 'padding-top:' . (int) $height . '%;' : '';
 
         $class .= $scale ? ' pl-is-scale' : '';
         $class .= $overlay ? ' pl-is-over' : '';

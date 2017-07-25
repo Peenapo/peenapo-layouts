@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Peenapo Layouts
+Plugin Name: Peenapo Layouts Page Builder
 Plugin URI: https://www.peenapo.com
-Description: Peenapo Layouts is a drag &amp; drop back-end, shortcode based layout builder for WordPress.
+Description: Peenapo Layouts is a drag and drop page builder and layout system for any WordPress theme.
 Version: 1.1.2
 Author: Peenapo
 Text Domain: peenapo-layouts-txd

@@ -38,6 +38,10 @@ class Playouts_Public_Fonts {
             'font_headings' => array(
                 'default' => array( 'family' => 'Roboto', 'variants' => '500' ),
                 'selectors' => '.pl-outer h1, .pl-outer h2, .pl-outer h3, .pl-outer h4, .pl-outer h5, .pl-outer h6, .pl-not-finer .pl-testimonial-content p, .pl-testimonial-name, .pl-video-modal, .pl-hotspot-box strong, .pl-number-counter'
+            ),
+            'font_sub_headings' => array(
+                'default' => array( 'family' => 'Roboto', 'variants' => '500' ),
+                'selectors' => '.pl-carousel-text p, .pl-heading .pl-heading-top'
             )
 
         );

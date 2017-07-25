@@ -19,4 +19,13 @@ return array(
         'preview'           => esc_html__( 'I watched the storm, so beautiful yet terrific.', 'peenapo-layouts-txd' )
     ),
 
+    'font_sub_headings' => array(
+        'label'             => esc_html__( 'Sub Headings Font', 'peenapo-layouts-txd' ),
+        'type'              => 'google_font',
+        'description'       => esc_html__( 'Select the font for specific sub-titles.', 'peenapo-layouts-txd' ),
+        'value'             => '',
+        'preview'           => esc_html__( 'The recorded voice scratched in the speaker.', 'peenapo-layouts-txd' ),
+        'font_size'         => '19px'
+    ),
+
 );
