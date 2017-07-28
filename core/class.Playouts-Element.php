@@ -5055,6 +5055,18 @@ class Playouts_Element_Heading extends Playouts_Element {
                 'tab'               => array( 'animation' => esc_html__( 'Animation', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'enable_animation', 'value' => '1' ),
             ),
+            'margin_top' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Margin Top', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 50
+            ),
+            'margin_bottom' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Margin Bottom', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 50
+            ),
             'inline_class' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
@@ -5092,6 +5104,8 @@ class Playouts_Element_Heading extends Playouts_Element {
             'enable_animation'  => false,
             'speed'             => 0,
             'delay'             => 0,
+            'margin_top'        => '',
+            'margin_bottom'     => '',
             'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
@@ -5106,6 +5120,9 @@ class Playouts_Element_Heading extends Playouts_Element {
         $style .= ! empty( $text_color ) ? 'color:' . esc_attr( $text_color ) . ';' : '';
         $style .= ! empty( $text_alignment ) ? 'text-align:' . esc_attr( $text_alignment ) . ';' : '';
         $class .= ! empty( $text_alignment ) ? ' pl-heading-align-' . esc_attr( $text_alignment ) : '';
+
+        if( $margin_top ) { $style .= 'margin-top:' . esc_attr( $margin_top ) . ( is_numeric( $margin_top ) ? 'px' : '' ) . ';'; }
+        if( $margin_bottom ) { $style .= 'margin-bottom:' . esc_attr( $margin_bottom ) . ( is_numeric( $margin_bottom ) ? 'px' : '' ) . ';'; }
 
         $anim_wrap_start = $anim_wrap_end = '';
         if( $enable_animation ) {

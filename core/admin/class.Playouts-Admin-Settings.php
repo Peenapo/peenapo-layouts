@@ -97,7 +97,7 @@ class Playouts_Admin_Settings {
             'fonts'         => array( 'label' => __( 'Fonts', 'peenapo-layouts-txd' ) ),
             //'portability'   => array( 'label' => __( 'Portability', 'peenapo-layouts-txd' ) ),
         );
-        self::$support_layouts_settings = apply_filters( 'bwg_support', $support_layouts_settings );
+        self::$support_layouts_settings = apply_filters( 'plg_support', $support_layouts_settings );
 
     }
 

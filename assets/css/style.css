@@ -362,7 +362,7 @@
 .pl-heading .pl-heading-inner {display:inline-block;width:100%;max-width:600px;}
 .pl-heading .pl-heading-top {display:block;line-height:170%;}
 .pl-heading .pl-heading-title {color:inherit;margin:0;line-height:150%;}
-.pl-heading .pl-heading-content {margin:40px 0 0 0;line-height:170%;}
+.pl-heading .pl-heading-content {margin:0;line-height:170%;color:#666;}
 .pl-heading .pl-heading-content p:last-child {}
     .pl-is-animated {}
     .pl-anim-wrap {overflow:hidden;}
@@ -457,20 +457,21 @@
 
 /* pricing tables */
 .pl-pricing-tables-outer {width:100%;overflow:hidden;}
-.pl-pricing-tables {display:flex;width:calc(100% + 30px);margin-left:-15px;flex-direction:row;align-items:center;text-align:center;}
+.pl-pricing-tables {display:flex;width:calc(100% + 30px);padding:20px 0;margin-left:-15px;flex-direction:row;align-items:center;text-align:center;}
 /* pricing column */
-.pl-pricing-column {display:flex;flex:1;flex-direction:column;padding:50px 40px;margin:0 15px;background-color:#fff;border:4px solid #f2f6f8;position:relative;border-radius:6px;}
+.pl-pricing-column {display:flex;flex:1;flex-direction:column;padding:30px 40px 50px 40px;margin:0 15px;background-color:#fff;border:4px solid #f2f6f8;position:relative;border-radius:6px;}
 .pl-pricing-header {padding-bottom:20px;margin-bottom:35px;border-bottom:4px solid #f2f6f8;}
-.pl-pricing-header h5 {margin:20px 0;font-size:20px;font-weight:400;}
+.pl-pricing-header h5 {margin:15px 0;font-size:20px;font-weight:400;}
 .pl-pricing-header span {margin:0 0 20px 0;font-size:16px;font-weight:400;}
-.pl-pricing-header h2 {margin:20px 0;font-size:54px;font-weight:300;}
-.pl-pricing-header h4 {margin:20px 0;font-size:16px;font-weight:400;opacity:0.5;}
+.pl-pricing-header h2 {margin:15px 0;font-size:54px;font-weight:300;}
+.pl-pricing-header h4 {margin:15px 0;font-size:16px;font-weight:400;opacity:0.5;}
 .pl-pricing-content {}
 .pl-pricing-content ul {padding:0;margin:0;list-style:none;line-height:190%;}
 .pl-pricing-footer {margin:auto 0 0 0;}
 .pl-pricing-footer .pl-button {padding:0 26px;margin-top:30px;line-height:46px;border-radius:3px;}
 
-.pl-is-focus {-webkit-box-shadow:0px 0px 80px 0px rgba(0,0,0,0.05);border-radius:0 0 6px 6px;z-index:1;}
+.pl-is-focus {margin-top:-20px;margin-bottom:-20px;-webkit-box-shadow:0px 0px 80px 0px rgba(0,0,0,0.05);border-radius:0 0 6px 6px;z-index:1;}
+.pl-is-focus .pl-pricing-header {padding-top:20px;}
 .pl-is-focus .pl-before {position:absolute;top:-4px;left:-4px;right:-4px;height:4px;background-color:#6bbb36;}
 
 

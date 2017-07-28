@@ -1,32 +1,61 @@
 === Peenapo Layouts ===
 Contributors: peenapo
-Tags: page builder, layouts, visual composer, drag and drop, template library, layout builder, editor, responsive, landing page, peenapo
+Tags: page builder, layouts, visual composer, drag and drop, template library, layout builder, editor, responsive, landing page, peenapo, drag and drop page builder
 Requires at least: 4.7
 Tested up to: 4.8
 Stable tag: 1.1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Peenapo Layouts is a flexible drag &amp; drop layout system.
+Peenapo Layouts Page Builder is a flexible drag &amp; drop page builder for any WordPress theme.
 
 == Description ==
 
-Peenapo Layouts is a shortcode based layout system for WordPress that works on the back-end of your website. It is very flexible and powerful drag and drop page builder. In the same time it is very intuitive and easy to use. No coding skills are required. With Peenapo Layouts plugin you can create advanced pages in minutes. It comes with a lot of elements and layouts. It allows you to change the colors, fonts, backgrounds spacings and everything else. You can also set your own layouts and use them later or in other projects.
+**Peenapo Layouts Page Builder** is a **drag and drop page builder** for any WordPress theme that works on the back-end of your website. It comes with pre-defined **templates and layouts** that you can use. It is very flexible, powerful and easy to use. With Peenapo Layouts page builder plugin you can create **advanced pages** in minutes. It allows you to change the colors, fonts, backgrounds spacings and everything else. You can also set your own layouts and use them later or in other projects.
 
-##Features
+= Create advanced pages in minutes with drag and drop page builder =
+We have 6000+ customers using our themes and we decided to create something that will help people to solve problems. With our back-end drag and drop page builder you can have any layout you want. There tons of options that you can use to get the desired look for you new website.
 
-* 30+ content modules: Contact Form, accordions, tabs, sliders, pricing tables, buttons, google maps with multiple pins, icons and more
-* Columns and module animations
-* This plugin was designed to be fast
-* Choose between 600+ Google Fonts with one simple click
-* Custom CSS for each page your create
-* Template system that allows you to choose between pre-defined pages and layouts
-* Save your own layouts and use them in other pages or projects
-* Easy to use interface
-* Add your own modules and layouts
-* Well documented
+= It is fast =
+Speed was a key feature for us. Faster drag and drop page builder means less time to spend on building your pages.
 
-##Default elements
+= Adaptable columns, inner rows and columns =
+The most important part of building an advanced layouts is to have a good, flexible column system. You can drag the columns to change their size. The inner columns will allow you to build more accurate and pixel perfect designs.
+
+= Pixel perfect design =
+This page builder comes with pre-defined templates. But not the standard boring layouts. We spent a lot of time designing some nice looking pages that you can use for any WordPress theme. We will continue updating the plugin with new and good looking elements and templates.
+
+= Responsive =
+We know how important is to have your website compatible with any mobile device. This is Peenapo Layouts Page Builder is 100% compatible for mobile. It allows you to hide elements for different resolutions and insert additional media queries if needed.
+
+= Custom CSS =
+It is also possible to add any custom css to your pages.
+
+= Google Fonts =
+The plugin is compatible with the public Google Fonts, which means that you can get any of the 600+ fonts in just a click.
+
+= Customizations =
+We are proud with the option panel we created. Each element comes with a lot of options to get the look you need. Change background images, colors, alignments, font sizes, font colors, and much more.
+
+= Animations =
+Here you can use your imagination. Different transition types are included.
+
+= Template system =
+You can create awesome pages and then save them to your library. We are using a standard WordPress custom post type for the template, so you can export them and imported them as an xml file using the default importer tool. This way you can re-use your pages and elements in other projects, and it saves a lot of time.
+
+= Easy Interface and Controls =
+The back-end interface and controls are very friendly. You don't need any codding skills to start building your site. In some minutes you can understand how it works.
+
+= Free Support =
+We will be happy to help you if you have any questions :)
+
+= For developer =
+Peenapo Layouts Page Builder is free and open source. If you are a theme developer, it is perfect to extend your design and offer your customers easy way to manage their site. it allows you to add any elements and layouts.
+
+= Documentation =
+You can also check the [online documentation](https://www.peenapo.com/docs/).
+
+= Default Elements =
 
 * **Rows, Inner Rows and Columns.** This elements will make it easier for you to create any grid layout. You can drag the columns to adjust the size. Animations are also available.
 * **Text.** Simple text module to add any content. It included the default WordPress editor so you can also use HTML tags and shortcodes.
@@ -68,8 +97,6 @@ Peenapo Layouts is a shortcode based layout system for WordPress that works on t
 4. Click the button `Enable Peenapo Layouts` or the top right side of the page.
 4. Enjoy.
 
-Check the [online documentation](https://www.peenapo.com/docs/).
-
 == Screenshots ==
 1. Peenapo Layouts page builder interface.
 2. Page Builder elements.
@@ -79,6 +106,11 @@ Check the [online documentation](https://www.peenapo.com/docs/).
 6. Page Builder options panel.
 
 == Changelog ==
+= 1.1.3 =
+* Fixed javascript error with Google map element
+* Fixed compatibility with Peenapo theme
+* Improved pricing tables styles
+
 = 1.1.2 =
 * Fixed javascript source not loading playouts.prompt
 
