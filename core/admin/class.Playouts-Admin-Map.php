@@ -69,6 +69,7 @@ class Playouts_Admin_Map {
                 'post_id'                       => get_the_ID(),
                 'screen_edit'                   => $screen_edit,
                 'path_assets'                   => PLAYOUTS_ASSEST,
+                'show_editor'                   => ( isset( Playouts_Admin::$options['show_editor'] ) and Playouts_Admin::$options['show_editor'] ),
 
                 'i18n'                          => Playouts_Admin_Map::$strings,
 

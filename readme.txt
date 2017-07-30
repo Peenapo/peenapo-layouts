@@ -110,6 +110,7 @@ You can also check the [online documentation](https://www.peenapo.com/docs/).
 * Fixed javascript error with Google map element
 * Fixed compatibility with Peenapo theme
 * Improved pricing tables styles
+* Fixed enable/disable editor ui not showing
 
 = 1.1.2 =
 * Fixed javascript source not loading playouts.prompt

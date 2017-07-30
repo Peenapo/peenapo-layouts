@@ -65,11 +65,7 @@ class Playouts_Admin {
      */
     static function main_class( $classes ) {
 
-        if( Playouts_Admin::$status ) {
-            if( ! ( isset( Playouts_Admin::$options['show_editor'] ) and Playouts_Admin::$options['show_editor'] ) ) {
-                $classes[] = 'pl-hide-editor';
-            }
-        }
+        //$classes[] = 'pl-hide-editor';
 
         return $classes;
 

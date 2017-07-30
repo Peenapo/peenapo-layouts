@@ -2784,7 +2784,7 @@ var Pl_main = {
         $('#pl-switch-button').removeClass('bw-switch-active');
 
         // hide the editor if enabled
-        if( $('#pl-main').hasClass('pl-hide-editor') ) {
+        if( ! window.playouts_data.show_editor ) {
             $('#postdivrich').css('display', 'none');
         }
 
@@ -2808,7 +2808,7 @@ var Pl_main = {
         $('#pl-switch-button').addClass('bw-switch-active');
 
         // show the editor if enabled
-        if( $('#pl-main').hasClass('pl-hide-editor') ) {
+        if( ! window.playouts_data.show_editor ) {
             $('#postdivrich').css('display', 'block');
         }
 

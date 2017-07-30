@@ -3059,6 +3059,8 @@ class Playouts_Element_Image extends Playouts_Element {
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
 
+        if( empty( $image ) ) { return; }
+
         return '<div class="pl-image' . $class . '" style="' . $style . '"' . $id . '>'.
             '<img src="' . esc_url( $image ) . '" alt="' . esc_attr( $alt_tag ) . '">'.
         '</div>';
