@@ -1,5 +1,7 @@
 <?php
 
+// TODO: merge this and class.Playouts-Shortcode-Parser.php
+
 function playouts_get_pattern( $text ) {
     $pattern = '\[(\[?)(' . implode( '|', Playouts_Element::get_modules_raw() ) . ')(?![\w-])([^\]\/]*(?:\/(?!\])[^\]\/]*)*?)(?:(\/)\]|\](?:([^\[]*+(?:\[(?!\/\2\])[^\[]*+)*+)\[\/\2\])?)(\]?)';
     preg_match_all( "/$pattern/s", $text, $c );

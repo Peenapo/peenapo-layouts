@@ -125,6 +125,7 @@ var Pl_interface = {
             if( item.parent_id == 0 && Pl_layouts.layout_parent_id !== 0 ) {
                 item.parent_id = Pl_layouts.layout_parent_id;
             }
+
             // create the element
             Pl_main.create_element( uid, item.module, item.parent_id, false, item.params );
 
