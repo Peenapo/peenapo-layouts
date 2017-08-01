@@ -42,7 +42,7 @@ var Pl_interface = {
 
                 // reverse the rows if appending on the top
                 // or we will get the wrong order
-                response = response.sort().reverse();
+                response = response.reverse();
 
                 // if we are paring a layout, then set a global
                 if( is_layout ) { Pl_layouts.is_layout = true; }
