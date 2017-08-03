@@ -334,6 +334,7 @@ class Playouts_Element_Row extends Playouts_Element {
                 'max'               => 100,
                 'step'              => 1,
                 'value'             => 50,
+                'append_after'      => '%',
                 'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
                 'depends'           => array( 'element' => 'overlay_enable', 'value' => '1' ),
             ),
@@ -4959,6 +4960,7 @@ class Playouts_Element_Heading extends Playouts_Element {
                     'h4'    => 'H4',
                     'h5'    => 'H5',
                     'h6'    => 'H6',
+                    'span'  => 'SPAN',
                 ),
                 'value'             => 'h3'
             ),
@@ -6016,8 +6018,8 @@ class Playouts_Element_Pricing_Tables_Item extends Playouts_Repeater_Item_Elemen
             '<div class="pl-pricing-header">
                 <h5>' . esc_attr( $top_title ) . '</h5>
                 <span style="color:' . esc_attr( $focus_color ) . '">' . esc_attr( $second_top_title ) . '</span>
-                <h2 class="pl-pricing-title" style="color:' . esc_attr( $main_color ) . ';background:linear-gradient(to ' . esc_attr( $direction ) . ',' . esc_attr( $main_color ) . ', ' . esc_attr( $secondary_color ) . ');' . ( ! empty( $secondary_color ) ? '-webkit-background-clip:text;-webkit-text-fill-color:transparent;' : '' ) . '">' . esc_attr( $price ) . '</h2>
-                <h4 class="pl-pricing-title">' . esc_attr( $bottom_title ) . '</h4>
+                <span class="pl-pricing-title" style="color:' . esc_attr( $main_color ) . ';background:linear-gradient(to ' . esc_attr( $direction ) . ',' . esc_attr( $main_color ) . ', ' . esc_attr( $secondary_color ) . ');' . ( ! empty( $secondary_color ) ? '-webkit-background-clip:text;-webkit-text-fill-color:transparent;' : '' ) . '">' . esc_attr( $price ) . '</span>
+                <span class="pl-pricing-sub-title">' . esc_attr( $bottom_title ) . '</span>
             </div>'.
             '<div class="pl-pricing-content">'.
                 do_shortcode( $content ).

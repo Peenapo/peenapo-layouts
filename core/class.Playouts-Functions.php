@@ -45,7 +45,7 @@ class Playouts_Functions {
                 array(
                     'value'   => $file,
                     'compare' => 'LIKE',
-                    'key'     => '_wp_attachment_metadata',
+                    'key'     => '_wp_attached_file',
                 ),
             )
         ));
@@ -121,7 +121,7 @@ class Playouts_Functions {
      */
     static function set_column_width( $width, $margin_left, $margin_right ) {
 
-        $width = (int) $width;
+        $width = esc_attr( $width );
 
         $_width = '1';
 
