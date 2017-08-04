@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Peenapo Layouts: Page Builder - drag and drop website builder
+Plugin Name: Peenapo Layouts - Page Builder, drag and drop website builder
 Plugin URI: https://www.peenapo.com
 Description: Peenapo Layouts is a drag and drop page builder and layout system for any WordPress theme.
 Version: 1.1.2

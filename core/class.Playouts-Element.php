@@ -1901,6 +1901,18 @@ class Playouts_Element_Audio extends Playouts_Element {
                 ),
                 'width'             => 50
             ),
+            'margin_top' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Margin Top', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 50
+            ),
+            'margin_bottom' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Margin Bottom', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 50
+            ),
             'inline_class' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
@@ -1930,6 +1942,8 @@ class Playouts_Element_Audio extends Playouts_Element {
             'cover_image'       => '',
             'background_color'  => '',
             'text_color'        => '#000',
+            'margin_top'        => '',
+            'margin_bottom'     => '',
             'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
@@ -1961,6 +1975,9 @@ class Playouts_Element_Audio extends Playouts_Element {
         if( $cover_top ) {
             $class .= ' pl-cover-full';
         }
+
+        if( $margin_top ) { $style .= 'margin-top:' . esc_attr( $margin_top ) . ( is_numeric( $margin_top ) ? 'px' : '' ) . ';'; }
+        if( $margin_bottom ) { $style .= 'margin-bottom:' . esc_attr( $margin_bottom ) . ( is_numeric( $margin_bottom ) ? 'px' : '' ) . ';'; }
 
         $class .= ' pl-audio-text-color-' . ( $text_color == '#000' ? 'dark' : 'light' );
 
@@ -1995,7 +2012,12 @@ class Playouts_Element_Accordion extends Playouts_Repeater_Element {
             'close_other' => array(
                 'type'              => 'true_false',
                 'label'             => esc_html__( 'Close Other Items?', 'peenapo-layouts-txd' ),
-                'description'        => esc_html__( 'Enable this option if you want to close the rest of accordion items on mouse click.', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Enable this option if you want to close the rest of accordion items on mouse click.', 'peenapo-layouts-txd' ),
+            ),
+            'invert' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Invert Colors?', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Click this options if you are using a dark background color.', 'peenapo-layouts-txd' ),
             ),
             'line_height' => array(
                 'label'             => esc_html__( 'Titles Height', 'peenapo-layouts-txd' ),
@@ -2029,6 +2051,7 @@ class Playouts_Element_Accordion extends Playouts_Repeater_Element {
 
         extract( $assigned_atts = shortcode_atts( array(
             'close_other'       => false,
+            'invert'            => false,
             'line_height'       => 90,
             'inline_class'      => '',
             'inline_id'         => '',
@@ -2040,6 +2063,8 @@ class Playouts_Element_Accordion extends Playouts_Repeater_Element {
         $class .= ! empty( $inline_class ) ? ' ' . esc_attr( $inline_class ) : '';
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
+
+        $class .= $invert ? ' pl-accordion-invert' : '';
 
         if( $close_other ) { $class .= ' pl-close-other'; }
         $style .= 'line-height:' . (int) $line_height . 'px;';
@@ -2063,6 +2088,7 @@ class Playouts_Element_Accordion_Item extends Playouts_Repeater_Item_Element {
             'title' => array(
 				'label'              => esc_html__( 'Title', 'peenapo-layouts-txd' ),
 				'type'               => 'textfield',
+                'value'             => esc_html__( 'Accordion title', 'peenapo-layouts-txd' ),
 			),
             'active' => array(
                 'label'             => esc_html__( 'Active by Default?', 'peenapo-layouts-txd' ),
@@ -2072,7 +2098,7 @@ class Playouts_Element_Accordion_Item extends Playouts_Repeater_Item_Element {
 				'label'             => esc_html__( 'Content', 'peenapo-layouts-txd' ),
 				'type'              => 'editor',
 				'is_content'        => true,
-                'value'             => 'Accordion item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.',
+                'value'             => esc_html__( 'Accordion item. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse ante dolor, ultrices quis arcu sed, consectetur fermentum dui.', 'peenapo-layouts-txd' ),
 			),
             'inline_class' => array(
                 'type'              => 'textfield',
@@ -2636,25 +2662,25 @@ class Playouts_Element_Button extends Playouts_Element {
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'Margin Top', 'peenapo-layouts-txd' ),
                 'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
-                'width'             => 50
+                'width'             => 25
             ),
             'margin_right' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'Margin Right', 'peenapo-layouts-txd' ),
                 'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
-                'width'             => 50
+                'width'             => 25
             ),
             'margin_bottom' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'Margin Bottom', 'peenapo-layouts-txd' ),
                 'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
-                'width'             => 50
+                'width'             => 25
             ),
             'margin_left' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'Margin Left', 'peenapo-layouts-txd' ),
                 'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
-                'width'             => 50
+                'width'             => 25
             ),
             'inline_class' => array(
                 'type'              => 'textfield',
@@ -4979,7 +5005,7 @@ class Playouts_Element_Heading extends Playouts_Element {
                     'center'            => 'Center',
                     'right'             => 'Right',
                 ),
-                'value'             => '',
+                'value'             => 'center',
                 'width'             => 50
 			),
             'sub_title_color' => array(
@@ -4994,7 +5020,7 @@ class Playouts_Element_Heading extends Playouts_Element {
                 'min'               => 14,
                 'max'               => 120,
                 'step'              => 1,
-                'value'             => 40,
+                'value'             => 60,
             ),
             'font_size_content' => array(
                 'label'             => esc_html__( 'Content Font Size', 'peenapo-layouts-txd' ),
@@ -5017,6 +5043,7 @@ class Playouts_Element_Heading extends Playouts_Element {
             'bold_text' => array(
                 'label'             => esc_html__( 'Bold Text', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
+                'value'             => '1',
             ),
             'enable_max_width' => array(
                 'label'             => esc_html__( 'Enable Maximum Width?', 'peenapo-layouts-txd' ),
