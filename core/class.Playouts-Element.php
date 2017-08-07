@@ -2185,6 +2185,11 @@ class Playouts_Element_Tabs extends Playouts_Repeater_Element {
                 'type'              => 'true_false',
                 'width'             => 50
             ),
+            'border_color' => array(
+                'type'              => 'colorpicker',
+                'label'             => esc_html__( 'Border Color ( Optional )', 'peenapo-layouts-txd' ),
+                'value'             => '',
+            ),
             'inline_class' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
@@ -2216,6 +2221,7 @@ class Playouts_Element_Tabs extends Playouts_Repeater_Element {
             'nav_border'        => false,
             'line_height'       => 65,
             'invert_color'      => false,
+            'border_color'      => '',
             'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
@@ -2236,7 +2242,8 @@ class Playouts_Element_Tabs extends Playouts_Repeater_Element {
             $tabs_output .= '<li' . ( $c == 0 ? ' class="pl-active"' : '' ) . '><a href="#tab-' . $tab_id . '">' . esc_attr( $tab ) . '</a></li>';
             $c++;
         }
-        $tabs_output .= '<li class="pl-nav-border"></li>';
+        $border_style = $border_color ? ' style="background-color:' . esc_attr( $border_color ) . ';"' : '';
+        $tabs_output .= '<li class="pl-nav-border"' . $border_style . '></li>';
         $tabs_output .= '</ul>';
 
         return '<div class="pl-tabs' . $class . '" style="' . $style . '"' . $id . '>' . $tabs_output . $content . '</div>';
@@ -2782,7 +2789,7 @@ class Playouts_Element_Code extends Playouts_Element {
         $this->params = array(
             'content' => array(
 				'label'             => esc_html__( 'Code', 'peenapo-layouts-txd' ),
-				'type'              => 'textarea',
+				'type'              => 'editor',
 				'is_content'        => true,
                 'value'             => '&lt;div class="example"&gt;
     ' . esc_html__( 'Some code goes here..', 'peenapo-layouts-txd' ) . '
@@ -3686,9 +3693,9 @@ class Playouts_Element_Clients extends Playouts_Repeater_Element {
                 'description'       => esc_html__( 'The appearance delay between each item in milliseconds.', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => 'milliseconds.',
-                'min'               => 100,
+                'min'               => 50,
                 'max'               => 1000,
-                'step'              => 50,
+                'step'              => 25,
                 'value'             => 100,
                 'depends'           => array( 'element' => 'enable_animation', 'value' => '1' ),
                 'tab'               => array( 'animation' => esc_html__( 'Animation', 'peenapo-layouts-txd' ) ),
@@ -5446,6 +5453,18 @@ class Playouts_Element_Notion_Box extends Playouts_Element {
                 'depends'           => array( 'element' => 'overlay', 'value' => '1' ),
                 'tab'               => array( 'background' => esc_html__( 'Background', 'peenapo-layouts-txd' ) ),
 			),
+            'margin_top' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Margin Top', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 50
+            ),
+            'margin_bottom' => array(
+                'type'              => 'textfield',
+                'label'             => esc_html__( 'Margin Bottom', 'peenapo-layouts-txd' ),
+                'tab'               => array( 'inline' => esc_html__( 'Inline', 'peenapo-layouts-txd' ) ),
+                'width'             => 50
+            ),
             'inline_class' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
@@ -5485,6 +5504,8 @@ class Playouts_Element_Notion_Box extends Playouts_Element {
             'scale'             => false,
             'overlay'           => false,
             'overlay_bg'        => '',
+            'margin_top'        => '',
+            'margin_bottom'     => '',
             'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
@@ -5512,6 +5533,9 @@ class Playouts_Element_Notion_Box extends Playouts_Element {
             $attr .= $target ? ' target="_blank"' : '';
         }
 
+        if( $margin_top ) { $style .= 'margin-top:' . esc_attr( $margin_top ) . ( is_numeric( $margin_top ) ? 'px' : '' ) . ';'; }
+        if( $margin_bottom ) { $style .= 'margin-bottom:' . esc_attr( $margin_bottom ) . ( is_numeric( $margin_bottom ) ? 'px' : '' ) . ';'; }
+
         return '<' . $_tag . ' class="pl-notion-box' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
             '<div class="pl-notion-background" style="background-color:' . esc_attr( $bg_color ) . '">'. // TODO: add video, parallax, etc. background styles
                 ( $image ? '<div class="pl-notion-image" style="background-image:url(' . esc_url( $image ) . ');"></div>' : '' ) .
@@ -5519,7 +5543,7 @@ class Playouts_Element_Notion_Box extends Playouts_Element {
             '</div>'.
             '<div class="pl-notion-content">'.
                 ( $top_text ? '<div class="pl-notion-meta"><span class="pl-notion-top" style="' . ( $text_color ? 'border-color:' . esc_attr( $text_color ) : '' ) . '">' . esc_attr( $top_text ) . '</span></div>' : '' ) .
-                ( $text ? "<div class='pl-notion-title'><$_h_tag class='pl-notion-text'>" . esc_attr( $text ) . "</$_h_tag></div>" : '' ) .
+                ( $text ? "<div class='pl-notion-title'><$_h_tag class='pl-notion-text'" . ( $font_size ? ' style="font-size:' . (int) $font_size . 'px"' : '' ) . ">" . esc_attr( $text ) . "</$_h_tag></div>" : '' ) .
                 ( $sub_text ? '<div class="pl-notion-footer"><span class="pl-notion-sub">' . esc_attr( $sub_text ) . '</span></div>' : '' ) .
             '</div>'.
         '</' . $_tag . '>';
