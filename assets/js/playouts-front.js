@@ -498,7 +498,7 @@ var Playouts = {
 
                     var self = $(this),
                         $border = $('.pl-nav-border', self),
-                        left = parseInt( self.find('li:first').outerWidth(), 10 );
+                        left = parseInt( self.find('li:first').width(), 10 );
 
                     TweenLite.to( $border, .4, { x: 0, scaleX: left, ease: Power4.easeOut } );
 
@@ -534,9 +534,10 @@ var Playouts = {
             ,scale_tabs_border: function( self ) {
 
                 var left = self.position().left,
-                    width =  parseInt( self.outerWidth(), 10 );
+                    width =  parseInt( self.outerWidth(), 10 ),
+                    marginLeft = parseInt( self.css('margin-left') );
 
-                TweenLite.to( $('.pl-nav-border', self.closest('.pl-tabs') ), .4, { x: left, scaleX: width, ease: Power4.easeOut } );
+                TweenLite.to( $('.pl-nav-border', self.closest('.pl-tabs') ), .4, { x: left + marginLeft, scaleX: width, ease: Power4.easeOut } );
 
             }
         }

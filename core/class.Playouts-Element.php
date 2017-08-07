@@ -2179,6 +2179,12 @@ class Playouts_Element_Tabs extends Playouts_Repeater_Element {
                 'step'              => 1,
                 'value'             => 65,
             ),
+            'invert_color' => array(
+                'label'             => esc_html__( 'Invert Colors', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Enable this options if you use a dark background.', 'peenapo-layouts-txd' ),
+                'type'              => 'true_false',
+                'width'             => 50
+            ),
             'inline_class' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'CSS Classes', 'peenapo-layouts-txd' ),
@@ -2209,6 +2215,7 @@ class Playouts_Element_Tabs extends Playouts_Repeater_Element {
         extract( $assigned_atts = shortcode_atts( array(
             'nav_border'        => false,
             'line_height'       => 65,
+            'invert_color'      => false,
             'inline_class'      => '',
             'inline_id'         => '',
             'inline_css'        => '',
@@ -2220,7 +2227,8 @@ class Playouts_Element_Tabs extends Playouts_Repeater_Element {
         $id .= ! empty( $inline_id ) ? ' id="' . esc_attr( $inline_id ) . '"' : '';
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
 
-        if( $nav_border ) { $class .= ' pl-bottom-border'; }
+        $class .= $nav_border ? ' pl-bottom-border' : '';
+        $class .= $invert_color ? ' pl-tabs-invert' : '';
 
         $tabs_output = '<ul class="pl-tab-nav" style="line-height:' . (int) $line_height . 'px;">';
         $c = 0;
@@ -3348,8 +3356,8 @@ class Playouts_Element_Testimonials extends Playouts_Repeater_Element {
                 'width'             => 50
             ),
             'invert_color' => array(
-                'label'             => esc_html__( 'Invret Colors', 'peenapo-layouts-txd' ),
-                'description'       => esc_html__( 'enable this options if you use a dark background.', 'peenapo-layouts-txd' ),
+                'label'             => esc_html__( 'Invert Colors', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Enable this options if you use a dark background.', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'width'             => 50
             ),
@@ -3924,8 +3932,8 @@ class Playouts_Element_Clients_Slider extends Playouts_Repeater_Element {
                 'width'             => 50
             ),
             'invert_color' => array(
-                'label'             => esc_html__( 'Invret Colors', 'peenapo-layouts-txd' ),
-                'description'       => esc_html__( 'enable this options if you use a dark background.', 'peenapo-layouts-txd' ),
+                'label'             => esc_html__( 'Invert Colors', 'peenapo-layouts-txd' ),
+                'description'       => esc_html__( 'Enable this options if you use a dark background.', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'width'             => 50
             ),
@@ -4548,7 +4556,7 @@ class Playouts_Element_Image_Slider extends Playouts_Repeater_Element {
                 'width'             => 50
             ),
             'invert_color' => array(
-                'label'             => esc_html__( 'Invret Colors', 'peenapo-layouts-txd' ),
+                'label'             => esc_html__( 'Invert Colors', 'peenapo-layouts-txd' ),
                 'description'       => esc_html__( 'Enable this options if you use a dark background.', 'peenapo-layouts-txd' ),
                 'type'              => 'true_false',
                 'width'             => 50
