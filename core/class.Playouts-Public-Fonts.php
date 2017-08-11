@@ -41,7 +41,7 @@ class Playouts_Public_Fonts {
             ),
             'font_sub_headings' => array(
                 'default' => array( 'family' => 'Roboto', 'variants' => '500' ),
-                'selectors' => '.pl-carousel-text p, .pl-heading .pl-heading-top'
+                'selectors' => '.pl-carousel-top-title, .pl-heading .pl-heading-top'
             )
 
         );

@@ -447,7 +447,7 @@
 .pl-hotspots ul {}
 .pl-hotspots ul li {}
 .pl-hotspots-image {}
-.pl-hotspots-image img {width:100%;height:auto;}
+.pl-hotspots-image img {width:100%;height:auto;vertical-align:top;}
 .pl-hotspots-list {position:absolute;top:0;left:0;right:0;bottom:0;}
     .pl-hotspot {position:absolute;width:51px;height:51px;border-radius:50%;cursor:pointer;}
     .pl-hotspot span {position:absolute;top:12px;left:12px;width:27px;height:27px;background-color:#111;border-radius:50%;transition:all .3s;-webkit-transition:all .3s;}
@@ -464,6 +464,8 @@
     .pl-hotspot-box p {margin:0;font-size:15px;}
     .pl-hotspot:hover .pl-hotspot-box {opacity:1;visibility:visible;}
 
+    .pl-hotspots-invert .pl-hotspot:before, .pl-hotspots-invert .pl-hotspot:after {background-color:#111;}
+
 
 /* pricing tables */
 .pl-pricing-tables-outer {width:100%;overflow:hidden;}
@@ -478,9 +480,9 @@
 .pl-pricing-content {}
 .pl-pricing-content ul {padding:0;margin:0;list-style:none;line-height:190%;}
 .pl-pricing-footer {margin:auto 0 0 0;}
-.pl-pricing-footer .pl-button {padding:0 26px;margin-top:30px;line-height:46px;border-radius:3px;}
+.pl-pricing-footer .pl-button {padding:0 26px;margin-top:30px;line-height:46px;border-radius:60px;}
 
-.pl-is-focus {margin-top:-20px;margin-bottom:-20px;-webkit-box-shadow:0px 0px 80px 0px rgba(0,0,0,0.05);border-radius:0 0 6px 6px;z-index:1;}
+.pl-is-focus {margin-top:-20px;/*margin-bottom:-20px;*/-webkit-box-shadow:0px 0px 80px 0px rgba(0,0,0,0.05);border-radius:0 0 6px 6px;z-index:1;}
 .pl-is-focus .pl-pricing-header {padding-top:20px;}
 .pl-is-focus .pl-before {position:absolute;top:-4px;left:-4px;right:-4px;height:4px;background-color:#6bbb36;}
 

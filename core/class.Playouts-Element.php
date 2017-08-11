@@ -5670,15 +5670,21 @@ class Playouts_Element_Image_Hotspots extends Playouts_Repeater_Element {
 			),
             'color' => array(
                 'label'             => esc_html__( 'Hotspot Background Color', 'peenapo-layouts-txd' ),
-                'type'              => 'colorpicker',
+                'type'              => 'colorpicker'
+            ),
+            'invert' => array(
+                'label'             => esc_html__( 'Invert Plus Icon Color', 'peenapo-layouts-txd' ),
+                'type'              => 'true_false'
             ),
             'box_bg_color' => array(
                 'label'             => esc_html__( 'Box Background Color', 'peenapo-layouts-txd' ),
                 'type'              => 'colorpicker',
+                'width'             => 50
             ),
             'box_text_color' => array(
                 'label'             => esc_html__( 'Box Text Color', 'peenapo-layouts-txd' ),
                 'type'              => 'colorpicker',
+                'width'             => 50
             ),
             'enable_animation' => array(
                 'label'             => esc_html__( 'Enable Pulse Animation', 'peenapo-layouts-txd' ),
@@ -5716,6 +5722,7 @@ class Playouts_Element_Image_Hotspots extends Playouts_Repeater_Element {
         extract( $assigned_atts = shortcode_atts( array(
             'image'                 => '',
             'color'                 => '',
+            'invert'                => false,
             'box_bg_color'          => '',
             'box_text_color'        => '',
             'enable_animation'      => false,
@@ -5731,6 +5738,7 @@ class Playouts_Element_Image_Hotspots extends Playouts_Repeater_Element {
         $style .= ! empty( $inline_css ) ? esc_attr( $inline_css ) : '';
 
         $class .= $enable_animation ? ' pl-is-animated' : '';
+        $class .= $invert ? ' pl-hotspots-invert' : '';
 
         if( ! empty( $content ) and ! empty( $image ) ) {
             return '<div class="pl-hotspots' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
@@ -6496,7 +6504,7 @@ class Playouts_Element_Google_Map_Item extends Playouts_Repeater_Item_Element {
             'title' => array(
                 'type'              => 'textfield',
                 'label'             => esc_html__( 'Title', 'peenapo-layouts-txd' ),
-                'value'             => esc_html__( 'Out Location', 'peenapo-layouts-txd' ),
+                'value'             => esc_html__( 'Our Location', 'peenapo-layouts-txd' ),
             ),
             'lat' => array(
                 'type'              => 'textfield',
