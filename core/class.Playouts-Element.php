@@ -5564,15 +5564,21 @@ class Playouts_Element_Image_Comparison extends Playouts_Element {
         $this->params = array(
             'image_left' => array(
                 'label'              => esc_html__( 'Left Image', 'peenapo-layouts-txd' ),
+                'description'        => esc_html__( 'Left image and Right image should be the same size.', 'peenapo-layouts-txd' ),
                 'type'               => 'image',
             ),
             'image_right' => array(
                 'label'              => esc_html__( 'Right Image', 'peenapo-layouts-txd' ),
+                'description'        => esc_html__( 'Left image and Right image should be the same size.', 'peenapo-layouts-txd' ),
                 'type'               => 'image',
             ),
             'color' => array(
                 'type'              => 'colorpicker',
                 'label'             => esc_html__( 'Color', 'peenapo-layouts-txd' ),
+			),
+            'invert' => array(
+                'type'              => 'true_false',
+                'label'             => esc_html__( 'Invert Arrows Color', 'peenapo-layouts-txd' ),
 			),
             'direction' => array(
                 'label'             => esc_html__( 'Direction', 'peenapo-layouts-txd' ),
@@ -5618,6 +5624,7 @@ class Playouts_Element_Image_Comparison extends Playouts_Element {
             'image_left'        => '',
             'image_right'       => '',
             'color'             => '',
+            'invert'            => false,
             'direction'         => 'horizontal',
             'offset'            => 0,
             'inline_class'      => '',
@@ -5634,6 +5641,7 @@ class Playouts_Element_Image_Comparison extends Playouts_Element {
         $style .= ! empty( $color ) ? 'background-color:' . esc_attr( $color ) . ';' : '';
         $attr .= ! empty( $direction ) ? ' data-direction="' . esc_attr( $direction ) . '"' : '';
         $attr .= ' data-offset="' . esc_attr( $offset ) . '"';
+        $class .= $invert ? ' bw-comparison-invert' : '';
 
         return '<div class="pl-image-comparison' . $class . '" style="' . $style . '"' . $id . $attr . '>'.
             ( ! empty( $image_left ) ? '<img src="' . esc_url( $image_left ) . '" alt="">' : '' ).
