@@ -5784,7 +5784,7 @@ class Playouts_Element_Image_Hotspots_Item extends Playouts_Repeater_Item_Elemen
                 'value'             => esc_html__( 'Text goes here', 'peenapo-layouts-txd' ),
             ),
             'position_top' => array(
-                'label'             => esc_html__( 'Left Position', 'peenapo-layouts-txd' ),
+                'label'             => esc_html__( 'Top Position', 'peenapo-layouts-txd' ),
                 'type'              => 'number_slider',
                 'append_after'      => '%',
                 'min'               => 0,
