@@ -36,11 +36,11 @@ class Playouts_Public_Fonts {
                 'selectors' => '.pl-outer'
             ),
             'font_headings' => array(
-                'default' => array( 'family' => 'Roboto', 'variants' => '500' ),
+                'default' => array( 'family' => '__inherit', 'variants' => '500' ),
                 'selectors' => '.pl-outer h1, .pl-outer h2, .pl-outer h3, .pl-outer h4, .pl-outer h5, .pl-outer h6, .pl-pricing-title, .pl-not-finer .pl-testimonial-content p, .pl-testimonial-name, .pl-video-modal, .pl-hotspot-box strong, .pl-number-counter, .pl-heading-title'
             ),
             'font_sub_headings' => array(
-                'default' => array( 'family' => 'Roboto', 'variants' => '500' ),
+                'default' => array( 'family' => '__inherit', 'variants' => '500' ),
                 'selectors' => '.pl-carousel-top-title, .pl-heading .pl-heading-top'
             )
 
@@ -56,9 +56,13 @@ class Playouts_Public_Fonts {
 
         foreach( self::$default_google_fonts as $font_key => $opts ) {
 
+            if( $opts['default']['family'] == '__inherit' ) {
+                continue;
+            }
+
             $font = isset( $options[ $font_key ] ) ? json_decode( stripcslashes( $options[ $font_key ] ) ) : '';
 
-            if( isset( $font_key['default']['self'] ) ) {
+            if( isset( $font_key['default']['self'] ) and $font_key['default']['self'] == true ) {
                 self::collect_font_declaration( $opts['selectors'], $opts['default'] );
                 continue;
             }
