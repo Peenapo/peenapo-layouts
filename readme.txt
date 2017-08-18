@@ -3,7 +3,7 @@ Contributors: peenapo
 Tags: page builder, layouts, visual composer, drag and drop, template library, layout builder, editor, responsive, landing page, peenapo, drag and drop page builder
 Requires at least: 4.7
 Tested up to: 4.8
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -111,6 +111,7 @@ You can also check the [online documentation](https://www.peenapo.com/docs/).
 * Fixed compatibility with Peenapo theme
 * Improved pricing tables styles
 * Fixed enable/disable editor ui not showing
+* Improved default styles can now inherit theme styles
 
 = 1.1.2 =
 * Fixed javascript source not loading playouts.prompt
